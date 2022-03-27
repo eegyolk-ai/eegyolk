@@ -28,7 +28,7 @@ PATH_DATA_PROCESSED_ML = os.path.join(ROOT, local_folder, "Data/data_processed_M
 PATH_METADATA = os.path.join(ROOT, "EEG_explorer", "ePODIUM_Metadata")
 
 # Raw EEG data folder
-PATH_RAW_DATA = os.path.join(ROOT, "EEG_explorer", "Data")
+PATH_RAW_DATA = os.path.join(ROOT, "EEG_explorer", "Data_Old")
 
 # # Already preprocessed data for initial experiments - before using own preprocessing pipeline
 PATH_DATA_PROCESSED_OLD = os.path.join(SECOND_ROOT, "Preprocessed_old/Data/data_processed_old/")
