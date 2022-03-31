@@ -36,9 +36,8 @@ Some of the data sets of this project are publicly available, and some are not  
 Original published data is used as demo data wherever possible. This data can be obtained from:
 https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:112935/ 
 
-NLeSC employees can download the data from [surfdrive](https://surfdrive.surf.nl/files/index.php/s/mkwBAisnYUaPRhy).
-Contact Pablo Lopez-Tarifa (p.lopez@esciencecenter.nl) for access to the data, 
-or Sven van der Burg (s.vanderburg@esciencecenter.nl) 
+NLeSC employees can download some additional data from [surfdrive](https://surfdrive.surf.nl/files/index.php/s/mkwBAisnYUaPRhy).
+Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional access to data,
 
 ## Getting started
 
