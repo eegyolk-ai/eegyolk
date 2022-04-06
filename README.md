@@ -1,9 +1,6 @@
-# EEG_scripts
+# eegyolk
 
-The following are scripts and notebooks for machine learning related to EEGS. They include an updated version of a project for deep learning for age prediciton using EEG data, as well as new ongoing work.
-
-## Structure of files
-
+This library contains functions, scripts and notebooks for machine learning related to EEGs (electroencephalograms). The notebooks include an updated version of a project for deep learning for age prediciton using EEG data, as well as new ongoing work from students at the University of Urtrecht.
 
 ### Notebooks
 
@@ -20,21 +17,19 @@ The Data folder contains the following folder/files:
 
 
 
-### Helper files
+### Program files
 
-The main folder of this repository will also contains a few helper files, for example DataGenerators.
-
-### Scripts
-
-
+The main program in this repository contains functions, for example DataGenerators.
 
 
 ## Data sets
 
 Some of the data sets of this project are publicly available, and some are not  as they contains privacy-sensitive information.
 
-Original published data is used as demo data wherever possible. This data can be obtained from:
+Original published data from the DDP (Dutch Dyslexia Program) is used as demo data wherever possible. This data can be obtained from:
 https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:112935/ 
+
+Collection of newer data acquired to detect dyslexia on a different protocol ended in 2022. This data is not yet public, however, there are many public EEG datasets to which the functions in this library can be applied.
 
 NLeSC employees can download some additional data from [surfdrive](https://surfdrive.surf.nl/files/index.php/s/mkwBAisnYUaPRhy).
 Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional access to data,
