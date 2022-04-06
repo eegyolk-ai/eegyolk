@@ -1,5 +1,5 @@
+![logo] (https://github.com/NLeSC/ePodium/blob/main/eegyolk_logo.png)
 # eegyolk
-
 This library contains functions, scripts and notebooks for machine learning related to EEGs (electroencephalograms). The notebooks include an updated version of a project for deep learning for age prediciton using EEG data, as well as new ongoing work from students at the University of Urtrecht.
 
 ### Notebooks
