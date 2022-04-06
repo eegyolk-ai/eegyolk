@@ -38,7 +38,15 @@ def hash_it_up_right_all(origin_folder1, file_extension):
     
     return df
 
-    def read_cnt_file(file,
+def band_pass_filter(data_raw, lo_freq, hi_freq):
+    # Band-pass filter 
+    # note between 1 and 40 Hz. was 0.5 to 30Hz in Stober 2016,
+    # choice needs more research
+    filtered = data_raw.filter(lo_freq, hi_freq, fir_design='firwin')
+    return filtered
+
+
+def read_cnt_file(file,
                   label_group,
                   event_idx = [2, 3, 4, 5, 12, 13, 14, 15],
                   channel_set = "30",
@@ -49,8 +57,8 @@ def hash_it_up_right_all(origin_folder1, file_extension):
                   threshold = 5, 
                   max_bad_fraction = 0.2,
                   max_bad_channels = 2,
-        ):
-        
+    ):
+
     """ Function to read cnt file. Run bandpass filter. 
     Then detect and correct/remove bad channels and bad epochs.
     Store resulting epochs as arrays.
