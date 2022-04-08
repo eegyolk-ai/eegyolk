@@ -2,7 +2,16 @@
 Helper functions to work with ePODIUM EEG data
 
 """
+import glob
+import os
+
+import pandas as pd
 import numpy as np
+
+import hashlib
+import h5py
+import warnings
+import re
 
 
 def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 0.8):
@@ -333,13 +342,12 @@ def read_cnt_file(file,
 
 
 
-def hash_it_up_right_all(origin_folder1, file_extension):
-    hash_list = []
-    file_names = []
-    files = '*' + file_extension
-    non_suspects1 = glob.glob(os.path.join(origin_folder1, files))
+def hash_it_up_right_all(folder, extension):
+    raw = {'hash': [], 'file': []}
+    files = os.path.join(folder, '*' + extension)
+
     BUF_SIZE = 65536
-    for file in non_suspects1:
+    for file in glob.glob(files):
         sha256 = hashlib.sha256()
         with open(file, 'rb') as f:
             while True:
@@ -348,15 +356,10 @@ def hash_it_up_right_all(origin_folder1, file_extension):
                     break
                 sha256.update(data)
         result = sha256.hexdigest()
-        hash_list.append(result)
-        file_names.append(file)
-        
-    df = pd.DataFrame(hash_list, file_names)
-    df.columns = ["hash"]
-    df = df.reset_index() 
-    df = df.rename(columns = {'index':'file_name'})
-    
-    return df
+        raw['hash'].append(result)
+        raw['file'].append(file)
+
+    return pd.DataFrame(raw)
 
 def band_pass_filter(data_raw, lo_freq, hi_freq):
     # Band-pass filter 
