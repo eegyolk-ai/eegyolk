@@ -13,6 +13,7 @@ import h5py
 import warnings
 import re
 
+import mne 
 
 def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 0.8):
     """

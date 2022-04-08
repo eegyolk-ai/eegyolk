@@ -5,16 +5,16 @@ import os
 import glob
 import sys
 from tempfile import TemporaryDirectory
+import mne
+
 sys.path.insert(0, os.getcwd())
 
 from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
 
-sample_eeg = 'sample/sample_124a_cut.bdf'
-# are you sure
-
-
+sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
+sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
             
         
 
@@ -27,10 +27,17 @@ class TestDisplayHelperMethods(unittest.TestCase):
 class TestFilteringMethods(unittest.TestCase):
 
     def test_band_pass_filter(self):
-        sample_eeg_filtered = band_pass_filter(sample_eeg, 20, 21)
+        sample_eeg_filtered = band_pass_filter(sample_eeg_read, 0, 2.38540286e-05)
+        print(sample_eeg_read)
+        print(sample_eeg_filtered)
         self.assertFalse(
-            band_pass_filter(sample_eeg).equals(sample_eeg_filtered)
+            (sample_eeg_read) == (sample_eeg_filtered)
         )
+
+#         comparison = an_array == another_array
+# equal_arrays = comparison.all()
+  
+# print(equal_arrays)
 
 
 class TestHashMethods(unittest.TestCase):
