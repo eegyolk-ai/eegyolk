@@ -24,17 +24,15 @@ class TestDisplayHelperMethods(unittest.TestCase):
         self.assertEqual(make_ordinal(5), '5th')
 
 # need to test filtering methods- needs thought.
-# class TestFilteringMethods(unittest.TestCase):
+class TestFilteringMethods(unittest.TestCase):
 
     def test_band_pass_filter(self):
-        # need to hash for contents then assert equal
         sample_eeg_filtered = band_pass_filter(sample_eeg, 20, 21)
         self.assertFalse(
             band_pass_filter(sample_eeg).equals(sample_eeg_filtered)
         )
 
 
-# # need a test for helper_functions.hash_it_up_right_all(), test currently failing
 class TestHashMethods(unittest.TestCase):
 
     def test_hash_it_up_right_all(self):
