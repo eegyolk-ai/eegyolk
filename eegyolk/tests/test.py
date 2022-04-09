@@ -23,21 +23,15 @@ class TestDisplayHelperMethods(unittest.TestCase):
     def test_make_ordinal(self):
         self.assertEqual(make_ordinal(5), '5th')
 
-# need to test filtering methods- needs thought.
+
 class TestFilteringMethods(unittest.TestCase):
 
     def test_band_pass_filter(self):
-        sample_eeg_filtered = band_pass_filter(sample_eeg_read, 0, 2.38540286e-05)
-        print(sample_eeg_read)
-        print(sample_eeg_filtered)
-        self.assertFalse(
-            (sample_eeg_read) == (sample_eeg_filtered)
+        sample_eeg_filtered = band_pass_filter(sample_eeg_read, 0, 10)
+        self.assertEqual(
+            (sample_eeg_filtered.info['lowpass']),
+            10,
         )
-
-#         comparison = an_array == another_array
-# equal_arrays = comparison.all()
-  
-# print(equal_arrays)
 
 
 class TestHashMethods(unittest.TestCase):
