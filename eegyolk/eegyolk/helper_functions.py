@@ -502,7 +502,7 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
     """
     original_path = path_metadata + filename + '.txt'
     if os.path.exists(original_path):
-        metadata = pandas.read_table(original_path)
+        metadata = pd.read_table(original_path)
         if(make_csv_files):
             csv_path = path_output + filename + '.csv'
             metadata.to_csv(csv_path)
