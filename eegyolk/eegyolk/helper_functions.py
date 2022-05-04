@@ -491,3 +491,25 @@ def read_cnt_file(file,
             label_collection += [event_id + label_group] * signals_cleaned.shape[0]
 
     return signal_collection, label_collection, channel_names_collection
+
+
+def load_metadata(filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True):
+    """
+    This function loads the metadata stored in the metadata folder, and makes an excel or csv from the txt.
+    Inputs: filename, file_foler (where the file is),file_metadata(file where metadatais),
+    make_excel_files, make_csv_files (True makes this type of file), path_output(where we put the file)
+    Outputs: csv and/or excel file
+    """
+    original_path = path_metadata + filename + '.txt'
+    if os.path.exists(original_path):
+        metadata = pandas.read_table(original_path)
+        if(make_csv_files):
+            csv_path = path_output + filename + '.csv'
+            metadata.to_csv(csv_path)
+        if(make_excel_files):
+            excel_path = path_output + filename + '.xlsx'
+            metadata.to_excel(excel_path)
+        return metadata
+    else:
+        print("PATH NOT FOUND:  " + file_folder)
+        return None
