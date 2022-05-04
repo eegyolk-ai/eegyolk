@@ -511,5 +511,5 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
             metadata.to_excel(excel_path)
         return metadata
     else:
-        print("PATH NOT FOUND:  " + file_folder)
+        print("PATH NOT FOUND:  " + os.path.join(path_metadata, filename))
         return None
