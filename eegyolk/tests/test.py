@@ -10,7 +10,7 @@ import mne
 sys.path.insert(0, os.getcwd())
 
 from eegyolk.display_helper import make_ordinal
-from eegyolk.helper_functions import band_pass_filter
+from eegyolk.helper_functions import band_pass_filter 
 from eegyolk.helper_functions import hash_it_up_right_all
 from eegyolk.helper_functions import load_metadata
 
