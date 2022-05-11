@@ -1,4 +1,3 @@
-from ast import Not
 import mne              # toolbox for analyzing and visualizing EEG data
 import pandas as pd     # data analysis and manipulation
 import numpy as np      # numerical computing (manipulating and performing operations on arrays of data)
