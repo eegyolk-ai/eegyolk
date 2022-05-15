@@ -23,7 +23,8 @@ from eegyolk.initialization_functions import print_event_info
 sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
 sample_metadata = 'tests/sample/cdi.txt'
-
+event_marker_folder = 'tests/sample/fake_event_markers'
+sample_eeg_list = ['101a','101b']
 
 class TestDisplayHelperMethods(unittest.TestCase):
 
@@ -55,7 +56,7 @@ class TestHashMethods(unittest.TestCase):
 
 class TestLoadMethods(unittest.TestCase):
 
-    # this test needs work- 
+   
     def test_load_metadata(self):
         filename = os.path.splitext(sample_metadata)[0]
         loaded_metadata = load_metadata(
@@ -66,9 +67,10 @@ class TestLoadMethods(unittest.TestCase):
             make_csv_files=False,
         )
         self.assertEqual(len(loaded_metadata), 143)
-        print(sys.path[0])
-        print(sample_metadata)
-        #self.assertEqual(len(loaded_metadata), 143)
+
+    def test_load_event_markers(self):
+        loaded_event_markers = load_event_markers(event_marker_folder, sample_eeg_list)
+        self.assertEqual(len(loaded_event_markers), 2)
 
 if __name__ == '__main__':
     unittest.main()
