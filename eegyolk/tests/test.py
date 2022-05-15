@@ -12,9 +12,17 @@ sys.path.insert(0, os.getcwd())
 from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
+from eegyolk.helper_functions import load_metadata # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
+
+from eegyolk.initialization_functions import load_dataset
+# from eegyolk.initialization_functions import load_metadata
+from eegyolk.initialization_functions import load_event_markers
+from eegyolk.initialization_functions import save_event_markers
+from eegyolk.initialization_functions import print_event_info
 
 sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
+sample_metadata= 'tests/sample/cdi.txt'
             
         
 
@@ -45,6 +53,15 @@ class TestHashMethods(unittest.TestCase):
             with open(os.path.join(td, tempfile2), 'w') as tf:
                 tf.write('string')
             self.assertTrue(hash_it_up_right_all(td, '.cnt').equals(hash_it_up_right_all(td, '.cnt')))
+
+class TestLoadMethods(unittest.TestCase):
+
+    # this test needs work- 
+    def test_load_metadata(self):
+        loaded_metadata = load_metadata(sample_metadata,sys.path[0], sys.path[0], make_excel_files=False, make_csv_files=False)
+        self.assertEqual(len(loaded_metadata), 143)
+        # print(sys.path[0])
+        #self.assertEqual(len(loaded_metadata), 143)
 
 if __name__ == '__main__':
     unittest.main()
