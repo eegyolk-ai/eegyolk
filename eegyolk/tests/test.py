@@ -22,9 +22,8 @@ from eegyolk.initialization_functions import print_event_info
 
 sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
-sample_metadata= 'tests/sample/cdi.txt'
-            
-        
+sample_metadata = 'tests/sample/cdi.txt'
+
 
 class TestDisplayHelperMethods(unittest.TestCase):
 
@@ -58,9 +57,17 @@ class TestLoadMethods(unittest.TestCase):
 
     # this test needs work- 
     def test_load_metadata(self):
-        loaded_metadata = load_metadata(sample_metadata,sys.path[0], sys.path[0], make_excel_files=False, make_csv_files=False)
+        filename = os.path.splitext(sample_metadata)[0]
+        loaded_metadata = load_metadata(
+            filename,
+            sys.path[0],
+            sys.path[0],
+            make_excel_files=False,
+            make_csv_files=False,
+        )
         self.assertEqual(len(loaded_metadata), 143)
-        # print(sys.path[0])
+        print(sys.path[0])
+        print(sample_metadata)
         #self.assertEqual(len(loaded_metadata), 143)
 
 if __name__ == '__main__':
