@@ -24,7 +24,7 @@ sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
 sample_metadata = 'tests/sample/cdi.txt'
 event_marker_folder = 'tests/sample/fake_event_markers'
-sample_eeg_list = ['101a','101b']
+sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):
 
@@ -70,7 +70,7 @@ class TestLoadMethods(unittest.TestCase):
 
     def test_load_event_markers(self):
         loaded_event_markers = load_event_markers(event_marker_folder, sample_eeg_list)
-        self.assertEqual(len(loaded_event_markers), 2)
+        self.assertEqual(len(loaded_event_markers), 1)
 
 if __name__ == '__main__':
     unittest.main()
