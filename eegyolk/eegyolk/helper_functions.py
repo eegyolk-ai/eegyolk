@@ -496,20 +496,22 @@ def read_cnt_file(file,
 def load_metadata(filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True):
     """
     This function loads the metadata stored in the metadata folder, and makes an excel or csv from the txt.
-    Inputs: filename, file_foler (where the file is),file_metadata(file where metadatais),
+    Inputs: filename, path_metadata(file where metadata is), )
     make_excel_files, make_csv_files (True makes this type of file), path_output(where we put the file)
     Outputs: csv and/or excel file
     """
-    original_path = path_metadata + filename + '.txt'
+    original_path = os.path.join(path_metadata, filename + '.txt')
+    original_path = os.path.normpath(original_path)
+    # TODO: why is it OK to ignore non-existent files here?
     if os.path.exists(original_path):
         metadata = pd.read_table(original_path)
-        if(make_csv_files):
-            csv_path = path_output + filename + '.csv'
+        if make_csv_files:
+            csv_path = os.path.join(path_output, filename + '.csv')
             metadata.to_csv(csv_path)
-        if(make_excel_files):
-            excel_path = path_output + filename + '.xlsx'
+        if make_excel_files:
+            excel_path = os.path.join(path_output, filename + '.xlsx')
             metadata.to_excel(excel_path)
         return metadata
     else:
-        print("PATH NOT FOUND:  " + os.path.join(path_metadata, filename))
+        print("PATH NOT FOUND:", original_path)
         return None

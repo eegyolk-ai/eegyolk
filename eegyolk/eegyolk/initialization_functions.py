@@ -59,6 +59,7 @@ def load_event_markers(folder_event_markers, eeg_filenames):
     '''
     Events are saved and loaded externally from .txt file, 
     since loading events from raw EEG file takes much longer. 
+    NB: eeg_filenames should not include extension or root directory.
     '''
     if not(os.path.exists(folder_event_markers)):
         print("There is no folder at: ", folder_event_markers,
@@ -70,7 +71,7 @@ def load_event_markers(folder_event_markers, eeg_filenames):
         filepath = os.path.join(folder_event_markers, filename + ".txt")
         event_markers.append(np.loadtxt(filepath, dtype = int))    
     print(len(event_markers), "Event Marker files loaded")
-    return event_markers;
+    return event_markers
 
 
 def print_event_info(event_markers, participant_index = 5, event_index = 500, sample_frequency = 2048):
