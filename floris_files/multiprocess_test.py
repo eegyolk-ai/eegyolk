@@ -1,4 +1,4 @@
-# MULTIPROCESSING DOESNT WORK IN IPYNB FILES
+# NOTE: MULTIPROCESSING DOESNT WORK IN IPYNB FILES
 
 from multiprocessing import Process
 from multiprocessing import Pool
