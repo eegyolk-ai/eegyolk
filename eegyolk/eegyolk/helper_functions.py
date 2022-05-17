@@ -521,3 +521,30 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
     else:
         print("PATH NOT FOUND:", original_path)
         return None
+"""
+    Functions that help turns EEG into epoched data and evoked data
+    """
+def create_epochs(eeg, event_markers_simplified, tmin, tmax):
+    """
+        This function turns eeg data into epochs. 
+        inputs: eeg data files, event parkers, time before event, time after event
+        output: eeg data divided in epochs
+        """
+    epochs =  []
+    for i in range(len(eeg)): 
+        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=tmin, tmax=tmax)
+        epochs.append(single_epoch)
+    return epochs
+    
+def evoked_responses(epochs, event_dictionary):
+    """
+        This function creates an average evoked response for each event. 
+        input: epoched data, variable where needs to be averaged on
+        output: evoked responses
+        """
+    evoked = []
+    for i in range(len(epod_helper.event_dictionary)):
+        avg_epoch = epochs[i].average()
+        evoked.append(avg_epoch)
+    return evoked  
+ 
