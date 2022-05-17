@@ -165,6 +165,12 @@ def select_bad_epochs_list(epochs, stimuli, threshold = 5, max_bad_fraction = 0.
 
 """Functions to import and process EEG data from cnt files.
 """
+def create_epochs(eeg, event_markers_simplified):
+    epochs =  []
+    for i in range(len(eeg)): 
+        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=-0.3, tmax=0.7)
+        epochs.append(single_epoch)
+    return epochs
 
 def standardize_EEG(data_array,
                     std_aim = 1,
