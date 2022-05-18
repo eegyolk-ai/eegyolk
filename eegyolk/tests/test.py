@@ -20,10 +20,10 @@ from eegyolk.initialization_functions import load_event_markers
 from eegyolk.initialization_functions import save_event_markers
 from eegyolk.initialization_functions import print_event_info
 
-sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt'
+sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file hardcoded for now
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
-sample_metadata = 'tests/sample/cdi.txt'
-event_marker_folder = 'tests/sample/fake_event_markers'
+sample_metadata = '../epod_data_not_pushed/metadata/cdi.txt'
+event_marker_folder = 'tests/sample/fake_event_markers' # check with nadine on this folder
 sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):
