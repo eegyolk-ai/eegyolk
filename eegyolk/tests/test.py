@@ -22,7 +22,8 @@ from eegyolk.initialization_functions import print_event_info
 
 sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file hardcoded for now
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
-sample_metadata = '../epod_data_not_pushed/metadata/cdi.txt'
+sample_metadata = os.path.join('../epod_data_not_pushed','metadata','cdi.txt')
+# path_metadata = os.path.join('../epod_data_not_pushed','metadata')
 event_marker_folder = 'tests/sample/fake_event_markers' # check with nadine on this folder
 sample_eeg_list = ['101a']
 
