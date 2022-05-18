@@ -8,8 +8,24 @@ from IPython.display import clear_output
 from eegyolk.display_helper import make_ordinal
 
 
-def load_dataset(folder_dataset, file_extension = '.bdf'):
+def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
+    """
+    Documentation
+    """
+    pattern = os.path.join(folder_dataset, '**/*' + file_extension)
+    eeg_filepaths = glob.glob(pattern, recursive=True)
+    for path in eeg_filepaths:
+        
+        bdf_file = mne.io.read_raw_bdf(path,preload=preload)
+        print('file is read')
+        eeg_filename = os.path.split(path)[1].replace(file_extension, '')
+        yield bdf_file, eeg_filename
+        # clear_output(wait=True)
+    print(len(eeg_filepaths), "EEG files loaded")
+
+def load_dataset(folder_dataset, file_extension = '.bdf', preload=True):
     '''
+    This function is for datasets under 5 files. Otherwise use generator_load_dataset
     Reads and returns the bdf files that store the EEG data,
     along with a list of the filenames and paths of these bdf files. 
     Takes as input the top folder location of the dataset.
@@ -20,10 +36,11 @@ def load_dataset(folder_dataset, file_extension = '.bdf'):
     eeg_filenames = []
     for path in eeg_filepaths:
         if(file_extension == '.bdf'):
-            BdfFile = mne.io.read_raw_bdf(path)
-        eeg_dataset.append(BdfFile)
-        eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
-        clear_output(wait=True)
+            BdfFile = mne.io.read_raw_bdf(path,preload=preload)
+            print('file is read')
+            eeg_dataset.append(BdfFile)
+            eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
+        # clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
     return eeg_dataset, eeg_filenames, eeg_filepaths
 
@@ -54,6 +71,19 @@ def save_event_markers(folder_event_markers, eeg_dataset, eeg_filenames):
         print("\n", i+1, " out of ", len(eeg_dataset), " saved.")
         clear_output(wait=True)
 
+def caller_save_event_markers(folder_event_markers, generator_argument):
+    '''    
+    Events are loaded from raw EEG files and saved in .txt file.
+    Loading from .txt file is much faster than from EEG file.
+    '''
+    if not os.path.isdir(folder_event_markers):
+        os.mkdir(folder_event_markers)
+
+    for i, (file, filename) in enumerate(generator_argument):
+        event_marker_path = os.path.join(folder_event_markers, filename + ".txt")
+        np.savetxt(event_marker_path, mne.find_events(file), fmt = '%i')
+        print("\n", i, " saved.")
+        clear_output(wait=True)
 
 def load_event_markers(folder_event_markers, eeg_filenames):
     '''
