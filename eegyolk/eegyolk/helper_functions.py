@@ -524,27 +524,29 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
 """
     Functions that help turns EEG into epoched data and evoked data
     """
-def create_epochs(eeg, event_markers_simplified, tmin, tmax):
+def create_epochs(eeg, event_markers_simplified, time_before_event, time_after_event):
     """
-        This function turns eeg data into epochs. 
-        inputs: eeg data files, event parkers, time before event, time after event
-        output: eeg data divided in epochs
-        """
+    This function turns eeg data into epochs. 
+    inputs: eeg data files, event parkers, time before event, time after event
+    output: eeg data divided in epochs
+    """
     epochs =  []
     for i in range(len(eeg)): 
-        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=tmin, tmax=tmax)
+        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=time_before_event, tmax=time_after_event)
         epochs.append(single_epoch)
     return epochs
     
-def evoked_responses(epochs, event_dictionary):
+def evoked_responses(epochs, avg_variable):
     """
-        This function creates an average evoked response for each event. 
-        input: epoched data, variable where needs to be averaged on
-        output: evoked responses
-        """
+    This function creates an average evoked response for each event. 
+    input: epoched data, variable where needs to be averaged on e.g. average per participant per event
+    output: evoked responses
+    """
     evoked = []
-    for i in range(len(epod_helper.event_dictionary)):
-        avg_epoch = epochs[i].average()
+    for i in range(len(epochs)):
+        avg_epoch = []
+        for j in range(len(avg_variable)):
+            avg_epoch.append(epochs[i][j].average())
         evoked.append(avg_epoch)
-    return evoked  
+    return evoked 
  
