@@ -24,7 +24,7 @@ sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file hardcoded for no
 sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
 sample_metadata = os.path.join('../epod_data_not_pushed','metadata','cdi.txt')
 # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
-event_marker_folder = 'tests/sample/fake_event_markers' # check with nadine on this folder
+event_marker_folder = os.path.join('../epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
 sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):
