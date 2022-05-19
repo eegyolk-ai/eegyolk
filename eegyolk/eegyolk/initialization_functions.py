@@ -14,8 +14,7 @@ def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     """
     pattern = os.path.join(folder_dataset, '**/*' + file_extension)
     eeg_filepaths = glob.glob(pattern, recursive=True)
-    for path in eeg_filepaths:
-        
+    for path in eeg_filepaths:                
         bdf_file = mne.io.read_raw_bdf(path,preload=preload)
         print('file is read')
         eeg_filename = os.path.split(path)[1].replace(file_extension, '')
@@ -37,12 +36,11 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True):
     for path in eeg_filepaths:
         if(file_extension == '.bdf'):
             BdfFile = mne.io.read_raw_bdf(path,preload=preload)
-            print('file is read')
             eeg_dataset.append(BdfFile)
             eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
-        # clear_output(wait=True)
+        clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
-    return eeg_dataset, eeg_filenames, eeg_filepaths
+    return eeg_dataset, eeg_filenames
 
 
 def load_metadata(folder, filenames):
