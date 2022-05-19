@@ -20,8 +20,8 @@ from eegyolk.initialization_functions import load_event_markers
 from eegyolk.initialization_functions import save_event_markers
 from eegyolk.initialization_functions import print_event_info
 
-sample_eeg = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file hardcoded for now
-sample_eeg_read = mne.io.read_raw_cnt(sample_eeg, preload=True)
+sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
+sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
 sample_metadata = os.path.join('../epod_data_not_pushed','metadata','cdi.txt')
 # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
 event_marker_folder = os.path.join('../epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
@@ -36,7 +36,7 @@ class TestDisplayHelperMethods(unittest.TestCase):
 class TestFilteringMethods(unittest.TestCase):
 
     def test_band_pass_filter(self):
-        sample_eeg_filtered = band_pass_filter(sample_eeg_read, 0, 10)
+        sample_eeg_filtered = band_pass_filter(sample_eeg_cnt_read, 0, 10)
         self.assertEqual(
             (sample_eeg_filtered.info['lowpass']),
             10,
