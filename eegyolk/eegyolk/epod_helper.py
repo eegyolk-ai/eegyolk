@@ -1,18 +1,18 @@
 import numpy as np      # numerical computing (manipulating and performing operations on arrays of data)
 import copy             # Can Copy and Deepcopy files so original file is untouched
 
-def group_event_markers(event_markers):
+def group_events_12(events):
     '''
     Specific to the ePODIUM dataset.
     Reduces the number of distinctive events from 78 to 12 events.
     This is done by combining different pronounciations into the same event.
     '''    
-    event_markers_12 = copy.deepcopy(event_markers)
-    for i in range(len(event_markers)):
+    events_12 = copy.deepcopy(events)
+    for i in range(len(events)):
         for newValue, minOld, maxOld in event_conversion_12:
-            condition = np.logical_and(minOld <= event_markers_12[i], event_markers_12[i] <= maxOld)
-            event_markers_12[i] = np.where(condition, newValue, event_markers_12[i])
-    return event_markers_12
+            condition = np.logical_and(minOld <= events_12[i], events_12[i] <= maxOld)
+            events_12[i] = np.where(condition, newValue, events_12[i])
+    return events_12
 
 event_dictionary = {
     'GiepMT_FS': 1,
