@@ -1,5 +1,6 @@
 # testing eegyolk
 
+from posixpath import splitext
 import unittest
 import os
 import glob
@@ -19,11 +20,13 @@ from eegyolk.initialization_functions import load_dataset
 from eegyolk.initialization_functions import load_event_markers
 from eegyolk.initialization_functions import save_event_markers
 from eegyolk.initialization_functions import print_event_info
+from eegyolk.initialization_functions import caller_save_event_markers
+from eegyolk.initialization_functions import generator_load_dataset
 
 # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
 # sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
 sample_eeg_bdf = os.path.join('../epod_data_not_pushed','not_zip','121to130','121to130','121','121a','121a'+'.bdf')
-
+path_eeg = os.path.join('../epod_data_not_pushed','not_zip')
 sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
 sample_metadata = os.path.join('../epod_data_not_pushed','metadata','cdi.txt')
 # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
@@ -75,6 +78,21 @@ class TestLoadMethods(unittest.TestCase):
     def test_load_event_markers(self):
         loaded_event_markers = load_event_markers(event_marker_folder, sample_eeg_list)
         self.assertEqual(len(loaded_event_markers), 1)
+    
+    def test_call_event_markers(self):
+         # temporary directory
+        with TemporaryDirectory() as td:
+            caller_save_event_markers(td, generator_load_dataset(path_eeg))
+            expected = set(
+                os.path.splitext(bdf)[0]
+                for bdf in glob.glob(os.path.join(path_eeg,'*.bdf'))
+            )
+            actual = set(
+                os.path.splitext(txt)[0]
+                for txt in glob.glob(os.path.join(td,'*.txt'))
+            )
+        # compare number files generated with expected
+        self.assertEqual(expected, actual)
 
 if __name__ == '__main__':
     unittest.main()
