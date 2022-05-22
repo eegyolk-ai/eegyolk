@@ -17,10 +17,10 @@ from eegyolk.helper_functions import load_metadata # (filename, path_metadata, p
 
 from eegyolk.initialization_functions import load_dataset
 # from eegyolk.initialization_functions import load_metadata
-from eegyolk.initialization_functions import load_event_markers
-from eegyolk.initialization_functions import save_event_markers
-from eegyolk.initialization_functions import print_event_info
-from eegyolk.initialization_functions import caller_save_event_markers
+from eegyolk.initialization_functions import load_events
+from eegyolk.initialization_functions import save_events
+# from eegyolk.initialization_functions import print_event_info
+from eegyolk.initialization_functions import caller_save_events
 from eegyolk.initialization_functions import generator_load_dataset
 
 # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
@@ -75,14 +75,14 @@ class TestLoadMethods(unittest.TestCase):
         )
         self.assertEqual(len(loaded_metadata), 143)
 
-    def test_load_event_markers(self):
-        loaded_event_markers = load_event_markers(event_marker_folder, sample_eeg_list)
+    def test_load_events(self):
+        loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
         self.assertEqual(len(loaded_event_markers), 1)
     
     def test_call_event_markers(self):
          # temporary directory
         with TemporaryDirectory() as td:
-            caller_save_event_markers(td, generator_load_dataset(path_eeg))
+            caller_save_events(td, generator_load_dataset(path_eeg))
             expected = set(
                 os.path.splitext(bdf)[0]
                 for bdf in glob.glob(os.path.join(path_eeg,'*.bdf'))
