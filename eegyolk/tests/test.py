@@ -1,6 +1,7 @@
 # testing eegyolk
 
 from posixpath import splitext
+from itertools import islice
 import unittest
 import os
 import glob
@@ -80,18 +81,12 @@ class TestLoadMethods(unittest.TestCase):
         self.assertEqual(len(loaded_event_markers), 1)
     
     def test_call_event_markers(self):
-         # temporary directory
+        # temporary directory
+        expected = 10
         with TemporaryDirectory() as td:
-            caller_save_events(td, generator_load_dataset(path_eeg))
-            expected = set(
-                os.path.splitext(bdf)[0]
-                for bdf in glob.glob(os.path.join(path_eeg,'*.bdf'))
-            )
-            actual = set(
-                os.path.splitext(txt)[0]
-                for txt in glob.glob(os.path.join(td,'*.txt'))
-            )
-        # compare number files generated with expected
+            caller_save_events(td, islice(generator_load_dataset(path_eeg), 10))
+            actual = sum(1 for txt in glob.glob(os.path.join(td,'*.txt')))
+        # compare number files generated,to expected which we stop at 10 with 
         self.assertEqual(expected, actual)
 
 if __name__ == '__main__':
