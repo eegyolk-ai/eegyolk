@@ -35,8 +35,8 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True):
     eeg_filenames = []
     for path in eeg_filepaths:
         if(file_extension == '.bdf'):
-            BdfFile = mne.io.read_raw_bdf(path,preload=preload)
-            eeg_dataset.append(BdfFile)
+            raw_bdf = mne.io.read_raw_bdf(path,preload=preload)
+            eeg_dataset.append(raw_bdf)
             eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
