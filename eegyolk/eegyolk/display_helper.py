@@ -1,6 +1,17 @@
-# this is an example for a .py main program file
+""" A .py file to help with displaying information.   """
 
-# this function must move to our main.py or something.py
+import matplotlib.pyplot as plt
+
+
+def show_plot(x, y, title = "", xlabel = "", ylabel = "", show = True):
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    if show:
+        plt.plot(x, y)
+        plt.show()
+
+
 def make_ordinal(n):
     '''
     Convert an integer into its ordinal representation::
