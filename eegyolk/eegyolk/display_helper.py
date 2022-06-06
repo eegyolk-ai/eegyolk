@@ -4,6 +4,15 @@ import matplotlib.pyplot as plt
 
 
 def show_plot(x, y, title = "", xlabel = "", ylabel = "", show = True):
+    '''
+     Show plot with title and lables in 1 line.
+
+    Args:
+     x: 1D numpy array        
+        
+     y: 1D numpy array
+
+    '''
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)

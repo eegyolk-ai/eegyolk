@@ -1,7 +1,6 @@
 """
-@Author: Bruce Shuyue Jia
-@Date: Jan 30, 2021
-@Source: https://github.com/SuperBruceJia/EEG-DL/blob/master/Models/main-Transformer.py
+Author: Bruce Shuyue Jia
+Source: https://github.com/SuperBruceJia/EEG-DL/blob/master/Models/main-Transformer.py
 """
 
 import tensorflow as tf
