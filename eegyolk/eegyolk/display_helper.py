@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt
 
 
-def show_plot(x, y, title = "", xlabel = "", ylabel = "", show = True):
+def show_plot(x = False, y = False, title = "", xlabel = "", ylabel = "", legend = False, show = True):
     '''
      Show plot with title and lables in 1 line.
 
@@ -16,8 +16,12 @@ def show_plot(x, y, title = "", xlabel = "", ylabel = "", show = True):
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
-    if show:
+
+    if legend:
+        plt.legend(legend)
+    if x and y:
         plt.plot(x, y)
+    if show:
         plt.show()
 
 

@@ -86,26 +86,26 @@ def generate_epoch(freq_distribution, N_combined_freq = 100, max_freq = 256, dur
     
     return epoch
 
-def create_batch(batch_size, distributions = ["planck", "constant"]):
+def create_labeled_dataset(size, distributions = ["planck", "constant"]):
     '''
-    Uses the functions from this scripts to create batch of data with various frequency distributions.
+    Uses the functions from this scripts to create dataset with various frequency distributions.
 
     Args:
-     batch_size: float
+     size: float
         
      distributions: list of strings
         The names of the distributions that are generated and labeled
     
     '''
     X = []
-    Y = np.zeros(batch_size)
+    Y = np.zeros(size)
 
     dist = []
     for distribution in distributions:
         dist.append(generate_frequency_distribution(distribution))
 
-    for i in range(batch_size):
+    for i in range(size):
         randDist = random.randint(0, len(distributions)-1)
         X.append(generate_epoch(dist[randDist]))
         Y[i] = randDist    
-    return X, Y
+    return np.array(X), Y
