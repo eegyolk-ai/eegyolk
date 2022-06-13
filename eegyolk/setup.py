@@ -32,7 +32,7 @@ except subprocess.CalledProcessError as e:
 
 version = tag[1:]
 
-with open(os.path.join(project_dir, "README.md"), "r") as f:
+with open(os.path.join(project_dir,'../','README.md'), "r") as f:
     readme = f.read()
 
 
@@ -188,8 +188,9 @@ if __name__ == "__main__":
         #url='https://github.com/PENDING',
         license='LICENSE.md',
         description='A package that helps with analysis and pre-processing of EEG data',
-        long_description=open('README.md').read(),
-        package_data={"": ("README.md",)},
+        long_description=open(os.path.join('../','README.md')).read(),
+        package_data={"": ('../README.md',)},
+        # package_data={"": ("README.md",)},
         cmdclass={
             # "test": UnitTest,
             "lint": Pep8,
@@ -214,3 +215,4 @@ if __name__ == "__main__":
         },
         zip_safe=False,
     )
+
