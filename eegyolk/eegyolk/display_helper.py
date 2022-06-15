@@ -2,14 +2,13 @@
 
 import matplotlib.pyplot as plt
 
-
-def show_plot(x = False, y = False, title = "", xlabel = "", ylabel = "", legend = False, show = True):
+def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend="", show=True):
     '''
      Show plot with title and lables in 1 line.
 
     Args:
      x: 1D numpy array        
-        
+
      y: 1D numpy array
 
     '''
@@ -19,7 +18,7 @@ def show_plot(x = False, y = False, title = "", xlabel = "", ylabel = "", legend
 
     if legend:
         plt.legend(legend)
-    if x and y:
+    if (x is not None) and (y is not None):
         plt.plot(x, y)
     if show:
         plt.show()
