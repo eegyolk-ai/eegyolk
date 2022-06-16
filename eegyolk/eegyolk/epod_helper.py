@@ -1,3 +1,6 @@
+""" Tools specifically for the ePodium dataset.  """
+
+
 import numpy as np      # numerical computing (manipulating and performing operations on arrays of data)
 import copy             # Can Copy and Deepcopy files so original file is untouched
 

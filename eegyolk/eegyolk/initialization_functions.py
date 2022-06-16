@@ -1,3 +1,5 @@
+""" Functions for loading raw data, metadata, and events.   """
+
 import mne
 import pandas as pd 
 import numpy as np 
@@ -22,7 +24,7 @@ def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
         # clear_output(wait=True)
     print(len(eeg_filepaths), "EEG files loaded")
 
-def load_dataset(folder_dataset, file_extension = '.bdf', preload=True):
+def load_dataset(folder_dataset, file_extension = '.bdf', preload=True, max_files = 5):
     '''
     This function is for datasets under 5 files. Otherwise use generator_load_dataset
     Reads and returns the bdf files that store the EEG data,
@@ -33,11 +35,17 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True):
     eeg_filepaths = glob.glob(pattern, recursive=True)
     eeg_dataset = []
     eeg_filenames = []
+
+    files_loaded = 0
     for path in eeg_filepaths:
         if(file_extension == '.bdf'):
+
             raw_bdf = mne.io.read_raw_bdf(path,preload=preload)
             eeg_dataset.append(raw_bdf)
             eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
+            files_loaded += 1
+            if preload and files_loaded >= max_files : break
+
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
     return eeg_dataset, eeg_filenames
