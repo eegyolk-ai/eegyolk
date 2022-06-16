@@ -14,6 +14,7 @@ sys.path.insert(0, os.getcwd())
 from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
+from eegyolk.helper_functions import filter_eeg_raw
 from eegyolk.helper_functions import load_metadata # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
 
 from eegyolk.initialization_functions import load_dataset
@@ -48,6 +49,13 @@ class TestFilteringMethods(unittest.TestCase):
             (sample_eeg_filtered.info['lowpass']),
             10,
         )
+    def test_filter_raw(self):
+        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50)
+        self.assertEqual(
+            (sample_eeg_raw_filtered.info['lowpass']),
+            10,
+        )
+
 
 
 class TestHashMethods(unittest.TestCase):
