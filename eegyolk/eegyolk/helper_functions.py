@@ -165,12 +165,6 @@ def select_bad_epochs_list(epochs, stimuli, threshold = 5, max_bad_fraction = 0.
 
 """Functions to import and process EEG data from cnt files.
 """
-def create_epochs(eeg, event_markers_simplified):
-    epochs =  []
-    for i in range(len(eeg)): 
-        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=-0.3, tmax=0.7)
-        epochs.append(single_epoch)
-    return epochs
 
 def standardize_EEG(data_array,
                     std_aim = 1,
@@ -525,7 +519,7 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
     
 def filter_eeg_raw(eeg, lowpass, highpass, freqs):
     eeg = band_pass_filter(eeg, lowpass, highpass)
-    eeg = eeg.notch_filter(freqs=freqs)
+    eeg = mne.notch_filter(eeg, freqs=freqs)
     if len(eeg.info['bads']) != 0:
             eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
     return eeg
@@ -558,4 +552,5 @@ def evoked_responses(epochs, avg_variable):
             avg_epoch.append(epochs[i][j].average())
         evoked.append(avg_epoch)
     return evoked 
+
  
