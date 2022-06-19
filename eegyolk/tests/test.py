@@ -49,11 +49,11 @@ class TestEpochMethods(unittest.TestCase):
     eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
     event_markers = load_events(path_eventmarkers, eeg_filename)
     event_markers_simplified = group_events_12(event_markers)
+    epochs = create_epochs(eeg, event_markers_simplified, -0.3, 0.7) 
     def test_create_epochs(self):
-        epochs = create_epochs(self.eeg,self.event_markers_simplified, -0.3, 0.7) 
-        self.assertEqual(len(epochs), 99)
+        self.assertEqual(len(self.epochs), 99)
     def test_evoked_responses(self):
-        epochs = create_epochs(self.eeg,self.event_markers_simplified, -0.3, 0.7)
+        # epochs = create_epochs(self.eeg, self.event_markers_simplified, -0.3, 0.7)
         event_dictionary = {'GiepMT_FS': 1,
         'GiepMT_S': 2,
         'GiepMT_D': 3,
@@ -66,7 +66,7 @@ class TestEpochMethods(unittest.TestCase):
         'GopST_FS': 10,
         'GopST_S': 11,
         'GopST_D': 12}
-        evoked = evoked_responses(epochs, event_dictionary)
+        evoked = evoked_responses(self.epochs, event_dictionary)
         self.assertEqual(len(evoked), 99)
 
 class TestFilteringMethods(unittest.TestCase):
