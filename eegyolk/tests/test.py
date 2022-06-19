@@ -15,7 +15,8 @@ from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
 from eegyolk.helper_functions import filter_eeg_raw
-from eegyolk.helper_functions import load_metadata # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
+from eegyolk.helper_functions import load_metadata
+from eegyolk.helper_functions import create_epochs # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
 
 from eegyolk.initialization_functions import load_dataset
 # from eegyolk.initialization_functions import load_metadata
@@ -24,11 +25,13 @@ from eegyolk.initialization_functions import save_events
 # from eegyolk.initialization_functions import print_event_info
 from eegyolk.initialization_functions import caller_save_events
 from eegyolk.initialization_functions import generator_load_dataset
+from eegyolk.epod_helper import group_events_12
 
 # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
 # sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
 sample_eeg_bdf = os.path.join('../epod_data_not_pushed','not_zip','121to130','121to130','121','121a','121a'+'.bdf')
 path_eeg = os.path.join('../epod_data_not_pushed','not_zip')
+path_eventmarkers =  os.path.join('../epod_data_not_pushed','not_zip', 'event_markers')
 sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
 sample_metadata = os.path.join('../epod_data_not_pushed','metadata','cdi.txt')
 # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
@@ -39,6 +42,18 @@ class TestDisplayHelperMethods(unittest.TestCase):
 
     def test_make_ordinal(self):
         self.assertEqual(make_ordinal(5), '5th')
+
+
+class TestEpochMethods(unittest.TestCase):
+
+    def test_create_epochs(self):
+        # load eeg
+
+        eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
+        event_markers = load_events(path_eventmarkers, eeg_filename)
+        event_markers_simplified = group_events_12(event_markers)
+        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7)# preload must be set to True once on the cloud
+        self.assertEqual(len(epochs), 99)
 
 
 class TestFilteringMethods(unittest.TestCase):
