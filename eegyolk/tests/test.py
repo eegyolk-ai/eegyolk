@@ -16,7 +16,8 @@ from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
 from eegyolk.helper_functions import filter_eeg_raw
 from eegyolk.helper_functions import load_metadata
-from eegyolk.helper_functions import create_epochs # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
+from eegyolk.helper_functions import create_epochs
+from eegyolk.helper_functions import evoked_responses # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
 
 from eegyolk.initialization_functions import load_dataset
 # from eegyolk.initialization_functions import load_metadata
@@ -45,16 +46,33 @@ class TestDisplayHelperMethods(unittest.TestCase):
 
 
 class TestEpochMethods(unittest.TestCase):
-
+    # this needs rewriting using class to be more efficient
     def test_create_epochs(self):
         # load eeg
-
         eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
         event_markers = load_events(path_eventmarkers, eeg_filename)
         event_markers_simplified = group_events_12(event_markers)
-        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7)# preload must be set to True once on the cloud
+        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7) 
         self.assertEqual(len(epochs), 99)
-
+    def test_evoked_responses(self):
+        eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
+        event_markers = load_events(path_eventmarkers, eeg_filename)
+        event_markers_simplified = group_events_12(event_markers)
+        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7)
+        event_dictionary = {'GiepMT_FS': 1,
+        'GiepMT_S': 2,
+        'GiepMT_D': 3,
+        'GiepST_FS': 4,
+        'GiepST_S': 5,
+        'GiepST_D': 6,
+        'GopMT_FS': 7,
+        'GopMT_S': 8,
+        'GopMT_D': 9,
+        'GopST_FS': 10,
+        'GopST_S': 11,
+        'GopST_D': 12}
+        evoked = evoked_responses(epochs, event_dictionary)
+        self.assertEqual(len(evoked), 99)
 
 class TestFilteringMethods(unittest.TestCase):
 
