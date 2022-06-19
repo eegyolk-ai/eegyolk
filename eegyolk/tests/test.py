@@ -46,19 +46,14 @@ class TestDisplayHelperMethods(unittest.TestCase):
 
 
 class TestEpochMethods(unittest.TestCase):
-    # this needs rewriting using class to be more efficient
+    eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
+    event_markers = load_events(path_eventmarkers, eeg_filename)
+    event_markers_simplified = group_events_12(event_markers)
     def test_create_epochs(self):
-        # load eeg
-        eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
-        event_markers = load_events(path_eventmarkers, eeg_filename)
-        event_markers_simplified = group_events_12(event_markers)
-        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7) 
+        epochs = create_epochs(self.eeg,self.event_markers_simplified, -0.3, 0.7) 
         self.assertEqual(len(epochs), 99)
     def test_evoked_responses(self):
-        eeg, eeg_filename =  load_dataset(path_eeg, preload=False)
-        event_markers = load_events(path_eventmarkers, eeg_filename)
-        event_markers_simplified = group_events_12(event_markers)
-        epochs = create_epochs(eeg,event_markers_simplified, -0.3, 0.7)
+        epochs = create_epochs(self.eeg,self.event_markers_simplified, -0.3, 0.7)
         event_dictionary = {'GiepMT_FS': 1,
         'GiepMT_S': 2,
         'GiepMT_D': 3,
