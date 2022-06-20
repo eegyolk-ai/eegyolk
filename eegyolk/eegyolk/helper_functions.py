@@ -515,11 +515,12 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
     else:
         print("PATH NOT FOUND:", original_path)
         return None
-
+6
     
-def filter_eeg_raw(eeg, lowpass, highpass, freqs):
+def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels):
     eeg = band_pass_filter(eeg, lowpass, highpass)
     eeg = eeg.notch_filter(freqs=freqs)
+    eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels)
     if len(eeg.info['bads']) != 0:
             eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
     return eeg
