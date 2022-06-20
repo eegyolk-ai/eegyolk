@@ -44,6 +44,7 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional a
 How to get the notebooks running? Assuming the raw data set and metadata is available.
 
 1. Install all Python packages required, using conda and the environment-march-update2.yaml file.
+    'conda env create -f mne-march3_enivonrment.yml'
 2. Update the configuration_template.py (NOT config_template) file and rename to config.py.
 3. (being rebuilt) Use the preprocessing notebooks to process the raw data to usable data for either the ML or (reduced) DL models (separate notebooks).
 4. (being rebuilt) The 'model training' notebooks can be used the train and save models.
