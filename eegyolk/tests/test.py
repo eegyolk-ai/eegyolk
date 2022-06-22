@@ -50,7 +50,7 @@ class TestFilteringMethods(unittest.TestCase):
             10,
         )
     def test_filter_raw(self):
-        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50)
+        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50,  ['EXG1', 'EXG2'])
         self.assertEqual(
             (sample_eeg_raw_filtered.info['lowpass']),
             10,
