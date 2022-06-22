@@ -9,6 +9,7 @@ import venv
 import unittest
 from distutils.dir_util import copy_tree
 from glob import glob
+
 from tempfile import TemporaryDirectory
 from contextlib import contextmanager
 from setuptools import Command, setup
@@ -16,6 +17,7 @@ from setuptools.command.easy_install import easy_install as EZInstallCommand
 from setuptools.command.install import install as InstallCommand
 from setuptools.dist import Distribution
 from setuptools.command.bdist_egg import bdist_egg as BDistEgg
+
 
 project_dir = os.path.dirname(os.path.realpath(__file__))
 name = "eegyolk"
@@ -38,11 +40,13 @@ version = tag[1:]
 with open(os.path.join(project_dir,'../','README.md'), "r") as f:
     readme = f.read()
 
+
 class ContextVenvBuilder(venv.EnvBuilder):
 
     def ensure_directories(self, env_dir):
         self.context = super().ensure_directories(env_dir)
         return self.context
+
 
 class TestCommand(Command):
 
@@ -66,56 +70,53 @@ class TestCommand(Command):
         ) + [os.path.join(project_dir, 'setup.py')]
 
     @contextmanager
-
     def prepare(self):
         recs = self.distribution.tests_require
+
         with TemporaryDirectory() as builddir:
-                    vbuilder = ContextVenvBuilder(with_pip=True)
-                    vbuilder.create(os.path.join(builddir, '.venv'))
-                    env_python = vbuilder.context.env_exe
-                    platlib = subprocess.check_output(
-                        (env_python,
-                        '-c',
-                        'import sysconfig;print(sysconfig.get_path("platlib"))'
-                        ),
-                    ).strip().decode()
+            vbuilder = ContextVenvBuilder(with_pip=True)
+            vbuilder.create(os.path.join(builddir, '.venv'))
+            env_python = vbuilder.context.env_exe
+            platlib = subprocess.check_output(
+                (env_python,
+                '-c',
+                'import sysconfig;print(sysconfig.get_path("platlib"))'
+                ),
+            ).strip().decode()
 
-                    egg = BDistEgg(self.distribution)
-                    egg.initialize_options()
-                    egg.dist_dir = builddir
-                    egg.keep_temp = False
-                    egg.finalize_options()
-                    egg.run()
+            egg = BDistEgg(self.distribution)
+            egg.initialize_options()
+            egg.dist_dir = builddir
+            egg.keep_temp = False
+            egg.finalize_options()
+            egg.run()
 
-                    test_dist = Distribution()
-                    test_dist.install_requires = recs
-                    ezcmd = EZInstallCommand(test_dist)
-                    ezcmd.initialize_options()
-                    ezcmd.args = recs
-                    ezcmd.always_copy = True
-                    ezcmd.install_dir = platlib
-                    ezcmd.install_base = platlib
-                    ezcmd.install_purelib = platlib
-                    ezcmd.install_platlib = platlib
-                    sys.path.insert(0, platlib)
-                    os.environ['PYTHONPATH'] = platlib
-                    ezcmd.finalize_options()
+            test_dist = Distribution()
+            test_dist.install_requires = recs
+            ezcmd = EZInstallCommand(test_dist)
+            ezcmd.initialize_options()
+            ezcmd.args = recs
+            ezcmd.always_copy = True
+            ezcmd.install_dir = platlib
+            ezcmd.install_base = platlib
+            ezcmd.install_purelib = platlib
+            ezcmd.install_platlib = platlib
+            sys.path.insert(0, platlib)
+            os.environ['PYTHONPATH'] = platlib
+            ezcmd.finalize_options()
 
-                    ezcmd.easy_install(glob(os.path.join(builddir, '*.egg'))[0])
+            ezcmd.easy_install(glob(os.path.join(builddir, '*.egg'))[0])
 
-                    ezcmd.run()
-                    site.main()
+            ezcmd.run()
+            site.main()
 
-                    yield env_python
+            yield env_python
 
-
-        
-
-        def run(self):
-            if not self.fast:
-                    with self.prepare() as env_python:
-                        self.run_tests(env_python)
-            self.run_tests()
+    def run(self):
+        if not self.fast:
+                with self.prepare() as env_python:
+                    self.run_tests(env_python)
+        self.run_tests()
 
         
 class UnitTest(TestCommand):
