@@ -35,24 +35,34 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True, max_file
     eeg_filepaths = glob.glob(pattern, recursive=True)
     eeg_dataset = []
     eeg_filenames = []
+    eeg_filenames_failed_to_load = []
 
     files_loaded = 0
+    files_failed_to_load = 0
     for path in eeg_filepaths:
+        filename = os.path.split(path)[1].replace(file_extension, '')
 
         if(file_extension == '.bdf'):
             raw = mne.io.read_raw_bdf(path,preload=preload)
 
-        if(file_extension == '.cnt'):
-            raw = mne.io.read_raw_cnt(path,preload=preload)
+        if(file_extension == '.cnt'): # .cnt files do not always load.
+            try:
+                raw = mne.io.read_raw_cnt(path,preload=preload)
+            except:
+                eeg_filenames_failed_to_load.append(filename)
+                files_failed_to_load += 1
+                print(f"File {filename} could not be loaded.") 
+                continue
 
         eeg_dataset.append(raw)
-        eeg_filenames.append(os.path.split(path)[1].replace(file_extension, ''))
+        eeg_filenames.append(filename)
         files_loaded += 1
         print(files_loaded, "EEG files loaded")
         if preload and files_loaded >= max_files_preloaded : break
 
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
+    if(files_failed_to_load>0): print(files_failed_to_load, "EEG files failed to load")
 
     return eeg_dataset, eeg_filenames
 
