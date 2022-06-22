@@ -247,7 +247,7 @@ if __name__ == "__main__":
             "install_dev": InstallDev,
         },
         test_suite='setup.my_test_suite',
-        tests_require=["pytest", "pycodestyle", "isort", "wheel"],
+        tests_require=["pytest", "pycodestyle", "isort", "wheel", "mne","pandas","h5py", "IPython"],
         command_options={
             "build_sphinx": {
                 "project": ("setup.py", name),
