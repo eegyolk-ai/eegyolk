@@ -10,7 +10,7 @@ from tempfile import TemporaryDirectory
 import mne
 
 sys.path.insert(0, os.getcwd())
-OLD_SYSTEM = False
+OLD_SYSTEM = True
 
 # (Floris) New path structure (Same as in surfdrive):
 if(not OLD_SYSTEM):
