@@ -159,3 +159,5 @@ cython_debug/
 /reproducibility_experiments/29mnd_mnn
 /epod_data_not_pushed/
 /dyslexiaprediction_nadine/love/
+floris_files/DDP_age_prediction/Deep learning EEG_dataset preprocessing_DL.ipynb
+floris_files/DDP_age_prediction/Deep learning EEG_model testing_DL.ipynb
