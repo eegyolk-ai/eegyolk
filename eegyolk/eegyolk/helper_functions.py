@@ -528,7 +528,7 @@ def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels):
 """
     Functions that help turns EEG into epoched data and evoked data
     """
-def create_epochs(eeg, event_markers_simplified, time_before_event, time_after_event):
+def create_epochs(eeg, event_markers_simplified, time_before_event, time_after_event,metadata):
     """
     This function turns eeg data into epochs. 
     inputs: eeg data files, event parkers, time before event, time after event
@@ -536,7 +536,7 @@ def create_epochs(eeg, event_markers_simplified, time_before_event, time_after_e
     """
     epochs =  []
     for i in range(len(eeg)): 
-        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=time_before_event, tmax=time_after_event)
+        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=time_before_event, tmax=time_after_event,metadata=metadata)
         epochs.append(single_epoch)
     return epochs
     
