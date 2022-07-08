@@ -1,0 +1,29 @@
+
+cff-version: 1.1.0
+message: "If you use this software please cite as below"
+authors:
+  -
+    affiliation: "Netherlands eScience Center"
+    family-names: Moore
+    given-names: Candace Makeda
+    orcid: "https://orcid.org/0000-0003-1672-7565"
+  -
+    affiliation: "University of Urtrecht"
+    family-names: Prins
+    given-names: Nadine
+    orcid: "https://orcid.org/MISSING"
+  -
+    affiliation: "University of Urtrecht"
+    family-names: Pauwels
+    given-names: Floris
+    orcid: "https://orcid.org/MISSINF"
+
+keywords:
+  - EEG
+
+license: Apache-2.0
+
+repository-code: "https://github.com/eegyolk-ai/eegyolk"
+title: "eegyolk"
+version: "0.0.2"
+date-released: 08/07/2022
