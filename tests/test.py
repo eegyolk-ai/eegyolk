@@ -48,12 +48,12 @@ from eegyolk.dummy_data_functions import create_labeled_dataset
 if(OLD_SYSTEM): ## SET TO TRUE FOR epod_data_not_pushed DATA STRUCTURE!
     # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
     # sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
-    sample_eeg_bdf = os.path.join('../epod_data_not_pushed', 'not_zip', '121to130', '121to130', '121', '121a', '121a'+'.bdf')
-    dataset_path = os.path.join('../epod_data_not_pushed', 'not_zip')
+    sample_eeg_bdf = os.path.join('epod_data_not_pushed', 'not_zip', '121to130', '121to130', '121', '121a', '121a'+'.bdf')
+    dataset_path = os.path.join('epod_data_not_pushed', 'not_zip')
     sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-    sample_metadata = os.path.join('../epod_data_not_pushed', 'metadata', 'cdi.txt')
+    sample_metadata = os.path.join('epod_data_not_pushed', 'metadata', 'cdi.txt')
     # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
-    event_marker_folder = os.path.join('../epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
+    event_marker_folder = os.path.join('epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
 sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):
