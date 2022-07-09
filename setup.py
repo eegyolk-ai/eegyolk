@@ -37,7 +37,7 @@ except subprocess.CalledProcessError as e:
 
 version = tag[1:]
 
-with open(os.path.join(project_dir,'../','README.md'), "r") as f:
+with open(os.path.join(project_dir, 'README.md'), "r") as f:
     readme = f.read()
 
 
@@ -62,7 +62,7 @@ class TestCommand(Command):
     def finalize_options(self):
         self.test_args = []
         self.test_suite = True
-    
+
     def sources(self):
         return glob(
             os.path.join(project_dir, 'eegyolk', '**/*.py'),
@@ -78,10 +78,7 @@ class TestCommand(Command):
             vbuilder.create(os.path.join(builddir, '.venv'))
             env_python = vbuilder.context.env_exe
             platlib = subprocess.check_output(
-                (env_python,
-                '-c',
-                'import sysconfig;print(sysconfig.get_path("platlib"))'
-                ),
+                (env_python,'-c','import sysconfig;print(sysconfig.get_path("platlib"))',),
             ).strip().decode()
 
             egg = BDistEgg(self.distribution)
@@ -114,11 +111,11 @@ class TestCommand(Command):
 
     def run(self):
         if not self.fast:
-                with self.prepare() as env_python:
-                    self.run_tests(env_python)
+            with self.prepare() as env_python:
+                self.run_tests(env_python)
         self.run_tests()
 
-        
+
 class UnitTest(TestCommand):
 
     description = 'run unit tests'
@@ -133,6 +130,7 @@ class UnitTest(TestCommand):
 
         tests = os.path.join(project_dir, 'tests', 'test.py')
         sys.exit(subprocess.call((env_python, '-m', 'unittest', tests)))
+
 
 class Pep8(TestCommand):
 
@@ -233,11 +231,11 @@ if __name__ == "__main__":
         author='Floris Pauwels, Nadine Prins and Candace Makeda Moore',
         author_email='c.moore@esciencecenter.nl',
         packages=['eegyolk'],
-        #url='https://github.com/PENDING',
+        # url='https://github.com/PENDING',
         license='LICENSE.md',
-        description='A package that helps with analysis and pre-processing of EEG data',
-        long_description=open(os.path.join('../','README.md')).read(),
-        package_data={"": ('../README.md',)},
+        description='A package for analysis and pre-processing of EEG data',
+        long_description=open('README.md').read(),
+        package_data={"": ('README.md',)},
         # package_data={"": ("README.md",)},
         cmdclass={
             "test": UnitTest,
@@ -247,7 +245,16 @@ if __name__ == "__main__":
             "install_dev": InstallDev,
         },
         test_suite='setup.my_test_suite',
-        tests_require=["pytest", "pycodestyle", "isort", "wheel", "mne","pandas","h5py", "IPython"],
+        tests_require=[
+            "pytest",
+            "pycodestyle",
+            "isort",
+            "wheel",
+            "mne",
+            "pandas",
+            "h5py",
+            "IPython",
+            ],
         command_options={
             "build_sphinx": {
                 "project": ("setup.py", name),
@@ -263,4 +270,3 @@ if __name__ == "__main__":
         },
         zip_safe=False,
     )
-
