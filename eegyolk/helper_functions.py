@@ -116,12 +116,13 @@ def select_bad_epochs_list(epochs, stimuli, threshold = 5, max_bad_fraction = 0.
     epochs: epochs object (mne)
     
     stimuli: list of int/str
-        Stimuli to pick epochs for.         
+    Stimuli to pick epochs for.         
     threshold: float/int
-        Relative threshold. Anything channel with variance > threshold*mean OR < threshold*mean
-        will be considered suspect. Default = 5.   
+    Relative threshold. Anything channel with variance > threshold*mean OR
+    < threshold*mean will be considered suspect. Default = 5.   
     max_bad_fraction: float
-        Maximum fraction of bad epochs. If number is higher for one channel, call it a 'bad' channel
+    Maximum fraction of bad epochs.
+    If number is higher for one channel, call it a 'bad' channel
     """
     
     from collections import Counter
@@ -454,7 +455,6 @@ def read_cnt_file(file,
                                                                           event_id,
                                                                           threshold = threshold,
                                                                           max_bad_fraction = max_bad_fraction)
-
             # Interpolate bad channels
             # ------------------------------------------------------------------
             if len(bad_channels) > 0:
@@ -473,9 +473,15 @@ def read_cnt_file(file,
                     # Mark bad channels:
                     data_raw.info['bads'] = bad_channels
                     # Pick EEG channels:
-                    picks = mne.pick_types(data_raw.info, meg=False, eeg=True, stim=False, eog=False,
-                                       #exclude=data_exclude)#'bads'])
-                                       include=channel_set, exclude=channels_exclude)#'bads'])
+                    picks = mne.pick_types(
+                        data_raw.info,
+                        meg=False,
+                        eeg=True,
+                        stim=False,
+                        eog=False,
+                        include=channel_set,
+                        exclude=channels_exclude,
+                    )
                     epochs = mne.Epochs(data_raw, events=events_from_annot, event_id=event_dict,
                                         tmin=tmin, tmax=tmax, proj=True, picks=picks,
                                         baseline=baseline, preload=True, verbose=False)
@@ -483,7 +489,6 @@ def read_cnt_file(file,
                     # Interpolate bad channels using functionality of 'mne'
                     epochs.interpolate_bads()
                     
-
             # Get signals as array and add to total collection
             channel_names_collection.append(epochs.ch_names)
             signals_cleaned = epochs[str(event_id)].drop(bad_epochs).get_data()
@@ -495,9 +500,11 @@ def read_cnt_file(file,
 
 def load_metadata(filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True):
     """
-    This function loads the metadata stored in the metadata folder, and makes an excel or csv from the txt.
+    This function loads the metadata stored in the metadata folder,
+    and makes an excel or csv from the txt.
     Inputs: filename, path_metadata(file where metadata is), )
-    make_excel_files, make_csv_files (True makes this type of file), path_output(where we put the file)
+    make_excel_files, make_csv_files (True makes this type of file),
+    path_output(where we put the file)
     Outputs: csv and/or excel file
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
@@ -515,7 +522,7 @@ def load_metadata(filename, path_metadata, path_output, make_excel_files=True, m
     else:
         print("PATH NOT FOUND:", original_path)
         return None
-6
+
     
 def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels):
     eeg = band_pass_filter(eeg, lowpass, highpass)
@@ -525,25 +532,38 @@ def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels):
             eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
     return eeg
 
-"""
-    Functions that help turns EEG into epoched data and evoked data
+    
+    # Functions that help turns EEG into epoched data and evoked data
+    
+
+def create_epochs(
+    eeg,
+    event_markers_simplified,
+    time_before_event,
+    time_after_event,
+):
     """
-def create_epochs(eeg, event_markers_simplified, time_before_event, time_after_event):
-    """
-    This function turns eeg data into epochs. 
+    This function turns eeg data into epochs.
     inputs: eeg data files, event parkers, time before event, time after event
     output: eeg data divided in epochs
     """
     epochs =  []
     for i in range(len(eeg)): 
-        single_epoch = mne.Epochs(eeg[i], event_markers_simplified[i], tmin=time_before_event, tmax=time_after_event)
+        single_epoch = mne.Epochs(
+            eeg[i],
+            event_markers_simplified[i],
+            tmin=time_before_event,
+            tmax=time_after_event
+        )
         epochs.append(single_epoch)
     return epochs
-    
+
+
 def evoked_responses(epochs, avg_variable):
     """
     This function creates an average evoked response for each event. 
-    input: epoched data, variable where needs to be averaged on e.g. average per participant per event
+    input: epoched data, variable where needs to be averaged on e.g.
+    average per participant per event
     output: evoked responses
     """
     evoked = []
@@ -552,6 +572,4 @@ def evoked_responses(epochs, avg_variable):
         for j in range(len(avg_variable)):
             avg_epoch.append(epochs[i][j].average())
         evoked.append(avg_epoch)
-    return evoked 
-
- 
+    return evoked

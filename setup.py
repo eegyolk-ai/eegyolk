@@ -78,9 +78,10 @@ class TestCommand(Command):
             vbuilder.create(os.path.join(builddir, '.venv'))
             env_python = vbuilder.context.env_exe
             platlib = subprocess.check_output(
-                (env_python,
-                '-c',
-                'import sysconfig;print(sysconfig.get_path("platlib"))',
+                (
+                    env_python,
+                    '-c',
+                    'import sysconfig;print(sysconfig.get_path("platlib"))',
                 ),
             ).strip().decode()
 
