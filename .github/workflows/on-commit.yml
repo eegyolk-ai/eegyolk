@@ -7,24 +7,24 @@ jobs:
       - uses: actions/checkout@v3
         with:
           submodules: recursive
-      # TODO(wvxvw): We shouldn't need this. We need to fix test
+      # TODO(makeda): We shouldn't need this. We need to fix test
       # command to install things correctly.
-      - uses: addnab/docker-run-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          registry: docker.io
-          image: crabbone/eegyolk-poly5-test-files:latest
-          options: >-
-            -v ${{ github.workspace }}:/ci
-            --cap-add=SYS_ADMIN
-            --privileged=true
-          run: |
-            set -xe
-            cd /ci
-            mkdir -p ./not_pushed/
-            mount --bind /eegyolk/tests/not_pushed/ ./not_pushed/
-            python setup.py test
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      #     registry: docker.io
+      #     image: crabbone/eegyolk-poly5-test-files:latest
+      #     options: >-
+      #       -v ${{ github.workspace }}:/ci
+      #       --cap-add=SYS_ADMIN
+      #       --privileged=true
+      #     run: |
+      #       set -xe
+      #       cd /ci
+      #       mkdir -p ./not_pushed/
+      #       mount --bind /eegyolk/tests/not_pushed/ ./not_pushed/
+      #       python setup.py test
 
   Lint:
     runs-on: ubuntu-latest
