@@ -18,8 +18,10 @@ from collections import Counter
 
 def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 0.8):
     """
-    Historical function to find suspect channels --> still might need manual inspection!
-    This function was used by Bjorn Burns to select bad channels. 
+    Historical function to find suspect channels --> still might
+    need manual inspection!
+    This function was written and used by Bjorn Bruns, Florian HUber
+    and other collaboartorson the earlier work to select bad channels. 
     It is slightly rewritten.
     
     Args:
@@ -57,9 +59,10 @@ def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 
 
 def select_bad_epochs(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
     """
-    This is another historical function.
+    This is another historical function. Credit to Bjorn Bruns,
+    Florian Huber and other original collaborators on ePodium in 2021
     Function to find suspect epochs and channels --> still might need manual inspection!
-    
+    .
     Args:
     --------
     epochs: epochs object (mne)
@@ -74,9 +77,6 @@ def select_bad_epochs(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
     """
     bad_epochs = set()
     bad_channels = []
-    
-    from collections import Counter
-    
     signals = epochs[str(stimuli)].get_data()
     max_bad_epochs = max_bad_fraction*signals.shape[0]
     
@@ -113,7 +113,7 @@ def select_bad_epochs(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
 def select_bad_epochs_list(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
     """
     Function to find suspect epochs and channels --> still might need manual inspection!
-    
+    Credit to Bjorn Bruns and Florian Huber
     Args:
     --------
     epochs: epochs object (mne)
