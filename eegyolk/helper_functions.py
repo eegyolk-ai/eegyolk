@@ -530,14 +530,17 @@ def load_metadata(
         return None
 
 
-def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels):
-    eeg = band_pass_filter(eeg, lowpass, highpass)
-    eeg = eeg.notch_filter(freqs=freqs)
-    eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels)
-    if len(eeg.info['bads']) != 0:
-        eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
+def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
+    eeg = band_pass_filter(eeg, lowpass, highpass) # bandpass filter
+    eeg = eeg.notch_filter(freqs=freqs) # notch filter
+    eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels) # reference substraction
+    eeg = eeg.drop_channels(drop_ch) # remove selected channels
+    montage = mne.channels.make_standard_montage('standard_1020') # set montage
+    eeg.info.set_montage(montage, on_missing='ignore')
+    if len(eeg.info['bads']) != 0: # remove bad channels
+            eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
     return eeg
-
+    
     # Functions that help turns EEG into epoched data and evoked data
 def create_epochs(
     eeg,
