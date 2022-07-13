@@ -24,7 +24,7 @@ def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
         # clear_output(wait=True)
     print(len(eeg_filepaths), "EEG files loaded")
 
-def load_dataset(folder_dataset, file_extension = '.bdf', preload=True, max_files_preloaded = 5):
+def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_files_preloaded = 5
     '''
     This function is for datasets under 5 files. Otherwise use generator_load_dataset
     Reads and returns the files that store the EEG data,
@@ -58,7 +58,7 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True, max_file
         eeg_filenames.append(filename)
         files_loaded += 1
         print(files_loaded, "EEG files loaded")
-        if preload and files_loaded >= max_files_preloaded : break
+        #if preload and files_loaded >= max_files_preloaded : break
 
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
