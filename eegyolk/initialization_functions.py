@@ -6,7 +6,6 @@ import numpy as np
 import os           
 import glob 
 from IPython.display import clear_output
-
 from display_helper import make_ordinal
 
 
@@ -23,6 +22,7 @@ def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
         yield bdf_file, eeg_filename
         # clear_output(wait=True)
     print(len(eeg_filepaths), "EEG files loaded")
+
 
 def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_files_preloaded = 5
     '''
@@ -51,36 +51,37 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_
             except:
                 eeg_filenames_failed_to_load.append(filename)
                 files_failed_to_load += 1
-                print(f"File {filename} could not be loaded.") 
+                print(f"File {filename} could not be loaded.")
                 continue
 
         eeg_dataset.append(raw)
         eeg_filenames.append(filename)
         files_loaded += 1
         print(files_loaded, "EEG files loaded")
-        #if preload and files_loaded >= max_files_preloaded : break
+        # if preload and files_loaded >= max_files_preloaded : break
 
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
-    if(files_failed_to_load>0): print(files_failed_to_load, "EEG files failed to load")
+    if(files_failed_to_load>0):
+        print(files_failed_to_load, "EEG files failed to load")
 
     return eeg_dataset, eeg_filenames
 
 
 def load_metadata(folder, filenames):
     '''
-    Reads and returns the four metadata text files. 
+    Reads and returns the four metadata text files.
     Takes as input the folder location of the metadata files.
     '''
     metadata = []
     for filename in filenames:
         path = os.path.join(folder, filename)
-        metadata.append(pd.read_table(path)) 
+        metadata.append(pd.read_table(path))
     return metadata
 
 
 def save_events(folder_events, eeg_dataset, eeg_filenames):
-    '''    
+    '''
     Events are loaded from raw EEG files and saved in .txt file.
     Loading from .txt file is much faster than from EEG file.
     '''
@@ -89,12 +90,13 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
 
     for i in range(len(eeg_dataset)):
         path_events = os.path.join(folder_events, eeg_filenames[i] + ".txt")
-        np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt = '%i')
+        np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
         print("\n", i+1, " out of ", len(eeg_dataset), " saved.")
         clear_output(wait=True)
 
+
 def caller_save_events(folder_events, generator_argument):
-    '''    
+    '''
     Events are loaded from raw EEG files and saved in .txt file.
     Loading from .txt file is much faster than from EEG file.
     '''
@@ -103,14 +105,15 @@ def caller_save_events(folder_events, generator_argument):
 
     for i, (file, filename) in enumerate(generator_argument):
         path_events = os.path.join(folder_events, filename + ".txt")
-        np.savetxt(path_events, mne.find_events(file), fmt = '%i')
+        np.savetxt(path_events, mne.find_events(file), fmt='%i')
         print("\n", i, " saved.")
         clear_output(wait=True)
 
+
 def load_events(folder_events, eeg_filenames):
     '''
-    Events are saved and loaded externally from .txt file, 
-    since loading events from raw EEG file takes much longer. 
+    Events are saved and loaded externally from .txt file,
+    since loading events from raw EEG file takes much longer.
     NB: eeg_filenames should not include extension or root directory.
     '''
     if not(os.path.exists(folder_events)):
@@ -121,12 +124,12 @@ def load_events(folder_events, eeg_filenames):
     events = []
     for filename in eeg_filenames:
         filepath = os.path.join(folder_events, filename + ".txt")
-        events.append(np.loadtxt(filepath, dtype = int))    
+        events.append(np.loadtxt(filepath, dtype = int))
     print(len(events), "Event Marker files loaded")
     return events
 
 
-def print_event_info(events, participant_index = 5, event_index = 500, sample_frequency = 2048):
+def print_event_info(events, participant_index=5, event_index=500, sample_frequency=2048):
     '''
     Prints information on a specified event marker.
     '''
