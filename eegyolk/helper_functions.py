@@ -4,16 +4,13 @@ Helper functions to work with ePODIUM EEG data
 """
 import glob
 import os
-
 import pandas as pd
 import numpy as np
-
 import hashlib
 import h5py
 import warnings
 import re
-
-import mne 
+import mne
 from collections import Counter
 
 def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 0.8):
@@ -36,7 +33,6 @@ def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 
     include_for_mean: float
     Fraction of variances to calculate mean. This is to ignore the highest and lowest
     ones, which coul dbe far outliers.
-    
     """
     sfreq = data_raw.info['sfreq']
     no_channels = len(data_raw.ch_names) -1  # Subtract stimuli channel
@@ -50,14 +46,16 @@ def select_bad_channels(data_raw, time = 100, threshold = 5, include_for_mean = 
     
     suspects = np.where((var_arr > threshold* mean_low) & (var_arr < threshold/mean_low))[0]
     suspects_names = [data_raw.ch_names[x] for x in list(suspects)]
-    selected_suspects = [data_raw.ch_names.index(x) for x in suspects_names if not x in ['HEOG', 'VEOG']]
+    selected_suspects = [
+        data_raw.ch_names.index(x) for x in suspects_names if not x in ['HEOG', 'VEOG']
+    ]
     selected_suspects_names = [x for x in suspects_names if not x in ['HEOG', 'VEOG']]
     print("Suspicious channel(s): ", selected_suspects_names)
-    
+
     return selected_suspects, selected_suspects_names
 
 
-def select_bad_epochs(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
+def select_bad_epochs(epochs, stimuli, threshold=5, max_bad_fraction=0.2):
     """
     This is another historical function. Credit to Bjorn Bruns,
     Florian Huber and other original collaborators on ePodium in 2021
@@ -79,14 +77,21 @@ def select_bad_epochs(epochs, stimuli, threshold = 5, max_bad_fraction = 0.2):
     bad_channels = []
     signals = epochs[str(stimuli)].get_data()
     max_bad_epochs = max_bad_fraction*signals.shape[0]
-    
+
     # Find outliers in episode STD and max-min difference:
     signals_std = np.std(signals, axis=2)
     signals_minmax = np.amax(signals, axis=2) - np.amin(signals, axis=2)
-    
-    outliers_high = np.where((signals_std > threshold*np.mean(signals_std)) | (signals_minmax > threshold*np.mean(signals_minmax)))
-    outliers_low = np.where((signals_std < 1/threshold*np.mean(signals_std)) | (signals_minmax < 1/threshold*np.mean(signals_minmax)))
-    outliers = (np.concatenate((outliers_high[0], outliers_low[0])), np.concatenate((outliers_high[1], outliers_low[1])) ) 
+
+    outliers_high = np.where(
+        (signals_std > threshold*np.mean(signals_std)) | (signals_minmax > threshold*np.mean(signals_minmax))
+    )
+    outliers_low = np.where(
+        (signals_std < 1/threshold*np.mean(signals_std)) | (signals_minmax < 1/threshold*np.mean(signals_minmax))
+    )
+    outliers = (
+        np.concatenate((outliers_high[0], outliers_low[0])),
+        np.concatenate((outliers_high[1], outliers_low[1])),
+    ) 
     
     if len(outliers[0]) > 0:
         print("Found", len(set(outliers[0])), "bad epochs in a total of", len(set(outliers[1])), " channels.")
@@ -140,7 +145,10 @@ def select_bad_epochs_list(epochs, stimuli, threshold = 5, max_bad_fraction = 0.
 
         outliers_high = np.where((signals_std > threshold*np.mean(signals_std)) | (signals_minmax > threshold*np.mean(signals_minmax)))
         outliers_low = np.where((signals_std < 1/threshold*np.mean(signals_std)) | (signals_minmax < 1/threshold*np.mean(signals_minmax)))
-        outliers = (np.concatenate((outliers_high[0], outliers_low[0])), np.concatenate((outliers_high[1], outliers_low[1])) ) 
+        outliers = (
+            np.concatenate((outliers_high[0], outliers_low[0])),
+            np.concatenate((outliers_high[1], outliers_low[1])),
+        ) 
 
         if len(outliers[0]) > 0:
             print("Found", len(set(outliers[0])), "bad epochs in a total of", len(set(outliers[1])), " channels.")
@@ -224,16 +232,18 @@ def standardize_EEG(data_array,
 
 def read_cnt_file(file,
                   label_group,
-                  event_idx = [2, 3, 4, 5, 12, 13, 14, 15],
-                  channel_set = "30",
-                  tmin = -0.2,
-                  tmax = 0.8,
-                  lpass = 0.5, 
-                  hpass = 40, 
-                  threshold = 5, 
-                  max_bad_fraction = 0.2,
-                  max_bad_channels = 2):
-    """ Function to read cnt file. Run bandpass filter. 
+                  event_idx=[2, 3, 4, 5, 12, 13, 14, 15],
+                  channel_set="30",
+                  tmin=-0.2,
+                  tmax=0.8,
+                  lpass=0.5, 
+                  hpass=40,
+                  threshold=5,
+                  max_bad_fraction=0.2,
+                  max_bad_channels=2):
+    """
+    Historical function from previous work to read cnt files.
+    Function to read cnt file. Run bandpass filter. 
     Then detect and correct/remove bad channels and bad epochs.
     Store resulting epochs as arrays.
     
@@ -292,8 +302,8 @@ def read_cnt_file(file,
         if str(event_id) in event_dict:
             # Pick EEG channels
             picks = mne.pick_types(data_raw.info, meg=False, eeg=True, stim=False, eog=False,
-                               #exclude=data_exclude)#'bads'])
-                                   include=channel_set, exclude=channels_exclude)#'bads'])
+                               #  exclude=data_exclude)#'bads'])
+                                   include=channel_set, exclude=channels_exclude)  # 'bads'])
 
             epochs = mne.Epochs(data_raw, events=events_from_annot, event_id=event_dict,
                                 tmin=tmin, tmax=tmax, proj=True, picks=picks,
@@ -318,7 +328,8 @@ def read_cnt_file(file,
                     montage.ch_names = [ch_name.upper() for ch_name in montage.ch_names]
                     data_raw.set_montage(montage)
                     
-                    # TODO: Think about using all channels before removing (62 -> 30), to enable for better interpolation
+                    # TODO: Think about using all channels before removing (62 -> 30),
+                    #  to enable for better interpolation
                     
                     # Mark bad channels:
                     data_raw.info['bads'] = bad_channels
@@ -384,10 +395,10 @@ def read_cnt_file(file,
                   max_bad_channels = 2,
     ):
 
-    """ Function to read cnt file. Run bandpass filter. 
+    """
+    Function to read cnt file. Run bandpass filter.
     Then detect and correct/remove bad channels and bad epochs.
     Store resulting epochs as arrays.
-    
     Args:
     --------
     file: str
@@ -411,13 +422,12 @@ def read_cnt_file(file,
                        'FC5', 'F1', 'AF4', 'AF8', 'F5', 'AF7', 'AF3', 'FPZ']
     else:
         print("Predefined channel set given by 'channel_set' not known...")
-        
-    
+
     # Initialize array
     signal_collection = np.zeros((0,len(channel_set),501))
     label_collection = [] #np.zeros((0))
     channel_names_collection = []
-    
+
     # Import file
     try:
         data_raw = mne.io.read_raw_cnt(file, eog='auto', preload=True, verbose=False)
@@ -425,13 +435,13 @@ def read_cnt_file(file,
         print("ValueError")
         print("Could not load file:", file)
         return None, None, None
-    
+
     # Band-pass filter (between 0.5 and 40 Hz. was 0.5 to 30Hz in Stober 2016)
     data_raw.filter(0.5, 40, fir_design='firwin')
 
     # Get events from annotations in the data
     events_from_annot, event_dict = mne.events_from_annotations(data_raw)
-    
+
     # Set baseline:
     baseline = (None, 0)  # means from the first instant to t = 0
 
@@ -443,12 +453,13 @@ def read_cnt_file(file,
         if str(event_id) in event_dict:
             # Pick EEG channels
             picks = mne.pick_types(data_raw.info, meg=False, eeg=True, stim=False, eog=False,
-                               #exclude=data_exclude)#'bads'])
+                               # exclude=data_exclude)#'bads'])
                                    include=channel_set, exclude=channels_exclude)#'bads'])
 
             epochs = mne.Epochs(data_raw, events=events_from_annot, event_id=event_dict,
                                 tmin=tmin, tmax=tmax, proj=True, picks=picks,
-                                baseline=baseline, preload=True, event_repeated='merge', verbose=False)
+                                baseline=baseline, preload=True, event_repeated='merge',
+                                verbose=False)
 
             # Detect potential bad channels and epochs
             bad_channels, bad_epochs = helper_functions.select_bad_epochs(epochs,
@@ -467,8 +478,8 @@ def read_cnt_file(file,
                     montage = mne.channels.make_standard_montage('standard_1020')
                     montage.ch_names = [ch_name.upper() for ch_name in montage.ch_names]
                     data_raw.set_montage(montage)
-                    
-                    # TODO: Think about using all channels before removing (62 -> 30), to enable for better interpolation
+                    # TODO: Think about using all channels before removing (62 -> 30), 
+                    # to enable for better interpolation
                     
                     # Mark bad channels:
                     data_raw.info['bads'] = bad_channels
@@ -482,13 +493,20 @@ def read_cnt_file(file,
                         include=channel_set,
                         exclude=channels_exclude,
                     )
-                    epochs = mne.Epochs(data_raw, events=events_from_annot, event_id=event_dict,
-                                        tmin=tmin, tmax=tmax, proj=True, picks=picks,
-                                        baseline=baseline, preload=True, verbose=False)
-                    
+                    epochs = mne.Epochs(
+                        data_raw,
+                        events=events_from_annot,
+                        event_id=event_dict,
+                        tmin=tmin,
+                        tmax=tmax,
+                        proj=True,
+                        picks=picks,
+                        baseline=baseline,
+                        preload=True,
+                        verbose=False,
+                    )
                     # Interpolate bad channels using functionality of 'mne'
                     epochs.interpolate_bads()
-                    
             # Get signals as array and add to total collection
             channel_names_collection.append(epochs.ch_names)
             signals_cleaned = epochs[str(event_id)].drop(bad_epochs).get_data()
@@ -534,12 +552,12 @@ def load_metadata(
 def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
     eeg = band_pass_filter(eeg, lowpass, highpass)   # bandpass filter
     eeg = eeg.notch_filter(freqs=freqs)  # notch filter
-    eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels) # ref. substract
+    eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels)  # ref substract
     eeg = eeg.drop_channels(drop_ch)   # remove selected channels
-    montage = mne.channels.make_standard_montage('standard_1020') # set montage
+    montage = mne.channels.make_standard_montage('standard_1020')  # set mont
     eeg.info.set_montage(montage, on_missing='ignore')
     if len(eeg.info['bads']) != 0:   # remove bad channels
-            eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
+        eeg = mne.pick_types(eeg.info, meg=False, eeg=True, exclude='bads')
     return eeg
 
 

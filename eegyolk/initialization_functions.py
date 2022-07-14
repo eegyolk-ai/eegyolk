@@ -12,7 +12,8 @@ from display_helper import make_ordinal
 def generator_load_dataset(
     folder_dataset,
     file_extension='.bdf',
-    preload=True):
+    preload=True
+):
     """
     Documentation
     """
