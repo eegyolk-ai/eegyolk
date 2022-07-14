@@ -3,12 +3,21 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend="", show=True):
+
+def show_plot(
+    x=None,
+    y=None,
+    title="",
+    xlabel="",
+    ylabel="",
+    legend="",
+    show=True
+):
     '''
      Show plot with title and lables in 1 line.
 
     Args:
-     x: 1D numpy array        
+     x: 1D numpy array
 
      y: 1D numpy array
 
@@ -27,18 +36,25 @@ def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend="", show=Tr
         plt.show()
 
 
-def show_raw_fragment(raw, channel_index, duration = 1, start = 0, average = False):    
+def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):    
     """
     Shows a fragment of the raw EEG data from specified raw file and channel_index.  
     start_time and duration are in seconds.  
     """
     data, times = raw[:] 
     sfreq = int(raw.info["sfreq"])
-    fragment = data[channel_index][start * sfreq : (start + duration) * sfreq]  # Get data fragment
-    if(average): fragment -= np.average(fragment)           # Set average to 0
-    fragment *= 10**6                          # From volt to micro volt 
-    time = times[start * sfreq : (start + duration) * sfreq] 
-    show_plot(time, fragment, "EEG data fragment", "time (s)", "Channel voltage (\u03BCV)")
+    fragment = data[channel_index][start * sfreq: (start + duration) * sfreq]
+    if(average):
+        fragment -= np.average(fragment)      # Set average to 0
+    fragment *= 10**6       # From volt to micro volt
+    time = times[start * sfreq: (start + duration) * sfreq] 
+    show_plot(
+        time,
+        fragment,
+        "EEG data fragment",
+        "time (s)",
+        "Channel voltage (\u03BCV)",
+    )
 
 
 def make_ordinal(n):

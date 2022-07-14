@@ -33,13 +33,13 @@ def hash_it_up_right_all(folder, extension):
 
     return pd.DataFrame(raw)
 
+
 def band_pass_filter(data_raw, lo_freq, hi_freq):
-    # Band-pass filter 
+    # Band-pass filter
     # note between 1 and 40 Hz. was 0.5 to 30Hz in Stober 2016,
     # choice needs more research
     filtered = data_raw.filter(lo_freq, hi_freq, fir_design='firwin')
     return filtered
-
 
 
 def load_metadata(
