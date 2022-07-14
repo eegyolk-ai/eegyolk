@@ -51,4 +51,4 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 5. (being rebuilt) The 'model validation' notebooks can be used to assess the performance of the models.
 
 ## Testing
-At present testing requires you to have some data to test on. Configure and rename a valid bdf file as configured and named in the tests/test.py, and testing should work.
+At present testing requires you to have your own data to test on. This is because at present we are using patient data to test on, and will not share it. We plan to replace this data with synthetic data available in a docker in the next release. You can configure and rename a valid bdf file as configured and named in the tests/test.py, and testing should work.
