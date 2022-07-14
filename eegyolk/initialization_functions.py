@@ -1,22 +1,25 @@
 """ Functions for loading raw data, metadata, and events.   """
 
 import mne
-import pandas as pd 
-import numpy as np 
-import os           
-import glob 
+import pandas as pd
+import numpy as np
+import os
+import glob
 from IPython.display import clear_output
 from display_helper import make_ordinal
 
 
-def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
+def generator_load_dataset(
+    folder_dataset,
+    file_extension='.bdf',
+    preload=True):
     """
     Documentation
     """
     pattern = os.path.join(folder_dataset, '**/*' + file_extension)
     eeg_filepaths = glob.glob(pattern, recursive=True)
-    for path in eeg_filepaths:                
-        bdf_file = mne.io.read_raw_bdf(path,preload=preload)
+    for path in eeg_filepaths:
+        bdf_file = mne.io.read_raw_bdf(path, preload=preload)
         print('file is read')
         eeg_filename = os.path.split(path)[1].replace(file_extension, '')
         yield bdf_file, eeg_filename
@@ -24,11 +27,12 @@ def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     print(len(eeg_filepaths), "EEG files loaded")
 
 
-def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_files_preloaded = 5
+def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     '''
-    This function is for datasets under 5 files. Otherwise use generator_load_dataset
+    This function is for datasets under 5 files. Otherwise
+    use generator_load_dataset.
     Reads and returns the files that store the EEG data,
-    along with a list of the filenames and paths of these bdf files. 
+    along with a list of the filenames and paths of these bdf files.
     Takes as input the top folder location of the dataset.
     '''
     pattern = os.path.join(folder_dataset, '**/*' + file_extension)
@@ -43,11 +47,11 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_
         filename = os.path.split(path)[1].replace(file_extension, '')
 
         if(file_extension == '.bdf'):
-            raw = mne.io.read_raw_bdf(path,preload=preload)
+            raw = mne.io.read_raw_bdf(path, preload=preload)
 
-        if(file_extension == '.cnt'): # .cnt files do not always load.
+        if(file_extension == '.cnt'):  # .cnt files do not always load.
             try:
-                raw = mne.io.read_raw_cnt(path,preload=preload)
+                raw = mne.io.read_raw_cnt(path, preload=preload)
             except:
                 eeg_filenames_failed_to_load.append(filename)
                 files_failed_to_load += 1
@@ -62,7 +66,7 @@ def load_dataset(folder_dataset, file_extension = '.bdf', preload=True): #, max_
 
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
-    if(files_failed_to_load>0):
+    if(files_failed_to_load > 0):
         print(files_failed_to_load, "EEG files failed to load")
 
     return eeg_dataset, eeg_filenames
@@ -124,12 +128,17 @@ def load_events(folder_events, eeg_filenames):
     events = []
     for filename in eeg_filenames:
         filepath = os.path.join(folder_events, filename + ".txt")
-        events.append(np.loadtxt(filepath, dtype = int))
+        events.append(np.loadtxt(filepath, dtype=int))
     print(len(events), "Event Marker files loaded")
     return events
 
 
-def print_event_info(events, participant_index=5, event_index=500, sample_frequency=2048):
+def print_event_info(
+    events,
+    participant_index=5,
+    event_index=500,
+    sample_frequency=2048
+):
     '''
     Prints information on a specified event marker.
     '''
