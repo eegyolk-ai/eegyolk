@@ -273,3 +273,33 @@ if __name__ == "__main__":
         },
         zip_safe=False,
     )
+
+
+class AnacondaUpload(Command):
+
+    description = 'upload packages for Anaconda'
+
+    user_options = [
+        ('token=', 't', 'Anaconda token'),
+        ('package=', 'p', 'Package to upload'),
+    ]
+
+    def initialize_options(self):
+        self.token = None
+        self.package = None
+
+    def finalize_options(self):
+        if (self.token is None) or (self.package is None):
+            sys.stderr.write('Token and package are required\n')
+            raise SystemExit(2)
+
+    def run(self):
+        env = dict(os.environ)
+        env['ANACONDA_API_TOKEN'] = self.token
+        upload = glob(self.package)[0]
+        sys.stderr.write('Uploading: {}\n'.format(upload))
+        args = ['upload', '--force', '--label', 'main', upload]
+        if run_and_log(['anaconda'] + args, env=env):
+            sys.stderr.write('Upload to Anaconda failed\n')
+            raise SystemExit(7)
+
