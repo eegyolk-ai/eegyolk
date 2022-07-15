@@ -19,6 +19,66 @@ from setuptools.dist import Distribution
 from setuptools.command.bdist_egg import bdist_egg as BDistEgg
 
 
+
+project_dir = os.path.dirname(os.path.realpath(__file__))
+project_url = 'https://github.com/eegyolk-ai/eegyolk'
+project_description = 'A package for analysis of EEG data'
+project_license = 'Apache v2'
+name = 'eegyolk'
+try:
+    tag = subprocess.check_output(
+        [
+            'git',
+            '--no-pager',
+            'describe',
+            '--abbrev=0',
+            '--tags',
+        ],
+        stderr=subprocess.DEVNULL,
+    ).strip().decode()
+except subprocess.CalledProcessError as e:
+    tag = 'v0.0.0'
+
+version = tag[1:]
+
+with open(os.path.join(project_dir, 'README.md'), 'r') as f:
+    readme = f.read()
+
+
+def find_conda():
+    conda_exe = os.environ.get('CONDA_EXE', 'conda')
+    return subprocess.check_output(
+        [conda_exe, '--version'],
+    ).split()[-1].decode()
+
+
+def run_and_log(cmd, **kwargs):
+    sys.stderr.write('> {}\n'.format(' '.join(cmd)))
+    return subprocess.call(cmd, **kwargs)
+
+
+def translate_reqs(packages):
+    re = importlib.import_module('re')
+    tr = {
+        'sklearn': 'scikit-learn',
+        'codestyle': 'pycodestyle',
+        # Apparently, there isn't mne-base on PyPI...
+        'mne': 'mne-base',
+    }
+    result = []
+
+    for p in packages:
+        parts = re.split(r'[ <>=]', p, maxsplit=1)
+        name = parts[0]
+        version = p[len(name):]
+        if name in tr:
+            result.append(tr[name] + version)
+        else:
+            result.append(p)
+
+    return result
+
+
 project_dir = os.path.dirname(os.path.realpath(__file__))
 name = "eegyolk"
 try:
@@ -543,18 +603,12 @@ if __name__ == '__main__':
     setup(
         name=name,
         version=version,
-        author='A team including the NLeSC and the U. of Twente',
+        author='A team including the NLeSC and Utrecht University',
         author_email='c.moore@esciencecenter.nl',
-        package_dir={'.': '', 'TMSiSDK': '.vendor/tmsisdk/TMSiSDK'},
+        package_dir={'.': '', },
         packages=[
-            'resurfemg',
-            'TMSiSDK',
-            'TMSiSDK.devices',
-            'TMSiSDK.devices.saga',
-            'TMSiSDK.file_formats',
-            'TMSiSDK.file_readers',
-            'TMSiSDK.filters',
-            'TMSiSDK.plotters',
+            'eegyolk',
+            
         ],
         url=project_url,
         license=project_license,
