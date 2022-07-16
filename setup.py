@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
 import os
-import shlex
+# import shlex
 import site
 import subprocess
 import sys
 import venv
 import unittest
-from distutils.dir_util import copy_tree
+import importlib
+# from distutils.dir_util import copy_tree
 from glob import glob
 
 from tempfile import TemporaryDirectory
@@ -17,6 +18,8 @@ from setuptools.command.easy_install import easy_install as EZInstallCommand
 from setuptools.command.install import install as InstallCommand
 from setuptools.dist import Distribution
 from setuptools.command.bdist_egg import bdist_egg as BDistEgg
+
+
 
 
 
