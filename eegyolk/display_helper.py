@@ -36,18 +36,18 @@ def show_plot(
         plt.show()
 
 
-def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):    
-    """
-    Shows a fragment of the raw EEG data from specified raw file and channel_index.  
-    start_time and duration are in seconds.  
-    """
-    data, times = raw[:] 
+def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
+    """Shows a fragment of the raw EEG data from specified raw file
+    and channel_index.  `start_time` and `duration` are in seconds."""
+    data, times = raw[:]
     sfreq = int(raw.info["sfreq"])
     fragment = data[channel_index][start * sfreq: (start + duration) * sfreq]
     if(average):
-        fragment -= np.average(fragment)      # Set average to 0
-    fragment *= 10**6       # From volt to micro volt
-    time = times[start * sfreq: (start + duration) * sfreq] 
+        # Set average to 0
+        fragment -= np.average(fragment)
+    # From volt to micro volt
+    fragment *= 10**6
+    time = times[start * sfreq: (start + duration) * sfreq]
     show_plot(
         time,
         fragment,
@@ -84,7 +84,7 @@ color_dictionary = {
     7: "#87cefa",
     8: "#ffd700",
     9: "#696969",
-    10: "#000000", 
+    10: "#000000",
     11: "#1e90ff",
     12: "#7fff00",
 }
