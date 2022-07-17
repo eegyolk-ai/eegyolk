@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
 import os
-# import shlex
 import site
 import subprocess
 import sys
 import venv
 import unittest
 import importlib
-# from distutils.dir_util import copy_tree
 from glob import glob
 
 from tempfile import TemporaryDirectory
@@ -18,9 +16,6 @@ from setuptools.command.easy_install import easy_install as EZInstallCommand
 from setuptools.command.install import install as InstallCommand
 from setuptools.dist import Distribution
 from setuptools.command.bdist_egg import bdist_egg as BDistEgg
-
-
-
 
 
 project_dir = os.path.dirname(os.path.realpath(__file__))
@@ -288,56 +283,6 @@ class InstallDev(InstallCommand):
             self.distribution.extras_require["dev"],
         )
         super().do_egg_install()
-
-
-if __name__ == "__main__":
-    setup(
-        name=name,
-        version=version,
-        author='Floris Pauwels, Nadine Prins and Candace Makeda Moore',
-        author_email='c.moore@esciencecenter.nl',
-        packages=['eegyolk'],
-        # url='https://github.com/PENDING',
-        license='LICENSE.md',
-        description='A package for analysis and pre-processing of EEG data',
-        long_description=open('README.md').read(),
-        package_data={"": ('README.md',)},
-        # package_data={"": ("README.md",)},
-        cmdclass={
-            "test": UnitTest,
-            "lint": Pep8,
-            "isort": Isort,
-            "apidoc": SphinxApiDoc,
-            "install_dev": InstallDev,
-        },
-        test_suite='setup.my_test_suite',
-        tests_require=[
-            "pytest",
-            "pycodestyle",
-            "isort",
-            "wheel",
-            "mne",
-            "pandas",
-            "h5py",
-            "IPython",
-            ],
-        command_options={
-            "build_sphinx": {
-                "project": ("setup.py", name),
-                "version": ("setup.py", version),
-                "source_dir": ("setup.py", "./docs"),
-                "config_dir": ("setup.py", "./docs"),
-            },
-        },
-        setup_requires=["sphinx", "wheel"],
-        install_requires=["lark"],
-        extras_require={
-            "dev": ["pytest", "codestyle", "isort", "wheel"],
-        },
-        zip_safe=False,
-    )
-
-
 
 
 class GenerateCondaYaml(Command):
