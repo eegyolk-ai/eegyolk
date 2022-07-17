@@ -556,7 +556,6 @@ if __name__ == '__main__':
         package_dir={'.': '', },
         packages=[
             'eegyolk',
-            
         ],
         url=project_url,
         license=project_license,
@@ -602,4 +601,3 @@ if __name__ == '__main__':
         },
         zip_safe=False,
     )
-

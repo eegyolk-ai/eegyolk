@@ -1,4 +1,4 @@
-""" Functions for loading raw data, metadata, and events.   """
+""" Functions for loading raw data, metadata, and events."""
 
 import mne
 import pandas as pd
@@ -47,13 +47,14 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     for path in eeg_filepaths:
         filename = os.path.split(path)[1].replace(file_extension, '')
 
-        if(file_extension == '.bdf'):
+        if file_extension == '.bdf':
             raw = mne.io.read_raw_bdf(path, preload=preload)
 
-        if(file_extension == '.cnt'):  # .cnt files do not always load.
+        if file_extension == '.cnt':  # .cnt files do not always load.
             try:
                 raw = mne.io.read_raw_cnt(path, preload=preload)
-            except:
+                # TODO: What kinds of exceptions are expected here?
+            except Exception:
                 eeg_filenames_failed_to_load.append(filename)
                 files_failed_to_load += 1
                 print(f"File {filename} could not be loaded.")
@@ -67,7 +68,7 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
 
         clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
-    if(files_failed_to_load > 0):
+    if files_failed_to_load > 0:
         print(files_failed_to_load, "EEG files failed to load")
 
     return eeg_dataset, eeg_filenames
@@ -90,13 +91,13 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
     Events are loaded from raw EEG files and saved in .txt file.
     Loading from .txt file is much faster than from EEG file.
     '''
-    if not(os.path.exists(folder_events)):
+    if not os.path.exists(folder_events):
         os.mkdir(folder_events)
 
     for i in range(len(eeg_dataset)):
         path_events = os.path.join(folder_events, eeg_filenames[i] + ".txt")
         np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
-        print("\n", i+1, " out of ", len(eeg_dataset), " saved.")
+        print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")
         clear_output(wait=True)
 
 

@@ -1,8 +1,9 @@
-""" Tools specifically for the ePodium dataset.  """
+"""Tools specifically for the ePodium dataset."""
 
-
-import numpy as np      # numerical computing
-import copy     # Can Copy and Deepcopy files so original file untouched
+# numerical computing
+import numpy as np
+# Can Copy and Deepcopy files so original file untouched
+import copy
 
 
 def group_events_12(events):
@@ -37,9 +38,9 @@ event_dictionary = {
 
 event_conversion_12 = [
     [1, 1, 12],
-    [2, 13, 24], 
+    [2, 13, 24],
     [3, 25, 36],
-    [4, 101, 101], 
+    [4, 101, 101],
     [5, 102, 102],
     [6, 103, 103],
     [7, 37, 48],
