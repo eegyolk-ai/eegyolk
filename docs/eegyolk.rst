@@ -9,6 +9,7 @@ Submodules
 
    eegyolk.display_helper
    eegyolk.helper_functions
+   eegyolk.dummy_data_functions.py
 
 Module contents
 ---------------
