@@ -1,0 +1,6 @@
+eeg_file,ParticipantID,test,sex,age_months,age_months_days,dyslexic_parent,Group_AccToParents,eeg_path,path_epoch,epoch_file
+101a,101,a,m,20,20;22,m,At risk,F:\Stage\ePODIUM\Data\ePodium (Projectfolder)\Dataset,F:\Stage\ePODIUM\ePodium\dyslexiaprediction_nadine\epochs,101a_epo.fif
+101b,101,b,m,23,23;16,m,At risk,F:\Stage\ePODIUM\Data\ePodium (Projectfolder)\Dataset,F:\Stage\ePODIUM\ePodium\dyslexiaprediction_nadine\epochs,101b_epo.fif
+102a,102,a,f,20,20;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium (Projectfolder)\Dataset,F:\Stage\ePODIUM\ePodium\dyslexiaprediction_nadine\epochs,102a_epo.fif
+102b,102,b,f,23,23;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium (Projectfolder)\Dataset,F:\Stage\ePODIUM\ePodium\dyslexiaprediction_nadine\epochs,102b_epo.fif
+103a,103,a,f,20,20;23,m,At risk,F:\Stage\ePODIUM\Data\ePodium (Projectfolder)\Dataset,F:\Stage\ePODIUM\ePodium\dyslexiaprediction_nadine\epochs,103a_epo.fif

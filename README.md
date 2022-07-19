@@ -49,3 +49,6 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 3. (being rebuilt) Use the preprocessing notebooks to process the raw data to usable data for either the ML or (reduced) DL models (separate notebooks).
 4. (being rebuilt) The 'model training' notebooks can be used the train and save models.
 5. (being rebuilt) The 'model validation' notebooks can be used to assess the performance of the models.
+
+## Testing
+At present testing requires you to have your own data to test on. This is because at present we are using patient data to test on, and will not share it. We plan to replace this data with synthetic data available in a docker in the next release. You can configure and rename a valid bdf file as configured and named in the tests/test.py, and testing should work.
