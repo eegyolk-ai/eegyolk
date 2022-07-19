@@ -1,11 +1,7 @@
 CLONE GITHUB:
 https://github.com/NLeSC/ePodium.git
 FlorisP
-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
-
-
-
-
+<Get token from GitHub>
 
 
 Create a shared storage for Linux and Windows:
