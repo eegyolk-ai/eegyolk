@@ -13,7 +13,8 @@ def generate_frequency_distribution(
         max_freq=256,
         freq_sample_rate=10,
 ):
-    '''This function returns the occurence of frequencies up to
+    """
+    This function returns the occurence of frequencies up to
     'max_freq' from a 'distribution'.  Returns arrays of frequencies
     and their occurence as x and y value.  The form of :math:`1 / (x^2 *
     (exp(1/x)-1))` is inspired by Planck's law.
@@ -27,7 +28,7 @@ def generate_frequency_distribution(
         The largest frequency that the function considers.
 
     freq_sample_rate: float
-    '''
+    """
     frequencies = np.linspace(
         0,
         max_freq,
@@ -48,7 +49,7 @@ def generate_frequency_distribution(
 
 
 def random_frequency_from_density_distribution(max_freq, freq_distribution):
-    '''
+    """
     Returns a single random frequency from a cumulative distribution:
         1. Sum the array cumulatively and scale from 0 to 1.
         2. Pick a random number between 0 and 1.
@@ -60,7 +61,7 @@ def random_frequency_from_density_distribution(max_freq, freq_distribution):
 
       freq_distribution: 1D numpy array
         The density probability distribution
-    '''
+    """
     cumulative = np.cumsum(freq_distribution)
     cumulative /= cumulative[-1]
     random_value = random.random()
@@ -83,7 +84,7 @@ def generate_epoch(
         duration=2,
         sample_rate=512,
 ):
-    '''
+    """
     Returns a single epoch of EEG dummy data.
 
     Args:
@@ -92,7 +93,7 @@ def generate_epoch(
 
       N_combined_freq: float
         Number of frequencies in epoch.
-    '''
+    """
     N_time_points = sample_rate * duration
 
     # Create epoch by summing up sines of different frequencies
@@ -109,7 +110,8 @@ def generate_epoch(
 
 
 def create_labeled_dataset(size, distributions=["planck", "constant"]):
-    '''Uses the functions from this scripts to create dataset with
+    """
+    Uses the functions from this scripts to create dataset with
     various frequency distributions.
 
     Args:
@@ -117,7 +119,7 @@ def create_labeled_dataset(size, distributions=["planck", "constant"]):
 
       distributions: list of strings
         The names of the distributions that are generated and labeled
-    '''
+    """
     X = []
     Y = np.zeros(size)
 

@@ -29,13 +29,13 @@ def generator_load_dataset(
 
 
 def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
-    '''
+    """
     This function is for datasets under 5 files. Otherwise
     use generator_load_dataset.
     Reads and returns the files that store the EEG data,
     along with a list of the filenames and paths of these bdf files.
     Takes as input the top folder location of the dataset.
-    '''
+    """
     pattern = os.path.join(folder_dataset, '**/*' + file_extension)
     eeg_filepaths = glob.glob(pattern, recursive=True)
     eeg_dataset = []
@@ -75,10 +75,10 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
 
 
 def load_metadata(folder, filenames):
-    '''
+    """
     Reads and returns the four metadata text files.
     Takes as input the folder location of the metadata files.
-    '''
+    """
     metadata = []
     for filename in filenames:
         path = os.path.join(folder, filename)
@@ -87,10 +87,10 @@ def load_metadata(folder, filenames):
 
 
 def save_events(folder_events, eeg_dataset, eeg_filenames):
-    '''
+    """
     Events are loaded from raw EEG files and saved in .txt file.
     Loading from .txt file is much faster than from EEG file.
-    '''
+    """
     if not os.path.exists(folder_events):
         os.mkdir(folder_events)
 
@@ -102,10 +102,10 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
 
 
 def caller_save_events(folder_events, generator_argument):
-    '''
+    """
     Events are loaded from raw EEG files and saved in .txt file.
     Loading from .txt file is much faster than from EEG file.
-    '''
+    """
     if not os.path.isdir(folder_events):
         os.mkdir(folder_events)
 
@@ -117,11 +117,11 @@ def caller_save_events(folder_events, generator_argument):
 
 
 def load_events(folder_events, eeg_filenames):
-    '''
+    """
     Events are saved and loaded externally from .txt file,
     since loading events from raw EEG file takes much longer.
     NB: eeg_filenames should not include extension or root directory.
-    '''
+    """
     if not(os.path.exists(folder_events)):
         print("There is no folder at: ", folder_events,
               "\n first save the events in this folder.")
@@ -141,9 +141,9 @@ def print_event_info(
     event_index=500,
     sample_frequency=2048
 ):
-    '''
+    """
     Prints information on a specified event marker.
-    '''
+    """
     event_time = events[participant_index][event_index][0]
     event_ID = events[participant_index][event_index][2]
     print((

@@ -7,11 +7,11 @@ import copy
 
 
 def group_events_12(events):
-    '''
+    """
     Specific to the ePODIUM dataset.
     Reduces the number of distinctive events from 78 to 12 events.
     This is done by combining different pronounciations into the same event.
-    '''
+    """
     events_12 = copy.deepcopy(events)
     for i in range(len(events)):
         for newValue, minOld, maxOld in event_conversion_12:

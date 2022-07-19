@@ -38,7 +38,8 @@ def show_plot(
 
 def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
     """Shows a fragment of the raw EEG data from specified raw file
-    and channel_index.  `start_time` and `duration` are in seconds."""
+    and channel_index.  `start_time` and `duration` are in seconds.
+    """
     data, times = raw[:]
     sfreq = int(raw.info["sfreq"])
     fragment = data[channel_index][start * sfreq: (start + duration) * sfreq]
@@ -58,14 +59,14 @@ def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
 
 
 def make_ordinal(n):
-    '''
+    """
     Convert an integer into its ordinal representation::
 
         make_ordinal(0)   => '0th'
         make_ordinal(3)   => '3rd'
         make_ordinal(122) => '122nd'
         make_ordinal(213) => '213th'
-    '''
+    """
     n = int(n)
     if 11 <= (n % 100) <= 13:
         suffix = 'th'
