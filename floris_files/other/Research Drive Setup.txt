@@ -1,0 +1,55 @@
+CLONE GITHUB:
+https://github.com/NLeSC/ePodium.git
+FlorisP
+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
+
+
+
+
+
+
+Create a shared storage for Linux and Windows:
+https://servicedesk.surf.nl/wiki/display/WIKI/Create+a+shared+storage+for+Linux+and+Windows
+
+step 2:
+sudo chmod -R 777 "/data/volume_2"
+
+step 4:
+sudo vim /etc/samba/smb.conf
+
+:xa	exit all (save all changes and close Vim)
+:qa!	quit all (close Vim without saving—discard any changes)
+
+
+o insert line below current line 
+:w Save the current file
+
+[volume-ceph]
+   comment = Samba on Ubuntu
+   path = "storage"
+   read only = no
+   browsable = yes
+
+
+[volume-ceph]
+   comment = Samba on Ubuntu
+   path = "/data/volume_2"
+   read only = no
+   browsable = yes
+
+
+step 5:
+
+sudo ufw allow ssh
+sudo ufw allow from 145.38.186.192 to any port 445
+sudo ufw enable
+
+
+mount step 3:
+
+sudo vim /etc/fstab 
+
+//145.38.186.229/volume-ceph /volume-ceph cifs username=smbuser,password=12345,file_mode=0777,dir_mode=0777
+
+sudo apt-get install cifs-utils
+sec=ntlm

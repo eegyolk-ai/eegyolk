@@ -2,38 +2,31 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
+import collections.abc
 
 
-def show_plot(
-    x=None,
-    y=None,
-    title="",
-    xlabel="",
-    ylabel="",
-    legend="",
-    show=True
-):
-    """
-     Show plot with title and lables in 1 line.
+def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend=""):
+    """Show plot with title and lables in 1 line.
 
     Args:
      x: 1D numpy array
 
      y: 1D numpy array
-
     """
+    
     plt.clf()
-
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
 
-    if legend:
-        plt.legend(legend)
-    if (x is not None) and (y is not None):
+    if isinstance(y, collections.abc.Sequence):
+        for i in range(len(y)):
+            plt.plot(x, y[i], label = legend[i])
+        plt.legend()
+
+    else:
         plt.plot(x, y)
-    if show:
-        plt.show()
+    plt.show()
 
 
 def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
@@ -57,23 +50,6 @@ def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
         "time (s)",
         "Channel voltage (\u03BCV)",
     )
-
-
-def make_ordinal(n):
-    """
-    Convert an integer into its ordinal representation::
-
-        make_ordinal(0)   => '0th'
-        make_ordinal(3)   => '3rd'
-        make_ordinal(122) => '122nd'
-        make_ordinal(213) => '213th'
-    """
-    n = int(n)
-    if 11 <= (n % 100) <= 13:
-        suffix = 'th'
-    else:
-        suffix = ['th', 'st', 'nd', 'rd', 'th'][min(n % 10, 4)]
-    return str(n) + suffix
 
 
 color_dictionary = {
