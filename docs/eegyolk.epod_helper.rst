@@ -1,7 +1,7 @@
-eegyolk.display\_helper module
+eegyolk.epod\_helper module
 ================================
 
-.. automodule:: eegyolk.display_helper
+.. automodule:: eegyolk.epod_helper
    :members:
    :undoc-members:
    :show-inheritance:
