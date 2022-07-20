@@ -49,3 +49,23 @@ sudo vim /etc/fstab
 
 sudo apt-get install cifs-utils
 sec=ntlm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Djura:
+pwd print working directory
+sudo nano /etc/fstab
+ln -s /volume-ceph
+
+
