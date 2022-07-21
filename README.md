@@ -4,6 +4,9 @@
 
 # eegyolk
 
+[![PyPI](https://img.shields.io/pypi/v/eegyolk.svg)](https://pypi.python.org/pypi/mcfly/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6865762.svg)](https://doi.org/10.5281/zenodo.6865762)
+
 
 This library contains functions, scripts and notebooks for machine learning related to EEGs (electroencephalograms). The notebooks include an updated version of a project for deep learning for age prediciton using EEG data, as well as new ongoing work from students at the University of Urtrecht.
 
