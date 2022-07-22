@@ -35,14 +35,13 @@ ln -s /volume-ceph
 
 
 
-
-
-
-
 COMMANDS:
 
 print working directory: pwd
+change directory: cd ..
+list files: ls
 create shortcut in path: ln -s /volume-ceph
+example: ln -s /home/fpauwels/eegyolk/floris_files
 
-CLONE GITHUB:
-https://github.com/eegyolk-ai/eegyolk.git
+
+
