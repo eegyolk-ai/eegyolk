@@ -1,7 +1,7 @@
-eegyolk.display\_helper module
+eegyolk.dummy\_data\_functions module
 ================================
 
-.. automodule:: eegyolk.display_helper
+.. automodule:: eegyolk.dummy_data_functions
    :members:
    :undoc-members:
    :show-inheritance:

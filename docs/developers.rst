@@ -106,7 +106,7 @@ We have have linting!
 Continuous Integration
 ^^^^^^^^^^^^^^^^^^^^^^
 
-This project will soon have CI setup that uses GitHub Actions
+This project has CI setup that uses GitHub Actions
 platform.  
 
 

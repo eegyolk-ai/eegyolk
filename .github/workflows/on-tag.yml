@@ -5,6 +5,7 @@ on:
     tags:
       - v*
 
+
 jobs:
   PyPIBuild:
     if: ${{ github.repository == 'eegyolk-ai/eegyolk' }}
@@ -70,6 +71,11 @@ jobs:
           path: dist/*/*.tar.bz2
 
   PublishArtifacts:
+    permissions:
+      id-token: "write"
+      contents: "write"
+      packages: "write"
+      pull-requests: "read"
     runs-on: ubuntu-latest
     needs: [PyPIBuild, CondaBuild]
     steps:

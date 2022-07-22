@@ -1,7 +1,7 @@
-eegyolk.display\_helper module
+eegyolk.historical module
 ================================
 
-.. automodule:: eegyolk.display_helper
+.. automodule:: eegyolk.historical
    :members:
    :undoc-members:
    :show-inheritance:
