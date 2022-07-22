@@ -6,14 +6,9 @@ import numpy as np
 import os
 import glob
 from IPython.display import clear_output
-from display_helper import make_ordinal
 
 
-def generator_load_dataset(
-    folder_dataset,
-    file_extension='.bdf',
-    preload=True
-):
+def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     """
     Documentation
     """
@@ -135,23 +130,12 @@ def load_events(folder_events, eeg_filenames):
     return events
 
 
-def print_event_info(
-    events,
-    participant_index=5,
-    event_index=500,
-    sample_frequency=2048
-):
+def print_event_info(events, participant_index=5, 
+                     event_index=500, sample_frequency=2048):
     """
     Prints information on a specified event marker.
     """
     event_time = events[participant_index][event_index][0]
     event_ID = events[participant_index][event_index][2]
-    print((
-        "Participant {} heard event ID: {} after {:.1f} seconds "
-        "as the {} event"
-    ).format(
-        participant_index,
-        event_ID,
-        event_time / sample_frequency,
-        make_ordinal(event_index),
-    ))
+    print(("Participant {} heard event ID: {} after {:.1f} seconds as event {}.")\
+        .format(participant_index, event_ID, event_time / sample_frequency, event_index))

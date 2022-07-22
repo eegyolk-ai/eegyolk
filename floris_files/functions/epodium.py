@@ -1,8 +1,6 @@
 """Tools specifically for the ePodium dataset."""
 
-# numerical computing
 import numpy as np
-# Can Copy and Deepcopy files so original file untouched
 import copy
 
 

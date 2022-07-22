@@ -6,7 +6,7 @@ import tensorflow as tf
 
 
 def DNN(Input, keep_prob, weights_1, biases_1, weights_2, biases_2):
-    '''
+    """
     Args:
         Input: The input EEG signals
         keep_prob: The Keep probability of Dropout
@@ -17,7 +17,7 @@ def DNN(Input, keep_prob, weights_1, biases_1, weights_2, biases_2):
     Returns:
         FC_2: Final prediction of DNN Model
         FC_1: Extracted features from the first fully connected layer
-    '''
+    """
 
     # First fully-connected layer
     FC_1 = tf.matmul(Input, weights_1) + biases_1
