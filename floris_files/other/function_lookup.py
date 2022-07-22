@@ -15,21 +15,19 @@ import glob
 # Can Copy and Deepcopy files so original file is untouched          
 import copy     
 # system-specific information and resources
-import sys     
-        
-main_path = os.path.dirname(os.path.dirname(os.getcwd()))
-repo_path = os.path.join(main_path, 'ePodium')
-data_path = os.path.join(main_path, 'researchdrive', 'ePodium (Projectfolder)')
+import sys   
 
-eegyolk_path = os.path.join(repo_path, 'eegyolk')
-sys.path.insert(0, eegyolk_path)
-from eegyolk import initialization_functions as ifun
-from eegyolk import epod_helper as epod
-from eegyolk import display_helper as disp
+# A file containing all necessary paths
+import PATH
+PATH.init()
 
-folder_epod_dataset = os.path.join(data_path, "Dataset")
-folder_epod_metadata = os.path.join(data_path, "Metadata")
-folder_epod_events = os.path.join(data_path, "events")
+# Import in-house scripts
+from functions import display_helper
+from functions import dataset_loading
+from functions import epodium
+
+
+
 
 
 #Fourier Transformation  ------------
