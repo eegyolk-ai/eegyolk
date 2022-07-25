@@ -52,7 +52,7 @@ def hash_it_up_right_all(folder, extension):
 def band_pass_filter(data_raw, lo_freq, hi_freq):
     """Band pass filter code to filter out certain frequencies
 
-        :param data_raw: raw EEG data, result of mne.io.read_raw_...
+        :param data_raw: raw EEG data, result of mne.io.read_rawfunctions
         :type data_raw: mne.io.Raw
         :param lo_freq: Hertz below which to disinclude
         :type lo_freq:int
@@ -80,10 +80,20 @@ def load_metadata(
     """
     This function loads the metadata stored in the metadata folder,
     and makes an excel or csv from the txt.
-    Inputs: filename, path_metadata(file where metadata is), )
+    Inputs are filename, path_metadata(file where metadata is), )
     make_excel_files, make_csv_files (True makes this type of file),
     path_output(where we put the file)
-    Outputs: csv and/or excel file
+    Outputs are a csv and/or excel file
+
+    :param filename: raw EEG, result of mne.io.read_raw type functions
+    :type filename: string
+    :param path_metadata: path to metadata
+    :type path_metadata:string
+    :param path_output: path for output file
+    :type path_output: string
+
+    :returns: metadata
+    :rtype: csv or xlsx
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
@@ -103,6 +113,9 @@ def load_metadata(
 
 
 def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
+    """
+    This is a filtering function for eeg data. 
+    """
     eeg = band_pass_filter(eeg, lowpass, highpass)   # bandpass filter
     eeg = eeg.notch_filter(freqs=freqs)  # notch filter
     eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels)  # ref substract
@@ -122,8 +135,8 @@ def create_epochs(
 ):
     """
     This function turns eeg data into epochs.
-    inputs: eeg data files, event parkers, time before event, time after event
-    output: eeg data divided in epochs
+    Inputs are eeg data files, event parkers, time before event, time after event
+    Outputs are eeg data divided in epochs
     """
     epochs = []
     for i in range(len(eeg)):
@@ -140,9 +153,9 @@ def create_epochs(
 def evoked_responses(epochs, avg_variable):
     """
     This function creates an average evoked response for each event.
-    input: epoched data, variable where needs to be averaged on e.g.
+    The input is epoched data, variable where needs to be averaged on e.g.
     average per participant per event
-    output: evoked responses
+    The output is evoked responses
     """
     evoked = []
     for i in range(len(epochs)):
