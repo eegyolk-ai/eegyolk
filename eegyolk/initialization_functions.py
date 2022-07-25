@@ -1,4 +1,8 @@
-""" Functions for loading raw data, metadata, and events."""
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+
+This file contains functions for loading raw data, metadata, and events."""
 
 import mne
 import pandas as pd
