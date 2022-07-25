@@ -1,5 +1,10 @@
+
 """
-Helper functions to work with ePODIUM EEG data
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+
+This file contains functions originally designed to work with ePODIUM EEG 
+data, that can be applied to other EEG data as well.
 
 """
 import glob
@@ -15,6 +20,16 @@ from collections import Counter
 
 
 def hash_it_up_right_all(folder, extension):
+    """This function creates a hash signature for every file in a folder,
+        with a specified extension (e.g. cnt or fif)
+        and then puts the hases into a table.
+
+        :param folder: the folder with files to hasg
+        :type folder: string
+
+        :returns: dataframe
+        :rtype: pandas.dataframe
+        """
     raw = {'hash': [], 'file': []}
     files = os.path.join(folder, '*' + extension)
 
@@ -35,6 +50,18 @@ def hash_it_up_right_all(folder, extension):
 
 
 def band_pass_filter(data_raw, lo_freq, hi_freq):
+    """Band pass filter code to filter out certain frequencies
+
+        :param data_raw: raw EEG data, result of mne.io.read_raw_...
+        :type data_raw: mne.io.Raw
+        :param lo_freq: Hertz below which to disinclude
+        :type lo_freq:int
+        :param high_freq: Hertz above which to disinclude
+        :type high_freq: int
+
+        :returns: filtered
+        :rtype: array
+        """
     # Band-pass filter
     # note between 1 and 40 Hz. was 0.5 to 30Hz in Stober 2016,
     # choice needs more research
