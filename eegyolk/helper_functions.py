@@ -3,7 +3,7 @@
 Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
 
-This file contains functions originally designed to work with ePODIUM EEG 
+This file contains functions originally designed to work with ePODIUM EEG
 data, that can be applied to other EEG data as well.
 
 """
@@ -50,12 +50,12 @@ def hash_it_up_right_all(folder, extension):
 
 
 def band_pass_filter(data_raw, lo_freq, hi_freq):
-    """Band pass filter code to filter out certain frequencies
+    """Band pass filter code to filter out certain frequencies.
 
-        :param data_raw: raw EEG data, result of mne.io.read_rawfunctions
+        :param data_raw: raw EEG data, result of mne.io.read_raw functions
         :type data_raw: mne.io.Raw
         :param lo_freq: Hertz below which to disinclude
-        :type lo_freq:int
+        :type lo_freq: int
         :param high_freq: Hertz above which to disinclude
         :type high_freq: int
 
@@ -114,7 +114,7 @@ def load_metadata(
 
 def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
     """
-    This is a filtering function for eeg data. 
+    This is a filtering function for eeg data.
     """
     eeg = band_pass_filter(eeg, lowpass, highpass)   # bandpass filter
     eeg = eeg.notch_filter(freqs=freqs)  # notch filter
@@ -135,7 +135,8 @@ def create_epochs(
 ):
     """
     This function turns eeg data into epochs.
-    Inputs are eeg data files, event parkers, time before event, time after event
+    Inputs are eeg data files, event parkers, time before event,
+    and time after event
     Outputs are eeg data divided in epochs
     """
     epochs = []

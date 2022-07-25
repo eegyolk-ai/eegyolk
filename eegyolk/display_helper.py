@@ -2,7 +2,8 @@
 Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
 
-This file contains functions originally designed to help with displaying information.
+This file contains functions originally designed
+to help with displaying information.
 """
 
 import matplotlib.pyplot as plt
