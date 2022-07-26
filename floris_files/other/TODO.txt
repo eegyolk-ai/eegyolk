@@ -1,0 +1,24 @@
+Ask Karin for more metadata ePOD
+
+DDP:
+Ask Hugo for papers on DDP
+All the DDP files have differently set-up events. 
+Some files have 62 channels, others 30.
+Loading with 'mne.io.read_raw_cnt' produces two RuntimeWarnings (can be ignored)
+Only use DDP for age prediction/transfer learning?
+
+EPOD:
+EXG1 and EXG2 channels are very noisy. Should we use mastoid channels?
+
+Processing:
+Should we standardise EEG data?
+
+
+1. Process DDP files (processing pipeline)
+2. Train DDP on age with Transformer
+Clean code!
+Analyse DDP ERPs
+3. Use same processing pipeline with ePod
+4. See if correct ERPs can be produced with processed ePod
+5. Train ePod on age for any correlation (age/sex/a-b/at-risk/dyslexic parents)
+
