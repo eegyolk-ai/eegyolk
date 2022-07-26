@@ -78,6 +78,7 @@ def create_labels_processed(PATH_data, PATH_labels, labels):
     labels_processed = pd.DataFrame({"code": code_list, 'path': path_list, "file": file_list, 
                                         'age_group': age_group_list, 'age_days': age_days_list})
     labels_processed.to_excel(PATH_labels, index = True)
+    return labels_processed
 
     
     
