@@ -15,13 +15,13 @@ from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
 from eegyolk.helper_functions import filter_eeg_raw
-from eegyolk.helper_functions import load_metadata # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
+from eegyolk.helper_functions import load_metadata 
 
 from eegyolk.initialization_functions import load_dataset
 # from eegyolk.initialization_functions import load_metadata
 from eegyolk.initialization_functions import load_events
 from eegyolk.initialization_functions import save_events
-# from eegyolk.initialization_functions import print_event_info
+from eegyolk.initialization_functions import print_event_info
 from eegyolk.initialization_functions import caller_save_events
 from eegyolk.initialization_functions import generator_load_dataset
 
