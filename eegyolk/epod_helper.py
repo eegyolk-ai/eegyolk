@@ -1,4 +1,8 @@
-"""Tools specifically for the ePodium dataset."""
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+
+This file contains tools specifically for the ePodium dataset."""
 
 # numerical computing
 import numpy as np

@@ -1,5 +1,10 @@
+
 """
-Helper functions to work with ePODIUM EEG data
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+
+This file contains functions originally designed to work with ePODIUM EEG
+data, that can be applied to other EEG data as well.
 
 """
 import glob
@@ -15,6 +20,16 @@ from collections import Counter
 
 
 def hash_it_up_right_all(folder, extension):
+    """This function creates a hash signature for every file in a folder,
+        with a specified extension (e.g. cnt or fif)
+        and then puts the hases into a table.
+
+        :param folder: the folder with files to hasg
+        :type folder: string
+
+        :returns: dataframe
+        :rtype: pandas.dataframe
+        """
     raw = {'hash': [], 'file': []}
     files = os.path.join(folder, '*' + extension)
 
@@ -35,6 +50,18 @@ def hash_it_up_right_all(folder, extension):
 
 
 def band_pass_filter(data_raw, lo_freq, hi_freq):
+    """Band pass filter code to filter out certain frequencies.
+
+        :param data_raw: raw EEG data, result of mne.io.read_raw functions
+        :type data_raw: mne.io.Raw
+        :param lo_freq: Hertz below which to disinclude
+        :type lo_freq: int
+        :param high_freq: Hertz above which to disinclude
+        :type high_freq: int
+
+        :returns: filtered
+        :rtype: array
+        """
     # Band-pass filter
     # note between 1 and 40 Hz. was 0.5 to 30Hz in Stober 2016,
     # choice needs more research
@@ -53,10 +80,20 @@ def load_metadata(
     """
     This function loads the metadata stored in the metadata folder,
     and makes an excel or csv from the txt.
-    Inputs: filename, path_metadata(file where metadata is), )
+    Inputs are filename, path_metadata(file where metadata is), )
     make_excel_files, make_csv_files (True makes this type of file),
     path_output(where we put the file)
-    Outputs: csv and/or excel file
+    Outputs are a csv and/or excel file
+
+    :param filename: raw EEG, result of mne.io.read_raw type functions
+    :type filename: string
+    :param path_metadata: path to metadata
+    :type path_metadata:string
+    :param path_output: path for output file
+    :type path_output: string
+
+    :returns: metadata
+    :rtype: csv or xlsx
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
@@ -76,6 +113,9 @@ def load_metadata(
 
 
 def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
+    """
+    This is a filtering function for eeg data.
+    """
     eeg = band_pass_filter(eeg, lowpass, highpass)   # bandpass filter
     eeg = eeg.notch_filter(freqs=freqs)  # notch filter
     eeg = eeg.set_eeg_reference(ref_channels=mastoid_channels)  # ref substract
@@ -95,8 +135,9 @@ def create_epochs(
 ):
     """
     This function turns eeg data into epochs.
-    inputs: eeg data files, event parkers, time before event, time after event
-    output: eeg data divided in epochs
+    Inputs are eeg data files, event parkers, time before event,
+    and time after event
+    Outputs are eeg data divided in epochs
     """
     epochs = []
     for i in range(len(eeg)):
@@ -113,9 +154,9 @@ def create_epochs(
 def evoked_responses(epochs, avg_variable):
     """
     This function creates an average evoked response for each event.
-    input: epoched data, variable where needs to be averaged on e.g.
+    The input is epoched data, variable where needs to be averaged on e.g.
     average per participant per event
-    output: evoked responses
+    The output is evoked responses
     """
     evoked = []
     for i in range(len(epochs)):
