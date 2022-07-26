@@ -4,6 +4,7 @@ import os
 
 storage = "/volume-ceph"
 processed = os.path.join(storage, "processed")
+models = os.path.join(storage, "models")
 
 DDP = os.path.join(storage, "DDP_projectfolder")
 DDP_5 = os.path.join(DDP, "05mnd mmn")
