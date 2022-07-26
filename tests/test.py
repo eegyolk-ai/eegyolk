@@ -31,17 +31,17 @@ from eegyolk.dummy_data_functions import create_labeled_dataset
 main_path = os.path.dirname(os.getcwd())
     # repo_path = os.path.join(main_path, 'eegyolk')
 repo_path = main_path
-drive_path = os.path.join('D:', 'ePodium _Projectfolder')
+drive_path = os.path.join('D:', 'parallel_testing')
     # D:\ePodium _Projectfolder
 eegyolk_path = os.path.join(repo_path, 'eegyolk')
 sys.path.insert(0, eegyolk_path)
 
 dataset_path = os.path.join(drive_path, 'Dataset')
-    #sample_eeg_bdf = os.path.join(drive_path, 'Dataset/' + '121a.bdf')
-sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
+sample_eeg_bdf = os.path.join(drive_path, 'Dataset' + '/101a.bdf')
+#sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
 
 sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-sample_metadata = os.path.join(drive_path, 'metadata', 'cdi.txt')
+sample_metadata = os.path.join(drive_path, 'metadata', 'para_cdi.txt')
 event_marker_folder = os.path.join(drive_path, 'events')    
 sample_eeg_list = ['101a']
 
@@ -60,7 +60,7 @@ class TestFilteringMethods(unittest.TestCase):
             10,
         )
     def test_filter_raw(self):
-        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50,  ['EXG1', 'EXG2'])
+        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50,  ['EXG1', 'EXG2'], [])
         self.assertEqual(
             (sample_eeg_raw_filtered.info['lowpass']),
             10,
@@ -92,7 +92,7 @@ class TestLoadMethods(unittest.TestCase):
             make_excel_files=False,
             make_csv_files=False,
         )
-        self.assertEqual(len(loaded_metadata), 143)
+        self.assertEqual(len(loaded_metadata), 16)
 
     def test_load_events(self):
         loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
