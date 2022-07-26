@@ -19,13 +19,16 @@ import sys
 
 # A file containing all necessary paths
 import PATH
-PATH.init()
 
 # Import in-house scripts
 from functions import display_helper
 from functions import dataset_loading
 from functions import epodium
 
+
+
+%matplotlib qt
+mne.viz.plot_raw(raw, events)
 
 
 

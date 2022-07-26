@@ -2,6 +2,7 @@
 
 import numpy as np
 import copy
+import os
 
 
 def group_events_12(events):
@@ -48,3 +49,18 @@ event_conversion_12 = [
     [11, 105, 105],
     [12, 106, 106]
 ]
+
+channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5',
+               'T7', 'C3', 'CP1', 'CP5', 'P7', 'P3',
+               'Pz', 'PO3', 'O1', 'Oz', 'O2', 'PO4',
+               'P4', 'P8', 'CP6', 'CP2', 'C4', 'T8',
+               'FC6', 'FC2', 'F4', 'F8', 'AF4', 'Fp2',
+               'Fz', 'Cz'] 
+               #'EXG1', 'EXG2', 'EXG3', 'EXG4', 'EXG5',
+               #'EXG6', 'EXG7', 'EXG8', 'Status']
+        
+
+storage = "/volume-ceph"
+processed = os.path.join(storage, "processed")
+
+DDP = os.path.join(storage, "DDP_projectfolder")
