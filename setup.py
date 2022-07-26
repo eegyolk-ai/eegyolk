@@ -585,7 +585,6 @@ if __name__ == '__main__':
             'matplotlib',
             'h5py',
             'sklearn',
-            'IPython',
         ],
         tests_require=['pytest', 'pycodestyle', 'isort', 'wheel'],
         command_options={
