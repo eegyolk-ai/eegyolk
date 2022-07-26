@@ -40,12 +40,12 @@ from eegyolk.helper_functions import load_metadata # (filename, path_metadata, p
 
 # from eegyolk.initialization_functions import load_dataset
 # load_dataset
-# from eegyolk.initialization_functions import load_metadata
-#from eegyolk.initialization_functions import load_events
-#from eegyolk.initialization_functions import save_events
-# from eegyolk.initialization_functions import print_event_info
-# from eegyolk.initialization_functions import caller_save_events
-#from eegyolk.initialization_functions import generator_load_dataset
+from eegyolk.initialization_functions import i_load_metadata
+from eegyolk.initialization_functions import load_events
+from eegyolk.initialization_functions import save_events
+from eegyolk.initialization_functions import print_event_info
+from eegyolk.initialization_functions import caller_save_events
+from eegyolk.initialization_functions import generator_load_dataset
 
 from eegyolk.dummy_data_functions import generate_frequency_distribution
 from eegyolk.dummy_data_functions import create_labeled_dataset
@@ -110,18 +110,18 @@ class TestLoadMethods(unittest.TestCase):
         )
         self.assertEqual(len(loaded_metadata), 143)
 
-    # def test_load_events(self):
-    #     loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
-    #     self.assertEqual(len(loaded_event_markers), 1)
+    def test_load_events(self):
+        loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
+        self.assertEqual(len(loaded_event_markers), 1)
     
-    # def test_call_event_markers(self):
-    #     # temporary directory
-    #     expected = 3
-    #     with TemporaryDirectory() as td:
-    #         caller_save_events(td, islice(generator_load_dataset(dataset_path), 3))
-    #         actual = sum(1 for txt in glob.glob(os.path.join(td,'*.txt')))
-    #     # compare number files generated,to expected which we stop at 3 with 
-    #     self.assertEqual(expected, actual)
+    def test_call_event_markers(self):
+        # temporary directory
+        expected = 3
+        with TemporaryDirectory() as td:
+            caller_save_events(td, islice(generator_load_dataset(dataset_path), 3))
+            actual = sum(1 for txt in glob.glob(os.path.join(td,'*.txt')))
+        # compare number files generated,to expected which we stop at 3 with 
+        self.assertEqual(expected, actual)
 
 
 class TestDummyDataMethods(unittest.TestCase):

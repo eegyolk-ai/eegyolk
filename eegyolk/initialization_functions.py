@@ -9,8 +9,9 @@ import pandas as pd
 import numpy as np
 import os
 import glob
+import IPython
 from IPython.display import clear_output
-from display_helper import make_ordinal
+from eegyolk.display_helper import make_ordinal
 
 
 def generator_load_dataset(
@@ -78,7 +79,7 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     return eeg_dataset, eeg_filenames
 
 
-def load_metadata(folder, filenames):
+def i_load_metadata(folder, filenames):
     """
     Reads and returns the four metadata text files.
     Takes as input the folder location of the metadata files.

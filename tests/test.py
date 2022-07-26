@@ -10,23 +10,6 @@ from tempfile import TemporaryDirectory
 import mne
 
 sys.path.insert(0, os.getcwd())
-OLD_SYSTEM = True
-
-# (Floris) New path structure (Same as in surfdrive):
-if(not OLD_SYSTEM):
-    main_path = os.path.dirname(os.getcwd())
-    repo_path = os.path.join(main_path, 'ePodium')
-    drive_path = os.path.join(main_path, 'researchdrive', 'ePodium (Projectfolder)')
-
-    eegyolk_path = os.path.join(repo_path, 'eegyolk')
-    sys.path.insert(0, eegyolk_path)
-
-    dataset_path = os.path.join(drive_path, 'Dataset')
-    sample_eeg_bdf = os.path.join(dataset_path, '121a.bdf')
-
-    sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-    sample_metadata = os.path.join(drive_path, 'metadata', 'cdi.txt')
-    event_marker_folder = os.path.join(drive_path, 'events')
 
 from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
@@ -45,15 +28,21 @@ from eegyolk.initialization_functions import generator_load_dataset
 from eegyolk.dummy_data_functions import generate_frequency_distribution
 from eegyolk.dummy_data_functions import create_labeled_dataset
 
-if(OLD_SYSTEM): ## SET TO TRUE FOR epod_data_not_pushed DATA STRUCTURE!
-    # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
-    # sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
-    sample_eeg_bdf = os.path.join('epod_data_not_pushed', 'not_zip', '121to130', '121to130', '121', '121a', '121a'+'.bdf')
-    dataset_path = os.path.join('epod_data_not_pushed', 'not_zip')
-    sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-    sample_metadata = os.path.join('epod_data_not_pushed', 'metadata', 'cdi.txt')
-    # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
-    event_marker_folder = os.path.join('epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
+main_path = os.path.dirname(os.getcwd())
+    # repo_path = os.path.join(main_path, 'eegyolk')
+repo_path = main_path
+drive_path = os.path.join('D:', 'ePodium _Projectfolder')
+    # D:\ePodium _Projectfolder
+eegyolk_path = os.path.join(repo_path, 'eegyolk')
+sys.path.insert(0, eegyolk_path)
+
+dataset_path = os.path.join(drive_path, 'Dataset')
+    #sample_eeg_bdf = os.path.join(drive_path, 'Dataset/' + '121a.bdf')
+sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
+
+sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
+sample_metadata = os.path.join(drive_path, 'metadata', 'cdi.txt')
+event_marker_folder = os.path.join(drive_path, 'events')    
 sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):

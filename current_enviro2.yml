@@ -1,6 +1,6 @@
 # mne-march3 environment document
 
-name: mne-marchey
+name: mne-marchez
 channels:
   - conda-forge
 dependencies:
@@ -9,7 +9,7 @@ dependencies:
   - matplotlib=3.5.1
   - h5py=2.10.0
   - ipympl
-  # - ipython
+  - ipython
   - ipywidgets=7.7.0
   - mne=1.0.1
   - mne-connectivity=0.3
