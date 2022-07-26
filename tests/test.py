@@ -31,7 +31,7 @@ from eegyolk.dummy_data_functions import create_labeled_dataset
 main_path = os.path.dirname(os.getcwd())
     # repo_path = os.path.join(main_path, 'eegyolk')
 repo_path = main_path
-drive_path = os.path.join('D:', 'parallel_testing')
+drive_path = os.path.join('tests','synthetic_data', 'parallel_testing')
     # D:\ePodium _Projectfolder
 eegyolk_path = os.path.join(repo_path, 'eegyolk')
 sys.path.insert(0, eegyolk_path)
