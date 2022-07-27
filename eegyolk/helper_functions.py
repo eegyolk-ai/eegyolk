@@ -168,39 +168,59 @@ def evoked_responses(epochs, avg_variable):
     return evoked
 
 
-def input_mmr_prep(metadata, epochs, standard_events): 
+def input_mmr_prep(metadata, epochs, standard_events):
     """
-    This function creates some calculations about mis-match response over a set 
+    This function creates some calculations about mis-match response over a set
     of participant data.
     """
-    # create dataframe with expected columns 
+    # create dataframe with expected columns
     df = pd.DataFrame(columns=["eeg_file", "paradigm", "channel", "mean"])
 
     # loop over all participants
     for i in range(len(metadata['eeg_file'])):
-        
-        # loop over every paradigm per participant 
-        for j in standard_events: 
+
+        # loop over every paradigm per participant
+        for j in standard_events:
             paradigm = j
-            # select the standard and deviant for a specific sequence and calculate the evoked response
-            std_evoked = epochs[i][j].average() 
+            # select the standard and deviant for a specific sequence
+            #  and calculate the evoked response
+            std_evoked = epochs[i][j].average()
             dev_evoked = epochs[i][j+1].average()
-            
-            # calculate the mismatch response between standard and deviant evoked
-            evoked_diff = mne.combine_evoked([std_evoked, dev_evoked], weights=[1, -1])
-            
+
+            # calculate the mismatch response between standard and
+            #  deviant evoked
+            evoked_diff = mne.combine_evoked(
+                [std_evoked, dev_evoked],
+                weights=[1, -1],
+            )
+
             # get a list of all channels
             chnames_list = evoked_diff.info['ch_names']
-            
+
             # compute for every channel the distance mean of the mismatch line
-            for channel in chnames_list: 
-                chnames = mne.pick_channels(evoked_diff.info['ch_names'], include=[channel])
-                roi_dict = dict(left_ROI=chnames) # unfortunately combine_channels only takes a dictionary as input
-                roi_evoked = mne.channels.combine_channels(evoked_diff, roi_dict, method='mean')
+            for channel in chnames_list:
+                chnames = mne.pick_channels(
+                    evoked_diff.info['ch_names'],
+                    include=[channel],
+                )
+                roi_dict = dict(left_ROI=chnames)  # unfortunately
+                # combine_channels only takes a dictionary as input
+                roi_evoked = mne.channels.combine_channels(
+                    evoked_diff,
+                    roi_dict,
+                    method='mean',
+                )
                 mmr = roi_evoked.to_data_frame()
                 mmr_avg = mmr['left_ROI'].mean()
                 mmr_std = mmr['left_ROI'].std()
                 mmr_skew = mmr['left_ROI'].skew()
-                
-                df = df.append({'eeg_file': metadata['eeg_file'][i], 'paradigm' : paradigm, 'channel': channel, 'mean' :  mmr_avg, 'std' : mmr_std, 'skew' : mmr_skew}, ignore_index=True) 
+
+            df = df.append(
+                {'eeg_file': metadata['eeg_file'][i],
+            'paradigm': paradigm,
+            'channel': channel,
+            'mean':  mmr_avg,
+            'std': mmr_std, 'skew': mmr_skew},
+                ignore_index=True,
+            )
     return df
