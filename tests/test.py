@@ -41,7 +41,7 @@ sample_eeg_bdf = os.path.join(drive_path, 'Dataset' + '/101a.bdf')
 #sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
 
 sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-sample_metadata = os.path.join(drive_path, 'metadata', 'para_cdi.txt')
+sample_metadata = os.path.join(drive_path, 'Metadata', 'para_cdi.txt')
 event_marker_folder = os.path.join(drive_path, 'events')    
 sample_eeg_list = ['101a']
 
