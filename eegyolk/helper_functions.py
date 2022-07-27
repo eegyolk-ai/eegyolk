@@ -168,7 +168,7 @@ def evoked_responses(epochs, avg_variable):
     return evoked
 
 
-def input_mmr_prep(metadata, epochs): 
+def input_mmr_prep(metadata, epochs, standard_events): 
     """
     This function creates some calculations about mis-match response over a set 
     of participant data.
