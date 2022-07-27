@@ -9,22 +9,22 @@ jobs:
           submodules: recursive
       # TODO(makeda): test after image builds
       # command to install things correctly.
-      - uses: addnab/docker-run-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          registry: docker.io
-          image: drcandacemakedamoore/eegyolk-test-data:latest
-          options: >-
-            -v ${{ github.workspace }}:/ci
-            --cap-add=SYS_ADMIN
-            --privileged=true
-          run: |
-            set -xe
-            cd /ci
-            mkdir -p ./tests/synthetic_data/
-            mount --bind /synthetic_data/ ./tests/synthetic_data/
-            python setup.py test
+      # - uses: addnab/docker-run-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      #     registry: docker.io
+      #     image: drcandacemakedamoore/eegyolk-test-data:latest
+      #     options: >-
+      #       -v ${{ github.workspace }}:/ci
+      #       --cap-add=SYS_ADMIN
+      #       --privileged=true
+      #     run: |
+      #       set -xe
+      #       cd /ci
+      #       mkdir -p ./tests/synthetic_data/
+      #       mount --bind /synthetic_data/ ./tests/synthetic_data/
+      #       python setup.py test
 
   Lint:
     runs-on: ubuntu-latest

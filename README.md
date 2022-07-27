@@ -58,5 +58,5 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 5. (being rebuilt) The 'model validation' notebooks can be used to assess the performance of the models.
 
 ## Testing
-Testing uses synthetic data. At present testing requires you to either run tests inside a container or extract the data from our image with synthetic data in our docker. The docker image is `drcandacemakedamoore/eegyolk-test-data:latest` . You could also reconfigure and rename your own valid bdf files and metadata as configured and named in the tests/test.py, and local testing should work. 
-Finally, you can contact Dr. Moore c.moore@esciencecenter.nl with any questions on testing. 
+Testing uses synthetic data. From August 20th 2022  testing will requires you to either run tests inside a container or extract the data from our image with synthetic data in our docker. The docker image will be `drcandacemakedamoore/eegyolk-test-data:latest` . Until then you could also reconfigure and rename your own valid bdf files and metadata as configured and named in the tests/test.py, and local testing should work. 
+Finally, you can contact Dr. Moore c.moore@esciencecenter.nl for synthetic test data and/or with any questions on testing. 

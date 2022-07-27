@@ -92,7 +92,7 @@ class TestLoadMethods(unittest.TestCase):
             make_excel_files=False,
             make_csv_files=False,
         )
-        self.assertEqual(len(loaded_metadata), 16)
+        self.assertEqual(len(loaded_metadata), 14)
 
     def test_load_events(self):
         loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
