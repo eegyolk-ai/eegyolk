@@ -18,7 +18,7 @@ from eegyolk.helper_functions import filter_eeg_raw
 from eegyolk.helper_functions import load_metadata 
 
 from eegyolk.initialization_functions import load_dataset
-# from eegyolk.initialization_functions import load_metadata
+# from eegyolk.initialization_functions import i_load_metadata
 from eegyolk.initialization_functions import load_events
 from eegyolk.initialization_functions import save_events
 from eegyolk.initialization_functions import print_event_info
@@ -83,16 +83,16 @@ class TestHashMethods(unittest.TestCase):
 
 class TestLoadMethods(unittest.TestCase):    
    
-    def test_load_metadata(self):
-        filename = os.path.splitext(sample_metadata)[0]
-        loaded_metadata = load_metadata(
-            filename,
-            sys.path[0],
-            sys.path[0],
-            make_excel_files=False,
-            make_csv_files=False,
-        )
-        self.assertEqual(len(loaded_metadata), 14)
+    # def test_load_metadata(self):
+    #     filename = os.path.splitext(sample_metadata)[0]
+    #     loaded_metadata = load_metadata(
+    #         filename,
+    #         sys.path[0],
+    #         sys.path[0],
+    #         make_excel_files=False,
+    #         make_csv_files=False,
+    #     )
+    #     self.assertEqual(len(loaded_metadata), 14)
 
     def test_load_events(self):
         loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)
