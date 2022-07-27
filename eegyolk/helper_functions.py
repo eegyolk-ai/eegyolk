@@ -215,12 +215,15 @@ def input_mmr_prep(metadata, epochs, standard_events):
                 mmr_std = mmr['left_ROI'].std()
                 mmr_skew = mmr['left_ROI'].skew()
 
-            df = df.append(
-                {'eeg_file': metadata['eeg_file'][i],
-            'paradigm': paradigm,
-            'channel': channel,
-            'mean':  mmr_avg,
-            'std': mmr_std, 'skew': mmr_skew},
-                ignore_index=True,
-            )
+                df = df.append(
+                    {
+                        'eeg_file': metadata['eeg_file'][i],
+                        'paradigm': paradigm,
+                        'channel': channel,
+                        'mean':  mmr_avg,
+                        'std': mmr_std,
+                        'skew': mmr_skew,
+                    },
+                    ignore_index=True,
+                )
     return df
