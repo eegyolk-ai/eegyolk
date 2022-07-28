@@ -1,10 +1,11 @@
 Ask Karin for more metadata ePOD
 
 DDP:
-Ask Hugo for papers on DDP
 All the DDP files have differently set-up events. 
 Some files have 62 channels, others 30.
 Loading with 'mne.io.read_raw_cnt' produces two RuntimeWarnings (can be ignored)
+
+
 Only use DDP for age prediction/transfer learning?
 
 EPOD:

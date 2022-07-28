@@ -18,7 +18,7 @@ MOUNT NEW STORAGE:
 In putty:
 sudo ufw allow ssh
 sudo ufw allow from [IP of IP object in workspace X] to any port 445
-sudo ufw allow from 145.38.186.40 to any port 445
+sudo ufw allow from 145.38.187.219 to any port 445
 sudo ufw enable
 
 In workspace terminal:
@@ -27,7 +27,7 @@ sudo mkdir /volume-ceph
 
 sudo nano /etc/fstab
 add line:
-//145.38.186.229/volume-ceph /volume-ceph cifs username=smbuser,password=epodium123,file_mode=0777,dir_mode=0777
+//145.38.186.229/volume-ceph /volume-ceph cifs username=smbuser,password=[PASSWORD],file_mode=0777,dir_mode=0777
 
 sudo mount -a
 ln -s /volume-ceph

@@ -36,3 +36,4 @@ home = "/home"
 user = os.path.join(home, "fpauwels")
 repo = os.path.join(user, "eegyolk")
 code = os.path.join(repo, "floris_files")
+hashes = os.path.join(code, "other", "hashes")
