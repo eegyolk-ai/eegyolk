@@ -27,8 +27,9 @@ from functions import epodium
 
 
 
-%matplotlib qt
+%matplotlib qt / inline
 mne.viz.plot_raw(raw, events)
+fig = mne.viz.plot_raw(raw[participant_index], events[participant_index], n_channels=50, scalings = 50e-6, duration = 1, start = 1000)
 
 
 

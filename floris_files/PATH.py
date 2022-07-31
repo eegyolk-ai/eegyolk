@@ -2,7 +2,7 @@ import os
 
 # STORAGE
 
-storage = "D:\EEG Data" # "/volume-ceph"
+storage = "/volume-ceph"
 processed = os.path.join(storage, "processed")
 models = os.path.join(storage, "models")
 
@@ -28,13 +28,16 @@ ePod = os.path.join(storage, "ePodium_projectfolder")
 ePod_dataset = os.path.join(ePod, "dataset")
 ePod_events = os.path.join(ePod, "events")
 ePod_metadata = os.path.join(ePod, "metadata")
+ePod_processed_autoreject = os.path.join(processed, "ePod_autoreject")
 
 
 # WORKSPACE
 
-# home = "/home"
-# user = os.path.join(home, "fpauwels")
-# repo = os.path.join(user, "eegyolk")
-repo = "C:\Floris\Python Folder\Thesis Code\eegyolk"
+home = "/home"
+user = os.path.join(home, "fpauwels")
+repo = os.path.join(user, "eegyolk")
 code = os.path.join(repo, "floris_files")
 hashes = os.path.join(code, "other", "hashes")
+
+# repo = "C:\Floris\Python Folder\Thesis Code\eegyolk"
+# storage = "D:\EEG Data"
