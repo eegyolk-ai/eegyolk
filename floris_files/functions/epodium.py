@@ -59,8 +59,3 @@ channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5',
                #'EXG1', 'EXG2', 'EXG3', 'EXG4', 'EXG5',
                #'EXG6', 'EXG7', 'EXG8', 'Status']
         
-
-storage = "/volume-ceph"
-processed = os.path.join(storage, "processed")
-
-DDP = os.path.join(storage, "DDP_projectfolder")

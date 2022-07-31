@@ -2,7 +2,7 @@ import os
 
 # STORAGE
 
-storage = "/volume-ceph"
+storage = "D:\EEG Data" # "/volume-ceph"
 processed = os.path.join(storage, "processed")
 models = os.path.join(storage, "models")
 
@@ -32,8 +32,9 @@ ePod_metadata = os.path.join(ePod, "metadata")
 
 # WORKSPACE
 
-home = "/home"
-user = os.path.join(home, "fpauwels")
-repo = os.path.join(user, "eegyolk")
+# home = "/home"
+# user = os.path.join(home, "fpauwels")
+# repo = os.path.join(user, "eegyolk")
+repo = "C:\Floris\Python Folder\Thesis Code\eegyolk"
 code = os.path.join(repo, "floris_files")
 hashes = os.path.join(code, "other", "hashes")
