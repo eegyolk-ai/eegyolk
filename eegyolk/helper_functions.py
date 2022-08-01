@@ -151,6 +151,29 @@ def create_epochs(
         epochs.append(single_epoch)
     return epochs
 
+def create_epoch(
+    eeg,
+    event_markers_simplified,
+    time_before_event,
+    time_after_event,
+):
+    """
+    This function turns eeg data into epochs.
+    Inputs are eeg data files, event parkers, time before event,
+    and time after event
+    Outputs are eeg data divided in epochs
+    """
+    #epochs = []
+    #for i in range(len(eeg)):
+    single_epoch = mne.Epochs(
+        eeg,
+        event_markers_simplified,
+        tmin=time_before_event,
+        tmax=time_after_event
+    )
+       # epochs.append(single_epoch)
+    return single_epoch
+
 
 def evoked_responses(epochs, avg_variable):
     """

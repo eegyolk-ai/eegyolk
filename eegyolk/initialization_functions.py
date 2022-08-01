@@ -10,7 +10,7 @@ import numpy as np
 import os
 import glob
 # from IPython.display import clear_output
-from eegyolk.display_helper import make_ordinal
+from display_helper import make_ordinal
 
 
 def generator_load_dataset(
