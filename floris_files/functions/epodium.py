@@ -55,7 +55,10 @@ channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5',
                'Pz', 'PO3', 'O1', 'Oz', 'O2', 'PO4',
                'P4', 'P8', 'CP6', 'CP2', 'C4', 'T8',
                'FC6', 'FC2', 'F4', 'F8', 'AF4', 'Fp2',
-               'Fz', 'Cz'] 
-               #'EXG1', 'EXG2', 'EXG3', 'EXG4', 'EXG5',
-               #'EXG6', 'EXG7', 'EXG8', 'Status']
+               'Fz', 'Cz']
+
+channels_mastoid = ['EXG1', 'EXG2']
+
+channels_drop = ['EXG3', 'EXG4', 'EXG5', 'EXG6', 'EXG7', 'EXG8', 'Status']
+
         
