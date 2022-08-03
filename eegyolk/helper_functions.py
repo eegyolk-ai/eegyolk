@@ -128,28 +128,7 @@ def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
     return eeg
 
 
-def create_epochs(
-    eeg,
-    event_markers_simplified,
-    time_before_event,
-    time_after_event,
-):
-    """
-    This function turns eeg data into epochs.
-    Inputs are eeg data files, event parkers, time before event,
-    and time after event
-    Outputs are eeg data divided in epochs
-    """
-    epochs = []
-    for i in range(len(eeg)):
-        single_epoch = mne.Epochs(
-            eeg[i],
-            event_markers_simplified[i],
-            tmin=time_before_event,
-            tmax=time_after_event
-        )
-        epochs.append(single_epoch)
-    return epochs
+
 
 def create_epoch(
     eeg,
@@ -183,11 +162,8 @@ def evoked_responses(epochs, avg_variable):
     The output is evoked responses
     """
     evoked = []
-    for i in range(len(epochs)):
-        avg_epoch = []
-        for j in range(len(avg_variable)):
-            avg_epoch.append(epochs[i][j].average())
-        evoked.append(avg_epoch)
+    for j in range(len(avg_variable)):
+        evoked.append(epochs[j].average())
     return evoked
 
 
