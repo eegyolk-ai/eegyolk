@@ -50,7 +50,7 @@ def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
     data, times = raw[:]
     sfreq = int(raw.info["sfreq"])
     fragment = data[channel_index][start * sfreq: (start + duration) * sfreq]
-    if(average):
+    if (average):
         # Set average to 0
         fragment -= np.average(fragment)
     # From volt to micro volt

@@ -26,7 +26,7 @@ if(not OLD_SYSTEM):
 
     dataset_path = os.path.join(drive_path, 'Dataset')
     #sample_eeg_bdf = os.path.join(drive_path, 'Dataset/' + '121a.bdf')
-    sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
+    sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/101a.bdf'
 
     sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
     sample_metadata = os.path.join(drive_path, 'metadata', 'cdi.txt')

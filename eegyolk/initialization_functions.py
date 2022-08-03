@@ -126,7 +126,7 @@ def load_events(folder_events, eeg_filenames):
     since loading events from raw EEG file takes much longer.
     NB: eeg_filenames should not include extension or root directory.
     """
-    if not(os.path.exists(folder_events)):
+    if not (os.path.exists(folder_events)):
         print("There is no folder at: ", folder_events,
               "\n first save the events in this folder.")
         return None
