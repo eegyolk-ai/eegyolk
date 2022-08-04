@@ -51,11 +51,12 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional a
 How to get the notebooks running? Assuming the raw data set and metadata is available.
 
 1. Install all Python packages required, using conda and the environment-march-update2.yaml file.
-    run following line on your machine: `conda env create -f current_enviro.yml` and switch to this environment running command: `conda activate mne-march3`.
+    run following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate mne-marchez`.
 2. Update the configuration_template.py (NOT config_template) file and rename to config.py.
 3. (being rebuilt) Use the preprocessing notebooks to process the raw data to usable data for either the ML or (reduced) DL models (separate notebooks).
 4. (being rebuilt) The 'model training' notebooks can be used the train and save models.
 5. (being rebuilt) The 'model validation' notebooks can be used to assess the performance of the models.
 
 ## Testing
-At present testing requires you to have your own data to test on. This is because at present we are using patient data to test on, and will not share it. We plan to replace this data with synthetic data available in a docker in the next release. You can configure and rename a valid bdf file as configured and named in the tests/test.py, and testing should work.
+Testing uses synthetic data. Testing will requires you to either run tests inside a container or extract the data from our image with synthetic data in our docker. The docker image will be `drcandacemakedamoore/eegyolk-test-data:latest` . Until then you could also reconfigure and rename your own valid bdf files and metadata as configured and named in the tests/test.py, and local testing should work. 
+Finally, you can contact Dr. Moore c.moore@esciencecenter.nl for synthetic test data and/or with any questions on testing. 

@@ -8,17 +8,39 @@ import glob
 import sys
 from tempfile import TemporaryDirectory
 import mne
+#import Ipython 
 
 sys.path.insert(0, os.getcwd())
+OLD_SYSTEM = False
+
+# (Floris) New path structure (Same as in surfdrive):
+if(not OLD_SYSTEM):
+    main_path = os.path.dirname(os.getcwd())
+    # repo_path = os.path.join(main_path, 'eegyolk')
+    repo_path = main_path
+    drive_path = os.path.join('D:', 'ePodium _Projectfolder')
+    # D:\ePodium _Projectfolder
+
+    eegyolk_path = os.path.join(repo_path, 'eegyolk')
+    sys.path.insert(0, eegyolk_path)
+
+    dataset_path = os.path.join(drive_path, 'Dataset')
+    #sample_eeg_bdf = os.path.join(drive_path, 'Dataset/' + '121a.bdf')
+    sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/101a.bdf'
+
+    sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
+    sample_metadata = os.path.join(drive_path, 'metadata', 'cdi.txt')
+    event_marker_folder = os.path.join(drive_path, 'events')
 
 from eegyolk.display_helper import make_ordinal
 from eegyolk.helper_functions import band_pass_filter
 from eegyolk.helper_functions import hash_it_up_right_all
 from eegyolk.helper_functions import filter_eeg_raw
-from eegyolk.helper_functions import load_metadata 
+from eegyolk.helper_functions import load_metadata # (filename, path_metadata, path_output, make_excel_files=True, make_csv_files=True)
 
-from eegyolk.initialization_functions import load_dataset
-# from eegyolk.initialization_functions import i_load_metadata
+# from eegyolk.initialization_functions import load_dataset
+# load_dataset
+from eegyolk.initialization_functions import i_load_metadata
 from eegyolk.initialization_functions import load_events
 from eegyolk.initialization_functions import save_events
 from eegyolk.initialization_functions import print_event_info
@@ -28,21 +50,15 @@ from eegyolk.initialization_functions import generator_load_dataset
 from eegyolk.dummy_data_functions import generate_frequency_distribution
 from eegyolk.dummy_data_functions import create_labeled_dataset
 
-main_path = os.path.dirname(os.getcwd())
-    # repo_path = os.path.join(main_path, 'eegyolk')
-repo_path = main_path
-drive_path = os.path.join('tests','synthetic_data', 'parallel_testing')
-    # D:\ePodium _Projectfolder
-eegyolk_path = os.path.join(repo_path, 'eegyolk')
-sys.path.insert(0, eegyolk_path)
-
-dataset_path = os.path.join(drive_path, 'Dataset')
-sample_eeg_bdf = os.path.join(drive_path, 'Dataset' + '/101a.bdf')
-#sample_eeg_bdf = 'D:/ePodium _Projectfolder/Dataset/121a.bdf'
-
-sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
-sample_metadata = os.path.join(drive_path, 'Metadata', 'para_cdi.txt')
-event_marker_folder = os.path.join(drive_path, 'events')    
+# if(OLD_SYSTEM): ## SET TO TRUE FOR epod_data_not_pushed DATA STRUCTURE!
+#     # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
+#     # sample_eeg_cnt_read = mne.io.read_raw_cnt(sample_eeg_cnt, preload=True)
+#     sample_eeg_bdf = os.path.join('epod_data_not_pushed', 'not_zip', '121to130', '121to130', '121', '121a', '121a'+'.bdf')
+#     dataset_path = os.path.join('epod_data_not_pushed', 'not_zip')
+#     sample_eeg_bdf_read = mne.io.read_raw_bdf(sample_eeg_bdf, preload=True)
+#     sample_metadata = os.path.join('epod_data_not_pushed', 'metadata', 'cdi.txt')
+#     # path_metadata = os.path.join('../epod_data_not_pushed','metadata')
+#     event_marker_folder = os.path.join('epod_data_not_pushed','not_zip', 'event_markers') # check with nadine on this folder
 sample_eeg_list = ['101a']
 
 class TestDisplayHelperMethods(unittest.TestCase):
@@ -60,7 +76,7 @@ class TestFilteringMethods(unittest.TestCase):
             10,
         )
     def test_filter_raw(self):
-        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50,  ['EXG1', 'EXG2'], [])
+        sample_eeg_raw_filtered = filter_eeg_raw(sample_eeg_bdf_read, 0, 10,50,  ['EXG1', 'EXG2'])
         self.assertEqual(
             (sample_eeg_raw_filtered.info['lowpass']),
             10,
@@ -83,16 +99,16 @@ class TestHashMethods(unittest.TestCase):
 
 class TestLoadMethods(unittest.TestCase):    
    
-    # def test_load_metadata(self):
-    #     filename = os.path.splitext(sample_metadata)[0]
-    #     loaded_metadata = load_metadata(
-    #         filename,
-    #         sys.path[0],
-    #         sys.path[0],
-    #         make_excel_files=False,
-    #         make_csv_files=False,
-    #     )
-    #     self.assertEqual(len(loaded_metadata), 14)
+    def test_load_metadata(self):
+        filename = os.path.splitext(sample_metadata)[0]
+        loaded_metadata = load_metadata(
+            filename,
+            sys.path[0],
+            sys.path[0],
+            make_excel_files=False,
+            make_csv_files=False,
+        )
+        self.assertEqual(len(loaded_metadata), 143)
 
     def test_load_events(self):
         loaded_event_markers = load_events(event_marker_folder, sample_eeg_list)

@@ -9,8 +9,8 @@ import pandas as pd
 import numpy as np
 import os
 import glob
-from IPython.display import clear_output
-from display_helper import make_ordinal
+# from IPython.display import clear_output
+from eegyolk.display_helper import make_ordinal
 
 
 def generator_load_dataset(
@@ -70,7 +70,7 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
         print(files_loaded, "EEG files loaded")
         # if preload and files_loaded >= max_files_preloaded : break
 
-        clear_output(wait=True)
+        # clear_output(wait=True)
     print(len(eeg_dataset), "EEG files loaded")
     if files_failed_to_load > 0:
         print(files_failed_to_load, "EEG files failed to load")
@@ -78,7 +78,7 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
     return eeg_dataset, eeg_filenames
 
 
-def load_metadata(folder, filenames):
+def i_load_metadata(folder, filenames):
     """
     Reads and returns the four metadata text files.
     Takes as input the folder location of the metadata files.
@@ -102,7 +102,7 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
         path_events = os.path.join(folder_events, eeg_filenames[i] + ".txt")
         np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
         print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")
-        clear_output(wait=True)
+        # clear_output(wait=True)
 
 
 def caller_save_events(folder_events, generator_argument):
@@ -117,7 +117,7 @@ def caller_save_events(folder_events, generator_argument):
         path_events = os.path.join(folder_events, filename + ".txt")
         np.savetxt(path_events, mne.find_events(file), fmt='%i')
         print("\n", i, " saved.")
-        clear_output(wait=True)
+        # clear_output(wait=True)
 
 
 def load_events(folder_events, eeg_filenames):
@@ -126,7 +126,7 @@ def load_events(folder_events, eeg_filenames):
     since loading events from raw EEG file takes much longer.
     NB: eeg_filenames should not include extension or root directory.
     """
-    if not(os.path.exists(folder_events)):
+    if not (os.path.exists(folder_events)):
         print("There is no folder at: ", folder_events,
               "\n first save the events in this folder.")
         return None
