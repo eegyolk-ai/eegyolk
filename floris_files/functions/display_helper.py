@@ -5,7 +5,7 @@ import numpy as np
 import collections.abc
 
 
-def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend=""):
+def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = ""):
     """Show plot with title and lables in 1 line.
 
     Args:
@@ -29,7 +29,7 @@ def show_plot(x=None, y=None, title="", xlabel="", ylabel="", legend=""):
     plt.show()
 
 
-def show_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
+def show_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
     """
     Shows a fragment of the raw EEG data from specified raw file
     and channel_index.  `start_time` and `duration` are in seconds.

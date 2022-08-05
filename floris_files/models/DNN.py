@@ -3,7 +3,7 @@ Author: Bruce Shuyue Jia
 Source: https://github.com/SuperBruceJia/EEG-DL
 """
 import tensorflow as tf
-
+import keras
 
 def DNN(Input, keep_prob, weights_1, biases_1, weights_2, biases_2):
     """
@@ -39,3 +39,36 @@ def NN():
         tf.keras.layers.Dropout(0.2),
         tf.keras.layers.Dense(1)])
     return model
+
+
+# From https://github.com/epodium/EEG_age_prediction:
+
+
+def fully_connected_model():
+    """ Returns the fully connected model from Ismail Fawaz et al. (2019). """
+    n_timesteps = 501
+    n_features = 30 
+
+    input_shape = (n_timesteps, n_features)
+
+    input_layer = keras.layers.Input(input_shape)
+
+    input_layer_flattened = keras.layers.Flatten()(input_layer)
+
+    layer_1 = keras.layers.Dropout(0.1)(input_layer_flattened)
+    layer_1 = keras.layers.Dense(500, activation='relu')(layer_1)
+
+    layer_2 = keras.layers.Dropout(0.2)(layer_1)
+    layer_2 = keras.layers.Dense(500, activation='relu')(layer_2)
+
+    layer_3 = keras.layers.Dropout(0.2)(layer_2)
+    layer_3 = keras.layers.Dense(500, activation='relu')(layer_3)
+
+    output_layer = keras.layers.Dropout(0.3)(layer_3)
+    output_layer = keras.layers.Dense(1)(output_layer)
+
+    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
+
+    return model
+
+

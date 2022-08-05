@@ -128,9 +128,6 @@ def filter_eeg_raw(eeg, lowpass, highpass, freqs, mastoid_channels, drop_ch):
     return eeg
 
 
-
-
-
 def create_epoch(
     eeg,
     event_markers_simplified,
