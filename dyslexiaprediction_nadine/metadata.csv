@@ -1,86 +1,94 @@
 eeg_file,ParticipantID,test,sex,age_months,age_months_days,dyslexic_parent,Group_AccToParents,eeg_path,path_epoch,epoch_file
-101a,101,a,m,20,20;22,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,101a_epo.fif
-101b,101,b,m,23,23;16,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,101b_epo.fif
-102a,102,a,f,20,20;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,102a_epo.fif
-102b,102,b,f,23,23;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,102b_epo.fif
-103a,103,a,f,20,20;23,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,103a_epo.fif
-103b,103,b,f,24,24;10,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,103b_epo.fif
-104a,104,a,m,18,18;12,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,104a_epo.fif
-104b,104,b,m,20,20;30,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,104b_epo.fif
-105a,105,a,f,17,17;9,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,105a_epo.fif
-105b,105,b,f,20,20;11,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,105b_epo.fif
-106a,106,a,m,19,19;26,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,106a_epo.fif
-106b,106,b,m,22,22;20,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,106b_epo.fif
-107a,107,a,f,16,16;7,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,107a_epo.fif
-109a,109,a,m,21,21;15,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,109a_epo.fif
-109b,109,b,m,24,24;24,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,109b_epo.fif
-110a,110,a,m,17,17;28,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,110a_epo.fif
-110b,110,b,m,20,20;29,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,110b_epo.fif
-111a,111,a,m,20,20;17,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,111a_epo.fif
-112a,112,a,f,17,17;11,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,112a_epo.fif
-112b,112,b,f,20,20;29,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,112b_epo.fif
-113a,113,a,f,16,16;18,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,113a_epo.fif
-113b,113,b,f,19,19;23,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,113b_epo.fif
-114a,114,a,m,18,18;29,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,114a_epo.fif
-114b,114,b,m,22,22;4,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,114b_epo.fif
-115a,115,a,m,19,19;28,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,115a_epo.fif
-115b,115,b,m,24,24;19,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,115b_epo.fif
-116a,116,a,f,15,15;19,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,116a_epo.fif
-116b,116,b,f,19,19;10,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,116b_epo.fif
-117a,117,a,f,19,19;2,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,117a_epo.fif
-117b,117,b,f,22,22;4,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,117b_epo.fif
-118a,118,a,m,20,20;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,118a_epo.fif
-118b,118,b,m,23,23;4,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,118b_epo.fif
-119a,119,a,f,16,16;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,119a_epo.fif
-119b,119,b,f,19,19;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,119b_epo.fif
-121a,121,a,f,16,16;23,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,121a_epo.fif
-122b,122,b,f,19,19;0,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,122b_epo.fif
-123a,123,a,m,16,16;10,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,123a_epo.fif
-123b,123,b,m,20,20;26,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,123b_epo.fif
-124a,124,a,m,16,16;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,124a_epo.fif
-125a,125,a,m,21,21;2,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,125a_epo.fif
-125b,125,b,m,24,24;4,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,125b_epo.fif
-126a,126,a,f,20,20;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,126a_epo.fif
-126b,126,b,f,23,23;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,126b_epo.fif
-127a,127,a,m,19,19;18,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,127a_epo.fif
-127b,127,b,m,22,22;13,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,127b_epo.fif
-128a,128,a,m,17,17;10,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,128a_epo.fif
-128b,128,b,m,21,21;20,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,128b_epo.fif
-129a,129,a,f,17,17;1,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,129a_epo.fif
-129b,129,b,f,22,22;12,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,129b_epo.fif
-130a,130,a,f,20,20;25,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,130a_epo.fif
-130b,130,b,f,25,25;5,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,130b_epo.fif
-131a,131,a,m,20,20;13,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,131a_epo.fif
-131b,131,b,m,23,23;19,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,131b_epo.fif
-132a,132,a,m,19,19;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,132a_epo.fif
-132b,132,b,m,21,21;23,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,132b_epo.fif
-133a,133,a,m,19,19;17,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,133a_epo.fif
-133b,133,b,m,23,23;3,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,133b_epo.fif
-134a,134,a,m,19,19;20,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,134a_epo.fif
-134b,134,b,m,23,23;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,134b_epo.fif
-135a,135,a,f,18,18;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,135a_epo.fif
-135b,135,b,f,22,22;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,135b_epo.fif
-136a,136,a,f,19,19;11,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,136a_epo.fif
-136b,136,b,f,25,25;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,136b_epo.fif
-137a,137,a,m,17,17;11,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,137a_epo.fif
-137b,137,b,m,21,21;1,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,137b_epo.fif
-138a,138,a,m,20,20;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,138a_epo.fif
-138b,138,b,m,23,23;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,138b_epo.fif
-139a,139,a,m,17,17;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,139a_epo.fif
-139b,139,b,m,20,20;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,139b_epo.fif
-140a,140,a,f,18,18;8,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,140a_epo.fif
-140b,140,b,f,20,20;15,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,140b_epo.fif
-141a,141,a,f,16,16;21,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,141a_epo.fif
-142a,142,a,f,17,17;17,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,142a_epo.fif
-142b,142,b,f,21,21;13,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,142b_epo.fif
-143a,143,a,m,20,20;12,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,143a_epo.fif
-143b,143,b,m,24,24;3,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,143b_epo.fif
-144a,144,a,f,18,18;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,144a_epo.fif
-144b,144,b,f,22,22;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,144b_epo.fif
-145a,145,a,m,18,18;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,145a_epo.fif
-145b,145,b,m,22,22;24,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,145b_epo.fif
-146a,146,a,m,18,18;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,146a_epo.fif
-146b,146,b,m,21,21;19,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,146b_epo.fif
-147a,147,a,m,19,19;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,147a_epo.fif
-148a,148,a,m,18,18;6,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,148a_epo.fif
-148b,148,b,m,20,20;30,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,epochs,148b_epo.fif
+101a,101,a,m,20,20;22,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,101a_epo.fif
+101b,101,b,m,23,23;16,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,101b_epo.fif
+102a,102,a,f,20,20;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,102a_epo.fif
+102b,102,b,f,23,23;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,102b_epo.fif
+103a,103,a,f,20,20;23,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,103a_epo.fif
+103b,103,b,f,24,24;10,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,103b_epo.fif
+104a,104,a,m,18,18;12,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,104a_epo.fif
+104b,104,b,m,20,20;30,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,104b_epo.fif
+105a,105,a,f,17,17;9,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,105a_epo.fif
+105b,105,b,f,20,20;11,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,105b_epo.fif
+106a,106,a,m,19,19;26,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,106a_epo.fif
+106b,106,b,m,22,22;20,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,106b_epo.fif
+107a,107,a,f,16,16;7,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,107a_epo.fif
+109a,109,a,m,21,21;15,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,109a_epo.fif
+109b,109,b,m,24,24;24,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,109b_epo.fif
+110a,110,a,m,17,17;28,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,110a_epo.fif
+110b,110,b,m,20,20;29,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,110b_epo.fif
+111a,111,a,m,20,20;17,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,111a_epo.fif
+112a,112,a,f,17,17;11,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,112a_epo.fif
+112b,112,b,f,20,20;29,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,112b_epo.fif
+113a,113,a,f,16,16;18,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,113a_epo.fif
+113b,113,b,f,19,19;23,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,113b_epo.fif
+114a,114,a,m,18,18;29,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,114a_epo.fif
+114b,114,b,m,22,22;4,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,114b_epo.fif
+115a,115,a,m,19,19;28,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,115a_epo.fif
+115b,115,b,m,24,24;19,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,115b_epo.fif
+116a,116,a,f,15,15;19,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,116a_epo.fif
+116b,116,b,f,19,19;10,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,116b_epo.fif
+117a,117,a,f,19,19;2,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,117a_epo.fif
+117b,117,b,f,22,22;4,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,117b_epo.fif
+118a,118,a,m,20,20;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,118a_epo.fif
+118b,118,b,m,23,23;4,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,118b_epo.fif
+119a,119,a,f,16,16;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,119a_epo.fif
+119b,119,b,f,19,19;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,119b_epo.fif
+121a,121,a,f,16,16;23,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,121a_epo.fif
+122b,122,b,f,19,19;0,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,122b_epo.fif
+123a,123,a,m,16,16;10,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,123a_epo.fif
+123b,123,b,m,20,20;26,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,123b_epo.fif
+124a,124,a,m,16,16;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,124a_epo.fif
+125a,125,a,m,21,21;2,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,125a_epo.fif
+125b,125,b,m,24,24;4,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,125b_epo.fif
+126a,126,a,f,20,20;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,126a_epo.fif
+126b,126,b,f,23,23;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,126b_epo.fif
+127a,127,a,m,19,19;18,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,127a_epo.fif
+127b,127,b,m,22,22;13,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,127b_epo.fif
+128a,128,a,m,17,17;10,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,128a_epo.fif
+128b,128,b,m,21,21;20,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,128b_epo.fif
+129a,129,a,f,17,17;1,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,129a_epo.fif
+129b,129,b,f,22,22;12,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,129b_epo.fif
+130a,130,a,f,20,20;25,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,130a_epo.fif
+130b,130,b,f,25,25;5,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,130b_epo.fif
+131a,131,a,m,20,20;13,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,131a_epo.fif
+131b,131,b,m,23,23;19,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,131b_epo.fif
+132a,132,a,m,19,19;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,132a_epo.fif
+132b,132,b,m,21,21;23,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,132b_epo.fif
+133a,133,a,m,19,19;17,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,133a_epo.fif
+133b,133,b,m,23,23;3,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,133b_epo.fif
+134a,134,a,m,19,19;20,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,134a_epo.fif
+134b,134,b,m,23,23;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,134b_epo.fif
+135a,135,a,f,18,18;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,135a_epo.fif
+135b,135,b,f,22,22;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,135b_epo.fif
+136a,136,a,f,19,19;11,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,136a_epo.fif
+136b,136,b,f,25,25;0,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,136b_epo.fif
+137a,137,a,m,17,17;11,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,137a_epo.fif
+137b,137,b,m,21,21;1,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,137b_epo.fif
+138a,138,a,m,20,20;6,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,138a_epo.fif
+138b,138,b,m,23,23;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,138b_epo.fif
+139a,139,a,m,17,17;7,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,139a_epo.fif
+139b,139,b,m,20,20;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,139b_epo.fif
+140a,140,a,f,18,18;8,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,140a_epo.fif
+140b,140,b,f,20,20;15,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,140b_epo.fif
+141a,141,a,f,16,16;21,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,141a_epo.fif
+142a,142,a,f,17,17;17,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,142a_epo.fif
+142b,142,b,f,21,21;13,f,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,142b_epo.fif
+143a,143,a,m,20,20;12,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,143a_epo.fif
+143b,143,b,m,24,24;3,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,143b_epo.fif
+144a,144,a,f,18,18;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,144a_epo.fif
+144b,144,b,f,22,22;8,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,144b_epo.fif
+145a,145,a,m,18,18;16,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,145a_epo.fif
+145b,145,b,m,22,22;24,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,145b_epo.fif
+146a,146,a,m,18,18;27,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,146a_epo.fif
+146b,146,b,m,21,21;19,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,146b_epo.fif
+147a,147,a,m,19,19;21,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,147a_epo.fif
+148a,148,a,m,18,18;6,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,148a_epo.fif
+148b,148,b,m,20,20;30,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,148b_epo.fif
+149a,149,a,f,18,18;10,mf,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,149a_epo.fif
+150a,150,a,m,19,19;28,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,150a_epo.fif
+150b,150,b,m,22,22;20,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,150b_epo.fif
+152a,152,a,f,19,19;9,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,152a_epo.fif
+152b,152,b,f,22,22;8,m,At risk,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,152b_epo.fif
+153a,153,a,m,20,20;22,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,153a_epo.fif
+154a,154,a,m,20,20;9,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,154a_epo.fif
+154b,154,b,m,23,23;9,Nee,Control,F:\Stage\ePODIUM\Data\ePodium_projectfolder\Dataset,F:\Stage\ePODIUM\Data\ePodium_projectfolder\epochs,154b_epo.fif
