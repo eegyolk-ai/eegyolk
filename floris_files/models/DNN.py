@@ -46,8 +46,9 @@ def NN():
 
 def fully_connected_model():
     """ Returns the fully connected model from Ismail Fawaz et al. (2019). """
-    n_timesteps = 501
-    n_features = 30 
+    n_timesteps = 512
+    n_features = 32
+    n_outputs = 5
 
     input_shape = (n_timesteps, n_features)
 
@@ -65,7 +66,7 @@ def fully_connected_model():
     layer_3 = keras.layers.Dense(500, activation='relu')(layer_3)
 
     output_layer = keras.layers.Dropout(0.3)(layer_3)
-    output_layer = keras.layers.Dense(1)(output_layer)
+    output_layer = keras.layers.Dense(n_outputs, activation='sigmoid')(output_layer)
 
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
 

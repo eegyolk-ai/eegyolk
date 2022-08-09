@@ -21,18 +21,18 @@ def group_events_12(events):
 
 
 event_dictionary = {
-    'GiepMT_FS': 1,
-    'GiepMT_S': 2,
-    'GiepMT_D': 3,
-    'GiepST_FS': 4,
-    'GiepST_S': 5,
-    'GiepST_D': 6,
-    'GopMT_FS': 7,
-    'GopMT_S': 8,
-    'GopMT_D': 9,
-    'GopST_FS': 10,
-    'GopST_S': 11,
-    'GopST_D': 12,
+    'GiepM_FS': 1,
+    'GiepM_S': 2,
+    'GiepM_D': 3,
+    'GiepS_FS': 4,
+    'GiepS_S': 5,
+    'GiepS_D': 6,
+    'GopM_FS': 7,
+    'GopM_S': 8,
+    'GopM_D': 9,
+    'GopS_FS': 10,
+    'GopS_S': 11,
+    'GopS_D': 12,
 }
 
 event_conversion_12 = [
