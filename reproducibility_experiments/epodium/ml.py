@@ -147,7 +147,7 @@ class RandomForest(Regression):
         # TODO(wvxvw): Figure out why is this so special: it doesn't
         # use randomized search and pipeline.
         self.kernel.fit(*self.xy_train())
-        return self.dump(gs)
+        return self.dump(self.kernel)
 
     def grid_search(self):
         # TODO(wvxvw): Figure out why is this so special: it doesn't
