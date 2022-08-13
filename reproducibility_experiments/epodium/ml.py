@@ -97,14 +97,16 @@ class Regression:
         result.fit(*self.xy_train())
         return self.dump(result)
     
+
     def predict(self, kind=''):
         loaded_model = self.load_model(kind)
         y_pred = loaded_model.predict(self.loader.x_test)
         score = loaded_model.score(self.loader.x_test, self.loader.y_test)
         rmse = mean_squared_error(self.loader.y_test, y_pred, squared=False)
         mae = mean_absolute_error(self.loader.y_test, y_pred)
-        a_score = accuracy_score(self.loader.y_test, y_pred)
-        return score, rmse, mae, a_score
+        #a_score = accuracy_score(self.loader.y_test, y_pred)
+        y_test = self.loader.y_test
+        return score, rmse, mae, y_test, y_pred
 
 
 class Regressions:
