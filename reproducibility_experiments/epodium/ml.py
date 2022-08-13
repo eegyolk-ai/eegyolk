@@ -3,6 +3,7 @@
 import os
 
 from glob import glob
+from unittest import loader
 
 import pandas as pd
 import numpy as np
@@ -53,6 +54,13 @@ class Regression:
         dump(result, f'{ofile}.joblib')
         return result
 
+    def load_model(self, kind=''):
+        assert kind in ('','-grid-search', '-random-search')
+        fname = type(self).__name__.lower()
+        ofile = os.path.join(self.loader.models, fname)
+        loaded_model_name = f'{ofile}{kind}.joblib'
+        return load(loaded_model_name)
+
     def xy_train(self):
         return self.loader.x_train_val, self.loader.y_train_val
 
@@ -87,6 +95,14 @@ class Regression:
         result = make_pipeline(self.scaler, self.best_kernel)
         result.fit(*self.xy_train())
         return self.dump(result)
+    
+    def predict(self, kind=''):
+        loaded_model = self.load_model(kind)
+        y_pred = loaded_model.predict(self.loader.x_test)
+        score = loaded_model.score(self.loader.x_test, self.loader.y_test)
+        rmse = mean_squared_error(self.loader.y_test, y_pred, squared=False)
+        mae = mean_absolute_error(self.loader.y_test, y_pred)
+        return score, rmse, mae
 
 
 class Regressions:
