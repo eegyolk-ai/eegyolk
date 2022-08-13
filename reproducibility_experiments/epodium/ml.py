@@ -24,21 +24,22 @@ from sklearn_rvm import EMRVR
 
 class Regression:
 
-    def __init__(self, loader):
+    def __init__(self, loader, verbose=0):
         self.loader = loader
+        self.verbose = verbose
         self.scaler = StandardScaler()
         self.rnd_search_defaults = {
             'n_iter': 100,
             'cv': 5,
             'n_jobs': 2,
             'scoring': self.scorer(),
-            'verbose': 10,
+            'verbose': self.verbose,
         }
         self.gs_defaults = {
             'cv': 5,
             'n_jobs': -1,
             'scoring': self.scorer(),
-            'verbose': 10,
+            'verbose': self.verbose,
         }
 
     def scorer(self):
@@ -107,15 +108,15 @@ class Regression:
 
 class Regressions:
 
-    def __init__(self, loader):
+    def __init__(self, loader, verbose=0):
         self.loader = loader
         self.algorithms = {
-            'dummy': Dummy(self.loader),
-            'rf': RandomForest(self.loader),
-            'lsv': Lsv(self.loader),
-            'sgd': Sgd(self.loader),
-            'emrvr': Emrvr(self.loader),
-            'svr': Svr(self.loader),
+            'dummy': Dummy(self.loader, verbose),
+            'rf': RandomForest(self.loader, verbose),
+            'lsv': Lsv(self.loader, verbose),
+            'sgd': Sgd(self.loader, verbose),
+            'emrvr': Emrvr(self.loader, verbose),
+            'svr': Svr(self.loader, verbose),
         }
 
     def algorithm(self, name):
@@ -145,11 +146,11 @@ class RandomForest(Regression):
         'min_samples_leaf': [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]
     }
 
-    def __init__(self, loader):
-        super().__init__(loader)
+    def __init__(self, loader, verbose):
+        super().__init__(loader, verbose)
         self.kernel = RandomForestRegressor(
             n_estimators=100,
-            verbose=10,
+            verbose=self.verbose,
             n_jobs=-1,
         )
         self.best_kernel = RandomForestRegressor(
@@ -168,7 +169,12 @@ class RandomForest(Regression):
     def grid_search(self):
         # TODO(wvxvw): Figure out why is this so special: it doesn't
         # use pipeline.
-        gs = GridSearchCV(self.kernel, self.parameters, verbose=10, n_jobs=1)
+        gs = GridSearchCV(
+            self.kernel,
+            self.parameters,
+            verbose=self.verbose,
+            n_jobs=1,
+        )
         gs.fit(*self.xy_train())
         return self.dump(gs)
 
@@ -188,11 +194,11 @@ class Lsv(Regression):
         'linearsvr__epsilon': [1.5, 2, 2.5, 3],
     }
 
-    def __init__(self, loader):
-        super().__init__(loader)
-        self.kernel = LinearSVR(verbose=2, max_iter=50000)
+    def __init__(self, loader, verbose):
+        super().__init__(loader, verbose)
+        self.kernel = LinearSVR(verbose=self.verbose, max_iter=50000)
         self.best_kernel = LinearSVR(
-            verbose=0,
+            verbose=self.verbose,
             C=0.45,
             epsilon=2.5,
             max_iter=50000,
@@ -215,10 +221,10 @@ class Svr(Regression):
         'svr__epsilon': [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5]
     }
 
-    def __init__(self, loader):
-        super().__init__(loader)
-        self.kernel = SVR(verbose=True)
-        self.gs_kernel = SVR(verbose=True, kernel='rbf')
+    def __init__(self, loader, verbose):
+        super().__init__(loader, verbose)
+        self.kernel = SVR(verbose=self.verbose)
+        self.gs_kernel = SVR(verbose=self.verbose, kernel='rbf')
         self.best_kernel = SVR(C=20, epsilon=1.5, kernel='rbf')
 
 
@@ -240,9 +246,9 @@ class Sgd(Regression):
         'sgdregressor__epsilon': [2.5, 3, 3.5, 4, 4.5, 5],
     }
 
-    def __init__(self, loader):
-        super().__init__(loader)
-        self.kernel = SGDRegressor(verbose=10)
+    def __init__(self, loader, verbose):
+        super().__init__(loader, verbose)
+        self.kernel = SGDRegressor(verbose=self.verbose)
         self.best_kernel = SGDRegressor(
             alpha=0.001,
             epsilon=2.5,
@@ -260,7 +266,7 @@ class Emrvr(Regression):
         'emrvr__gamma': uniform(0.00001, 0.01)
     }
 
-    def __init__(self, loader):
-        super().__init__(loader)
-        self.kernel = EMRVR(verbose=True, max_iter=50000)
+    def __init__(self, loader, verbose):
+        super().__init__(loader, verbose)
+        self.kernel = EMRVR(verbose=self.verbose, max_iter=50000)
         self.best_kernel = EMRVR(kernel='rbf', epsilon=1.5, gamma=(1 / 450))
