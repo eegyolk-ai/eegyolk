@@ -13,7 +13,7 @@ from scipy.stats import uniform
 from sklearn.dummy import DummyRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.linear_model import SGDRegressor
-from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer
+from sklearn.metrics import mean_squared_error, mean_absolute_error, make_scorer, accuracy_score
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV, train_test_split
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -103,7 +103,8 @@ class Regression:
         score = loaded_model.score(self.loader.x_test, self.loader.y_test)
         rmse = mean_squared_error(self.loader.y_test, y_pred, squared=False)
         mae = mean_absolute_error(self.loader.y_test, y_pred)
-        return score, rmse, mae
+        a_score = accuracy_score(self.loader.y_test, y_pred)
+        return score, rmse, mae, a_score
 
 
 class Regressions:
