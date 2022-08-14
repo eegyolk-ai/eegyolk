@@ -119,6 +119,24 @@ def make_parser():
         ''',
     )
     ml.add_argument(
+        '-V',
+        '--verbose',
+        choices=tuple(range(10)),
+        default=0,
+        help='''
+        Verbosity of mne, scikit etc. libraries.
+        '''
+    )
+    ml.add_argument(
+        '-u',
+        '--no-use-joblib',
+        action='store_false',
+        default=True,
+        help='''
+        Whether to use joblib when fitting or using searches.
+        '''
+    )
+    ml.add_argument(
         'algo',
         choices=('dummy', 'rf', 'lsv', 'sgd', 'emrvr'),
         help='''
@@ -199,7 +217,11 @@ def main(argv):
         try:
             rloader = prepare_loader(parsed, config)
 
-            regressions = Regressions(rloader)
+            regressions = Regressions(
+                rloader,
+                parsed.verbose,
+                parsed.no_use_joblib,
+            )
             algo = regressions.algorithms[parsed.algo]
             getattr(algo, parsed.fit)()
         except Exception as e:
