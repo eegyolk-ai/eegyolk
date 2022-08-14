@@ -24,9 +24,10 @@ from sklearn_rvm import EMRVR
 
 class Regression:
 
-    def __init__(self, loader, verbose=0):
+    def __init__(self, loader, verbose=0, use_joblib=True):
         self.loader = loader
         self.verbose = verbose
+        self.use_joblib = use_joblib
         self.scaler = StandardScaler()
         self.rnd_search_defaults = {
             'n_iter': 100,
@@ -66,12 +67,21 @@ class Regression:
         return self.loader.x_train_val, self.loader.y_train_val
 
     def fit(self):
-        pipeline = make_pipeline(self.scaler, self.kernel)
-        result = RandomizedSearchCV(
-            pipeline,
-            self.parameters,
-            **self.rnd_search_defaults
-        )
+        if self.use_joblib:
+            pipeline = make_pipeline(self.scaler, self.kernel)
+            parameters = self.parameters
+            n_jobs = self.rnd_search_defaults['n_jobs']
+        else:
+            pipeline = self.kernel
+            parameters = {
+                k.split('__')[1]: v for k, v in self.parameters.items()
+            }
+            n_jobs = 1
+
+        defaults = dict(self.rnd_search_defaults)
+        defaults['n_jobs'] = n_jobs
+
+        result = RandomizedSearchCV(pipeline, parameters, **defaults)
         result.fit(*self.xy_train())
         return self.dump(result)
 
@@ -111,15 +121,16 @@ class Regression:
 
 class Regressions:
 
-    def __init__(self, loader, verbose=0):
+    def __init__(self, loader, verbose=0, use_joblib=True):
         self.loader = loader
+        cargs = self.loader, verbose, use_joblib
         self.algorithms = {
-            'dummy': Dummy(self.loader, verbose),
-            'rf': RandomForest(self.loader, verbose),
-            'lsv': Lsv(self.loader, verbose),
-            'sgd': Sgd(self.loader, verbose),
-            'emrvr': Emrvr(self.loader, verbose),
-            'svr': Svr(self.loader, verbose),
+            'dummy': Dummy(*cargs),
+            'rf': RandomForest(*cargs),
+            'lsv': Lsv(*cargs),
+            'sgd': Sgd(*cargs),
+            'emrvr': Emrvr(*cargs),
+            'svr': Svr(*cargs),
         }
 
     def algorithm(self, name):
@@ -149,8 +160,8 @@ class RandomForest(Regression):
         'min_samples_leaf': [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]
     }
 
-    def __init__(self, loader, verbose):
-        super().__init__(loader, verbose)
+    def __init__(self, loader, verbose, use_joblib):
+        super().__init__(loader, verbose, use_joblib)
         self.kernel = RandomForestRegressor(
             n_estimators=100,
             verbose=self.verbose,
@@ -197,8 +208,8 @@ class Lsv(Regression):
         'linearsvr__epsilon': [1.5, 2, 2.5, 3],
     }
 
-    def __init__(self, loader, verbose):
-        super().__init__(loader, verbose)
+    def __init__(self, loader, verbose, use_joblib):
+        super().__init__(loader, verbose, use_joblib)
         self.kernel = LinearSVR(verbose=self.verbose, max_iter=50000)
         self.best_kernel = LinearSVR(
             verbose=self.verbose,
@@ -224,8 +235,8 @@ class Svr(Regression):
         'svr__epsilon': [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5]
     }
 
-    def __init__(self, loader, verbose):
-        super().__init__(loader, verbose)
+    def __init__(self, loader, verbose, use_joblib):
+        super().__init__(loader, verbose, use_joblib)
         self.kernel = SVR(verbose=self.verbose)
         self.gs_kernel = SVR(verbose=self.verbose, kernel='rbf')
         self.best_kernel = SVR(C=20, epsilon=1.5, kernel='rbf')
@@ -249,8 +260,8 @@ class Sgd(Regression):
         'sgdregressor__epsilon': [2.5, 3, 3.5, 4, 4.5, 5],
     }
 
-    def __init__(self, loader, verbose):
-        super().__init__(loader, verbose)
+    def __init__(self, loader, verbose, use_joblib):
+        super().__init__(loader, verbose, use_joblib)
         self.kernel = SGDRegressor(verbose=self.verbose)
         self.best_kernel = SGDRegressor(
             alpha=0.001,
@@ -269,7 +280,7 @@ class Emrvr(Regression):
         'emrvr__gamma': uniform(0.00001, 0.01)
     }
 
-    def __init__(self, loader, verbose):
-        super().__init__(loader, verbose)
-        self.kernel = EMRVR(verbose=self.verbose, max_iter=50000)
+    def __init__(self, loader, verbose, use_joblib):
+        super().__init__(loader, verbose, use_joblib)
+        self.kernel = EMRVR(verbose=self.verbose, max_iter=50000, bias_used=False)
         self.best_kernel = EMRVR(kernel='rbf', epsilon=1.5, gamma=(1 / 450))
