@@ -78,6 +78,7 @@ class DataGenerator(Sequence):
 
         return: X and y when fitting. X only when predicting
         """
+        print(self.metadata_temp)
         
         # Generate indexes of the batch
         indexes = self.indexes[index * self.batch_size:((index + 1) * self.batch_size)]
