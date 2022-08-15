@@ -43,8 +43,8 @@ class TokenAndPositionEmbedding(layers.Layer):
 
 
 def TransformerModel():
-    maxlen = 16     # Consider 16 input time points
-    embed_dim = 64  # Features of each time point
+    maxlen = 512     # Consider 16 input time points
+    embed_dim = 32  # Features of each time point
     num_heads = 8   # Number of attention heads
     ff_dim = 64     # Hidden layer size in feed forward network inside transformer
 
@@ -64,6 +64,6 @@ def TransformerModel():
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(64, activation="relu")(x)
     x = layers.Dropout(0.5)(x)
-    outputs = layers.Dense(1, activation="sigmoid")(x)
+    outputs = layers.Dense(5, activation="sigmoid")(x)
 
     return keras.Model(inputs=inputs, outputs=outputs)
