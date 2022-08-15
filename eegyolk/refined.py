@@ -312,7 +312,7 @@ class CntReader:
         channel_set: str
         Select among pre-defined channel sets. Here: '30' or '62'
         '''
-        if not channel_set in self.known_channel_sets:
+        if channel_set not in self.known_channel_sets:
             raise ValueError('Predefined channel set must be either 30 or 62')
 
         self.channel_set = self.known_channel_sets[channel_set]
@@ -321,7 +321,7 @@ class CntReader:
 
         data_raw = mne.io.read_raw_cnt(cnt, eog='auto', preload=True)
 
-        # Band-pass filter (between 0.5 and 40 Hz. was 0.5 to 30Hz in Stober 2016)
+        # Band-pass filter (btwn 0.5 and 40 Hz.;0.5 to 30Hz in Stober 2016)
         data_raw.filter(0.5, 40, fir_design='firwin')
 
         # This used to be set in the loop, but it looks like a
