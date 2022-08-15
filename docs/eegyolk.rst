@@ -14,6 +14,10 @@ Submodules
    eegyolk.historical
    eegyolk.initialization_functions
    eegyolk.preprocessing_functions
+   eegyolk.cnt
+   eegyolk.ml
+   eegyolk.nn
+   eegyolk.patches
 
 Module contents
 ---------------
