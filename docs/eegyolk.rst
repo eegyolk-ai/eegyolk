@@ -18,6 +18,7 @@ Submodules
    eegyolk.ml
    eegyolk.nn
    eegyolk.patches
+   eegyolk.config
 
 Module contents
 ---------------

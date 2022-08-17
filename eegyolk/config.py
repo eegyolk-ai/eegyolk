@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 """
 Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
