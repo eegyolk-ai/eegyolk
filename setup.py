@@ -589,6 +589,8 @@ if __name__ == '__main__':
             # built w/o numpy preinstalled
             'mne-features==0.1.0',
             'numpy',
+            'tensorflow',
+            'sklearn-rvm',
         ],
         # We need NumPy, and we need it to be this specific version
         # due to how mne-features wants to be installed.  Once they
