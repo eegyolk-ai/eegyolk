@@ -586,6 +586,7 @@ if __name__ == '__main__':
             'h5py',
             'sklearn',
             'mne_features',
+            'numpy',
         ],
         tests_require=['pytest', 'pycodestyle', 'isort', 'wheel'],
         command_options={
