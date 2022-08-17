@@ -585,10 +585,24 @@ if __name__ == '__main__':
             'matplotlib',
             'h5py',
             'sklearn',
-            'mne_features',
+            # 0.2 is the newer source distribution which cannot be
+            # built w/o numpy preinstalled
+            'mne-features==0.1.0',
             'numpy',
         ],
-        tests_require=['pytest', 'pycodestyle', 'isort', 'wheel'],
+        # We need NumPy, and we need it to be this specific version
+        # due to how mne-features wants to be installed.  Once they
+        # fix their package we should be able to remove this
+        # dependency.  The same is true of mne.  We only need it in
+        # here and in setup_requires because of mne-features.
+        tests_require=[
+            'pytest',
+            'pycodestyle',
+            'isort',
+            'wheel',
+            'numpy<1.23.0',
+            'mne',
+        ],
         command_options={
             'build_sphinx': {
                 'project': ('setup.py', name),
@@ -597,7 +611,7 @@ if __name__ == '__main__':
                 'config_dir': ('setup.py', './docs'),
             },
         },
-        setup_requires=['sphinx', 'wheel'],
+        setup_requires=['sphinx', 'wheel', 'numpy<1.23.0', 'mne'],
         extras_require={
             'dev': ['pytest', 'codestyle', 'isort', 'wheel'],
         },
