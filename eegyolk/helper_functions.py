@@ -95,6 +95,7 @@ def load_metadata(
 
     :returns: metadata
     :rtype: .csv or .xlsx file
+    
     """
 
     original_path = os.path.join(path_metadata, filename + '.txt')
