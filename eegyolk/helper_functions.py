@@ -95,8 +95,8 @@ def load_metadata(
 
     :returns: metadata
     :rtype: .csv or .xlsx file
-    
     """
+
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
     # TODO: why is it OK to ignore non-existent files here?
