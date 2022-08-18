@@ -30,9 +30,12 @@ def select_bad_epochs_list(
         max_bad_fraction=0.2,
 ):
     ''' Function to find suspect epochs and channels --> still might
-    need manual inspection!  Credit to Bjorn Bruns and Florian Huber.
-    Arguments are as below
+    need manual inspection!  Credit to Bjorn Bruns and Florian Huber
+
+    Args:
+    --------
     epochs: epochs object (mne)
+
     stimuli: list of int/str
     Stimuli to pick epochs for.
     threshold: float/int
@@ -111,10 +114,7 @@ def select_bad_epochs_list(
     return [epochs.ch_names[x] for x in bad_channels], list(bad_epochs)
 
 
-class CntReader:
-    """
-    This is class that allows reading in of cnt files in a specific way.
-    """
+class BdfReader:
 
     known_channel_sets = {
         '30': (
@@ -170,14 +170,17 @@ class CntReader:
             ch_name.upper() for ch_name in self.montage.ch_names
         ]
 
-    def read(self, cnt, label_group, channel_set='30'):
+    def read(self, bdf, label_group, channel_set='30'):
         '''
         Historical function from previous work to read cnt files.
-        Function to read cnt file. Run bandpass filter.
+        Modification of historical function to read cnt file.
+        Now for reading bdfs Run bandpass filter.
         Then detect and correct/remove bad channels and bad epochs.
         Store resulting epochs as arrays.
-        Arguments include
-        cnt: str
+
+        Args:
+        --------
+        bdf: str
         Name of file to import.
         label_group: int
         Unique ID of specific group (must be > 0).
@@ -193,23 +196,23 @@ class CntReader:
         self.labels = []
         self.channel_names = []
 
-        raw_cnt = self.raw_data.read_cnt(cnt, preload=True)
+        raw_bdf = self.raw_data.read_bdf(bdf, preload=True)
 
         # Band-pass filter
         # (between 0.5 and 40 Hz. was 0.5 to 30Hz in Stober 2016)
-        raw_cnt.filter(0.5, 40, fir_design='firwin')
+        raw_bdf.filter(0.5, 40, fir_design='firwin')
 
         # This used to be set in the loop, but it looks like a
         # constant expression
-        raw_cnt.set_montage(self.montage)
+        raw_bdf.set_montage(self.montage)
 
         # Get events from annotations in the data
-        self.annotations, self.events = mne.events_from_annotations(raw_cnt)
+        self.annotations, self.events = mne.events_from_annotations(raw_bdf)
 
         # Select channels to exclude (if any)
         mask = set(self.channel_set).union(set(('HEOG', 'VEOG')))
         self.channels_exclude = tuple(
-            x for x in raw_cnt.ch_names if x not in mask
+            x for x in raw_bdf.ch_names if x not in mask
         )
 
         valid_events = tuple(
@@ -217,22 +220,9 @@ class CntReader:
         )
 
         for eid in valid_events:
-            picks, epochs = self._picks_epochs(raw_cnt)
+            picks, epochs = self._picks_epochs(raw_bdf)
             # Detect potential bad channels and epochs
             #
-            # TODO(wvxvw): Find out if select_bad_epochs_list() can be
-            # used on valid_events instead of checking each event
-            # individually.  The return format of this function is
-            # bogus.  The premis of this loop seems to be: modify
-            # `raw_cnt.info['bads']' each iteration and try to
-            # interpolate the values from other channel into the bad
-            # channels, if bad channels are found.  It's not clear to
-            # me, why do this per event id: the `raw_cnt' doesn't
-            # seem to change meaningfully between iterations outside
-            # of its info property, which is also not indexed by event
-            # id.  select_bad_epochs_list(), while it does generate
-            # bad channels and bad epochs depending on event id seems
-            # to be unconnected to how later bad channels are treated.
             bad_channels, bad_epochs = select_bad_epochs_list(
                 epochs,
                 [eid],
@@ -246,7 +236,7 @@ class CntReader:
 
             if len(bad_channels) > 0:
                 # Mark bad channels:
-                raw_cnt.info['bads'] = bad_channels
+                raw_bdf.info['bads'] = bad_channels
                 # Interpolate bad channels using functionality of
                 # 'mne' Also, sometimes the bad channel calculation
                 # seems to be wrong...
@@ -254,14 +244,6 @@ class CntReader:
 
                 # Get signals as array and add to total collection
                 #
-                # TODO(wvxvw): Above is the original comment.  It's
-                # not clear to me why the channels are appended like
-                # this... For a single CNT file, the channles are
-                # going to be the same every time this condition is
-                # true.  It should make sense to simply store the
-                # first or the last, but I don't know if there's any
-                # code that relies on the length of this collection to
-                # deduce some information about what was fixed.
                 self.channel_names.append(epochs.ch_names)
                 signals_cleaned = epochs[str(eid)].drop(
                     bad_epochs,
@@ -367,12 +349,12 @@ class CntReader:
     def save_preprocessed_row(self, row):
         try:
             signals, labels, ch_names = self.read(
-                row['cnt_path'],
+                row['bdf_path'],
                 row['age_months'],
             )
         except ValueError as e:
             logging.warn(
-                f'Cannot read {row["cnt_file"]}: {e}.',
+                f'Cannot read {row["bdf_file"]}: {e}.',
             )
             return
 
@@ -387,7 +369,7 @@ class CntReader:
             )
         except Exception as e:
             logging.warn(
-                f'Cannot extract features from {row["cnt_file"]}: {e}.',
+                f'Cannot extract features from {row["bdf_file"]}: {e}.',
             )
             return
 
@@ -401,15 +383,15 @@ class CntReader:
     def csv_h5_paths(self, processed_dir):
 
         def func(row):
-            cnt = row['cnt_file']
+            bdf = row['bdf_file']
             csv = os.path.join(
                 processed_dir,
-                f'processed_data_{cnt}.csv',
+                f'processed_data_{bdf}.csv',
             )
             csv_exists = os.path.isfile(csv)
             h5 = os.path.join(
                 processed_dir,
-                f'extracted_features_{cnt}.h5',
+                f'extracted_features_{bdf}.h5',
             )
             h5_exists = os.path.isfile(h5)
             return csv, csv_exists, h5, h5_exists
@@ -447,5 +429,5 @@ def preprocess(raw, meta, processed, limit=None, force=False):
     acquired = RawData(raw, meta)
     acquired.fill_unlabeled()
     acquired.filter_broken()
-    reader = CntReader(acquired)
+    reader = BdfReader(acquired)
     reader.save_preprocessed(processed, limit=limit, force=force)
