@@ -59,4 +59,99 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 
 ## Testing
 Testing uses synthetic data. Testing will requires you to either run tests inside a container or extract the data from our image with synthetic data in our docker. The docker image will be `drcandacemakedamoore/eegyolk-test-data:latest` . Until then you could also reconfigure and rename your own valid bdf files and metadata as configured and named in the tests/test.py, and local testing should work. 
-Finally, you can contact Dr. Moore c.moore@esciencecenter.nl for synthetic test data and/or with any questions on testing. 
+Finally, you can contact Dr. Moore c.moore@esciencecenter.nl for synthetic test data and/or with any questions on testing.
+
+
+# Installing
+
+This has only been tested on Linux so far.
+
+    python -m venv .venv
+    . .venv/bin/activate
+    ./setup.py install
+
+
+# Configuring
+
+In order to preprocess and to train the models the code needs to be
+able to locate the raw data and the metadata, and for the training
+it also needs the preprocessed data to be available.
+
+There are several ways to specify the location of the following
+directories:
+
+-   **root:** Special directory.  The rest of the directory layout can
+    be derived from its location.
+-   **data:** The location of raw CNT data files.  This is the directory
+    containing `11mnd mmn` and similar files.
+-   **metadata:** The location of metadata files.  This is the directory
+    that contains `ages` directory, which, in turn, contains files
+    like `ages_11mnths.txt`.
+-   **preprocessed:** The directory that will be used by preprocessing
+    code to output CSVs and h5 files.  This directory will be used
+    by the model training code to read the training data.
+-   **models:** The directory to output trained models to.
+
+You can store this information persistently in several locations.
+
+1.  In the same directory where you run the script (or the notebook).
+    Eg. `./config.json`.
+2.  In home directory, eg. `~/.eegyolk/config.json`.
+3.  In global directory, eg `/etc/eegyolk/config.json`.
+
+This file can have this or similar contents:
+
+    {
+        "root": "/mnt/data",
+        "metadata": "/mnt/data/meta",
+        "preprocessed": "/mnt/data/processed"
+    }
+
+The file is read as follows: if the files specifies `root`
+directory, then the missing entires are assumed to be relative to
+the root.  You don't need to specify the root entry, if you specify
+all other entires.
+
+
+# Command-Line Interface
+
+You can preprocess and tain the models using command-line interface.
+
+Below are some examples of how to do that:
+
+This will pre-process the first ten CNT files in the
+`/mnt/data/original-cnts` directory.
+
+    python -m eegyolk acquire \
+           --input /mnt/data/original-cnts \
+           --metadata /mnt/data/metadata \
+           --output /mnt/data/preprocessed \
+           --limit 10
+
+This will train a model using dummy algorithm.  In case of dummy
+algorithm both `best_fit` and `fit` do the same thing.
+
+    python -m eegyolk ml \
+           --input /mnt/data/preprocessed \
+           --output /mnt/data/trained_models \
+           --size 100 \
+           dummy best_fit
+
+Similarly, for neural networks training and assessment:
+
+    python -m eegyolk nn \
+           --input /mnt/data/preprocessed \
+           --output /mnt/data/trained_models \
+           --epochs 100 \
+           train_model 1
+
+It's possible to load configuration (used for directory layout) from
+alternative file:
+
+    python -m eegyolk --config /another/config.json ml \
+           --input /mnt/data/preprocessed \
+           --output /mnt/data/trained_models \
+           --size 100 \
+           dummy best_fit
+
+All long options have short aliases.

@@ -77,7 +77,6 @@ def load_metadata(
     make_excel_files=True,
     make_csv_files=True
 ):
-
     """
     This function loads the metadata stored in the metadata folder,
     and makes an excel or csv from the txt.
@@ -95,9 +94,7 @@ def load_metadata(
 
     :returns: metadata
     :rtype: .csv or .xlsx file
-    
     """
-
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
     # TODO: why is it OK to ignore non-existent files here?
