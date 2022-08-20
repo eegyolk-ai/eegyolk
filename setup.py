@@ -553,7 +553,6 @@ if __name__ == '__main__':
         version=version,
         author='A team including the NLeSC and Utrecht University',
         author_email='c.moore@esciencecenter.nl',
-        package_dir={'.': '', },
         packages=[
             'eegyolk',
         ],
@@ -575,7 +574,6 @@ if __name__ == '__main__':
             'bdist_conda': BdistConda,
             'sdist_conda': SdistConda,
         },
-        test_suite='setup.my_test_suite',
         install_requires=[
             'pyxdf',
             'mne',
