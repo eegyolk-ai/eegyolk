@@ -18,13 +18,13 @@ this part of the documentation is for you.
    :caption: Contents:
 
    modules
-   developers
+   
   
 
 Developer's Guide
 -----------------
 
-:doc:`Developer's Guide <developers>`
+:doc:`Developer's Guide <developers.rst>`
 
 
 
