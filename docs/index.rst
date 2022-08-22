@@ -24,7 +24,12 @@ this part of the documentation is for you.
 Developer's Guide
 -----------------
 
-:doc:`Developer's Guide <developers.rst>`
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   developers
 
 
 
