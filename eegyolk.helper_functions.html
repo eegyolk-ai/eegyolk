@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>eegyolk.helper_functions module &#8212; eegyolk 0.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eegyolk.initialization_functions module" href="eegyolk.initialization_functions.html" />
+    <link rel="prev" title="eegyolk.epod_helper module" href="eegyolk.epod_helper.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.initialization_functions.html" title="eegyolk.initialization_functions module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.epod_helper.html" title="eegyolk.epod_helper module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" accesskey="U">eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.helper_functions module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-eegyolk.helper_functions">
+<span id="eegyolk-helper-functions-module"></span><h1>eegyolk.helper_functions module<a class="headerlink" href="#module-eegyolk.helper_functions" title="Permalink to this heading">¶</a></h1>
+<p>Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
+<p>This file contains functions originally designed to work with ePODIUM EEG
+data, that can be applied to other EEG data as well.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.band_pass_filter">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">band_pass_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lo_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi_freq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.band_pass_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Band pass filter code to filter out certain frequencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data_raw</strong> (<em>mne.io.Raw</em>) – raw EEG data, result of mne.io.read_raw functions</p></li>
+<li><p><strong>lo_freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Hertz below which to disinclude</p></li>
+<li><p><strong>high_freq</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Hertz above which to disinclude</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>filtered</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.create_epoch">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">create_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eeg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_markers_simplified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_before_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_after_event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.create_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function turns eeg data into epochs.
+Inputs are eeg data files, event parkers, time before event,
+and time after event
+Outputs are eeg data divided in epochs</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.evoked_responses">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">evoked_responses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">avg_variable</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.evoked_responses" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates an average evoked response for each event.
+The input is epoched data, variable where needs to be averaged on e.g.
+average per participant per event
+The output is evoked responses</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.filter_eeg_raw">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">filter_eeg_raw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eeg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lowpass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">highpass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freqs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mastoid_channels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drop_ch</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.filter_eeg_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a filtering function for eeg data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.hash_it_up_right_all">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">hash_it_up_right_all</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.hash_it_up_right_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a hash signature for every file in a folder,
+with a specified extension (e.g. cnt or fif)
+and then puts the hases into a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>folder</strong> (<em>string</em>) – the folder with files to hasg</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dataframe</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v1.4.3)">pandas.core.frame.DataFrame</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.input_mmr_prep">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">input_mmr_prep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_events</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.input_mmr_prep" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates some calculations about mis-match response over a set
+of participant data.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.helper_functions.load_metadata">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">load_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_output</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_excel_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">make_csv_files</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.load_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads the metadata stored in the metadata folder,
+and makes an excel or csv from the txt.
+Inputs are filename, path_metadata(file where metadata is), )
+make_excel_files, make_csv_files (True makes this type of file),
+path_output(where we put the file)
+Outputs are a csv and/or excel file</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eegyolk.epod_helper.html"
+                          title="previous chapter">eegyolk.epod_helper module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="eegyolk.initialization_functions.html"
+                          title="next chapter">eegyolk.initialization_functions module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/eegyolk.helper_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.initialization_functions.html" title="eegyolk.initialization_functions module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.epod_helper.html" title="eegyolk.epod_helper module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" >eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.helper_functions module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, c.moore@esciencecenter.nl.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

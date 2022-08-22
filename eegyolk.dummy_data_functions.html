@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>eegyolk.dummy_data_functions module &#8212; eegyolk 0.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eegyolk.epod_helper module" href="eegyolk.epod_helper.html" />
+    <link rel="prev" title="eegyolk.display_helper module" href="eegyolk.display_helper.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.epod_helper.html" title="eegyolk.epod_helper module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.display_helper.html" title="eegyolk.display_helper module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" accesskey="U">eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.dummy_data_functions module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-eegyolk.dummy_data_functions">
+<span id="eegyolk-dummy-data-functions-module"></span><h1>eegyolk.dummy_data_functions module<a class="headerlink" href="#module-eegyolk.dummy_data_functions" title="Permalink to this heading">¶</a></h1>
+<p>Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
+<p>This file contains functions designed to  create dummy data.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.dummy_data_functions.create_labeled_dataset">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">create_labeled_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">distributions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['planck',</span> <span class="pre">'constant']</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.create_labeled_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses the functions from this scripts to create dataset with
+various frequency distributions.</p>
+<dl>
+<dt>Args:</dt><dd><p>size: float</p>
+<dl class="simple">
+<dt>distributions: list of strings</dt><dd><p>The names of the distributions that are generated and labeled</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.dummy_data_functions.generate_epoch">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">generate_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq_distribution</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">N_combined_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.generate_epoch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a single epoch of EEG dummy data.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>freq_distribution: 1D numpy array</dt><dd><p>The density probability distribution</p>
+</dd>
+<dt>N_combined_freq: float</dt><dd><p>Number of frequencies in epoch.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.dummy_data_functions.generate_frequency_distribution">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">generate_frequency_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'planck'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_sample_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.generate_frequency_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function returns the occurence of frequencies up to
+‘max_freq’ from a ‘distribution’.  Returns arrays of frequencies
+and their occurence as x and y value.  The form of <span class="math notranslate nohighlight">\(1 / (x^2 *
+(exp(1/x)-1))\)</span> is inspired by Planck’s law.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>distribution: string</dt><dd><p>The shape of the distribution. Choose from “planck”, “constant”,
+“linear” or create a new one.</p>
+</dd>
+<dt>max_freq: float</dt><dd><p>The largest frequency that the function considers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p>freq_sample_rate: float</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.dummy_data_functions.generate_sine_wave">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">generate_sine_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.generate_sine_wave" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.dummy_data_functions.random_frequency_from_density_distribution">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">random_frequency_from_density_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_distribution</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.random_frequency_from_density_distribution" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Returns a single random frequency from a cumulative distribution:</dt><dd><ol class="arabic simple">
+<li><p>Sum the array cumulatively and scale from 0 to 1.</p></li>
+<li><p>Pick a random number between 0 and 1.</p></li>
+<li><p>Loop through the array until the number is &gt;= than a random value.</p></li>
+</ol>
+</dd>
+<dt>Args:</dt><dd><dl class="simple">
+<dt>max_freq: float</dt><dd><p>The maximum frequency that the function can return.</p>
+</dd>
+<dt>freq_distribution: 1D numpy array</dt><dd><p>The density probability distribution</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eegyolk.display_helper.html"
+                          title="previous chapter">eegyolk.display_helper module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="eegyolk.epod_helper.html"
+                          title="next chapter">eegyolk.epod_helper module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/eegyolk.dummy_data_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.epod_helper.html" title="eegyolk.epod_helper module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.display_helper.html" title="eegyolk.display_helper module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" >eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.dummy_data_functions module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, c.moore@esciencecenter.nl.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

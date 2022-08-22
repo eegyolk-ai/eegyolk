@@ -1,0 +1,7 @@
+eegyolk.raw module
+==================
+
+.. automodule:: eegyolk.raw
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>eegyolk.raw module &#8212; eegyolk 0.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="eegyolk.patches module" href="eegyolk.patches.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.patches.html" title="eegyolk.patches module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" accesskey="U">eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.raw module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-eegyolk.raw">
+<span id="eegyolk-raw-module"></span><h1>eegyolk.raw module<a class="headerlink" href="#module-eegyolk.raw" title="Permalink to this heading">¶</a></h1>
+<p>Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
+<p>This file contains functions related to reproduction
+of 2021 work.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="eegyolk.raw.MneViewer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.raw.</span></span><span class="sig-name descname"><span class="pre">MneViewer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.MneViewer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.raw.</span></span><span class="sig-name descname"><span class="pre">RawData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.age_files">
+<span class="sig-name descname"><span class="pre">age_files</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{11:</span> <span class="pre">'ages_11mnths.txt',</span> <span class="pre">17:</span> <span class="pre">'ages_17mnths.txt',</span> <span class="pre">23:</span> <span class="pre">'ages_23mnths.txt',</span> <span class="pre">29:</span> <span class="pre">'ages_29mnths.txt',</span> <span class="pre">35:</span> <span class="pre">'ages_35mnths.txt',</span> <span class="pre">41:</span> <span class="pre">'ages_41mnths.txt',</span> <span class="pre">47:</span> <span class="pre">'ages_47mnths.txt'}</span></em><a class="headerlink" href="#eegyolk.raw.RawData.age_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.age_groups">
+<span class="sig-name descname"><span class="pre">age_groups</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{11:</span> <span class="pre">'11mnd</span> <span class="pre">mmn',</span> <span class="pre">17:</span> <span class="pre">'17mnd</span> <span class="pre">mmn',</span> <span class="pre">23:</span> <span class="pre">'23mnd</span> <span class="pre">mmn',</span> <span class="pre">29:</span> <span class="pre">'29mnd</span> <span class="pre">mmn',</span> <span class="pre">35:</span> <span class="pre">'35mnd</span> <span class="pre">mmn',</span> <span class="pre">41:</span> <span class="pre">'41mnd</span> <span class="pre">mmn',</span> <span class="pre">47:</span> <span class="pre">'47mnd</span> <span class="pre">mmn'}</span></em><a class="headerlink" href="#eegyolk.raw.RawData.age_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.as_mne">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_mne</span></span><a class="headerlink" href="#eegyolk.raw.RawData.as_mne" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.breakdown_by_age">
+<span class="sig-name descname"><span class="pre">breakdown_by_age</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.breakdown_by_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.cnt_read_args">
+<span class="sig-name descname"><span class="pre">cnt_read_args</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_format':</span> <span class="pre">'int32',</span> <span class="pre">'date_format':</span> <span class="pre">'dd/mm/yy',</span> <span class="pre">'eog':</span> <span class="pre">'auto',</span> <span class="pre">'verbose':</span> <span class="pre">False}</span></em><a class="headerlink" href="#eegyolk.raw.RawData.cnt_read_args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.count_events">
+<span class="sig-name descname"><span class="pre">count_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.count_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.fill_unlabeled">
+<span class="sig-name descname"><span class="pre">fill_unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.fill_unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the missing age data based on the age group the
+subject is in</p>
+<p>We know the age group (i.e. 11, 17, 23, … months etc) of all
+the subjects, based on the folder the files are in and based
+on the file name. We have got the exact ages (in days) of most
+subjects seperately, which we have added to the DataFrame
+above. For some of the subjects, we don’t have the exact age
+and therefore we set this equal to the age group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.filter_broken">
+<span class="sig-name descname"><span class="pre">filter_broken</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.filter_broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>This did not exist in the original code, but it makes it
+easier to deal with MNE file reading errors: we just try
+reading all the files once, and sort them into two groups:
+raw_good and raw_bad.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.read_age_group">
+<span class="sig-name descname"><span class="pre">read_age_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.read_age_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.read_ages_meta">
+<span class="sig-name descname"><span class="pre">read_ages_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.read_ages_meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.read_all_age_groups">
+<span class="sig-name descname"><span class="pre">read_all_age_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.read_all_age_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.read_cnt">
+<span class="sig-name descname"><span class="pre">read_cnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.read_cnt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.read_good_cnt">
+<span class="sig-name descname"><span class="pre">read_good_cnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.read_good_cnt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawData.unlabeled">
+<span class="sig-name descname"><span class="pre">unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawData.unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eegyolk.patches.html"
+                          title="previous chapter">eegyolk.patches module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/eegyolk.raw.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.patches.html" title="eegyolk.patches module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" >eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.raw module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, c.moore@esciencecenter.nl.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

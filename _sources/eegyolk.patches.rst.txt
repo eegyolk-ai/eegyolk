@@ -1,0 +1,7 @@
+eegyolk.patches module
+======================
+
+.. automodule:: eegyolk.patches
+   :members:
+   :undoc-members:
+   :show-inheritance:

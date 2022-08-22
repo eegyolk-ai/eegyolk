@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>eegyolk.initialization_functions module &#8212; eegyolk 0.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eegyolk.loaders module" href="eegyolk.loaders.html" />
+    <link rel="prev" title="eegyolk.helper_functions module" href="eegyolk.helper_functions.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.loaders.html" title="eegyolk.loaders module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.helper_functions.html" title="eegyolk.helper_functions module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" accesskey="U">eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.initialization_functions module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-eegyolk.initialization_functions">
+<span id="eegyolk-initialization-functions-module"></span><h1>eegyolk.initialization_functions module<a class="headerlink" href="#module-eegyolk.initialization_functions" title="Permalink to this heading">¶</a></h1>
+<p>Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
+<p>This file contains functions for loading raw data, metadata, and events.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.caller_save_events">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">caller_save_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator_argument</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.caller_save_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Events are loaded from raw EEG files and saved in .txt file.
+Loading from .txt file is much faster than from EEG file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.generator_load_dataset">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">generator_load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.bdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.generator_load_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Documentation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.i_load_metadata">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">i_load_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.i_load_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads and returns the four metadata text files.
+Takes as input the folder location of the metadata files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.load_dataset">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_extension</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.bdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.load_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is for datasets under 5 files. Otherwise
+use generator_load_dataset.
+Reads and returns the files that store the EEG data,
+along with a list of the filenames and paths of these bdf files.
+Takes as input the top folder location of the dataset.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.load_events">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">load_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eeg_filenames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.load_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Events are saved and loaded externally from .txt file,
+since loading events from raw EEG file takes much longer.
+NB: eeg_filenames should not include extension or root directory.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.print_event_info">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">print_event_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">participant_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2048</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.print_event_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints information on a specified event marker.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.initialization_functions.save_events">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.initialization_functions.</span></span><span class="sig-name descname"><span class="pre">save_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_events</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eeg_dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eeg_filenames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.initialization_functions.save_events" title="Permalink to this definition">¶</a></dt>
+<dd><p>Events are loaded from raw EEG files and saved in .txt file.
+Loading from .txt file is much faster than from EEG file.</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eegyolk.helper_functions.html"
+                          title="previous chapter">eegyolk.helper_functions module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="eegyolk.loaders.html"
+                          title="next chapter">eegyolk.loaders module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/eegyolk.initialization_functions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.loaders.html" title="eegyolk.loaders module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.helper_functions.html" title="eegyolk.helper_functions module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" >eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.initialization_functions module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, c.moore@esciencecenter.nl.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>

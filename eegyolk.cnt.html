@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>eegyolk.cnt module &#8212; eegyolk 0.0.4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pyramid.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="eegyolk.config module" href="eegyolk.config.html" />
+    <link rel="prev" title="eegyolk.cli module" href="eegyolk.cli.html" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Neuton&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic&amp;subset=latin" type="text/css" media="screen" charset="utf-8" />
+<!--[if lte IE 6]>
+<link rel="stylesheet" href="_static/ie6.css" type="text/css" media="screen" charset="utf-8" />
+<![endif]-->
+
+  </head><body>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.config.html" title="eegyolk.config module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.cli.html" title="eegyolk.cli module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" accesskey="U">eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.cnt module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-eegyolk.cnt">
+<span id="eegyolk-cnt-module"></span><h1>eegyolk.cnt module<a class="headerlink" href="#module-eegyolk.cnt" title="Permalink to this heading">¶</a></h1>
+<p>Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
+<p>This file contains functions originally designed
+to reproduce work from 2021 to run on a Linux machine.
+The specific work was pre-processing of EEG files.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.cnt.</span></span><span class="sig-name descname"><span class="pre">CntReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>This is class that allows reading in of cnt files in a specific way.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.baseline">
+<span class="sig-name descname"><span class="pre">baseline</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(None,</span> <span class="pre">0)</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.baseline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.col_names_from_feautres">
+<span class="sig-name descname"><span class="pre">col_names_from_feautres</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ch_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extracted</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.col_names_from_feautres" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.csv_h5_paths">
+<span class="sig-name descname"><span class="pre">csv_h5_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processed_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.csv_h5_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.event_idx">
+<span class="sig-name descname"><span class="pre">event_idx</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">12,</span> <span class="pre">13,</span> <span class="pre">14,</span> <span class="pre">15)</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.event_idx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.hpass">
+<span class="sig-name descname"><span class="pre">hpass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">40</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.hpass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.known_channel_sets">
+<span class="sig-name descname"><span class="pre">known_channel_sets</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'30':</span> <span class="pre">('O2',</span> <span class="pre">'O1',</span> <span class="pre">'OZ',</span> <span class="pre">'PZ',</span> <span class="pre">'P4',</span> <span class="pre">'CP4',</span> <span class="pre">'P8',</span> <span class="pre">'C4',</span> <span class="pre">'TP8',</span> <span class="pre">'T8',</span> <span class="pre">'P7',</span> <span class="pre">'P3',</span> <span class="pre">'CP3',</span> <span class="pre">'CPZ',</span> <span class="pre">'CZ',</span> <span class="pre">'FC4',</span> <span class="pre">'FT8',</span> <span class="pre">'TP7',</span> <span class="pre">'C3',</span> <span class="pre">'FCZ',</span> <span class="pre">'FZ',</span> <span class="pre">'F4',</span> <span class="pre">'F8',</span> <span class="pre">'T7',</span> <span class="pre">'FT7',</span> <span class="pre">'FC3',</span> <span class="pre">'F3',</span> <span class="pre">'FP2',</span> <span class="pre">'F7',</span> <span class="pre">'FP1'),</span> <span class="pre">'62':</span> <span class="pre">('O2',</span> <span class="pre">'O1',</span> <span class="pre">'OZ',</span> <span class="pre">'PZ',</span> <span class="pre">'P4',</span> <span class="pre">'CP4',</span> <span class="pre">'P8',</span> <span class="pre">'C4',</span> <span class="pre">'TP8',</span> <span class="pre">'T8',</span> <span class="pre">'P7',</span> <span class="pre">'P3',</span> <span class="pre">'CP3',</span> <span class="pre">'CPZ',</span> <span class="pre">'CZ',</span> <span class="pre">'FC4',</span> <span class="pre">'FT8',</span> <span class="pre">'TP7',</span> <span class="pre">'C3',</span> <span class="pre">'FCZ',</span> <span class="pre">'FZ',</span> <span class="pre">'F4',</span> <span class="pre">'F8',</span> <span class="pre">'T7',</span> <span class="pre">'FT7',</span> <span class="pre">'FC3',</span> <span class="pre">'F3',</span> <span class="pre">'FP2',</span> <span class="pre">'F7',</span> <span class="pre">'FP1',</span> <span class="pre">'AFZ',</span> <span class="pre">'PO3',</span> <span class="pre">'P1',</span> <span class="pre">'POZ',</span> <span class="pre">'P2',</span> <span class="pre">'PO4',</span> <span class="pre">'CP2',</span> <span class="pre">'P6',</span> <span class="pre">'M1',</span> <span class="pre">'CP6',</span> <span class="pre">'C6',</span> <span class="pre">'PO8',</span> <span class="pre">'PO7',</span> <span class="pre">'P5',</span> <span class="pre">'CP5',</span> <span class="pre">'CP1',</span> <span class="pre">'C1',</span> <span class="pre">'C2',</span> <span class="pre">'FC2',</span> <span class="pre">'FC6',</span> <span class="pre">'C5',</span> <span class="pre">'FC1',</span> <span class="pre">'F2',</span> <span class="pre">'F6',</span> <span class="pre">'FC5',</span> <span class="pre">'F1',</span> <span class="pre">'AF4',</span> <span class="pre">'AF8',</span> <span class="pre">'F5',</span> <span class="pre">'AF7',</span> <span class="pre">'AF3',</span> <span class="pre">'FPZ')}</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.known_channel_sets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.lpass">
+<span class="sig-name descname"><span class="pre">lpass</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.lpass" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.max_bad_channels">
+<span class="sig-name descname"><span class="pre">max_bad_channels</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.max_bad_channels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.max_bad_fraction">
+<span class="sig-name descname"><span class="pre">max_bad_fraction</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.2</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.max_bad_fraction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cnt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_set</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'30'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Historical function from previous work to read cnt files.
+Function to read cnt file. Run bandpass filter.
+Then detect and correct/remove bad channels and bad epochs.
+Store resulting epochs as arrays.
+Arguments include
+cnt: str
+Name of file to import.
+label_group: int
+Unique ID of specific group (must be &gt; 0).
+channel_set: str
+Select among pre-defined channel sets. Here: ‘30’ or ‘62’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.rms">
+<span class="sig-name descname"><span class="pre">rms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.rms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Root-mean squared value of the data (per channel).
+Parameters
+———-
+data : ndarray, shape (n_channels, n_times)
+Returns
+——-
+output : ndarray, shape (n_channels,)
+Notes
+—–
+Alias of the feature function: <em>rms</em></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.save_preprocessed">
+<span class="sig-name descname"><span class="pre">save_preprocessed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">processed_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.save_preprocessed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.save_preprocessed_row">
+<span class="sig-name descname"><span class="pre">save_preprocessed_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.save_preprocessed_row" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.selected_features">
+<span class="sig-name descname"><span class="pre">selected_features</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader.selected_features" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.threshold">
+<span class="sig-name descname"><span class="pre">threshold</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.threshold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.tmax">
+<span class="sig-name descname"><span class="pre">tmax</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.8</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.tmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.cnt.CntReader.tmin">
+<span class="sig-name descname"><span class="pre">tmin</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">-0.2</span></em><a class="headerlink" href="#eegyolk.cnt.CntReader.tmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.cnt.preprocess">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.cnt.</span></span><span class="sig-name descname"><span class="pre">preprocess</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">processed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.preprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="eegyolk.cnt.select_bad_epochs_list">
+<span class="sig-prename descclassname"><span class="pre">eegyolk.cnt.</span></span><span class="sig-name descname"><span class="pre">select_bad_epochs_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stimuli</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_bad_fraction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.select_bad_epochs_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to find suspect epochs and channels –&gt; still might
+need manual inspection!  Credit to Bjorn Bruns and Florian Huber.
+Arguments are as below
+epochs: epochs object (mne)
+stimuli: list of int/str
+Stimuli to pick epochs for.
+threshold: float/int
+Relative threshold. Anything channel with variance &gt; threshold*mean OR
+&lt; threshold*mean will be considered suspect. Default = 5.
+max_bad_fraction: float
+Maximum fraction of bad epochs.
+If number is higher for one channel, call it a ‘bad’ channel</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="eegyolk.cli.html"
+                          title="previous chapter">eegyolk.cli module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="eegyolk.config.html"
+                          title="next chapter">eegyolk.config module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/eegyolk.cnt.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.config.html" title="eegyolk.config module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eegyolk.cli.html" title="eegyolk.cli module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">eegyolk 0.0.4 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >eegyolk</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="eegyolk.html" >eegyolk package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">eegyolk.cnt module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2022, c.moore@esciencecenter.nl.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+    </div>
+  </body>
+</html>
