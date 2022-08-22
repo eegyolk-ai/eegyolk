@@ -84,7 +84,7 @@ def load_metadata(
     make_excel_files, make_csv_files (True makes this type of file),
     path_output(where we put the file)
     Outputs are a csv and/or excel file
-   
+
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
