@@ -23,7 +23,8 @@ this part of the documentation is for you.
 
 Developer's Guide
 -----------------
-Please look at the same url but with developers
+
+:doc:`Developer's Guide <../developers>`
 
 
 Indices and tables
