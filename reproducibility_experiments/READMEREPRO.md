@@ -2,7 +2,7 @@
     <img style="width: 30%; height: 30%" src="https://github.com/NLeSC/ePodium/blob/main/eegyolk_logo.png">
 </p>
 
-# eegyolk
+# eegyolk as a means to reproduce previous work
 
 
 
@@ -46,7 +46,7 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 
 1. Install all Python packages required, using conda and the environment-march-update2.yaml file.
     run following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate mne-marchez`.
-2. Update the configuration_template.py (NOT config_template) file and rename to config.py.
-3. (being rebuilt) Use the preprocessing notebooks to process the raw data to usable data for either the ML or (reduced) DL models (separate notebooks).
-4. (being rebuilt) The 'model training' notebooks can be used the train and save models.
-5. (being rebuilt) The 'model validation' notebooks can be used to assess the performance of the models.
+2. Update the via the new setup (you will be prompted if you have note)
+3. Use the preprocessing notebook in notebooks/original/remastered.
+4. Run the machine learning training on data created by running notebooks/original/remastered/trational-ml-models.ipynb
+
