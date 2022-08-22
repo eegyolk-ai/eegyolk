@@ -23,14 +23,7 @@ this part of the documentation is for you.
 
 Developer's Guide
 -----------------
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   developers
-
+Please look at the same url but with developers
 
 
 Indices and tables
