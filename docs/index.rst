@@ -18,6 +18,7 @@ this part of the documentation is for you.
    :caption: Contents:
 
    modules
+   developers
    
   
 
