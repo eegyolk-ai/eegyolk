@@ -6,12 +6,8 @@ import collections.abc
 
 
 def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = ""):
-    """Show plot with title and lables in 1 line.
-
-    Args:
-     x: 1D numpy array
-
-     y: 1D numpy array
+    """
+    Show plot with title and lables.
     """
     
     plt.clf()

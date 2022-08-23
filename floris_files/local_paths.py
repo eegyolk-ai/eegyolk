@@ -3,8 +3,23 @@ import os
 # STORAGE
 
 storage = "/volume-ceph"
-processed = os.path.join(storage, "processed")
-models = os.path.join(storage, "models")
+personal_storage = os.path.join(storage, "floris")
+processed = os.path.join(personal_storage, "processed")
+models = os.path.join(personal_storage, "models")
+
+# ePodium
+
+ePod = os.path.join(storage, "ePodium_projectfolder")
+ePod_dataset = os.path.join(ePod, "dataset")
+ePod_events = os.path.join(ePod, "events")
+ePod_metadata = os.path.join(ePod, "metadata")
+
+ePod_processed_autoreject = os.path.join(processed, "ePod_autoreject")
+ePod_processed_autoreject_epochs = os.path.join(ePod_processed_autoreject, "epochs")
+ePod_processed_autoreject_events = os.path.join(ePod_processed_autoreject, "events")
+ePod_processed_autoreject_epochs_split_downsampled = os.path.join(ePod_processed_autoreject, "epochs_split_downsampled")
+
+# DDP
 
 DDP = os.path.join(storage, "DDP_projectfolder")
 DDP_5 = os.path.join(DDP, "05mnd mmn")
@@ -22,17 +37,6 @@ DDP_DANS = os.path.join(DDP, "DANS")
 DDP_metadata = os.path.join(DDP, "metadata")
 DDP_processed = os.path.join(processed, "DDP")
 DDP_processed_new = os.path.join(processed, "DDP_new")
-
-
-ePod = os.path.join(storage, "ePodium_projectfolder")
-ePod_dataset = os.path.join(ePod, "dataset")
-ePod_events = os.path.join(ePod, "events")
-ePod_metadata = os.path.join(ePod, "metadata")
-
-ePod_processed_autoreject = os.path.join(processed, "ePod_autoreject")
-ePod_processed_autoreject_events = os.path.join(ePod_processed_autoreject, "events")
-ePod_processed_autoreject_epochs = os.path.join(ePod_processed_autoreject, "epochs")
-ePod_processed_autoreject_epochs_split_downsampled = os.path.join(ePod_processed_autoreject, "epochs_split_downsampled")
 
 # WORKSPACE
 

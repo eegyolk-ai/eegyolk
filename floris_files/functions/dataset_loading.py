@@ -7,23 +7,7 @@ import os
 import glob
 from IPython.display import clear_output
 
-
-def generator_load_dataset(folder_dataset, file_extension='.bdf', preload=True):
-    """
-    Documentation
-    """
-    pattern = os.path.join(folder_dataset, '**/*' + file_extension)
-    eeg_filepaths = glob.glob(pattern, recursive=True)
-    for path in eeg_filepaths:
-        bdf_file = mne.io.read_raw_bdf(path, preload=preload)
-        print('file is read')
-        eeg_filename = os.path.split(path)[1].replace(file_extension, '')
-        yield bdf_file, eeg_filename
-        # clear_output(wait=True)
-    print(len(eeg_filepaths), "EEG files loaded")
-
-
-def load_dataset(folder_dataset, file_extension='.bdf', preload=True):
+def load_dataset(folder_dataset, file_extension='.bdf', preload=False):
     """
     This function is for datasets under 5 files. Otherwise
     use generator_load_dataset.
@@ -91,23 +75,11 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
 
     for i in range(len(eeg_dataset)):
         path_events = os.path.join(folder_events, eeg_filenames[i] + ".txt")
-        np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
-        print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")
-        clear_output(wait=True)
-
-
-def caller_save_events(folder_events, generator_argument):
-    """
-    Events are loaded from raw EEG files and saved in .txt file.
-    Loading from .txt file is much faster than from EEG file.
-    """
-    if not os.path.isdir(folder_events):
-        os.mkdir(folder_events)
-
-    for i, (file, filename) in enumerate(generator_argument):
-        path_events = os.path.join(folder_events, filename + ".txt")
-        np.savetxt(path_events, mne.find_events(file), fmt='%i')
-        print("\n", i, " saved.")
+        if(os.path.exists(folder_events)):
+            print(f"Event .txt file for {eeg_filenames[i]} already existed")
+        else:
+            np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
+            print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")                
         clear_output(wait=True)
 
 
@@ -128,14 +100,3 @@ def load_events(folder_events, eeg_filenames):
         events.append(np.loadtxt(filepath, dtype=int))
     print(len(events), "Event Marker files loaded")
     return events
-
-
-def print_event_info(events, participant_index=5, 
-                     event_index=500, sample_frequency=2048):
-    """
-    Prints information on a specified event marker.
-    """
-    event_time = events[participant_index][event_index][0]
-    event_ID = events[participant_index][event_index][2]
-    print(("Participant {} heard event ID: {} after {:.1f} seconds as event {}.")\
-        .format(participant_index, event_ID, event_time / sample_frequency, event_index))
