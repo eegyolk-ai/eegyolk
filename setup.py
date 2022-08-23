@@ -258,6 +258,7 @@ class SphinxApiDoc(Command):
         src = os.path.join(project_dir, "docs")
         special = (
             "index.rst",
+            "developers.rst",
         )
 
         for f in glob(os.path.join(src, "*.rst")):

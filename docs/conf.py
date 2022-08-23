@@ -47,7 +47,7 @@ release = tag[1:]
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.extlinks',
-    # 'sphinx.ext.imgmath',
+    'sphinx.ext.imgmath',
     'sphinx.ext.intersphinx',
 
 ]
