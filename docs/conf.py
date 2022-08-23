@@ -54,11 +54,7 @@ extensions = [
 
 imgmath_image_format = 'svg'
 
-imgmath_latex = 'xelatex'
-
 imgmath_latex_args = ['--no-pdf']
-
-imgmath_latex_preamble = '\\usepackage{unicode-math}\\setmathfont{XITS Math}'
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
