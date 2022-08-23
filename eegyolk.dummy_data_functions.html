@@ -14,7 +14,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="eegyolk.epod_helper module" href="eegyolk.epod_helper.html" />
@@ -94,8 +93,8 @@ various frequency distributions.</p>
 <span class="sig-prename descclassname"><span class="pre">eegyolk.dummy_data_functions.</span></span><span class="sig-name descname"><span class="pre">generate_frequency_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'planck'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">256</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_sample_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.dummy_data_functions.generate_frequency_distribution" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function returns the occurence of frequencies up to
 ‘max_freq’ from a ‘distribution’.  Returns arrays of frequencies
-and their occurence as x and y value.  The form of <span class="math notranslate nohighlight">\(1 / (x^2 *
-(exp(1/x)-1))\)</span> is inspired by Planck’s law.</p>
+and their occurence as x and y value.  The form of <img class="math" src="_images/math/1b3690b5a06a0131a70dca5d6065d6a76a5d43b8.svg" alt="1 / (x^2 *
+(exp(1/x)-1))"/> is inspired by Planck’s law.</p>
 <dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
 <dt>distribution: string</dt><dd><p>The shape of the distribution. Choose from “planck”, “constant”,
