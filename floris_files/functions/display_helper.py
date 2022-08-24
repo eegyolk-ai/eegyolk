@@ -15,7 +15,7 @@ def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend =
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
 
-    if isinstance(y, collections.abc.Sequence):
+    if isinstance(y, collections.abc.Sequence) and legend != "":
         for i in range(len(y)):
             plt.plot(x, y[i], label = legend[i])
         plt.legend()
@@ -23,9 +23,24 @@ def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend =
     else:
         plt.plot(x, y)
     plt.show()
+    
+
+def plot_ERP(epochs, condition, event_type):
+    standard = condition + "_S"
+    deviant = condition + "_D"
+
+    if(event_type == "standard"):
+        evoked = epochs[standard].average()    
+    elif(event_type == "deviant"):
+        evoked = epochs[deviant].average()    
+    elif(event_type == "MMN"):
+        evoked = mne.combine_evoked([epochs[deviant].average(), epochs[standard].average()], weights = [1, -1])
+
+    fig = evoked.plot(spatial_colors = True)
 
 
-def show_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
+
+def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
     """
     Shows a fragment of the raw EEG data from specified raw file
     and channel_index.  `start_time` and `duration` are in seconds.
@@ -44,8 +59,7 @@ def show_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False
         fragment,
         "EEG data fragment",
         "time (s)",
-        "Channel voltage (\u03BCV)",
-    )
+        "Channel voltage (\u03BCV)")
 
 
 color_dictionary = {

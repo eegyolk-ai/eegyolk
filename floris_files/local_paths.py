@@ -3,7 +3,7 @@ import os
 # STORAGE
 
 storage = "/volume-ceph"
-personal_storage = os.path.join(storage, "floris")
+personal_storage = os.path.join(storage, "floris_storage")
 processed = os.path.join(personal_storage, "processed")
 models = os.path.join(personal_storage, "models")
 

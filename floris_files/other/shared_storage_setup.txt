@@ -40,7 +40,7 @@ COMMANDS:
 print working directory: pwd
 change directory: cd ..
 list files: ls
-create shortcut in path: ln -s /volume-ceph
+create shortcut in path: ln -s /volume-ceph/floris_storage
 example: ln -s /home/fpauwels/eegyolk/floris_files
 
 
