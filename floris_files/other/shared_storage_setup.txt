@@ -18,7 +18,7 @@ MOUNT NEW STORAGE:
 In putty:
 sudo ufw allow ssh
 sudo ufw allow from [IP of IP object in workspace X] to any port 445
-sudo ufw allow from 145.38.187.219 to any port 445
+sudo ufw allow from 145.38.189.68 to any port 445
 sudo ufw enable
 
 In workspace terminal:
