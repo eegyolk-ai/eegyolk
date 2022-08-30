@@ -15,9 +15,14 @@ ePod_events = os.path.join(ePod, "events")
 ePod_metadata = os.path.join(ePod, "metadata")
 
 ePod_processed_autoreject = os.path.join(processed, "ePod_autoreject")
-ePod_processed_autoreject_epochs = os.path.join(ePod_processed_autoreject, "epochs")
-ePod_processed_autoreject_events = os.path.join(ePod_processed_autoreject, "events")
-ePod_processed_autoreject_epochs_split_downsampled = os.path.join(ePod_processed_autoreject, "epochs_split_downsampled")
+# ePod_processed_autoreject_epochs = os.path.join(ePod_processed_autoreject, "epochs")
+# ePod_processed_autoreject_events = os.path.join(ePod_processed_autoreject, "events")
+# ePod_processed_autoreject_epochs_split = os.path.join(ePod_processed_autoreject, "epochs_split")
+
+ePod_processed_ransac = os.path.join(processed, "ePod_ransac")
+# ePod_processed_ransac_epochs = os.path.join(ePod_processed_autoreject, "epochs")
+# ePod_processed_ransac_events = os.path.join(ePod_processed_autoreject, "events")
+# ePod_processed_ransac_epochs_split = os.path.join(ePod_processed_autoreject, "epochs_split")
 
 # DDP
 
