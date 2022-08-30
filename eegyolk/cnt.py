@@ -30,12 +30,9 @@ def select_bad_epochs_list(
         max_bad_fraction=0.2,
 ):
     ''' Function to find suspect epochs and channels --> still might
-    need manual inspection!  Credit to Bjorn Bruns and Florian Huber
-
-    Args:
-    --------
+    need manual inspection!  Credit to Bjorn Bruns and Florian Huber.
+    Arguments are as below
     epochs: epochs object (mne)
-
     stimuli: list of int/str
     Stimuli to pick epochs for.
     threshold: float/int
@@ -115,6 +112,9 @@ def select_bad_epochs_list(
 
 
 class CntReader:
+    """
+    This is class that allows reading in of cnt files in a specific way.
+    """
 
     known_channel_sets = {
         '30': (
@@ -176,9 +176,7 @@ class CntReader:
         Function to read cnt file. Run bandpass filter.
         Then detect and correct/remove bad channels and bad epochs.
         Store resulting epochs as arrays.
-
-        Args:
-        --------
+        Arguments include
         cnt: str
         Name of file to import.
         label_group: int

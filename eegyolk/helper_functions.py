@@ -77,24 +77,14 @@ def load_metadata(
     make_excel_files=True,
     make_csv_files=True
 ):
-
     """
-    This function loads the metadata stored in the metadata folder,
+    Loads the metadata stored in the metadata folder,
     and makes an excel or csv from the txt.
     Inputs are filename, path_metadata(file where metadata is), )
     make_excel_files, make_csv_files (True makes this type of file),
     path_output(where we put the file)
     Outputs are a csv and/or excel file
 
-    :param filename: raw EEG, result of mne.io.read_raw type functions
-    :type filename: string
-    :param path_metadata: path to metadata
-    :type path_metadata:string
-    :param path_output: path for output file
-    :type path_output: string
-
-    :returns: metadata
-    :rtype: .csv or .xlsx file
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)

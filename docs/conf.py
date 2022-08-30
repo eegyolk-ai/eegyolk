@@ -52,6 +52,9 @@ extensions = [
 
 ]
 
+imgmath_image_format = 'svg'
+
+imgmath_latex_args = ['--no-pdf']
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
