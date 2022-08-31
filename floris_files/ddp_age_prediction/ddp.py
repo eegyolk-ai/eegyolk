@@ -1,3 +1,5 @@
+"Tools for analysing the DDP dataset. This file is not actively updated and contains functions from the https://github.com/epodium repository" 
+
 import mne
 import pandas as pd
 import numpy as np
@@ -121,8 +123,8 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=False):
     
     
     
-    
-# BJORN: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+# BJORN BRUNS and FLORIAN HUBER: https://github.com/epodium
     
     
 def read_cnt_file(file,
