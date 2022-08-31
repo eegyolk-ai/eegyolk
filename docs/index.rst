@@ -19,13 +19,13 @@ this part of the documentation is for you.
 
    modules
    developers
+   
   
 
 Developer's Guide
 -----------------
 
 :doc:`Developer's Guide <../developers>`
-
 
 
 Indices and tables
