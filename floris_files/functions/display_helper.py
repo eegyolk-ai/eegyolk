@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import collections.abc
+import mne
 
 
 def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = ""):
