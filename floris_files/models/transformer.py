@@ -16,6 +16,18 @@ class TransformerBlock(layers.Layer):
         self.layernorm2 = layers.LayerNormalization(epsilon=1e-6)
         self.dropout1 = layers.Dropout(rate)
         self.dropout2 = layers.Dropout(rate)
+    
+    def get_config(self):
+        config = super().get_config()
+        config.update({
+            'att': self.att,
+            'ffn': self.ffn,
+            'layernorm1': self.layernorm1,
+            'layernorm2': self.layernorm2,
+            'dropout1': self.dropout1,
+            'dropout2': self.dropout2
+        })
+        return config
 
     def call(self, inputs, training):
         attn_output = self.att(inputs, inputs)
@@ -33,6 +45,15 @@ class TokenAndPositionEmbedding(layers.Layer):
         self.pos_emb = layers.Embedding(input_dim=maxlen, output_dim=embed_dim)
         self.maxlen = maxlen
         self.embed_dim = embed_dim
+    
+    def get_config(self):
+        config = super().get_config()
+        config.update({
+            'pos_emb': self.pos_emb,
+            'maxlen': self.maxlen,
+            'embed_dim': self.embed_dim
+        })
+        return config
 
     def call(self, x):
         positions = tf.range(start=0, limit=self.maxlen, delta=1)
@@ -40,6 +61,7 @@ class TokenAndPositionEmbedding(layers.Layer):
         x = tf.reshape(x, [-1, self.maxlen, self.embed_dim])
         out = x + positions
         return out
+
 
 
 def TransformerModel():
