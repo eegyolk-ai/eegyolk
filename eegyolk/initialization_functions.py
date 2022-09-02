@@ -32,7 +32,13 @@ def generator_load_dataset(
     print(len(eeg_filepaths), "EEG files loaded")
 
 
-def load_dataset(folder_dataset, file_extension='.bdf', preload=True, output=False, verbose=False):
+def load_dataset(
+    folder_dataset,
+    file_extension='.bdf',
+    preload=True,
+    output=False,
+    verbose=False
+):
     """
     This function is for datasets under 5 files. Otherwise
     use generator_load_dataset.
@@ -52,11 +58,15 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True, output=Fal
         filename = os.path.split(path)[1].replace(file_extension, '')
 
         if file_extension == '.bdf':
-            raw = mne.io.read_raw_bdf(path, preload=preload,verbose=verbose)
+            raw = mne.io.read_raw_bdf(path, preload=preload, verbose=verbose)
 
         if file_extension == '.cnt':  # .cnt files do not always load.
             try:
-                raw = mne.io.read_raw_cnt(path, preload=preload, verbose=verbose)
+                raw = mne.io.read_raw_cnt(
+                    path,
+                    preload=preload,
+                    verbose=verbose
+                )
                 # TODO: What kinds of exceptions are expected here?
             except Exception:
                 eeg_filenames_failed_to_load.append(filename)
@@ -67,7 +77,7 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=True, output=Fal
         eeg_dataset.append(raw)
         eeg_filenames.append(filename)
         files_loaded += 1
-        if output == True: 
+        if output:
             print(files_loaded, "EEG files loaded")
         # if preload and files_loaded >= max_files_preloaded : break
 
@@ -160,6 +170,7 @@ def print_event_info(
         event_time / sample_frequency,
         make_ordinal(event_index),
     ))
+
 
 def read_filtered_data(metadata, verbose=False):
     epochs = []
