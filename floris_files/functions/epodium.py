@@ -12,12 +12,21 @@ import local_paths
 
 # INFORMATION
 
-channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5',
-               'T7', 'C3', 'CP1', 'CP5', 'P7', 'P3',
-               'Pz', 'PO3', 'O1', 'Oz', 'O2', 'PO4',
-               'P4', 'P8', 'CP6', 'CP2', 'C4', 'T8',
-               'FC6', 'FC2', 'F4', 'F8', 'AF4', 'Fp2',
-               'Fz', 'Cz']
+channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1',
+                 'FC5', 'T7', 'C3', 'CP1', 'CP5',
+                 'P7', 'P3', 'Pz', 'PO3', 'O1', 
+                 'Oz', 'O2', 'PO4', 'P4', 'P8',
+                 'CP6', 'CP2', 'C4', 'T8', 'FC6',
+                 'FC2', 'F4', 'F8', 'AF4', 'Fp2',
+                 'Fz', 'Cz']
+
+channel_dict = {'Fp1':'eeg', 'AF3':'eeg', 'F7':'eeg', 'F3':'eeg', 'FC1':'eeg',
+                 'FC5':'eeg', 'T7':'eeg', 'C3':'eeg', 'CP1':'eeg', 'CP5':'eeg',
+                 'P7':'eeg', 'P3':'eeg', 'Pz':'eeg', 'PO3':'eeg', 'O1':'eeg', 
+                 'Oz':'eeg', 'O2':'eeg', 'PO4':'eeg', 'P4':'eeg', 'P8':'eeg',
+                 'CP6':'eeg', 'CP2':'eeg', 'C4':'eeg', 'T8':'eeg', 'FC6':'eeg',
+                 'FC2':'eeg', 'F4':'eeg', 'F8':'eeg', 'AF4':'eeg', 'Fp2':'eeg',
+                 'Fz':'eeg', 'Cz':'eeg'}
 
 channels_mastoid = ['EXG1', 'EXG2']
 channels_drop = ['EXG3', 'EXG4', 'EXG5', 'EXG6', 'EXG7', 'EXG8', 'Status']

@@ -11,7 +11,7 @@ from tensorflow.keras.utils import Sequence
 from functions import epodium
 import local_paths
 
-def split_train_test_datasets(path_processed, min_standards = 180, min_deviants = 80, min_firststandards = 80):
+def split_train_test_datasets(path_processed, test_size = 0.25, min_standards = 180, min_deviants = 80, min_firststandards = 80):
     """
     This function checks the number of clean epochs in the event files after processing.
     Each participant that exceeds the minimum epochs is put into a test or train set.
@@ -55,9 +55,9 @@ def split_train_test_datasets(path_processed, min_standards = 180, min_deviants 
     experiments_b_only = list(b_set.difference(a_set)) # participants with only b
 
     # Split participants into train and test dataset
-    train_ab, test_ab = train_test_split(experiments_a_and_b, test_size=0.25)  
-    train_a, test_a = train_test_split(experiments_a_only, test_size=0.25) 
-    train_b, test_b = train_test_split(experiments_b_only, test_size=0.25) 
+    train_ab, test_ab = train_test_split(experiments_a_and_b, test_size=test_size)  
+    train_a, test_a = train_test_split(experiments_a_only, test_size=test_size) 
+    train_b, test_b = train_test_split(experiments_b_only, test_size=test_size) 
 
     train = [x + 'a' for x in train_ab] + [x + 'b' for x in train_ab] + \
             [x + 'a' for x in train_a] + [x + 'b' for x in train_b]
@@ -67,43 +67,52 @@ def split_train_test_datasets(path_processed, min_standards = 180, min_deviants 
     print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")    
     return train, test
 
+analyse_events = {
+    'GiepM_S': 2,
+    'GiepM_D': 3,
+    'GiepS_S': 5,
+    'GiepS_D': 6,
+    'GopM_S': 8,
+    'GopM_D': 9,
+    'GopS_S': 11,
+    'GopS_D': 12,
+}
+
 class EvokedDataIterator(Sequence):
     """
         An Iterator Sequence class as input to feed the model.
         The next value is given from the __getitem__ function
     """    
     
-    def __init__(self, experiments, n_experiments = 8, n_trials_averaged = 60):
+    def __init__(self, experiments, path_processed, n_experiments_batch = 8, n_trials_averaged = 60):
         self.experiments = experiments
-        self.n_experiments = n_experiments
+        self.path_processed = path_processed
+        self.n_experiments_batch = n_experiments_batch
         self.n_trials_averaged = n_trials_averaged
         
         metadata_path = os.path.join(local_paths.ePod_metadata, "children.txt")
         self.metadata = pd.read_table(metadata_path)
         
-        event_types = 12 # (FS/S/D in 4 conditions)
-        self.n_files =  len(self.experiments) * event_types
-        self.batch_size = self.n_experiments * event_types
+        self.batch_size = self.n_experiments_batch * len(analyse_events)
     
+    # The number of batches in the entire dataset.
     def __len__(self):
-        # The number of batches in the Sequence.
-        return int(np.ceil(len(self.experiments) / self.n_experiments))
+        return int(np.ceil(len(self.experiments) / self.n_experiments_batch))
     
-    def __getitem__(self, index):
-        
+    def __getitem__(self, index):        
         x_batch = []
         y_batch = []
         
-        for i in range(self.n_experiments):
-            participant_index = (index * self.n_experiments + i) % len(self.experiments)
+        for i in range(self.n_experiments_batch):
+            participant_index = (index * self.n_experiments_batch + i) % len(self.experiments)
             participant_id = self.experiments[participant_index][:3]
             participant_metadata = self.metadata.loc[self.metadata['ParticipantID'] == float(participant_id)]
             
-            for key in epodium.event_dictionary:
-            
+            for key in analyse_events:
+                
                 # Get file
                 npy_name = f"{self.experiments[participant_index]}_{key}.npy"
-                npy_path = os.path.join(local_paths.ePod_processed_autoreject, "epochs_split", npy_name)
+                npy_path = os.path.join(self.path_processed, "epochs_split", npy_name)
                 npy = np.load(npy_path)
                 
                 # Create ERP from averaging 'n_trials_averaged' trials.
@@ -112,17 +121,13 @@ class EvokedDataIterator(Sequence):
                 x_batch.append(evoked)
                 
                 # Create labels
-                y = np.zeros(5)
-                if(participant_metadata["Sex"].item() == "F"):
+                y = np.zeros(3)
+                if(participant_metadata["Sex"].item() == "M"):
                     y[0] = 1
                 if(participant_metadata["Group_AccToParents"].item() == "At risk"):
                     y[1] = 1
-                if(key.endswith("_FS")):
-                    y[2] = 1
-                if(key.endswith("_S")):
-                    y[3] = 1
                 if(key.endswith("_D")):
-                    y[4] = 1
+                    y[2] = 1
                 y_batch.append(y)   
         
         return np.array(x_batch), np.array(y_batch)
