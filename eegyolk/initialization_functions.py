@@ -40,8 +40,8 @@ def load_dataset(
     verbose=False
 ):
     """
-    This function is for datasets under 5 files. Otherwise
-    use generator_load_dataset.
+    This function is for datasets under five files. Otherwise
+    use generator_load_dataset. 
     Reads and returns the files that store the EEG data,
     along with a list of the filenames and paths of these bdf files.
     Takes as input the top folder location of the dataset.
