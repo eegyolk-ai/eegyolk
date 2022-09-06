@@ -169,7 +169,7 @@ class RawData:
         reading all the files once, and sort them into two groups:
         raw_good and raw_bad.
         '''
-        can_read = pd.Series(self.raw.index)
+        can_read = self.raw.index.to_series()
         for i, row in self.raw.iterrows():
             try:
                 # Usually, when MNE fails to read a file, there will
@@ -216,92 +216,46 @@ class RawData:
             # mapping = {v: int(k) for k, v in mapping.items()}
             # mappings.update(mapping)
 
-class RawDataBDF:
+
+class RawDataBdf:
     """
     Doc 
     """
 
     def __init__(self, raw_data_dir, meta_dir):
-        self.bdf_files = pd.concat(self.read_all_age_groups(raw_data_dir))
-        self.ages = pd.concat(self.read_ages_meta(meta_dir))
-        self.raw = pd.merge(
-            self.bdf_files,
-            self.ages,
-            how='left',
-            on=('age_group', 'code'),
+        raw = pd.read_csv(
+            os.path.join(meta_dir, 'children.txt'),
+            sep='\t',
         )
+        raw['Age_days_a'] = pd.to_numeric(raw['Age_days_a'], errors='coerce')
+        raw['Age_days_b'] = pd.to_numeric(raw['Age_days_b'], errors='coerce')
+        pre_drop = len(raw)
+        raw.dropna(inplace=True)
+        post_drop = len(raw)
+        logging.warn(
+            '%s records were dropped because of bad age values',
+            pre_drop - post_drop,
+        )
+        prefix = (
+            raw_data_dir +
+            os.path.sep +
+            raw['ParticipantID'].astype(str)
+        )
+        raw['path_a'] = prefix + 'a.bdf'
+        raw['path_b'] = prefix + 'b.bdf'
+        raw['age_group_a'] = (raw['Age_days_a'] / 365).round().astype(int)
+        raw['age_group_b'] = (raw['Age_days_b'] / 365).round().astype(int)
+        self.raw = raw
 
     def read_bdf(self, fname, preload=True):
-        return mne.io.read_raw_bdf(
-            fname,
-            preload=preload,
-        )
+        return mne.io.read_raw_bdf(fname, preload=preload)
 
-    def read_good_cnt(self, fname, preload=True):
-        return mne.io.read_raw_bdf(
-            fname,
-            preload=preload,
-        )
-
-    def read_age_group(self, raw_data_dir, age_group, directory):
-        pattern = os.path.join(raw_data_dir, directory, '*.cnt')
-        logging.info('Acquiring: %s', pattern)
-        cnts = glob(pattern)
-        names = tuple(
-            os.path.splitext(os.path.basename(f))[0]
-            for f in cnts
-        )
-        codes = tuple(
-            int(re.search(r'\d+', x).group())
-            for x in names
-        )
-        return pd.DataFrame(
-            list(zip(codes, cnts, names)),
-            columns=('code', 'cnt_path', 'cnt_file'),
-        )
-
-    def read_all_age_groups(self, raw_data_dir):
-        for age_group, directory in self.age_groups.items():
-            ag_df = self.read_age_group(raw_data_dir, age_group, directory)
-            ag_df['age_group'] = age_group
-            yield ag_df
-
-    def read_ages_meta(self, meta_dir):
-        for age_group, age_file in self.age_files.items():
-            df = pd.read_csv(
-                os.path.join(meta_dir, 'ages', age_file),
-                sep="\t"
-                )
-            df['age_group'] = age_group
-            yield df
-
-    def breakdown_by_age(self):
+    def breakdown_by_age(self, sample='a'):
+        age_col = 'age_group_' + sample
         return [
-            self.raw.loc[self.raw['age_group'] == ag]
-            for ag in self.age_groups.keys()
+            self.raw.loc[self.raw[age_col] == ag]
+            for ag in sorted(self.raw[age_col].unique())
         ]
-
-    def unlabeled(self):
-        return self.raw.loc[self.raw['age_days'].isnull()]
-
-    def fill_unlabeled(self):
-        '''Fill in the missing age data based on the age group the
-        subject is in
-
-        We know the age group (i.e. 11, 17, 23, ... months etc) of all
-        the subjects, based on the folder the files are in and based
-        on the file name. We have got the exact ages (in days) of most
-        subjects seperately, which we have added to the DataFrame
-        above. For some of the subjects, we don't have the exact age
-        and therefore we set this equal to the age group.
-        '''
-        self.raw['age_months'].fillna(self.raw['age_group'], inplace=True)
-        self.raw['age_days'].fillna(self.raw['age_group'] * 30, inplace=True)
-        self.raw['age_years'].fillna(self.raw['age_group'] / 12, inplace=True)
-
-    @property
-    def as_mne(self):
-        return MneViewer(self)
 
     def filter_broken(self):
         '''This did not exist in the original code, but it makes it
@@ -309,7 +263,7 @@ class RawDataBDF:
         reading all the files once, and sort them into two groups:
         raw_good and raw_bad.
         '''
-        can_read = pd.Series(self.raw.index)
+        can_read = self.raw.index.to_series()
         for i, row in self.raw.iterrows():
             try:
                 # Usually, when MNE fails to read a file, there will
@@ -317,7 +271,8 @@ class RawDataBDF:
                 # don't care about those warnings.
                 with warnings.catch_warnings():
                     with mne.utils.use_log_level('error'):
-                        self.read_cnt(row['cnt_path'], preload=False)
+                        self.read_bdf(row['path_a'], preload=False)
+                        self.read_bdf(row['path_b'], preload=False)
                 can_read[i] = 1
             except Exception as e:
                 # This is a problem with MNE library: it simply fails
@@ -330,21 +285,3 @@ class RawDataBDF:
         can_read = np.array(can_read)
         self.raw_good = self.raw[can_read == 1]
         self.raw_bad = self.raw[can_read == 0]
-
-    def count_events(self):
-        tmin = -0.2
-        tmax = 0.8
-        # means from the first instant to t = 0
-        baseline = None, 0
-        counts = pd.Series(dtype=np.int32)
-        mappings = {}
-
-        for i, path in enumerate(self.raw_good['cnt_path']):
-            raw = self.read_cnt(path)
-
-            # events is going to have event ids in the last column
-            events, mapping = mne.events_from_annotations(raw, verbose=False)
-            uniques = np.unique(events[:, 2], return_counts=True)
-            single_counts = dict(zip(*uniques))
-            counts = counts.add(pd.Series(single_counts), fill_value=0)
-            # The original code used this mapping, but this mapping
