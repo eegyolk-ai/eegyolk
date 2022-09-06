@@ -153,6 +153,80 @@ raw_good and raw_bad.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.raw.</span></span><span class="sig-name descname"><span class="pre">RawDataBDF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Doc</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.as_mne">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_mne</span></span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.as_mne" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.breakdown_by_age">
+<span class="sig-name descname"><span class="pre">breakdown_by_age</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.breakdown_by_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.count_events">
+<span class="sig-name descname"><span class="pre">count_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.count_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.fill_unlabeled">
+<span class="sig-name descname"><span class="pre">fill_unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.fill_unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the missing age data based on the age group the
+subject is in</p>
+<p>We know the age group (i.e. 11, 17, 23, … months etc) of all
+the subjects, based on the folder the files are in and based
+on the file name. We have got the exact ages (in days) of most
+subjects seperately, which we have added to the DataFrame
+above. For some of the subjects, we don’t have the exact age
+and therefore we set this equal to the age group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.filter_broken">
+<span class="sig-name descname"><span class="pre">filter_broken</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.filter_broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>This did not exist in the original code, but it makes it
+easier to deal with MNE file reading errors: we just try
+reading all the files once, and sort them into two groups:
+raw_good and raw_bad.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.read_age_group">
+<span class="sig-name descname"><span class="pre">read_age_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.read_age_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.read_ages_meta">
+<span class="sig-name descname"><span class="pre">read_ages_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.read_ages_meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.read_all_age_groups">
+<span class="sig-name descname"><span class="pre">read_all_age_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.read_all_age_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.read_bdf">
+<span class="sig-name descname"><span class="pre">read_bdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.read_bdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.read_good_cnt">
+<span class="sig-name descname"><span class="pre">read_good_cnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.read_good_cnt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.RawDataBDF.unlabeled">
+<span class="sig-name descname"><span class="pre">unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.RawDataBDF.unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
