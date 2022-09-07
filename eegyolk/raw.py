@@ -219,7 +219,7 @@ class RawData:
 
 class RawDataBdf:
     """
-    Doc 
+    Doc
     """
 
     def __init__(self, raw_data_dir, meta_dir):
