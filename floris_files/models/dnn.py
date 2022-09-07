@@ -50,7 +50,7 @@ def fully_connected_model():
     n_features = 32
     n_outputs = 3
 
-    input_shape = (n_timesteps, n_features)
+    input_shape = (n_features, n_timesteps)
 
     input_layer = keras.layers.Input(input_shape)
 
