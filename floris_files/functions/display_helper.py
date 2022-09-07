@@ -26,21 +26,6 @@ def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend =
     plt.show()
     
 
-def plot_ERP(epochs, condition, event_type):
-    standard = condition + "_S"
-    deviant = condition + "_D"
-
-    if(event_type == "standard"):
-        evoked = epochs[standard].average()    
-    elif(event_type == "deviant"):
-        evoked = epochs[deviant].average()    
-    elif(event_type == "MMN"):
-        evoked = mne.combine_evoked([epochs[deviant].average(), epochs[standard].average()], weights = [1, -1])
-
-    fig = evoked.plot(spatial_colors = True)
-
-
-
 def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
     """
     Shows a fragment of the raw EEG data from specified raw file

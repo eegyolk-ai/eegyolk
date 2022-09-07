@@ -73,7 +73,7 @@ def TransformerModel():
     output_labels = 3
 
     # Input Time-series
-    inputs = layers.Input(shape=(maxlen*embed_dim,))
+    inputs = layers.Input(shape=(embed_dim, maxlen))
     embedding_layer = TokenAndPositionEmbedding(maxlen, embed_dim)
     x = embedding_layer(inputs)
 

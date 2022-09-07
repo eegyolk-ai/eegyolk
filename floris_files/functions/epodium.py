@@ -91,6 +91,28 @@ def load_processed_file(path_npy, path_events):
     return epochs
 
 
+# PLOTTING
+
+def plot_ERP(epochs, condition, event_type):
+    standard = condition + "_S"
+    deviant = condition + "_D"
+
+    if(event_type == "standard"):
+        evoked = epochs[standard].average()    
+    elif(event_type == "deviant"):
+        evoked = epochs[deviant].average()    
+    elif(event_type == "MMN"):
+        evoked = mne.combine_evoked([epochs[deviant].average(), epochs[standard].average()], weights = [1, -1])
+
+    fig = evoked.plot(spatial_colors = True)
+
+def plot_array_as_evoked(array, frequency=512, baseline_start=-0.2, n_trials = 60):
+    info = mne.create_info(channel_names, frequency, ch_types='eeg')
+    evoked = mne.EvokedArray(array, info, tmin=baseline_start, nave=n_trials)
+    montage = mne.channels.make_standard_montage('standard_1020')
+    evoked.info.set_montage(montage, on_missing = 'ignore')
+    fig = evoked.plot(spatial_colors = True)
+
 # EVENTS
 
 event_dictionary = {
