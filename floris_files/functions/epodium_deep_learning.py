@@ -119,7 +119,7 @@ class EvokedDataIterator(Sequence):
                 # Create ERP from averaging 'n_trials_averaged' trials.
                 trial_indexes = np.random.choice(npy.shape[0], self.n_trials_averaged, replace=False)
                 # evoked = np.mean(npy[trial_indexes,:,:], axis=0)
-                evoked = numpy.median(npy[trial_indexes,:,:], axis=0)
+                evoked = np.median(npy[trial_indexes,:,:], axis=0)
                 evoked += np.random.normal(0, self.gaussian_noise, evoked.shape)
                 x_batch.append(evoked)
                 
