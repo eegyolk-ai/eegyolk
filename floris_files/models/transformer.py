@@ -73,9 +73,9 @@ def TransformerModel():
     output_labels = 3
 
     # Input Time-series
-    inputs = tf.reshape(layers.Input(shape=(maxlen*embed_dim,)), [-1])
+    inputs = layers.Input(shape=(embed_dim, maxlen))
     embedding_layer = TokenAndPositionEmbedding(maxlen, embed_dim)
-    x = embedding_layer(inputs)
+    x = embedding_layer(tf.reshape(inputs, [-1]))
 
     # Encoder Architecture
     transformer_block_1 = TransformerBlock(embed_dim=embed_dim, num_heads=num_heads, ff_dim=ff_dim)

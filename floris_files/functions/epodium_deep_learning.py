@@ -84,11 +84,12 @@ class EvokedDataIterator(Sequence):
         The next value is given from the __getitem__ function
     """    
     
-    def __init__(self, experiments, path_processed, n_experiments_batch = 8, n_trials_averaged = 60):
+    def __init__(self, experiments, path_processed, n_experiments_batch = 8, n_trials_averaged = 60, gaussian_noise = 0):
         self.experiments = experiments
         self.path_processed = path_processed
         self.n_experiments_batch = n_experiments_batch
         self.n_trials_averaged = n_trials_averaged
+        self.gaussian_noise = gaussian_noise
         
         metadata_path = os.path.join(local_paths.ePod_metadata, "children.txt")
         self.metadata = pd.read_table(metadata_path)
@@ -117,7 +118,9 @@ class EvokedDataIterator(Sequence):
                 
                 # Create ERP from averaging 'n_trials_averaged' trials.
                 trial_indexes = np.random.choice(npy.shape[0], self.n_trials_averaged, replace=False)
-                evoked = np.mean(npy[trial_indexes,:,:], axis=0)
+                # evoked = np.mean(npy[trial_indexes,:,:], axis=0)
+                evoked = numpy.median(npy[trial_indexes,:,:], axis=0)
+                evoked += np.random.normal(0, self.gaussian_noise, evoked.shape)
                 x_batch.append(evoked)
                 
                 # Create labels
