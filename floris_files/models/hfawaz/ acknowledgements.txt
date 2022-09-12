@@ -1,0 +1,1 @@
+Acknowledgements to the 'Deep Learning for Time Series Classification' GitHub repository of Hassan ISMAIL FAWAZ. https://github.com/hfawaz/dl-4-tsc.

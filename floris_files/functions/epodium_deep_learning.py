@@ -67,7 +67,7 @@ def split_train_test_datasets(path_processed, test_size = 0.25, min_standards = 
     print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")    
     return train, test
 
-analyse_events = {
+analyse_events_8 = {
     'GiepM_S': 2,
     'GiepM_D': 3,
     'GiepS_S': 5,
@@ -76,6 +76,13 @@ analyse_events = {
     'GopM_D': 9,
     'GopS_S': 11,
     'GopS_D': 12,
+}
+
+analyse_events_4 = {
+    'GiepM': 2,
+    'GiepS': 5,
+    'GopM': 8,
+    'GopS': 11,
 }
 
 class EvokedDataIterator(Sequence):
@@ -93,9 +100,7 @@ class EvokedDataIterator(Sequence):
         
         metadata_path = os.path.join(local_paths.ePod_metadata, "children.txt")
         self.metadata = pd.read_table(metadata_path)
-        
-        self.batch_size = self.n_experiments_batch * len(analyse_events)
-    
+            
     # The number of batches in the entire dataset.
     def __len__(self):
         return int(np.ceil(len(self.experiments) / self.n_experiments_batch))
@@ -109,17 +114,17 @@ class EvokedDataIterator(Sequence):
             participant_id = self.experiments[participant_index][:3]
             participant_metadata = self.metadata.loc[self.metadata['ParticipantID'] == float(participant_id)]
             
-            for key in analyse_events:
+            for key in analyse_events_4:
                 
                 # Get file
-                npy_name = f"{self.experiments[participant_index]}_{key}.npy"
+                npy_name = f"{self.experiments[participant_index]}_{key}_D.npy"
                 npy_path = os.path.join(self.path_processed, "epochs_split", npy_name)
                 npy = np.load(npy_path)
                 
                 # Create ERP from averaging 'n_trials_averaged' trials.
                 trial_indexes = np.random.choice(npy.shape[0], self.n_trials_averaged, replace=False)
-                # evoked = np.mean(npy[trial_indexes,:,:], axis=0)
-                evoked = np.median(npy[trial_indexes,:,:], axis=0)
+                evoked = np.mean(npy[trial_indexes,:,:], axis=0)
+                # evoked = np.median(npy[trial_indexes,:,:], axis=0)
                 evoked += np.random.normal(0, self.gaussian_noise, evoked.shape)
                 x_batch.append(evoked)
                 
@@ -135,3 +140,36 @@ class EvokedDataIterator(Sequence):
         
         return np.array(x_batch), np.array(y_batch)
 
+
+def create_classifier(classifier_name, input_shape, nb_classes, output_directory, verbose=False):
+    if classifier_name == 'fcn':
+        from classifiers import fcn
+        return fcn.Classifier_FCN(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'mlp':
+        from classifiers import mlp
+        return mlp.Classifier_MLP(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'resnet':
+        from classifiers import resnet
+        return resnet.Classifier_RESNET(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'mcnn':
+        from classifiers import mcnn
+        return mcnn.Classifier_MCNN(output_directory, verbose)
+    if classifier_name == 'tlenet':
+        from classifiers import tlenet
+        return tlenet.Classifier_TLENET(output_directory, verbose)
+    if classifier_name == 'twiesn':
+        from classifiers import twiesn
+        return twiesn.Classifier_TWIESN(output_directory, verbose)
+    if classifier_name == 'encoder':
+        from classifiers import encoder
+        return encoder.Classifier_ENCODER(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'mcdcnn':
+        from classifiers import mcdcnn
+        return mcdcnn.Classifier_MCDCNN(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'cnn':  # Time-CNN
+        from classifiers import cnn
+        return cnn.Classifier_CNN(output_directory, input_shape, nb_classes, verbose)
+    if classifier_name == 'inception':
+        from classifiers import inception
+        return inception.Classifier_INCEPTION(output_directory, input_shape, nb_classes, verbose)
+    
