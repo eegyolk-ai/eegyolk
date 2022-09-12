@@ -10,6 +10,7 @@ from IPython.display import clear_output
 
 import local_paths
 
+
 # INFORMATION
 
 channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1',
@@ -112,6 +113,7 @@ def plot_array_as_evoked(array, frequency=512, baseline_start=-0.2, n_trials = 6
     montage = mne.channels.make_standard_montage('standard_1020')
     evoked.info.set_montage(montage, on_missing = 'ignore')
     fig = evoked.plot(spatial_colors = True)
+
 
 # EVENTS
 
