@@ -33,7 +33,7 @@ channels_mastoid = ['EXG1', 'EXG2']
 channels_drop = ['EXG3', 'EXG4', 'EXG5', 'EXG6', 'EXG7', 'EXG8', 'Status']
 frequency = 2048
 mne_info = mne.create_info(channel_names, frequency, ch_types='eeg')
-
+   
 
 # LOADING
 
