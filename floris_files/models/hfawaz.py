@@ -55,7 +55,7 @@ def encoder(input_shape, n_classes):
     dense_layer = tfa.layers.InstanceNormalization()(dense_layer)
     # output layer
     flatten_layer = keras.layers.Flatten()(dense_layer)
-    output_layer = keras.layers.Dense(units=n_classes,activation='sigmoid')(flatten_layer)
+    output_layer = keras.layers.Dense(units=n_classes)(flatten_layer)
 
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
 
