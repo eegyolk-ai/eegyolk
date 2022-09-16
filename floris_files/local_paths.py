@@ -1,13 +1,13 @@
 import os
 
-# STORAGE
 
+# STORAGE
 storage = "/volume-ceph"
 personal_storage = os.path.join(storage, "floris_storage")
 
 # Storage data
 models = os.path.join(personal_storage, "models")
-processed = os.path.join(personal_storage, "processed")
+cleaned = os.path.join(personal_storage, "cleaned")
 split = os.path.join(personal_storage, "split")
 
 # ePodium project
@@ -15,6 +15,7 @@ ePod = os.path.join(storage, "ePodium_projectfolder")
 ePod_dataset = os.path.join(ePod, "dataset")
 ePod_events = os.path.join(ePod, "events")
 ePod_metadata = os.path.join(ePod, "metadata")
+
 
 
 # # DDP

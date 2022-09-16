@@ -12,14 +12,10 @@ from tensorflow.keras.utils import Sequence
 from functions import epodium
 import local_paths
 
-
-def split_train_test_datasets(processing_method, test_size = 0.25, min_standards = 180, min_deviants = 80, min_firststandards = 80):
+def clean_experiments(cleaning_method, min_standards = 180, min_deviants = 80, min_firststandards = 80):
     """
-    This function checks the number of clean epochs in the event files after processing.
-    Each participant that exceeds the minimum epochs is put into a test or train set.
-    Both the train and test sets have the same proportion of participants that did either a, b, or both experiments
-    
-    In an ideal experiment, there are 360 standards, 120 deviants and 130 first standards in each of the 4 conditions.
+    This function checks the number of remaining epochs in the event files after cleaning.
+    In an ideal experiment, there are 360 standards, 120 deviants and 130 first standards in each of the 4 conditions.    
     """
     
     # ePodium setup of the 12 events in 4 conditions.
@@ -33,7 +29,7 @@ def split_train_test_datasets(processing_method, test_size = 0.25, min_standards
     metadata_path = os.path.join(local_paths.ePod_metadata, "children.txt")
     metadata = pd.read_table(metadata_path)
 
-    path_events = glob.glob(os.path.join(local_paths.processed, "ePod_" + processing_method, "events", '*.txt'))
+    path_events = glob.glob(os.path.join(local_paths.cleaned, "ePod_" + cleaning_method, "events", '*.txt'))
     for path_event in path_events:
         file_event = os.path.basename(path_event)
         event = np.loadtxt(path_event, dtype=int)
@@ -49,11 +45,20 @@ def split_train_test_datasets(processing_method, test_size = 0.25, min_standards
 
     clean_list = sorted(clean_list)
     print(f"Analyzed: {len(path_events)}, bad: {len(path_events) - len(clean_list)}")
-    print(f"{len(clean_list)} files have enough epochs for analysis.")
+    print(f"{len(clean_list)} experiments have enough epochs for analysis.")
     
+    return clean_list
+
+
+def split_train_test_datasets(experiment_list, test_size = 0.25):
+    """
+    Each participant that exceeds the minimum epochs is put into a test or train set.
+    Both the train and test sets have the same proportion of participants that did either a, b, or both experiments
+    """    
+
     # Initialise same proportion of participants that did either a, b, or both experiments 
-    a_set = set(exp[0:3] for exp in clean_list if 'a' in exp)
-    b_set = set(exp[0:3] for exp in clean_list if 'b' in exp)
+    a_set = set(exp[0:3] for exp in experiment_list if 'a' in exp)
+    b_set = set(exp[0:3] for exp in experiment_list if 'b' in exp)
 
     experiments_a_and_b = list(a_set.intersection(b_set))
     experiments_a_only = list(a_set.difference(b_set)) # participants with only a
@@ -139,7 +144,7 @@ class EvokedDataIterator(Sequence):
             participant_metadata = self.metadata.loc[self.metadata['ParticipantID'] == float(participant_id)]
             
             if(verbose):
-                print(participant_id)
+                print(participant)
             
             for key in analyse_events_4:
                 

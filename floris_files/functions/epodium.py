@@ -78,7 +78,7 @@ def load_metadata(folder, filenames):
     return metadata
 
 
-def load_processed_file(path_npy, path_events):
+def load_cleaned_file(path_npy, path_events):
     npy = np.load(path_npy)
     events_12 = np.loadtxt(path_events, dtype=int)
 
