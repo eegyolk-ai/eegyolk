@@ -106,7 +106,9 @@ analyse_events_4 = {
 class EvokedDataIterator(Sequence):
     """
         An Iterator Sequence class as input to feed the model.
-        The next value is given from the __getitem__ function
+        The next value is given from the __getitem__ function.
+        For more information, go to:
+        https://www.tensorflow.org/api_docs/python/tf/keras/utils/Sequence
     """    
     
     def __init__(self, experiments, split_folder, n_experiments_batch = 8, n_trials_averaged = 60, gaussian_noise = 0):
