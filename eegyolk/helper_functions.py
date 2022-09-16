@@ -10,14 +10,8 @@ data, that can be applied to other EEG data as well.
 import glob
 import os
 import pandas as pd
-import numpy as np
 import hashlib
-import h5py
-import warnings
-import re
 import mne
-from collections import Counter
-from scipy.stats import skew
 
 
 def hash_it_up_right_all(folder, extension):
@@ -88,7 +82,7 @@ def load_metadata(
     """
     original_path = os.path.join(path_metadata, filename + '.txt')
     original_path = os.path.normpath(original_path)
-    # TODO: why is it OK to ignore non-existent files here?
+    # why is it OK to ignore non-existent files here?
     if os.path.exists(original_path):
         metadata = pd.read_table(original_path)
         if make_csv_files:
@@ -139,7 +133,7 @@ def create_epoch(
         tmax=time_after_event
     )
     
-    if autoreject=True:
+    if autoreject==True:
         ar = autoreject.AutoReject()
         single_epoch = ar.fit_transform(single_epoch) 
     

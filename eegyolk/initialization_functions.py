@@ -67,7 +67,7 @@ def load_dataset(
                     preload=preload,
                     verbose=verbose
                 )
-                # TODO: What kinds of exceptions are expected here?
+
             except Exception:
                 eeg_filenames_failed_to_load.append(filename)
                 files_failed_to_load += 1
@@ -174,7 +174,7 @@ def print_event_info(
 
 def read_filtered_data(metadata, verbose=False):
     epochs = []
-    for index, file in metadata.iterrows():
+    for file in metadata.iterrows():
         print(f"Checking out file: {file['epoch_file']}")
         path = os.path.join(file['path_epoch'], file['epoch_file'])
         epoch = mne.read_epochs(path, preload=False, verbose=verbose)
