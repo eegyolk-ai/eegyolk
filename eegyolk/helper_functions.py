@@ -123,12 +123,14 @@ def create_epoch(
     event_markers_simplified,
     time_before_event,
     time_after_event,
+    autoreject=False
 ):
     """
     This function turns eeg data into epochs.
     Inputs are eeg data files, event parkers, time before event,
     and time after event
     Outputs are eeg data divided in epochs
+    
     """
     single_epoch = mne.Epochs(
         eeg,
@@ -136,7 +138,11 @@ def create_epoch(
         tmin=time_before_event,
         tmax=time_after_event
     )
-
+    
+    if autoreject=True:
+        ar = autoreject.AutoReject()
+        single_epoch = ar.fit_transform(single_epoch) 
+    
     return single_epoch
 
 
@@ -156,7 +162,7 @@ def evoked_responses(epochs, avg_variable):
 
 def input_mmr_prep(metadata, epochs, standard_events):
     """
-    This function creates some calculations about mis-match response over a set
+    This function creates calculations about mis-match response over a set
     of participant data.
     """
     # create dataframe with expected columns
