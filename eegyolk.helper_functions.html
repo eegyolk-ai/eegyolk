@@ -82,7 +82,7 @@ data, that can be applied to other EEG data as well.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="eegyolk.helper_functions.create_epoch">
-<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">create_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eeg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_markers_simplified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_before_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_after_event</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.create_epoch" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">create_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eeg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_markers_simplified</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_before_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_after_event</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">autoreject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.create_epoch" title="Permalink to this definition">¶</a></dt>
 <dd><p>This function turns eeg data into epochs.
 Inputs are eeg data files, event parkers, time before event,
 and time after event
@@ -126,7 +126,7 @@ and then puts the hases into a table.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="eegyolk.helper_functions.input_mmr_prep">
 <span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">input_mmr_prep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_events</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.input_mmr_prep" title="Permalink to this definition">¶</a></dt>
-<dd><p>This function creates some calculations about mis-match response over a set
+<dd><p>This function creates calculations about mis-match response over a set
 of participant data.</p>
 </dd></dl>
 
