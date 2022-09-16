@@ -126,7 +126,7 @@ class EvokedDataIterator(Sequence):
     def __len__(self):
         return int(np.ceil(len(self.experiments)/self.n_experiments_batch))
     
-    def __getitem__(self, index):        
+    def __getitem__(self, index, verbose = False):        
         x_batch = []
         y_batch = []
         
@@ -137,6 +137,9 @@ class EvokedDataIterator(Sequence):
             participant = self.experiments[participant_index]
             participant_id = participant[:3]
             participant_metadata = self.metadata.loc[self.metadata['ParticipantID'] == float(participant_id)]
+            
+            if(verbose):
+                print(participant_id)
             
             for key in analyse_events_4:
                 
