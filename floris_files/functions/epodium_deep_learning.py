@@ -90,24 +90,6 @@ def denormalize_age(value):
     return (value+1)*0.5*range_age + min_age
 
 
-analyse_events_8 = {
-    'GiepM_S': 2,
-    'GiepM_D': 3,
-    'GiepS_S': 5,
-    'GiepS_D': 6,
-    'GopM_S': 8,
-    'GopM_D': 9,
-    'GopS_S': 11,
-    'GopS_D': 12,
-}
-
-analyse_events_4 = {
-    'GiepM': 2,
-    'GiepS': 5,
-    'GopM': 8,
-    'GopS': 11,
-}
-
 class EvokedDataIterator(Sequence):
     """
         An Iterator Sequence class as input to feed the model.
@@ -146,11 +128,11 @@ class EvokedDataIterator(Sequence):
             if(verbose):
                 print(participant)
             
-            for key in analyse_events_4:
+            for condition in epodium.conditions:
                 
                 # Get Standard and Deviant file
-                npy_name_S = f"{self.experiments[participant_index]}_{key}_S.npy"
-                npy_name_D = f"{self.experiments[participant_index]}_{key}_D.npy"
+                npy_name_S = f"{self.experiments[participant_index]}_{condition}_S.npy"
+                npy_name_D = f"{self.experiments[participant_index]}_{condition}_D.npy"
                 npy_path_S = os.path.join(self.split_path, npy_name_S)
                 npy_path_D = os.path.join(self.split_path, npy_name_D)
                 npy_S = np.load(npy_path_S)

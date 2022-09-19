@@ -117,6 +117,8 @@ def plot_array_as_evoked(array, frequency=512, baseline_start=-0.2, n_trials = 6
 
 # EVENTS
 
+conditions = ['GiepM', "GiepS", "GopM", "GopS"]
+
 event_dictionary = {
     'GiepM_FS': 1,
     'GiepM_S': 2,
@@ -132,8 +134,10 @@ event_dictionary = {
     'GopS_D': 12,
 }
 
-conditions = ['GiepM', "GiepS", "GopM", "GopS"]
+# List of events without 'first standards'
+analyse_events = ['GiepM_S', 'GiepM_D', 'GiepS_S', 'GiepS_D', 'GopM_S', 'GopM_D', 'GopS_S', 'GopS_D']
 
+# Conversion matrix to put same condition with different pronounciations together
 event_conversion_12 = [
     [1, 1, 12],
     [2, 13, 24],
