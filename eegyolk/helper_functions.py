@@ -124,7 +124,7 @@ def create_epoch(
     Inputs are eeg data files, event parkers, time before event,
     and time after event
     Outputs are eeg data divided in epochs
-    
+
     """
     single_epoch = mne.Epochs(
         eeg,
@@ -132,11 +132,11 @@ def create_epoch(
         tmin=time_before_event,
         tmax=time_after_event
     )
-    
-    if autoreject==True:
+
+    if autoreject:
         ar = autoreject.AutoReject()
-        single_epoch = ar.fit_transform(single_epoch) 
-    
+        single_epoch = ar.fit_transform(single_epoch)
+
     return single_epoch
 
 
