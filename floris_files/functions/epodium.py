@@ -107,12 +107,14 @@ def plot_ERP(epochs, condition, event_type):
 
     fig = evoked.plot(spatial_colors = True)
 
-def plot_array_as_evoked(array, frequency=512, baseline_start=-0.2, n_trials = 60):
+def plot_array_as_evoked(array, frequency=512, baseline_start=-0.2, n_trials = 60, ylim = None):
     info = mne.create_info(channel_names, frequency, ch_types='eeg')
     evoked = mne.EvokedArray(array, info, tmin=baseline_start, nave=n_trials)
     montage = mne.channels.make_standard_montage('standard_1020')
     evoked.info.set_montage(montage, on_missing = 'ignore')
-    fig = evoked.plot(spatial_colors = True)
+    if ylim != None:
+        ylim_temp = dict(eeg=ylim)
+    fig = evoked.plot(spatial_colors=True, ylim=ylim_temp)
 
 
 # EVENTS
