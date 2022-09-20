@@ -6,7 +6,7 @@ import collections.abc
 import mne
 
 
-def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = ""):
+def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = "", show = True, scatter = False):
     """
     Show plot with title and lables.
     """
@@ -21,9 +21,13 @@ def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend =
             plt.plot(x, y[i], label = legend[i])
         plt.legend()
 
+    elif scatter:
+        plt.scatter(x,y)
     else:
         plt.plot(x, y)
-    plt.show()
+
+    if show:
+        plt.show()
     
 
 def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
