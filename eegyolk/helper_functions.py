@@ -148,8 +148,8 @@ def evoked_responses(epochs, avg_variable):
     The output is evoked responses
     """
     evoked = []
-    for j in range(len(avg_variable)):
-        epoch = epochs[j].average()
+    for event in avg_variable:
+        epoch = epochs[event].average()
         evoked.append(epoch)
     return evoked
 

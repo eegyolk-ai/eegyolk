@@ -114,18 +114,19 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
         np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
         print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")
         # clear_output(wait=True)
-        
-def read_filtered_data(
-    metadata, 
-    verbose=False
-):
+
+
+def read_filtered_data(metadata, to_array=False, verbose=False):
     epochs = []
     for index, file in metadata.iterrows():
         print(f"Checking out file: {file['epoch_file']}")
         path = os.path.join(file['path_epoch'], file['epoch_file'])
         epoch = mne.read_epochs(path, preload=False, verbose=verbose)
+        if to_array is True:
+            epoch = epoch.get_data()
         epochs.append(epoch)
     return epochs
+
 
 def caller_save_events(folder_events, generator_argument):
     """
@@ -181,6 +182,3 @@ def print_event_info(
         event_time / sample_frequency,
         make_ordinal(event_index),
     ))
-
-
-
