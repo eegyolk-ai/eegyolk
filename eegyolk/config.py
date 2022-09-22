@@ -26,14 +26,14 @@ class Config:
         'metadata': '{}/metadata',
         'preprocessed': '{}/preprocessed',
         'models': '{}/models',
-        'data_2022': '{}/data_2022',
-        'metadata_2022': '{}/metadata_2022',
-        'preprocessed_2022': '{}/preprocessed_2022',
-        'models_2022': '{}/models_2022',
+        'root_2022': '{}',
+        'data_2022': '{}/data',
+        'metadata_2022': '{}/metadata',
+        'preprocessed_2022': '{}/preprocessed',
+        'models_2022': '{}/models',
     }
 
     required_directories = 'data', 'metadata'
-    required_directories_2022 = 'data_2022', 'metadata_2022'
 
     def __init__(self, location=None):
         self._raw = None
@@ -119,7 +119,7 @@ class Config:
                 self._loaded[m] = self.default_layout[m].format(root)
 
     def validate(self):
-        for d in self.required_directories + self.required_directories_2022:
+        for d in self.required_directories:
             if not os.path.isdir(self._loaded[d]):
                 logging.error('Directory %s must exist', self._loaded[d])
                 raise ValueError(self.usage())
