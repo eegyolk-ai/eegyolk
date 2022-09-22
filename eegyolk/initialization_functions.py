@@ -116,14 +116,7 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
         # clear_output(wait=True)
 
 
-<<<<<<< HEAD
 def read_filtered_data(metadata, to_array=False, verbose=False):
-=======
-def read_filtered_data(
-    metadata,
-    verbose=False
-):
->>>>>>> f590aaddda323d84f8684d787d07d3e4d71fdfdc
     epochs = []
     for index, file in metadata.iterrows():
         print(f"Checking out file: {file['epoch_file']}")
