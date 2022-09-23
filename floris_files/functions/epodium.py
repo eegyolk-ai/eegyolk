@@ -13,6 +13,8 @@ import local_paths
 
 # INFORMATION
 
+metadata_filenames = ["children.txt", "cdi.txt", "parents.txt", "CODES_overview.txt"]
+
 channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1',
                  'FC5', 'T7', 'C3', 'CP1', 'CP5',
                  'P7', 'P3', 'Pz', 'PO3', 'O1', 
@@ -70,9 +72,9 @@ def load_dataset(folder_dataset, file_extension='.bdf', preload=False):
     return eeg_dataset, eeg_filenames
 
 
-def load_metadata(folder, filenames):
+def load_metadata(folder):
     metadata = []
-    for filename in filenames:
+    for filename in metadata_filenames:
         path = os.path.join(folder, filename)
         metadata.append(pd.read_table(path))
     return metadata
