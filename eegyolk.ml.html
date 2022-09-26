@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="eegyolk.nn module" href="eegyolk.nn.html" />
@@ -53,14 +54,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-eegyolk.ml">
-<span id="eegyolk-ml-module"></span><h1>eegyolk.ml module<a class="headerlink" href="#module-eegyolk.ml" title="Permalink to this heading">¶</a></h1>
+  <section id="eegyolk-ml-module">
+<h1>eegyolk.ml module<a class="headerlink" href="#eegyolk-ml-module" title="Permalink to this heading">¶</a></h1>
 <p>Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
 <p>This file contains functions  designed
 to load and run ML models on a specific
 object type (from other repro work).</p>
-<dl class="py class">
+<span class="target" id="module-eegyolk.ml"></span><dl class="py class">
 <dt class="sig sig-object py" id="eegyolk.ml.Dummy">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.ml.</span></span><span class="sig-name descname"><span class="pre">Dummy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loader</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_joblib</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.ml.Dummy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#eegyolk.ml.Regression" title="eegyolk.ml.Regression"><code class="xref py py-class docutils literal notranslate"><span class="pre">Regression</span></code></a></p>
@@ -228,6 +229,61 @@ object type (from other repro work).</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">eegyolk.ml module</a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Dummy"><code class="docutils literal notranslate"><span class="pre">Dummy</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Dummy.best_fit"><code class="docutils literal notranslate"><span class="pre">Dummy.best_fit()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Dummy.fit"><code class="docutils literal notranslate"><span class="pre">Dummy.fit()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Dummy.grid_search"><code class="docutils literal notranslate"><span class="pre">Dummy.grid_search()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Emrvr"><code class="docutils literal notranslate"><span class="pre">Emrvr</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Emrvr.parameters"><code class="docutils literal notranslate"><span class="pre">Emrvr.parameters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Lsv"><code class="docutils literal notranslate"><span class="pre">Lsv</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Lsv.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Lsv.gs_parameters</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Lsv.parameters"><code class="docutils literal notranslate"><span class="pre">Lsv.parameters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.RandomForest"><code class="docutils literal notranslate"><span class="pre">RandomForest</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.RandomForest.fit"><code class="docutils literal notranslate"><span class="pre">RandomForest.fit()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.RandomForest.grid_search"><code class="docutils literal notranslate"><span class="pre">RandomForest.grid_search()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.RandomForest.parameters"><code class="docutils literal notranslate"><span class="pre">RandomForest.parameters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression"><code class="docutils literal notranslate"><span class="pre">Regression</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.best_fit"><code class="docutils literal notranslate"><span class="pre">Regression.best_fit()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.dump"><code class="docutils literal notranslate"><span class="pre">Regression.dump()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.fit"><code class="docutils literal notranslate"><span class="pre">Regression.fit()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.grid_search"><code class="docutils literal notranslate"><span class="pre">Regression.grid_search()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.load_model"><code class="docutils literal notranslate"><span class="pre">Regression.load_model()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.predict"><code class="docutils literal notranslate"><span class="pre">Regression.predict()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.scorer"><code class="docutils literal notranslate"><span class="pre">Regression.scorer()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Regression.xy_train"><code class="docutils literal notranslate"><span class="pre">Regression.xy_train()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Regressions"><code class="docutils literal notranslate"><span class="pre">Regressions</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Regressions.algorithm"><code class="docutils literal notranslate"><span class="pre">Regressions.algorithm()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Sgd"><code class="docutils literal notranslate"><span class="pre">Sgd</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Sgd.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Sgd.gs_parameters</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Sgd.parameters"><code class="docutils literal notranslate"><span class="pre">Sgd.parameters</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.ml.Svr"><code class="docutils literal notranslate"><span class="pre">Svr</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.ml.Svr.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Svr.gs_parameters</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.ml.Svr.parameters"><code class="docutils literal notranslate"><span class="pre">Svr.parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="eegyolk.loaders.html"
                           title="previous chapter">eegyolk.loaders module</a></p>
@@ -281,7 +337,7 @@ object type (from other repro work).</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, c.moore@esciencecenter.nl.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>
 </html>

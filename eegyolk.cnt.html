@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="eegyolk.config module" href="eegyolk.config.html" />
@@ -53,14 +54,14 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-eegyolk.cnt">
-<span id="eegyolk-cnt-module"></span><h1>eegyolk.cnt module<a class="headerlink" href="#module-eegyolk.cnt" title="Permalink to this heading">¶</a></h1>
+  <section id="eegyolk-cnt-module">
+<h1>eegyolk.cnt module<a class="headerlink" href="#eegyolk-cnt-module" title="Permalink to this heading">¶</a></h1>
 <p>Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
 <p>This file contains functions originally designed
 to reproduce work from 2021 to run on a Linux machine.
 The specific work was pre-processing of EEG files.</p>
-<dl class="py class">
+<span class="target" id="module-eegyolk.cnt"></span><dl class="py class">
 <dt class="sig sig-object py" id="eegyolk.cnt.CntReader">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.cnt.</span></span><span class="sig-name descname"><span class="pre">CntReader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.cnt.CntReader" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -205,6 +206,37 @@ If number is higher for one channel, call it a ‘bad’ channel</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">eegyolk.cnt module</a><ul>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader"><code class="docutils literal notranslate"><span class="pre">CntReader</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.baseline"><code class="docutils literal notranslate"><span class="pre">CntReader.baseline</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.col_names_from_feautres"><code class="docutils literal notranslate"><span class="pre">CntReader.col_names_from_feautres()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.csv_h5_paths"><code class="docutils literal notranslate"><span class="pre">CntReader.csv_h5_paths()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.event_idx"><code class="docutils literal notranslate"><span class="pre">CntReader.event_idx</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.hpass"><code class="docutils literal notranslate"><span class="pre">CntReader.hpass</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.known_channel_sets"><code class="docutils literal notranslate"><span class="pre">CntReader.known_channel_sets</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.lpass"><code class="docutils literal notranslate"><span class="pre">CntReader.lpass</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.max_bad_channels"><code class="docutils literal notranslate"><span class="pre">CntReader.max_bad_channels</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.max_bad_fraction"><code class="docutils literal notranslate"><span class="pre">CntReader.max_bad_fraction</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.read"><code class="docutils literal notranslate"><span class="pre">CntReader.read()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.rms"><code class="docutils literal notranslate"><span class="pre">CntReader.rms()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.save_preprocessed"><code class="docutils literal notranslate"><span class="pre">CntReader.save_preprocessed()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.save_preprocessed_row"><code class="docutils literal notranslate"><span class="pre">CntReader.save_preprocessed_row()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.selected_features"><code class="docutils literal notranslate"><span class="pre">CntReader.selected_features()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.threshold"><code class="docutils literal notranslate"><span class="pre">CntReader.threshold</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.tmax"><code class="docutils literal notranslate"><span class="pre">CntReader.tmax</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.CntReader.tmin"><code class="docutils literal notranslate"><span class="pre">CntReader.tmin</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.cnt.preprocess"><code class="docutils literal notranslate"><span class="pre">preprocess()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.cnt.select_bad_epochs_list"><code class="docutils literal notranslate"><span class="pre">select_bad_epochs_list()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="eegyolk.cli.html"
                           title="previous chapter">eegyolk.cli module</a></p>
@@ -258,7 +290,7 @@ If number is higher for one channel, call it a ‘bad’ channel</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, c.moore@esciencecenter.nl.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>
 </html>

@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="eegyolk.initialization_functions module" href="eegyolk.initialization_functions.html" />
@@ -53,13 +54,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-eegyolk.helper_functions">
-<span id="eegyolk-helper-functions-module"></span><h1>eegyolk.helper_functions module<a class="headerlink" href="#module-eegyolk.helper_functions" title="Permalink to this heading">¶</a></h1>
+  <section id="eegyolk-helper-functions-module">
+<h1>eegyolk.helper_functions module<a class="headerlink" href="#eegyolk-helper-functions-module" title="Permalink to this heading">¶</a></h1>
 <p>Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
 <p>This file contains functions originally designed to work with ePODIUM EEG
 data, that can be applied to other EEG data as well.</p>
-<dl class="py function">
+<span class="target" id="module-eegyolk.helper_functions"></span><dl class="py function">
 <dt class="sig sig-object py" id="eegyolk.helper_functions.band_pass_filter">
 <span class="sig-prename descclassname"><span class="pre">eegyolk.helper_functions.</span></span><span class="sig-name descname"><span class="pre">band_pass_filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_raw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lo_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hi_freq</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.helper_functions.band_pass_filter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Band pass filter code to filter out certain frequencies.</p>
@@ -151,6 +152,22 @@ Outputs are a csv and/or excel file</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">eegyolk.helper_functions module</a><ul>
+<li><a class="reference internal" href="#eegyolk.helper_functions.band_pass_filter"><code class="docutils literal notranslate"><span class="pre">band_pass_filter()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.create_epoch"><code class="docutils literal notranslate"><span class="pre">create_epoch()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.evoked_responses"><code class="docutils literal notranslate"><span class="pre">evoked_responses()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.filter_eeg_raw"><code class="docutils literal notranslate"><span class="pre">filter_eeg_raw()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.hash_it_up_right_all"><code class="docutils literal notranslate"><span class="pre">hash_it_up_right_all()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.input_mmr_prep"><code class="docutils literal notranslate"><span class="pre">input_mmr_prep()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.helper_functions.load_metadata"><code class="docutils literal notranslate"><span class="pre">load_metadata()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="eegyolk.epod_helper.html"
                           title="previous chapter">eegyolk.epod_helper module</a></p>
@@ -204,7 +221,7 @@ Outputs are a csv and/or excel file</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, c.moore@esciencecenter.nl.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>
 </html>

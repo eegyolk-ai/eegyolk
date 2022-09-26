@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Developer’s Guide" href="developers.html" />
@@ -53,13 +54,13 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="module-eegyolk.raw">
-<span id="eegyolk-raw-module"></span><h1>eegyolk.raw module<a class="headerlink" href="#module-eegyolk.raw" title="Permalink to this heading">¶</a></h1>
+  <section id="eegyolk-raw-module">
+<h1>eegyolk.raw module<a class="headerlink" href="#eegyolk-raw-module" title="Permalink to this heading">¶</a></h1>
 <p>Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.</p>
 <p>This file contains functions related to reproduction
 of 2021 work.</p>
-<dl class="py class">
+<span class="target" id="module-eegyolk.raw"></span><dl class="py class">
 <dt class="sig sig-object py" id="eegyolk.raw.MneViewer">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.raw.</span></span><span class="sig-name descname"><span class="pre">MneViewer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.MneViewer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -189,6 +190,39 @@ raw_good and raw_bad.</p>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">eegyolk.raw module</a><ul>
+<li><a class="reference internal" href="#eegyolk.raw.MneViewer"><code class="docutils literal notranslate"><span class="pre">MneViewer</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData"><code class="docutils literal notranslate"><span class="pre">RawData</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.age_files"><code class="docutils literal notranslate"><span class="pre">RawData.age_files</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.age_groups"><code class="docutils literal notranslate"><span class="pre">RawData.age_groups</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.as_mne"><code class="docutils literal notranslate"><span class="pre">RawData.as_mne</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">RawData.breakdown_by_age()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.cnt_read_args"><code class="docutils literal notranslate"><span class="pre">RawData.cnt_read_args</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.count_events"><code class="docutils literal notranslate"><span class="pre">RawData.count_events()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.fill_unlabeled"><code class="docutils literal notranslate"><span class="pre">RawData.fill_unlabeled()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.filter_broken"><code class="docutils literal notranslate"><span class="pre">RawData.filter_broken()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.read_age_group"><code class="docutils literal notranslate"><span class="pre">RawData.read_age_group()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.read_ages_meta"><code class="docutils literal notranslate"><span class="pre">RawData.read_ages_meta()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.read_all_age_groups"><code class="docutils literal notranslate"><span class="pre">RawData.read_all_age_groups()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.read_cnt"><code class="docutils literal notranslate"><span class="pre">RawData.read_cnt()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.read_good_cnt"><code class="docutils literal notranslate"><span class="pre">RawData.read_good_cnt()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawData.unlabeled"><code class="docutils literal notranslate"><span class="pre">RawData.unlabeled()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.raw.RawDataBdf"><code class="docutils literal notranslate"><span class="pre">RawDataBdf</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.breakdown_by_age()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.filter_broken"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.filter_broken()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.read_bdf"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.read_bdf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
     <h4>Previous topic</h4>
     <p class="topless"><a href="eegyolk.patches.html"
                           title="previous chapter">eegyolk.patches module</a></p>
@@ -242,7 +276,7 @@ raw_good and raw_bad.</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, c.moore@esciencecenter.nl.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>
 </html>

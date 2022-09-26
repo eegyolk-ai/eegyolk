@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="eegyolk.cli module" href="eegyolk.cli.html" />
@@ -58,19 +59,195 @@
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.cli.html">eegyolk.cli module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.cnt.html">eegyolk.cnt module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.config.html">eegyolk.config module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.display_helper.html">eegyolk.display_helper module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.dummy_data_functions.html">eegyolk.dummy_data_functions module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.epod_helper.html">eegyolk.epod_helper module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.helper_functions.html">eegyolk.helper_functions module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.initialization_functions.html">eegyolk.initialization_functions module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.loaders.html">eegyolk.loaders module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.ml.html">eegyolk.ml module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.nn.html">eegyolk.nn module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.patches.html">eegyolk.patches module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="eegyolk.raw.html">eegyolk.raw module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.cli.html">eegyolk.cli module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cli.html#eegyolk.cli.common"><code class="docutils literal notranslate"><span class="pre">common()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cli.html#eegyolk.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cli.html#eegyolk.cli.make_parser"><code class="docutils literal notranslate"><span class="pre">make_parser()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cli.html#eegyolk.cli.prepare_loader"><code class="docutils literal notranslate"><span class="pre">prepare_loader()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.cnt.html">eegyolk.cnt module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader"><code class="docutils literal notranslate"><span class="pre">CntReader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.baseline"><code class="docutils literal notranslate"><span class="pre">CntReader.baseline</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.col_names_from_feautres"><code class="docutils literal notranslate"><span class="pre">CntReader.col_names_from_feautres()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.csv_h5_paths"><code class="docutils literal notranslate"><span class="pre">CntReader.csv_h5_paths()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.event_idx"><code class="docutils literal notranslate"><span class="pre">CntReader.event_idx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.hpass"><code class="docutils literal notranslate"><span class="pre">CntReader.hpass</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.known_channel_sets"><code class="docutils literal notranslate"><span class="pre">CntReader.known_channel_sets</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.lpass"><code class="docutils literal notranslate"><span class="pre">CntReader.lpass</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.max_bad_channels"><code class="docutils literal notranslate"><span class="pre">CntReader.max_bad_channels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.max_bad_fraction"><code class="docutils literal notranslate"><span class="pre">CntReader.max_bad_fraction</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.read"><code class="docutils literal notranslate"><span class="pre">CntReader.read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.rms"><code class="docutils literal notranslate"><span class="pre">CntReader.rms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.save_preprocessed"><code class="docutils literal notranslate"><span class="pre">CntReader.save_preprocessed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.save_preprocessed_row"><code class="docutils literal notranslate"><span class="pre">CntReader.save_preprocessed_row()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.selected_features"><code class="docutils literal notranslate"><span class="pre">CntReader.selected_features()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.threshold"><code class="docutils literal notranslate"><span class="pre">CntReader.threshold</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.tmax"><code class="docutils literal notranslate"><span class="pre">CntReader.tmax</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.CntReader.tmin"><code class="docutils literal notranslate"><span class="pre">CntReader.tmin</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.preprocess"><code class="docutils literal notranslate"><span class="pre">preprocess()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.cnt.html#eegyolk.cnt.select_bad_epochs_list"><code class="docutils literal notranslate"><span class="pre">select_bad_epochs_list()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.config.html">eegyolk.config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.default_layout"><code class="docutils literal notranslate"><span class="pre">Config.default_layout</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.default_locations"><code class="docutils literal notranslate"><span class="pre">Config.default_locations</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.get_directory"><code class="docutils literal notranslate"><span class="pre">Config.get_directory()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.load"><code class="docutils literal notranslate"><span class="pre">Config.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.required_directories"><code class="docutils literal notranslate"><span class="pre">Config.required_directories</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.usage"><code class="docutils literal notranslate"><span class="pre">Config.usage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.config.html#eegyolk.config.Config.validate"><code class="docutils literal notranslate"><span class="pre">Config.validate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.display_helper.html">eegyolk.display_helper module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.display_helper.html#eegyolk.display_helper.make_ordinal"><code class="docutils literal notranslate"><span class="pre">make_ordinal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.display_helper.html#eegyolk.display_helper.show_plot"><code class="docutils literal notranslate"><span class="pre">show_plot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.display_helper.html#eegyolk.display_helper.show_raw_fragment"><code class="docutils literal notranslate"><span class="pre">show_raw_fragment()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.dummy_data_functions.html">eegyolk.dummy_data_functions module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.dummy_data_functions.html#eegyolk.dummy_data_functions.create_labeled_dataset"><code class="docutils literal notranslate"><span class="pre">create_labeled_dataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.dummy_data_functions.html#eegyolk.dummy_data_functions.generate_epoch"><code class="docutils literal notranslate"><span class="pre">generate_epoch()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.dummy_data_functions.html#eegyolk.dummy_data_functions.generate_frequency_distribution"><code class="docutils literal notranslate"><span class="pre">generate_frequency_distribution()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.dummy_data_functions.html#eegyolk.dummy_data_functions.generate_sine_wave"><code class="docutils literal notranslate"><span class="pre">generate_sine_wave()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.dummy_data_functions.html#eegyolk.dummy_data_functions.random_frequency_from_density_distribution"><code class="docutils literal notranslate"><span class="pre">random_frequency_from_density_distribution()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.epod_helper.html">eegyolk.epod_helper module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.epod_helper.html#eegyolk.epod_helper.group_events_12"><code class="docutils literal notranslate"><span class="pre">group_events_12()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.helper_functions.html">eegyolk.helper_functions module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.band_pass_filter"><code class="docutils literal notranslate"><span class="pre">band_pass_filter()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.create_epoch"><code class="docutils literal notranslate"><span class="pre">create_epoch()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.evoked_responses"><code class="docutils literal notranslate"><span class="pre">evoked_responses()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.filter_eeg_raw"><code class="docutils literal notranslate"><span class="pre">filter_eeg_raw()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.hash_it_up_right_all"><code class="docutils literal notranslate"><span class="pre">hash_it_up_right_all()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.input_mmr_prep"><code class="docutils literal notranslate"><span class="pre">input_mmr_prep()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.helper_functions.html#eegyolk.helper_functions.load_metadata"><code class="docutils literal notranslate"><span class="pre">load_metadata()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.initialization_functions.html">eegyolk.initialization_functions module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.caller_save_events"><code class="docutils literal notranslate"><span class="pre">caller_save_events()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.generator_load_dataset"><code class="docutils literal notranslate"><span class="pre">generator_load_dataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.i_load_metadata"><code class="docutils literal notranslate"><span class="pre">i_load_metadata()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.load_dataset"><code class="docutils literal notranslate"><span class="pre">load_dataset()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.load_events"><code class="docutils literal notranslate"><span class="pre">load_events()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.print_event_info"><code class="docutils literal notranslate"><span class="pre">print_event_info()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.read_filtered_data"><code class="docutils literal notranslate"><span class="pre">read_filtered_data()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.initialization_functions.html#eegyolk.initialization_functions.save_events"><code class="docutils literal notranslate"><span class="pre">save_events()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.loaders.html">eegyolk.loaders module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader.downscale"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader.downscale()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader.load"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader.load()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader.load_all"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader.load_all()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader.refine_ds"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader.refine_ds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.loaders.html#eegyolk.loaders.RegressionsLoader.split"><code class="docutils literal notranslate"><span class="pre">RegressionsLoader.split()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.ml.html">eegyolk.ml module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Dummy"><code class="docutils literal notranslate"><span class="pre">Dummy</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Dummy.best_fit"><code class="docutils literal notranslate"><span class="pre">Dummy.best_fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Dummy.fit"><code class="docutils literal notranslate"><span class="pre">Dummy.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Dummy.grid_search"><code class="docutils literal notranslate"><span class="pre">Dummy.grid_search()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Emrvr"><code class="docutils literal notranslate"><span class="pre">Emrvr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Emrvr.parameters"><code class="docutils literal notranslate"><span class="pre">Emrvr.parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Lsv"><code class="docutils literal notranslate"><span class="pre">Lsv</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Lsv.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Lsv.gs_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Lsv.parameters"><code class="docutils literal notranslate"><span class="pre">Lsv.parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.RandomForest"><code class="docutils literal notranslate"><span class="pre">RandomForest</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.RandomForest.fit"><code class="docutils literal notranslate"><span class="pre">RandomForest.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.RandomForest.grid_search"><code class="docutils literal notranslate"><span class="pre">RandomForest.grid_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.RandomForest.parameters"><code class="docutils literal notranslate"><span class="pre">RandomForest.parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression"><code class="docutils literal notranslate"><span class="pre">Regression</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.best_fit"><code class="docutils literal notranslate"><span class="pre">Regression.best_fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.dump"><code class="docutils literal notranslate"><span class="pre">Regression.dump()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.fit"><code class="docutils literal notranslate"><span class="pre">Regression.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.grid_search"><code class="docutils literal notranslate"><span class="pre">Regression.grid_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.load_model"><code class="docutils literal notranslate"><span class="pre">Regression.load_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.predict"><code class="docutils literal notranslate"><span class="pre">Regression.predict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.scorer"><code class="docutils literal notranslate"><span class="pre">Regression.scorer()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regression.xy_train"><code class="docutils literal notranslate"><span class="pre">Regression.xy_train()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regressions"><code class="docutils literal notranslate"><span class="pre">Regressions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Regressions.algorithm"><code class="docutils literal notranslate"><span class="pre">Regressions.algorithm()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Sgd"><code class="docutils literal notranslate"><span class="pre">Sgd</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Sgd.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Sgd.gs_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Sgd.parameters"><code class="docutils literal notranslate"><span class="pre">Sgd.parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Svr"><code class="docutils literal notranslate"><span class="pre">Svr</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Svr.gs_parameters"><code class="docutils literal notranslate"><span class="pre">Svr.gs_parameters</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.ml.html#eegyolk.ml.Svr.parameters"><code class="docutils literal notranslate"><span class="pre">Svr.parameters</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.nn.html">eegyolk.nn module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer"><code class="docutils literal notranslate"><span class="pre">NnOptimizer</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.fit"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.fit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.fit_model"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.fit_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.fully_connected_model"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.fully_connected_model()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.input_shape"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.input_shape</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.model_name"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.model_name()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.optimization_params"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.optimization_params</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.optimize"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.optimize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.nn.html#eegyolk.nn.NnOptimizer.predict"><code class="docutils literal notranslate"><span class="pre">NnOptimizer.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.patches.html">eegyolk.patches module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.patches.html#eegyolk.patches.patch"><code class="docutils literal notranslate"><span class="pre">patch()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="eegyolk.raw.html">eegyolk.raw module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.MneViewer"><code class="docutils literal notranslate"><span class="pre">MneViewer</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData"><code class="docutils literal notranslate"><span class="pre">RawData</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.age_files"><code class="docutils literal notranslate"><span class="pre">RawData.age_files</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.age_groups"><code class="docutils literal notranslate"><span class="pre">RawData.age_groups</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.as_mne"><code class="docutils literal notranslate"><span class="pre">RawData.as_mne</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">RawData.breakdown_by_age()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.cnt_read_args"><code class="docutils literal notranslate"><span class="pre">RawData.cnt_read_args</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.count_events"><code class="docutils literal notranslate"><span class="pre">RawData.count_events()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.fill_unlabeled"><code class="docutils literal notranslate"><span class="pre">RawData.fill_unlabeled()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.filter_broken"><code class="docutils literal notranslate"><span class="pre">RawData.filter_broken()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.read_age_group"><code class="docutils literal notranslate"><span class="pre">RawData.read_age_group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.read_ages_meta"><code class="docutils literal notranslate"><span class="pre">RawData.read_ages_meta()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.read_all_age_groups"><code class="docutils literal notranslate"><span class="pre">RawData.read_all_age_groups()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.read_cnt"><code class="docutils literal notranslate"><span class="pre">RawData.read_cnt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.read_good_cnt"><code class="docutils literal notranslate"><span class="pre">RawData.read_good_cnt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawData.unlabeled"><code class="docutils literal notranslate"><span class="pre">RawData.unlabeled()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawDataBdf"><code class="docutils literal notranslate"><span class="pre">RawDataBdf</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawDataBdf.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.breakdown_by_age()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawDataBdf.filter_broken"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.filter_broken()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="eegyolk.raw.html#eegyolk.raw.RawDataBdf.read_bdf"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.read_bdf()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -150,7 +327,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2022, c.moore@esciencecenter.nl.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.2.1.
     </div>
   </body>
 </html>
