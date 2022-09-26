@@ -180,6 +180,94 @@ raw_good and raw_bad.</p>
 
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">eegyolk.raw.</span></span><span class="sig-name descname"><span class="pre">SwitchedRawData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.age_files">
+<span class="sig-name descname"><span class="pre">age_files</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{11:</span> <span class="pre">'ages_11mnths.txt',</span> <span class="pre">17:</span> <span class="pre">'ages_17mnths.txt',</span> <span class="pre">23:</span> <span class="pre">'ages_23mnths.txt',</span> <span class="pre">29:</span> <span class="pre">'ages_29mnths.txt',</span> <span class="pre">35:</span> <span class="pre">'ages_35mnths.txt',</span> <span class="pre">41:</span> <span class="pre">'ages_41mnths.txt',</span> <span class="pre">47:</span> <span class="pre">'ages_47mnths.txt'}</span></em><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.age_files" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.age_groups">
+<span class="sig-name descname"><span class="pre">age_groups</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{11:</span> <span class="pre">'11mnd</span> <span class="pre">mmn',</span> <span class="pre">17:</span> <span class="pre">'17mnd</span> <span class="pre">mmn',</span> <span class="pre">23:</span> <span class="pre">'23mnd</span> <span class="pre">mmn',</span> <span class="pre">29:</span> <span class="pre">'29mnd</span> <span class="pre">mmn',</span> <span class="pre">35:</span> <span class="pre">'35mnd</span> <span class="pre">mmn',</span> <span class="pre">41:</span> <span class="pre">'41mnd</span> <span class="pre">mmn',</span> <span class="pre">47:</span> <span class="pre">'47mnd</span> <span class="pre">mmn'}</span></em><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.age_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.as_mne">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_mne</span></span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.as_mne" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.breakdown_by_age">
+<span class="sig-name descname"><span class="pre">breakdown_by_age</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.breakdown_by_age" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.cnt_read_args">
+<span class="sig-name descname"><span class="pre">cnt_read_args</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_format':</span> <span class="pre">'int16',</span> <span class="pre">'date_format':</span> <span class="pre">'dd/mm/yy',</span> <span class="pre">'eog':</span> <span class="pre">'auto',</span> <span class="pre">'verbose':</span> <span class="pre">False}</span></em><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.cnt_read_args" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.count_events">
+<span class="sig-name descname"><span class="pre">count_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.count_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.fill_unlabeled">
+<span class="sig-name descname"><span class="pre">fill_unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.fill_unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fill in the missing age data based on the age group the
+subject is in</p>
+<p>We know the age group (i.e. 11, 17, 23, … months etc) of all
+the subjects, based on the folder the files are in and based
+on the file name. We have got the exact ages (in days) of most
+subjects seperately, which we have added to the DataFrame
+above. For some of the subjects, we don’t have the exact age
+and therefore we set this equal to the age group.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.filter_broken">
+<span class="sig-name descname"><span class="pre">filter_broken</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.filter_broken" title="Permalink to this definition">¶</a></dt>
+<dd><p>This did not exist in the original code, but it makes it
+easier to deal with MNE file reading errors: we just try
+reading all the files once, and sort them into two groups:
+raw_good and raw_bad.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.read_age_group">
+<span class="sig-name descname"><span class="pre">read_age_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_group</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">directory</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.read_age_group" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.read_ages_meta">
+<span class="sig-name descname"><span class="pre">read_ages_meta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">meta_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.read_ages_meta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.read_all_age_groups">
+<span class="sig-name descname"><span class="pre">read_all_age_groups</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_data_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.read_all_age_groups" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.read_cnt">
+<span class="sig-name descname"><span class="pre">read_cnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.read_cnt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.read_good_cnt">
+<span class="sig-name descname"><span class="pre">read_good_cnt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">preload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.read_good_cnt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="eegyolk.raw.SwitchedRawData.unlabeled">
+<span class="sig-name descname"><span class="pre">unlabeled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#eegyolk.raw.SwitchedRawData.unlabeled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </section>
 
 
@@ -215,6 +303,23 @@ raw_good and raw_bad.</p>
 <li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.breakdown_by_age()</span></code></a></li>
 <li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.filter_broken"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.filter_broken()</span></code></a></li>
 <li><a class="reference internal" href="#eegyolk.raw.RawDataBdf.read_bdf"><code class="docutils literal notranslate"><span class="pre">RawDataBdf.read_bdf()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData</span></code></a><ul>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.age_files"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.age_files</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.age_groups"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.age_groups</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.as_mne"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.as_mne</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.breakdown_by_age"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.breakdown_by_age()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.cnt_read_args"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.cnt_read_args</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.count_events"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.count_events()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.fill_unlabeled"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.fill_unlabeled()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.filter_broken"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.filter_broken()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.read_age_group"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.read_age_group()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.read_ages_meta"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.read_ages_meta()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.read_all_age_groups"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.read_all_age_groups()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.read_cnt"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.read_cnt()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.read_good_cnt"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.read_good_cnt()</span></code></a></li>
+<li><a class="reference internal" href="#eegyolk.raw.SwitchedRawData.unlabeled"><code class="docutils literal notranslate"><span class="pre">SwitchedRawData.unlabeled()</span></code></a></li>
 </ul>
 </li>
 </ul>
