@@ -1,9 +1,10 @@
 # mne-march3 environment document
 
-name: mne-marchez
+name: envyolk
 channels:
   - conda-forge
 dependencies:
+  - autoreject=0.3.1
   - python=3.8.6
   - jupyter=1.0.0
   - matplotlib=3.5.1
@@ -16,13 +17,15 @@ dependencies:
   - mayavi=4.7.4
   - pip=20.2
   - pyvista=0.35.1
+  - scikit-learn=1.1.1
+  - sklearn=0.0 
   - seaborn=0.11.1
   - vtk=9.1.0
   - zarr=2.7.0
+  # ?- wave
   - pip:
     - absl-py==0.11.0
     - astunparse==1.6.3
-    - autoreject==0.2.2
     - cachetools==4.1.1
     - flatbuffers==1.12
     - gast==0.3.3
@@ -46,7 +49,7 @@ dependencies:
     - sklearn-rvm==0.1.1
     - tensorboard==2.4.1
     - tensorboard-plugin-wit==1.7.0
-    - tensorflow==2.4.1
+    - tensorflow==2.9.1 #must stay
     - tensorflow-addons==0.11.2
     - tensorflow-estimator==2.4.0
     - termcolor==1.1.0

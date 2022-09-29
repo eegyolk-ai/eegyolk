@@ -17,6 +17,7 @@ Submodules
    eegyolk.cnt
    eegyolk.ml
    eegyolk.nn
+   eegyolk.rawf
    eegyolk.patches
    eegyolk.config
 

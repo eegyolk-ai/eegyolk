@@ -5,7 +5,8 @@ Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
 
 This file contains functions related to reproduction
-of 2021 work.
+of 2021 work. Specifically, it helps reading in raw data from
+known types of files.
 """
 
 import logging
