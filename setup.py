@@ -55,28 +55,6 @@ def run_and_log(cmd, **kwargs):
     return subprocess.call(cmd, **kwargs)
 
 
-def translate_reqs(packages):
-    re = importlib.import_module('re')
-    tr = {
-        'sklearn': 'scikit-learn',
-        'codestyle': 'pycodestyle',
-        # Apparently, there isn't mne-base on PyPI...
-        'mne': 'mne-base',
-    }
-    result = []
-
-    for p in packages:
-        parts = re.split(r'[ <>=]', p, maxsplit=1)
-        name = parts[0]
-        version = p[len(name):]
-        if name in tr:
-            result.append(tr[name] + version)
-        else:
-            result.append(p)
-
-    return result
-
-
 project_dir = os.path.dirname(os.path.realpath(__file__))
 name = "eegyolk"
 try:
@@ -302,11 +280,40 @@ class GenerateCondaYaml(Command):
         'Conda version to build the package for',
     )]
 
+    def translate_reqs(self):
+        packages = self.distribution.install_requires
+        re = importlib.import_module('re')
+        tr = {
+            'sklearn-rvm': '',
+            'sklearn': 'scikit-learn',
+            'codestyle': 'pycodestyle',
+            # Apparently, there isn't mne-base on PyPI...
+            'mne': 'mne-base',
+        }
+        result, preinstall = [], []
+
+        for p in packages:
+            parts = re.split(r'[ <>=]', p, maxsplit=1)
+            name = parts[0]
+            version = p[len(name):]
+            if name in tr:
+                replacement = tr[name]
+                if replacement:
+                    result.append(replacement + version)
+                else:
+                    preinstall.append(p)
+            else:
+                result.append(p)
+
+        return result, preinstall
+
     def meta_yaml(self):
         python = 'python=={}'.format(self.target_python)
         conda = 'conda=={}'.format(self.target_conda)
 
-        return {
+        translated, preinstall = self.translate_reqs()
+
+        meta = {
             'package': {
                 'name': name,
                 'version': version,
@@ -315,9 +322,7 @@ class GenerateCondaYaml(Command):
             'requirements': {
                 'host': [python, conda, 'sphinx'],
                 'build': ['setuptools'],
-                'run': [python, conda] + translate_reqs(
-                    self.distribution.install_requires,
-                )
+                'run': [python, conda] + translated,
             },
             'test': {
                 'requires': [python, conda],
@@ -329,6 +334,7 @@ class GenerateCondaYaml(Command):
                 'summary': project_description,
             },
         }
+        return meta, preinstall
 
     def initialize_options(self):
         self.target_python = None
@@ -344,8 +350,29 @@ class GenerateCondaYaml(Command):
         json = importlib.import_module('json')
 
         meta_yaml_path = os.path.join(project_dir, 'conda-pkg', 'meta.yaml')
+        preinstall_path = os.path.join(project_dir, 'conda-pkg', 'pre-link')
+        meta, preinstall = self.meta_yaml()
+
         with open(meta_yaml_path, 'w') as f:
-            json.dump(self.meta_yaml(), f)
+            json.dump(meta, f)
+
+        for ext, python in (('sh', '$PYTHON'), ('bat', "%PYTHON%")):
+            with open('{}.{}'.format(preinstall_path, ext), 'w') as f:
+                f.write(
+                    '{} -m pip install '
+                    '--progress-bar=off '
+                    '--no-color '
+                    '--no-python-version-warning '
+                    '--disable-pip-version-check '
+                    '--prefer-binary '
+                    '--no-input '
+                    # I wanted this to be --force-reinstall, but this
+                    # is impossible because of "six" package.
+                    '--ignore-installed '
+                    '--no-build-isolation {}'.format(
+                        python,
+                        ' '.join(preinstall),
+                    ))
 
 
 class AnacondaUpload(Command):
@@ -390,6 +417,7 @@ class SdistConda(Command):
         pass
 
     def run(self, install_dir=None, record='record.txt'):
+        sys.stderr.write('Starting bdist egg')
         sysconfig = importlib.import_module('sysconfig')
         ei = importlib.import_module('setuptools.command.easy_install')
         EZInstallCommand = ei.easy_install
@@ -397,9 +425,11 @@ class SdistConda(Command):
         if install_dir is None:
             install_dir = sysconfig.get_path('platlib')
 
+        sys.stderr.write('Creating bdist egg')
         bdist_egg = BDistEgg(self.distribution)
         bdist_egg.initialize_options()
         bdist_egg.finalize_options()
+        sys.stderr.write('Initialized bdist egg')
         bdist_egg.run()
         egg = glob(os.path.join(project_dir, 'dist/*.egg'))[0]
         sys.stderr.write('Finished building {}'.format(egg))
@@ -549,6 +579,19 @@ class BdistConda(BDistEgg):
 
 
 if __name__ == '__main__':
+    for k, v in os.environ.items():
+        print(k, v)
+    if os.environ.get('CONDA_DEFAULT_ENV'):
+        setup_requires = []
+    else:
+        setup_requires = [
+            'sphinx',
+            'wheel',
+            'numpy<1.23.0',
+            'mne',
+            'cython>=0.29.24',
+        ]
+    print(setup_requires)
     setup(
         name=name,
         version=version,
@@ -584,11 +627,15 @@ if __name__ == '__main__':
             'matplotlib',
             'h5py',
             'sklearn',
-            # 0.2 is the newer source distribution which cannot be
-            # built w/o numpy preinstalled
-            'mne-features==0.2.0',
+            # They've deleted the wheel once again...
+            'mne-features==0.1',
             'numpy',
             'tensorflow',
+            # sklearn-rvm cannot be made an Anaconda dependency, and
+            # we need to work around it by adding it as a post-install
+            # script in our package.  See
+            # https://github.com/conda/conda-build/issues/548 for more
+            # info.
             'sklearn-rvm',
         ],
         # We need NumPy, and we need it to be this specific version
@@ -612,7 +659,7 @@ if __name__ == '__main__':
                 'config_dir': ('setup.py', './docs'),
             },
         },
-        setup_requires=['sphinx', 'wheel', 'numpy<1.23.0', 'mne'],
+        setup_requires=setup_requires,
         extras_require={
             'dev': ['pytest', 'codestyle', 'isort', 'wheel'],
         },

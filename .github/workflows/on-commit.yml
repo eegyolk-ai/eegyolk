@@ -37,7 +37,9 @@ jobs:
           conda-channels: conda-forge
           python-version: 3.8
       - run: python3 -m venv .venv
-      - run: .venv/bin/python -m pip install wheel
+      - run: .venv/bin/python -m pip install wheel 'numpy<1.23.0' mne
+      - run: .venv/bin/python -m pip uninstall -y setuptools
+      - run: .venv/bin/python -m pip install 'setuptools<60'
       - run: .venv/bin/python setup.py lint
 
 
