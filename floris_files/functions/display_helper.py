@@ -51,6 +51,19 @@ def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False
         "time (s)",
         "Channel voltage (\u03BCV)")
 
+    
+def plot_array_as_evoked(array, channel_names, montage='standard_1020', frequency=512, baseline_start=-0.2, n_trials=60, ylim=None):
+    """
+    Plot an array as an evoked.
+    Information like the sensor montage and the frequency are needed as input.    
+    """
+    info = mne.create_info(channel_names, frequency, ch_types='eeg')
+    evoked = mne.EvokedArray(array, info, tmin=baseline_start, nave=n_trials)
+    montage = mne.channels.make_standard_montage('standard_1020')
+    evoked.info.set_montage(montage, on_missing='ignore')
+    if ylim != None:
+        ylim_temp = dict(eeg=ylim)
+    fig = evoked.plot(spatial_colors=True, ylim=ylim_temp)
 
 color_dictionary = {
     1: "#8b0000",
