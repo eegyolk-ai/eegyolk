@@ -20,7 +20,7 @@ import mne_features.feature_extraction as fe
 import numpy as np
 import pandas as pd
 
-from .raw import RawData
+from .rawf import RawData
 
 
 def select_bad_epochs_list(
