@@ -586,7 +586,7 @@ if __name__ == '__main__':
             'sklearn',
             # 0.2 is the newer source distribution which cannot be
             # built w/o numpy preinstalled
-            'mne-features==0.1.0',
+            'mne-features==0.2.0',
             'numpy',
             'tensorflow',
             'sklearn-rvm',

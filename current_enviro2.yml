@@ -18,7 +18,7 @@ dependencies:
   - pip=20.2
   - pyvista=0.35.1
   - scikit-learn=1.1.1
-  - sklearn=0.0 
+
   - seaborn=0.11.1
   - vtk=9.1.0
   - zarr=2.7.0
@@ -46,6 +46,7 @@ dependencies:
     - pyqtwebengine==5.12.1
     - requests-oauthlib==1.3.0
     - rsa==4.6
+    - sklearn==0.0
     - sklearn-rvm==0.1.1
     - tensorboard==2.4.1
     - tensorboard-plugin-wit==1.7.0
