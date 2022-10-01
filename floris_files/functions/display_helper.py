@@ -51,6 +51,23 @@ def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False
         "time (s)",
         "Channel voltage (\u03BCV)")
 
+
+def plot_ERP(epochs, condition, event_type, save_path = ""):
+    standard = condition + "_S"
+    deviant = condition + "_D"
+
+    if(event_type == "standard"):
+        evoked = epochs[standard].average()    
+    elif(event_type == "deviant"):
+        evoked = epochs[deviant].average()    
+    elif(event_type == "MMN"):
+        evoked = mne.combine_evoked([epochs[deviant].average(), epochs[standard].average()], weights = [1, -1])
+
+    fig = evoked.plot(spatial_colors = True)
+
+    if save_path:
+        fig.savefig(save_path)
+
     
 def plot_array_as_evoked(array, channel_names, montage='standard_1020', frequency=512, baseline_start=-0.2, n_trials=60, ylim=None):
     """
@@ -65,6 +82,7 @@ def plot_array_as_evoked(array, channel_names, montage='standard_1020', frequenc
         ylim_temp = dict(eeg=ylim)
     fig = evoked.plot(spatial_colors=True, ylim=ylim_temp)
 
+    
 color_dictionary = {
     1: "#8b0000",
     2: "#008000",

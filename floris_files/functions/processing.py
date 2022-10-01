@@ -3,6 +3,19 @@ import numpy as np
 import autoreject
 import os
 
+## Multiprocessing
+import multiprocessing
+import functools
+
+def process_raw_multiprocess(raw_paths, dataset_info, processed_directory, num_processes = 8, verbose=False):
+    with multiprocessing.Pool(num_processes) as pool:
+        # Set fixed input variables
+        partial = functools.partial(process_raw, dataset_info=dataset_info, processed_directory=processed_directory, verbose=verbose)
+        # Multiprocess with respect to raw paths
+        pool.map(partial, raw_paths)
+    
+    print("All files processed")
+
 def process_raw(raw_path, dataset_info, processed_directory, verbose=False):
     """
         This function processes a raw EEG file from the MNE class.
@@ -80,4 +93,3 @@ def process_raw(raw_path, dataset_info, processed_directory, verbose=False):
     # np.save(path_cleaned_file, epochs_clean.get_data())   
     np.savetxt(path_events, epochs_clean.events, fmt='%i')
 
-    
