@@ -8,7 +8,7 @@ personal_storage = os.path.join(storage, "floris_storage")
 
 # Storage data
 epod_personal = os.path.join(personal_storage, "epod")
-epod_clean = os.path.join(epod_personal, "clean")
+epod_processed = os.path.join(epod_personal, "clean")
 epod_models = os.path.join(epod_personal, "models")
 epod_split = os.path.join(epod_personal, "split") # Deprecated
 
@@ -21,6 +21,7 @@ ddp_models = os.path.join(ddp_personal, "models")
 # ePodium project
 ePod = os.path.join(storage, "ePodium_projectfolder")
 ePod_dataset = os.path.join(ePod, "dataset")
+ePod_processed = os.path.join(ePod, "epochs_fif")
 ePod_events = os.path.join(ePod, "events")
 ePod_metadata = os.path.join(ePod, "metadata")
 
