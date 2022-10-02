@@ -66,7 +66,7 @@ class RawData:
         # options: `int16' and `int32'.  `int32' was chosen by the old
         # code by default, so the new code keeps the same behavior
         # while making it more explicit (and avoiding the warning).
-        'data_format': 'int16',
+        'data_format': 'int32',
         # NOTE: Note that the default is the US format, and all
         # dates are botched because of that.  Also note that
         # "conveniently", the dates are in the worst imaginable
@@ -246,8 +246,8 @@ class SwitchedRawData:
         # parsing CNT files.  The default value is `auto', but MNE
         # cannot identify how many bytes per event are used, and gives
         # a warning about that.  There seem to be only two possible
-        # options: `int16' and `int32'.  `int32' was chosen by the old
-        # code by default, so the new code keeps the same behavior
+        # options: `int16' and `int32'.  `int16' was chosen by the 
+        # oldest code by default, so this new code keeps the same behavior
         # while making it more explicit (and avoiding the warning).
         'data_format': 'int16',
         # NOTE: Note that the default is the US format, and all
@@ -401,71 +401,71 @@ class SwitchedRawData:
             # mappings.update(mapping)
 
 
-# class RawDataBdf:
-#     """
-#     Doc
-#     """
+class RawDataBdf:
+    """
+    Doc
+    """
 
-#     def __init__(self, raw_data_dir, meta_dir):
-#         raw = pd.read_csv(
-#             os.path.join(meta_dir, 'children.txt'),
-#             sep='\t',
-#         )
-#         raw['Age_days_a'] = pd.to_numeric(raw['Age_days_a'], errors='coerce')
-#         raw['Age_days_b'] = pd.to_numeric(raw['Age_days_b'], errors='coerce')
-#         pre_drop = len(raw)
-#         raw.dropna(inplace=True)
-#         post_drop = len(raw)
-#         logging.warn(
-#             '%s records were dropped because of bad age values',
-#             pre_drop - post_drop,
-#         )
-#         prefix = (
-#             raw_data_dir +
-#             os.path.sep +
-#             raw['ParticipantID'].astype(str)
-#         )
-#         raw['path_a'] = prefix + 'a.bdf'
-#         raw['path_b'] = prefix + 'b.bdf'
-#         raw['age_group_a'] = (raw['Age_days_a'] / 365).round().astype(int)
-#         raw['age_group_b'] = (raw['Age_days_b'] / 365).round().astype(int)
-#         self.raw = raw
+    def __init__(self, raw_data_dir, meta_dir):
+        raw = pd.read_csv(
+            os.path.join(meta_dir, 'children.txt'),
+            sep='\t',
+        )
+        raw['Age_days_a'] = pd.to_numeric(raw['Age_days_a'], errors='coerce')
+        raw['Age_days_b'] = pd.to_numeric(raw['Age_days_b'], errors='coerce')
+        pre_drop = len(raw)
+        raw.dropna(inplace=True)
+        post_drop = len(raw)
+        logging.warn(
+            '%s records were dropped because of bad age values',
+            pre_drop - post_drop,
+        )
+        prefix = (
+            raw_data_dir +
+            os.path.sep +
+            raw['ParticipantID'].astype(str)
+        )
+        raw['path_a'] = prefix + 'a.bdf'
+        raw['path_b'] = prefix + 'b.bdf'
+        raw['age_group_a'] = (raw['Age_days_a'] / 365).round().astype(int)
+        raw['age_group_b'] = (raw['Age_days_b'] / 365).round().astype(int)
+        self.raw = raw
 
-#     def read_bdf(self, fname, preload=True):
-#         return mne.io.read_raw_bdf(fname, preload=preload)
+    def read_bdf(self, fname, preload=True):
+        return mne.io.read_raw_bdf(fname, preload=preload)
 
-#     def breakdown_by_age(self, sample='a'):
-#         age_col = 'age_group_' + sample
-#         return [
-#             self.raw.loc[self.raw[age_col] == ag]
-#             for ag in sorted(self.raw[age_col].unique())
-#         ]
+    def breakdown_by_age(self, sample='a'):
+        age_col = 'age_group_' + sample
+        return [
+            self.raw.loc[self.raw[age_col] == ag]
+            for ag in sorted(self.raw[age_col].unique())
+        ]
 
-#     def filter_broken(self):
-#         '''This did not exist in the original code, but it makes it
-#         easier to deal with MNE file reading errors: we just try
-#         reading all the files once, and sort them into two groups:
-#         raw_good and raw_bad.
-#         '''
-#         can_read = self.raw.index.to_series()
-#         for i, row in self.raw.iterrows():
-#             try:
-#                 # Usually, when MNE fails to read a file, there will
-#                 # also be a warning, as we will throw those away, we
-#                 # don't care about those warnings.
-#                 with warnings.catch_warnings():
-#                     with mne.utils.use_log_level('error'):
-#                         self.read_bdf(row['path_a'], preload=False)
-#                         self.read_bdf(row['path_b'], preload=False)
-#                 can_read[i] = 1
-#             except Exception as e:
-#                 # This is a problem with MNE library: it simply fails
-#                 # to read some files, but instead of giving a
-#                 # meaningful error, it breaks with all kinds of
-#                 # generic errors.  Luckily, there seem to be
-#                 # relatively few of these files.
-#                 can_read[i] = 0
+    def filter_broken(self):
+        '''This did not exist in the original code, but it makes it
+        easier to deal with MNE file reading errors: we just try
+        reading all the files once, and sort them into two groups:
+        raw_good and raw_bad.
+        '''
+        can_read = self.raw.index.to_series()
+        for i, row in self.raw.iterrows():
+            try:
+                # Usually, when MNE fails to read a file, there will
+                # also be a warning, as we will throw those away, we
+                # don't care about those warnings.
+                with warnings.catch_warnings():
+                    with mne.utils.use_log_level('error'):
+                        self.read_bdf(row['path_a'], preload=False)
+                        self.read_bdf(row['path_b'], preload=False)
+                can_read[i] = 1
+            except Exception as e:
+                # This is a problem with MNE library: it simply fails
+                # to read some files, but instead of giving a
+                # meaningful error, it breaks with all kinds of
+                # generic errors.  Luckily, there seem to be
+                # relatively few of these files.
+                can_read[i] = 0
 
-#         can_read = np.array(can_read)
-#         self.raw_good = self.raw[can_read == 1]
-#         self.raw_bad = self.raw[can_read == 0]
+        can_read = np.array(can_read)
+        self.raw_good = self.raw[can_read == 1]
+        self.raw_bad = self.raw[can_read == 0]
