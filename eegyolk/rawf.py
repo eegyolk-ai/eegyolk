@@ -246,7 +246,7 @@ class SwitchedRawData:
         # parsing CNT files.  The default value is `auto', but MNE
         # cannot identify how many bytes per event are used, and gives
         # a warning about that.  There seem to be only two possible
-        # options: `int16' and `int32'.  `int16' was chosen by the 
+        # options: `int16' and `int32'.  `int16' was chosen by the
         # oldest code by default, so this new code keeps the same behavior
         # while making it more explicit (and avoiding the warning).
         'data_format': 'int16',
