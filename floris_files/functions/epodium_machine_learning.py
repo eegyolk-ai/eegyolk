@@ -12,40 +12,6 @@ from tensorflow.keras.utils import Sequence
 from functions import epodium
 import local_paths
 
-def valid_experiments(event_directory, min_standards = 180, min_deviants = 80, min_firststandards = 0):
-    """
-    This function checks the number of remaining epochs in the event files after cleaning.
-    In an ideal epodium experiment, there are 360 standards, 120 deviants and 130 first standards in each of the 4 conditions.    
-    """
-    
-    # ePodium setup of the 12 events in 4 conditions.
-    firststandard_index = [1, 4, 7, 10]
-    standard_index = [2, 5, 8, 11]
-    deviant_index = [3, 6, 9, 12]
-
-    # Experiments with enough epochs are added to valid_experiments
-    valid_experiments = []
-    
-    paths_events = glob.glob(os.path.join(event_directory, '*.txt'))
-    for path_events in paths_events:
-        event = np.loadtxt(path_events, dtype=int)
-        
-        # Counts how many events are left in standard, deviant, and FS in the 4 conditions.
-        for i in range(4):
-            if np.count_nonzero(event[:, 2] == standard_index[i]) < min_standards\
-            or np.count_nonzero(event[:, 2] == deviant_index[i]) < min_deviants\
-            or np.count_nonzero(event[:, 2] == firststandard_index[i]) < min_firststandards:
-                break
-        else: # No bads found at end of for loop
-            filename_event = os.path.basename(path_events).split(("_"))[0]
-            valid_experiments.append(filename_event)
-
-    valid_experiments = sorted(valid_experiments)
-    print(f"Analyzed: {len(paths_events)}, bad: {len(paths_events) - len(valid_experiments)}")
-    print(f"{len(valid_experiments)} experiments have enough epochs for analysis.")
-    
-    return valid_experiments
-
 def split_train_test_datasets(experiment_list, test_size = 0.25):
     """
     Each participant that exceeds the minimum epochs is put into a test or train set.

@@ -34,22 +34,21 @@ class Epodium:
     event_dictionary = {'GiepM_FS': 1, 'GiepM_S': 2, 'GiepM_D': 3, 
                         'GiepS_FS': 4, 'GiepS_S': 5, 'GiepS_D': 6,
                         'GopM_FS': 7,  'GopM_S': 8,   'GopM_D': 9,
-                        'GopS_FS': 10, 'GopS_S': 11,  'GopS_D': 12, }   
+                        'GopS_FS': 10, 'GopS_S': 11,  'GopS_D': 12}   
     
     # To be ignored during processing: 
     incomplete_experiments = ["113a", "107b (deel 1+2)", "132a", "121b(2)", "113b", "107b (deel 3+4)", "147a",
                               "121a", "134a", "143b", "121b(1)", "145b", "152a", "184a", "165a", "151a", "163a",
                               "207a", "215b"]    
 
+    def read_raw(preload = True, verbose=False):
+         return mne.io.read_raw_bdf(raw_path, preload=read_raw, verbose=verbose)
     
     def get_events_from_raw(self, raw):
         events = mne.find_events(raw, verbose=False, min_duration=2/self.frequency)
         events_12 = self.group_events_12(events)
-        return events_12
+        return events_12, event_dictionary
     
-    
-    ############ --- TOOLS SPECIFICCALLY FOR THE EPODIUM DATASET --- #################
-
     @staticmethod
     def group_events_12(events):
         """
@@ -71,6 +70,6 @@ class Epodium:
                 events_12[i] = np.where(condition, newValue, events_12[i])
         return events_12
 
-
+    
 
 

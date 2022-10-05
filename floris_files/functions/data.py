@@ -7,21 +7,33 @@ from IPython.display import clear_output
 
 ############ --- LOADING --- #################
 
-def load_raw_dataset(dataset_directory, file_extension='.bdf', preload=False):
+def load_raw_dataset(dataset_directory, file_extension='.bdf', preload=False, max_files=9999):
     pattern = os.path.join(dataset_directory, '**/*' + file_extension)
     raw_paths = sorted(glob.glob(pattern, recursive=True))
     experiments_raw = []
     experiments_id = []
 
-    for i, path in enumerate(raw_paths):
-        raw = mne.io.read_raw_bdf(path, preload=preload)
+    for path in raw_paths:
+        
+        # Support for multiple file extensions
+        if file_extension == '.bdf':
+            raw = mne.io.read_raw_bdf(path, preload=preload)
+        elif file_extension == '.cnt':  
+            try: # .cnt files do not always load.
+                raw = mne.io.read_raw_cnt(path, preload=preload)
+            except Exception:
+                print(f"File {filename} could not be loaded.")
+                continue
+        
         experiments_raw.append(raw)
         filename = os.path.split(path)[1].replace(file_extension, '')
         experiments_id.append(filename)
-        print(i+1, "EEG files loaded")
+        
+        print(len(experiments_id), "EEG files loaded")
+        if len(experiments_id) >= max_files: 
+                break
 
         clear_output(wait=True)
-    print(i+1, "EEG files loaded")
 
     return experiments_raw, experiments_id
 
