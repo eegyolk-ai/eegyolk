@@ -10,7 +10,7 @@ import numpy as np
 import os
 import glob
 # from IPython.display import clear_output
-from eegyolk.display_helper import make_ordinal
+from eegyolk.display_helper import make_ordinal  # added eegyolk.
 
 
 def generator_load_dataset(
@@ -67,7 +67,7 @@ def load_dataset(
                     preload=preload,
                     verbose=verbose
                 )
-                # TODO: What kinds of exceptions are expected here?
+
             except Exception:
                 eeg_filenames_failed_to_load.append(filename)
                 files_failed_to_load += 1
@@ -114,6 +114,18 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
         np.savetxt(path_events, mne.find_events(eeg_dataset[i]), fmt='%i')
         print("\n", i + 1, " out of ", len(eeg_dataset), " saved.")
         # clear_output(wait=True)
+
+
+def read_filtered_data(metadata, to_array=False, verbose=False):
+    epochs = []
+    for index, file in metadata.iterrows():
+        print(f"Checking out file: {file['epoch_file']}")
+        path = os.path.join(file['path_epoch'], file['epoch_file'])
+        epoch = mne.read_epochs(path, preload=False, verbose=verbose)
+        if to_array is True:
+            epoch = epoch.get_data()
+        epochs.append(epoch)
+    return epochs
 
 
 def caller_save_events(folder_events, generator_argument):
@@ -170,13 +182,3 @@ def print_event_info(
         event_time / sample_frequency,
         make_ordinal(event_index),
     ))
-
-
-def read_filtered_data(metadata, verbose=False):
-    epochs = []
-    for index, file in metadata.iterrows():
-        print(f"Checking out file: {file['epoch_file']}")
-        path = os.path.join(file['path_epoch'], file['epoch_file'])
-        epoch = mne.read_epochs(path, preload=False, verbose=verbose)
-        epochs.append(epoch)
-    return epochs

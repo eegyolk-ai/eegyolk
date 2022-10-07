@@ -1,0 +1,11 @@
+{
+	"data": "/volume-ceph/DDP_projectfolder/dataset",
+	"preprocessed": "/volume-ceph/makeda_storage/preprocessed-ml",
+	"metadata": "/volume-ceph/DDP_projectfolder/metadata",
+	"models": "/volume-ceph/models",
+	"root_2022": "/volume-ceph/ePodium_projectfolder",
+	"data_2022": "/volume-ceph/ePodium_projectfolder/dataset",
+	"preprocessed_2022": "/volume-ceph/ePodium_projectfolder/pre_processed_2022",
+	"metadata_2022": "/volume-ceph/ePodium_projectfolder/metadata",
+	"models_2022": "/volume-ceph/models_2022"
+}

@@ -26,6 +26,11 @@ class Config:
         'metadata': '{}/metadata',
         'preprocessed': '{}/preprocessed',
         'models': '{}/models',
+        'root_2022': '{}',
+        'data_2022': '{}/data',
+        'metadata_2022': '{}/metadata',
+        'preprocessed_2022': '{}/preprocessed',
+        'models_2022': '{}/models',
     }
 
     required_directories = 'data', 'metadata'

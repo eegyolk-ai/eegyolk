@@ -53,7 +53,7 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
     Run the following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate mne-marchez`.
 2. Install eegyolk: pip install the eegyolk library in the suggested version in the notebooks 
    (you can also clone the repo and   work locally but this requires a few additional manuevers of code in terms of imports)
-3. Update the configuration_template.py (NOT config_template) file and rename to config.py.
+3. Update the configuration by examining config.py and adding a .eegyolk folder on your server as implied (see general readme file for clarification)
 4. Run the data preperation notebook `data_prep_eeg.ipynb`. Make sure that the folder names are correctly adjusted. 
 5. The `data_prep_eeg.ipynb` notebook gives as output the file `metadata.csv`. This file can be used for the `data_analysis.ipynb` notebook to analyze the data. 
 6. 'metadata.csv` is the input for the `Input_mmr_prep.ipynb` and the 'Input_connectivity_prep.csv'. The notebooks generate the data which will be used as input for the ML models. The first notebook is based on the mismatch response between a standard stimulus and a deviant stimulus. The second notebook calculates the connectivity between sensors. 

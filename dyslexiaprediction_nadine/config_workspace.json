@@ -1,0 +1,7 @@
+{
+    "root": "../../volume-ceph/",
+    "metadata": "../../volume-ceph/ePodium_projectfolder/metadata",
+    "preprocessed": "../../volume-ceph/nadine_storage/processed_epochs",
+    "dataset" : "../../volume-ceph/ePodium_projectfolder/dataset",
+    "events" : "../../volume-ceph/ePodium_projectfolder/events"
+}
