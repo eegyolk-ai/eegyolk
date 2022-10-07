@@ -18,7 +18,7 @@ MOUNT NEW STORAGE:
 In putty:
 sudo ufw allow ssh
 sudo ufw allow from [IP of IP object in workspace X] to any port 445
-sudo ufw allow from 145.38.187.219 to any port 445
+sudo ufw allow from 145.38.188.225 to any port 445
 sudo ufw enable
 
 In workspace terminal:
@@ -40,8 +40,8 @@ COMMANDS:
 print working directory: pwd
 change directory: cd ..
 list files: ls
-create shortcut in path: ln -s /volume-ceph
+create shortcut in path: ln -s /volume-ceph/floris_storage
 example: ln -s /home/fpauwels/eegyolk/floris_files
-
+remove shortcut: rm volume-ceph
 
 
