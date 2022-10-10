@@ -34,7 +34,12 @@ class Epodium:
     event_dictionary = {'GiepM_FS': 1, 'GiepM_S': 2, 'GiepM_D': 3, 
                         'GiepS_FS': 4, 'GiepS_S': 5, 'GiepS_D': 6,
                         'GopM_FS': 7,  'GopM_S': 8,   'GopM_D': 9,
-                        'GopS_FS': 10, 'GopS_S': 11,  'GopS_D': 12}   
+                        'GopS_FS': 10, 'GopS_S': 11,  'GopS_D': 12}
+    
+    # Order into type (FS/S/D)
+    firststandard_id = [1, 4, 7, 10]
+    standard_id = [2, 5, 8, 11]
+    deviant_id = [3, 6, 9, 12]
     
     # To be ignored during processing: 
     incomplete_experiments = ["113a", "107b (deel 1+2)", "132a", "121b(2)", "113b", "107b (deel 3+4)", "147a",
@@ -42,7 +47,7 @@ class Epodium:
                               "207a", "215b"]    
 
     @staticmethod
-    def read_raw(preload = True, verbose=False):
+    def read_raw(preload=True, verbose=False):
          return mne.io.read_raw_bdf(raw_path, preload=read_raw, verbose=verbose)
     
     def events_from_raw(self, raw):
@@ -70,6 +75,16 @@ class Epodium:
                 events_12[i] = np.where(mask, newValue, events_12[i])
         return events_12
 
-    
+    def is_valid_experiment(self, events, min_standards, min_deviants, min_firststandards):
+        "Checks from the events file if there are enough epochs in the .fif file to be valid for analysis."
+        # Counts how many events are left in standard, deviant, and FS in the 4 conditions.
+        for i in range(4):
+            if np.count_nonzero(events == self.standard_id[i]) < min_standards\
+            or np.count_nonzero(events == self.deviant_id[i]) < min_deviants\
+            or np.count_nonzero(events == self.firststandard_id[i]) < min_firststandards:
+                return False
+        return True
+        
+        
 
 

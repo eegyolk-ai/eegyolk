@@ -18,6 +18,7 @@ ePod_metadata = os.path.join(ePod, "metadata")
 # DDP
 DDP = os.path.join(storage, "DDP_projectfolder")
 DDP_dataset = os.path.join(DDP, "dataset")
-DDP_processed = os.path.join(DDP, "epochs_fif")
-DDP_events = os.path.join(DDP, "events")
 DDP_metadata = os.path.join(DDP, "metadata")
+DDP_epochs = os.path.join(DDP, "epochs_fif")
+DDP_epochs_events = os.path.join(DDP_epochs, "events")
+
