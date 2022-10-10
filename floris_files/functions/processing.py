@@ -27,6 +27,7 @@ def process_raw(index, experiments_name, experiments_paths, dataset, processed_d
         Processing steps: 1. high-pass filter, 2. create epochs, 3. low-pass filter, 4. AutoReject.
         The processed .fif file is stored in processed_directory.
         This directory should contain an 'events' folder to store the events .txt file.
+        The function is tested on both the ePod and the DDP dataset.
         
         Args:
         raw_path: Path to the raw EEG-file
@@ -56,8 +57,6 @@ def process_raw(index, experiments_name, experiments_paths, dataset, processed_d
         return
     print(f"Cleaning experiment: {experiment_name}  \n" , end='')
     
-    
-    
     # Read-in raw file
     try:
         raw = dataset.read_raw(experiment_paths)    
@@ -77,7 +76,7 @@ def process_raw(index, experiments_name, experiments_paths, dataset, processed_d
     try:
         epochs = mne.Epochs(raw, events, event_dict, -0.2, 0.8, preload=True, verbose=False)
     except:
-        print(f"Not all events of the event_dictionary in file {file} \n", end='')
+        print(f"Not all events of the event_dictionary in file {experiment_name} \n", end='')
         return
     
     # Low pass filter for high-frequency artifacts
@@ -97,33 +96,22 @@ def process_raw(index, experiments_name, experiments_paths, dataset, processed_d
     np.savetxt(path_events, epochs_clean.events, fmt='%i')
     
     
-def valid_experiments(event_directory, min_standards = 180, min_deviants = 80, min_firststandards = 0):
+def valid_experiments(dataset, event_directory, min_standards = 180, min_deviants = 80, min_firststandards = 0):
     """
     This function checks the number of remaining epochs in the event files after processing.
     In an ideal epodium experiment, there are 360 standards, 120 deviants and 130 first standards in each of the 4 conditions.    
-    """
-    
-    # ePodium setup of the 12 events in 4 conditions.
-    firststandard_index = [1, 4, 7, 10]
-    standard_index = [2, 5, 8, 11]
-    deviant_index = [3, 6, 9, 12]
+    """   
 
     # Experiments with enough epochs are added to valid_experiments
     valid_experiments = []
     
     paths_events = glob.glob(os.path.join(event_directory, '*.txt'))
     for path_events in paths_events:
-        event = np.loadtxt(path_events, dtype=int)
-        
-        # Counts how many events are left in standard, deviant, and FS in the 4 conditions.
-        for i in range(4):
-            if np.count_nonzero(event[:, 2] == standard_index[i]) < min_standards\
-            or np.count_nonzero(event[:, 2] == deviant_index[i]) < min_deviants\
-            or np.count_nonzero(event[:, 2] == firststandard_index[i]) < min_firststandards:
-                break
-        else: # No bads found at end of for loop
-            filename_event = os.path.basename(path_events).split(("_"))[0]
-            valid_experiments.append(filename_event)
+        events = np.loadtxt(path_events, dtype=int)
+
+        if dataset.is_valid_experiment(events[:, 2], min_standards, min_deviants, min_firststandards):
+            filename_events = os.path.basename(path_events).split(("_events.txt"))[0]
+            valid_experiments.append(filename_events)
 
     valid_experiments = sorted(valid_experiments)
     print(f"Analyzed: {len(paths_events)}, bad: {len(paths_events) - len(valid_experiments)}")

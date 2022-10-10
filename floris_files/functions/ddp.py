@@ -48,12 +48,15 @@ class DDP:
     event_dictionary_full =  {'12', '13', '14', '15', '2', '3', '4', '5', '55', '66', '77', '88'}
     event_dictionary_3 = {'standard': 1, 'deviant': 2, 'first_standard': 3}
     event_dictionary_2 = {'standard': 1, 'deviant': 2}
+    standard_id = [1]
+    deviant_id = [2]
+    firststandard_id = [3]
 
     standard_list = ['2', '3', '4', '5']
     deviant_list = ['55', '66', '77', '88']
     first_standard_list = ['12', '13', '14', '15']
     
-    incomplete_experiments = ["8_11", "108_11", "156_11", "164_11", "619_11", "636_11"]
+    incomplete_experiments = ["8_11", "108_11", "156_11", "164_11", "619_11", "636_11", "162_17",, "702_11", "7_17", "162_17", "311_17", "735_23", "737_23 ", "101_29", "741_29", "756_29", "737_23"]
     
     @staticmethod
     def read_raw(raw_paths, preload = True, verbose=False):
@@ -66,6 +69,10 @@ class DDP:
         return mne.concatenate_raws(raws)
     
     def events_from_raw(self, raw):
+        """
+        Return the events from raw. The original labels are changed to:
+        1 for standards, 2 for deviants, 3 for first standards.
+        """
         standard_list = ['2', '3', '4', '5']
         deviant_list = ['55', '66', '77', '88']
         first_standard_list = ['12', '13', '14', '15']
@@ -87,16 +94,9 @@ class DDP:
             return events_3, self.event_dictionary_3        
         else:
             return events_3, self.event_dictionary_2
-    
-    def group_events_3(self, events, verbose=False):
-        """
-        Groups all events into standard, first standard, or deviant events.
-        """
-
-
         return events_3
 
-    def create_labels_raw(self, dataset_directory, ages_directory, path_save_csv = ""):
+    def create_labels_raw(self, dataset_directory, ages_directory, path_save_csv=""):
         """
         This function creates a .csv file with the labels: filename / code / age_group / age_days
         The labels are saved in 'path_save_csv'.
@@ -144,5 +144,14 @@ class DDP:
         
         return merged_df
 
-
+    
+    def is_valid_experiment(self, events, min_standards, min_deviants, min_firststandards):
+        "Checks from the events file if there are enough epochs in the .fif file to be valid for analysis."
+        # Counts how many events are left in standard, deviant, and FS in the 4 conditions.
+        if np.count_nonzero(events == 1) < min_standards\
+        or np.count_nonzero(events == 2) < min_deviants\
+        or np.count_nonzero(events == 3) < min_firststandards:
+                return False
+        return True
+        
 
