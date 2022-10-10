@@ -9,17 +9,19 @@ import multiprocessing
 import functools
 
 
-def process_raw_multiprocess(raw_paths, dataset, processed_directory, num_processes = 8, verbose=False):
+def process_raw_multiprocess(experiments_name, experiments_paths, dataset, processed_directory, num_processes = 8, verbose=False):
+    indexes = range(len(experiments_name))
     with multiprocessing.Pool(num_processes) as pool:
         # Set fixed input variables
-        partial = functools.partial(process_raw, dataset=dataset, processed_directory=processed_directory, verbose=verbose)
+        partial = functools.partial(process_raw, experiments_name=experiments_name, experiments_paths=experiments_paths, 
+                                    dataset=dataset, processed_directory=processed_directory, verbose=verbose)
         # Multiprocess with respect to raw paths
-        pool.map(partial, raw_paths)
+        pool.map(partial, indexes)
     
     print("All files processed")
 
     
-def process_raw(raw_path, dataset, processed_directory, verbose=False):
+def process_raw(index, experiments_name, experiments_paths, dataset, processed_directory, verbose=False):
     """
         This function processes a raw EEG file from the MNE class.
         Processing steps: 1. high-pass filter, 2. create epochs, 3. low-pass filter, 4. AutoReject.
@@ -30,37 +32,39 @@ def process_raw(raw_path, dataset, processed_directory, verbose=False):
         raw_path: Path to the raw EEG-file
         dataset: Class containing information on the dataset, e.g. 
         processed_directory: Directory for storing the files.
-    """    
-    
-    # Raw file-names
-    file = os.path.basename(raw_path)
-    filename, extension = os.path.splitext(file)
+    """   
+    experiment_name = experiments_name[index]
+    experiment_paths = experiments_paths[index]
     
     # Paths for cleaned data    
-    path_epoch = os.path.join(processed_directory, filename+"_epo.fif")
-    path_events = os.path.join(processed_directory, "events", filename+"_events.txt")  
+    path_epoch = os.path.join(processed_directory, experiment_name+"_epo.fif")
+    path_events = os.path.join(processed_directory, "events", experiment_name+"_events.txt")  
 
     # Check if file needs to be processed:
     if os.path.exists(path_epoch) or os.path.exists(path_events):
         if verbose:
-            print(f"File {file} already cleaned \n", end='')
+            print(f"Experiment {experiment_name} already cleaned \n", end='')
         # If the event .txt file is missing:
         if not os.path.exists(path_events):
-            print(f"Creating the event file {filename}.txt \n", end='')
+            print(f"Creating the event file {experiment_name}.txt \n", end='')
             epochs_clean = mne.read_epochs(path_epoch, verbose=0)
             np.savetxt(path_events, epochs_clean.events, fmt='%i')
         return    
-    if filename in dataset.incomplete_experiments:
+    if experiment_name in dataset.incomplete_experiments:
         if verbose:
-            print(f"File {file} ignored \n", end='')
+            print(f"Experiment {experiment_name} ignored \n", end='')
         return
-    if verbose:
-        print(f"Cleaning file: {file}  \n" , end='')
+    print(f"Cleaning experiment: {experiment_name}  \n" , end='')
+    
     
     
     # Read-in raw file
-    raw = dataset.read_raw(raw_path)    
-    events, event_dict = dataset.get_events_from_raw(raw)
+    try:
+        raw = dataset.read_raw(experiment_paths)    
+        events, event_dict = dataset.events_from_raw(raw)
+    except:
+        print(f"Unable to read-in from path {experiment_paths} \n", end='')
+        return
 
     # Set electrodes
     raw.pick_channels(dataset.channel_names)
@@ -68,7 +72,7 @@ def process_raw(raw_path, dataset, processed_directory, verbose=False):
 
     # High-pass filter for detrending
     raw.filter(0.1, None, verbose=False)
-    
+        
     # Create epochs from raw. Epoch creation sometimes returns an error.
     try:
         epochs = mne.Epochs(raw, events, event_dict, -0.2, 0.8, preload=True, verbose=False)
@@ -78,6 +82,9 @@ def process_raw(raw_path, dataset, processed_directory, verbose=False):
     
     # Low pass filter for high-frequency artifacts
     epochs.filter(None, 40, verbose=False)
+    
+    print(epochs.ch_names)
+    #epochs.plot( n_epochs=5, n_channels=50)
 
     # Reject bad trials and repair bad sensors in EEG
     # autoreject.Ransac() is a quicker but less accurate method than AutoReject.
@@ -92,7 +99,7 @@ def process_raw(raw_path, dataset, processed_directory, verbose=False):
     
 def valid_experiments(event_directory, min_standards = 180, min_deviants = 80, min_firststandards = 0):
     """
-    This function checks the number of remaining epochs in the event files after cleaning.
+    This function checks the number of remaining epochs in the event files after processing.
     In an ideal epodium experiment, there are 360 standards, 120 deviants and 130 first standards in each of the 4 conditions.    
     """
     
