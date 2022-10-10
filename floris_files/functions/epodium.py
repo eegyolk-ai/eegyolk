@@ -41,10 +41,11 @@ class Epodium:
                               "121a", "134a", "143b", "121b(1)", "145b", "152a", "184a", "165a", "151a", "163a",
                               "207a", "215b"]    
 
+    @staticmethod
     def read_raw(preload = True, verbose=False):
          return mne.io.read_raw_bdf(raw_path, preload=read_raw, verbose=verbose)
     
-    def get_events_from_raw(self, raw):
+    def events_from_raw(self, raw):
         events = mne.find_events(raw, verbose=False, min_duration=2/self.frequency)
         events_12 = self.group_events_12(events)
         return events_12, event_dictionary
@@ -65,9 +66,8 @@ class Epodium:
         events_12 = copy.deepcopy(events)
         for i in range(len(events)):
             for newValue, minOld, maxOld in event_conversion_12:
-                condition = np.logical_and(
-                    minOld <= events_12[i], events_12[i] <= maxOld)
-                events_12[i] = np.where(condition, newValue, events_12[i])
+                mask = np.logical_and(minOld <= events_12[i], events_12[i] <= maxOld)
+                events_12[i] = np.where(mask, newValue, events_12[i])
         return events_12
 
     
