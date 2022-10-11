@@ -1,2 +1,0 @@
-These html files are copies of the Jupyter Notebooks that have been executed from start to finish.
-The widgets are displayed differently, as well as some of the plots. This is because the visuals of the widgets can't be exported to other extensions than the .ipynb format.
