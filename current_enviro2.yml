@@ -8,6 +8,7 @@ dependencies:
   - python=3.8.6
   - jupyter=1.0.0
   - matplotlib=3.5.1
+  - h5io=0.1.7
   - h5py=2.10.0
   - ipympl
   - ipython
