@@ -84,7 +84,48 @@ class Epodium:
             or np.count_nonzero(events == self.firststandard_id[i]) < min_firststandards:
                 return False
         return True
+    
+
+    ############ --- MACHINE/DEEP LEARNING TOOLS --- #################
         
-        
+    # Normalize age for regressive age prediction:
+    min_age = 487
+    max_age = 756 # 756
+    range_age = max_age - min_age # 269 (9 months)
+
+    def normalize_age(age_days): # Normalizes age between -1 and 1
+        return (age_days-min_age) / (0.5*range_age) - 1
+
+    def denormalize_age(value):
+        return (value+1)*0.5*range_age + min_age
+
+
+    def split_train_test_datasets(experiment_list, test_size = 0.25):
+        """
+        Each participant that exceeds the minimum epochs is put into a test or train set.
+        Both the train and test sets have the same proportion of participants that did either a, b, or both experiments
+        """    
+
+        # Initialise same proportion of participants that did either a, b, or both experiments 
+        a_set = set(exp[0:3] for exp in experiment_list if 'a' in exp)
+        b_set = set(exp[0:3] for exp in experiment_list if 'b' in exp)
+
+        experiments_a_and_b = list(a_set.intersection(b_set))
+        experiments_a_only = list(a_set.difference(b_set)) # participants with only a
+        experiments_b_only = list(b_set.difference(a_set)) # participants with only b
+
+        # Split participants into train and test dataset
+        train_ab, test_ab = train_test_split(experiments_a_and_b, test_size=test_size)  
+        train_a, test_a = train_test_split(experiments_a_only, test_size=test_size) 
+        train_b, test_b = train_test_split(experiments_b_only, test_size=test_size) 
+
+        train = [x + 'a' for x in train_ab] + [x + 'b' for x in train_ab] + \
+                [x + 'a' for x in train_a] + [x + 'b' for x in train_b]
+        test = [x + 'a' for x in test_ab] + [x + 'b' for x in test_ab] + \
+           [x + 'a' for x in test_a] + [x + 'b' for x in test_b]
+
+        print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")    
+        return train, test
+
 
 
