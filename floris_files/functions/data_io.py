@@ -76,3 +76,4 @@ def save_events(events_directory, experiments_raw, experiments_id):
             np.savetxt(path_events, mne.find_events(experiments_raw[i], min_duration = 2/frequency), fmt='%i')
             print("\n", i + 1, " out of ", len(experiments_raw), " saved.")                
         clear_output(wait=True)
+        
