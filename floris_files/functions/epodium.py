@@ -51,14 +51,14 @@ class Epodium:
                               "121a", "134a", "143b", "121b(1)", "145b", "152a", "184a", "165a", "151a", "163a",
                               "207a", "215b"]    
 
-    @staticmethod
-    def read_raw(preload=True, verbose=False):
-         return mne.io.read_raw_bdf(raw_path, preload=read_raw, verbose=verbose)
+    # @staticmethod
+    # def read_raw(preload=True, verbose=False):
+    #      return mne.io.read_raw_bdf(raw_path, preload=read_raw, verbose=verbose)
     
     def events_from_raw(self, raw):
         events = mne.find_events(raw, verbose=False, min_duration=2/self.frequency)
         events_12 = self.group_events_12(events)
-        return events_12, event_dictionary
+        return events_12, self.event_dictionary
     
     @staticmethod
     def group_events_12(events):
@@ -93,9 +93,9 @@ class Epodium:
         merged_df = merged_df.rename(columns={'ParticipantID': 'Participant', 'Group_AccToParents': 'Risk_of_dyslexia'})
 
         if path_save_csv:
-            if os.path.exists(path_label_csv):
-                os.remove(path_label_csv)
-            merged_df.to_csv(path_label_csv)
+            if os.path.exists(path_save_csv):
+                os.remove(path_save_csv)
+            merged_df.to_csv(path_save_csv)
         
         return merged_df
 
@@ -117,13 +117,11 @@ class Epodium:
     max_age = 756
     range_age = max_age - min_age # 269 (9 months)
     
-    @staticmethod
-    def normalize_age(age_days): # Normalizes age between -1 and 1
-        return (age_days-min_age) / (0.5*range_age) - 1
+    def normalize_age(self, age_days): # Normalizes age between -1 and 1
+        return (age_days-self.min_age) / (0.5*self.range_age) - 1
     
-    @staticmethod
-    def denormalize_age(value):
-        return (value+1)*0.5*range_age + min_age
+    def denormalize_age(self, value):
+        return (value+1)*0.5*self.range_age + self.min_age
 
     @staticmethod
     def split_train_test_datasets(experiment_list, test_size=0.25):
@@ -150,7 +148,7 @@ class Epodium:
         test = [x + 'a' for x in test_ab] + [x + 'b' for x in test_ab] + \
            [x + 'a' for x in test_a] + [x + 'b' for x in test_b]
 
-        print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")    
+        print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")
         return train, test
 
 
