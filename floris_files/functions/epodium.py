@@ -2,7 +2,12 @@
 
 import mne
 import numpy as np
+import pandas as pd 
 import copy
+import os
+
+from sklearn.model_selection import train_test_split
+
 
 # This class is useful for passing the dataset object as input to a function.
 class Epodium:
@@ -12,7 +17,7 @@ class Epodium:
     file_extension = ".bdf"
     frequency = 2048 # Hz
 
-    metadata_filenames = ["children.txt", "cdi.txt", "parents.txt", "CODES_overview.txt"]
+    metadata_filenames = ["children.txt", "cdi.txt", "parents.txt"]
 
     channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5',
                    'T7', 'C3', 'CP1', 'CP5', 'P7', 'P3',
@@ -74,6 +79,25 @@ class Epodium:
                 mask = np.logical_and(minOld <= events_12[i], events_12[i] <= maxOld)
                 events_12[i] = np.where(mask, newValue, events_12[i])
         return events_12
+    
+    def create_labels(self, metadata_directory, path_save_csv=""):
+        """
+        This function creates a .csv file with the labels: Participant / Age_days_a / Age_days_b / Risk_of_dyslexia
+        """
+        
+        epod_children = pd.read_table(os.path.join(metadata_directory, "children.txt"))
+        epod_cdi = pd.read_table(os.path.join(metadata_directory, "cdi.txt"))
+        epod_parents = pd.read_table(os.path.join(metadata_directory, "parents.txt"))
+
+        merged_df = epod_children[['ParticipantID', 'Age_days_a', 'Age_days_b', 'Group_AccToParents']]
+        merged_df = merged_df.rename(columns={'ParticipantID': 'Participant', 'Group_AccToParents': 'Risk_of_dyslexia'})
+
+        if path_save_csv:
+            if os.path.exists(path_label_csv):
+                os.remove(path_label_csv)
+            merged_df.to_csv(path_label_csv)
+        
+        return merged_df
 
     def is_valid_experiment(self, events, min_standards, min_deviants, min_firststandards):
         "Checks from the events file if there are enough epochs in the .fif file to be valid for analysis."
@@ -90,17 +114,19 @@ class Epodium:
         
     # Normalize age for regressive age prediction:
     min_age = 487
-    max_age = 756 # 756
+    max_age = 756
     range_age = max_age - min_age # 269 (9 months)
-
+    
+    @staticmethod
     def normalize_age(age_days): # Normalizes age between -1 and 1
         return (age_days-min_age) / (0.5*range_age) - 1
-
+    
+    @staticmethod
     def denormalize_age(value):
         return (value+1)*0.5*range_age + min_age
 
-
-    def split_train_test_datasets(experiment_list, test_size = 0.25):
+    @staticmethod
+    def split_train_test_datasets(experiment_list, test_size=0.25):
         """
         Each participant that exceeds the minimum epochs is put into a test or train set.
         Both the train and test sets have the same proportion of participants that did either a, b, or both experiments

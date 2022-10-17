@@ -9,7 +9,10 @@ import multiprocessing
 import functools
 
 
-def process_raw_multiprocess(experiments_name, experiments_paths, dataset, processed_directory, num_processes = 8, verbose=False):
+def process_raw_multiprocess(experiments_name, experiments_paths, dataset, processed_directory, num_processes=8, verbose=False):
+    """
+        This function sets up multiprocessing for the 'process_raw' function.
+    """   
     indexes = range(len(experiments_name))
     with multiprocessing.Pool(num_processes) as pool:
         # Set fixed input variables
