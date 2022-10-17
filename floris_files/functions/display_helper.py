@@ -79,8 +79,8 @@ def plot_array_as_evoked(array, channel_names, montage='standard_1020', frequenc
     montage = mne.channels.make_standard_montage('standard_1020')
     evoked.info.set_montage(montage, on_missing='ignore')
     if ylim != None:
-        ylim_temp = dict(eeg=ylim)
-    fig = evoked.plot(spatial_colors=True, ylim=ylim_temp)
+        ylim_temp = dict(eeg=ylim) # e.g. ylim = dict(eeg=[-20, 20]) 
+    fig = evoked.plot(spatial_colors=True)
 
     
 color_dictionary = {

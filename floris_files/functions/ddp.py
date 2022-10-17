@@ -1,14 +1,13 @@
 "Tools for analysing the DDP dataset. This file is not actively updated and contains functions from the https://github.com/epodium repository" 
 
 import mne
-import pandas as pd
 import numpy as np
+import pandas as pd
 import os
 import glob
 import copy
 
-from IPython.display import clear_output
-
+from sklearn.model_selection import train_test_split
 
 class DDP:
     
@@ -95,9 +94,10 @@ class DDP:
             return events_3, self.event_dictionary_2
         return events_3
 
-    def create_labels_raw(self, dataset_directory, ages_directory, path_save_csv=""):
+    def create_labels(self, dataset_directory, ages_directory, path_save_csv=""):
         """
-        This function creates a .csv file with the labels: filename / code / age_group / age_days
+        This function creates a .csv file with the labels: filename / code / age_group / age_days.
+        Each file has it's own row, so a single participant can have multiple entries.
         The labels are saved in 'path_save_csv'.
         """
         age_groups = [5, 11, 17, 23, 29, 35, 41, 47]
@@ -135,6 +135,8 @@ class DDP:
         age_df = age_df.drop(columns=['age_months', 'age_years']) # age_days is sufficient
         merged_df = pd.merge(cnt_df, age_df, how = 'left', on = ['age_group', 'code'])
         merged_df['age_days'].fillna(merged_df['age_group'] * 30, inplace = True)
+        merged_df = merged_df.rename(columns={'code': 'participant'})
+
     
         if path_save_csv:
             if os.path.exists(path_label_csv):
@@ -153,4 +155,28 @@ class DDP:
                 return False
         return True
         
+    @staticmethod
+    def split_train_test_datasets(experiment_list, test_size=0.25):
+        """
+        The dataset is split, such that no participant has experiments that appear in both the train and test-set.
+        """
+        participants = []
+        for experiment in experiment_list:
+            participant = experiment.split('_')[0]
+            if participant not in participants:
+                participants.append(participant)            
+        participants_train, participants_test = train_test_split(participants, test_size=test_size)
+
+        train = []
+        test = []    
+        for experiment in experiment_list:
+            participant = experiment.split('_')[0]
+            if participant in participants_train:
+                train.append(experiment)
+            elif participant in participants_test:
+                test.append(experiment)
+
+        print(f"The dataset is split up into {len(train)} train and {len(test)} test experiments")    
+        return train, test
+
     incomplete_experiments = ["8_11", "108_11", "156_11", "164_11", "619_11", "636_11", "162_17", "702_11", "7_17", "162_17", "311_17", "420_23", "733_29", "735_23", "737_23", "101_29", "434_29", "612_29", "702_29", "741_29", "756_29", "737_23", "14_41", "15_41", "17_41", "23_41", "24_41", "25_41", "149_41", "151_41", "152_41", "153_41", "172_41", "173_41", "174_41", "176_41", "177_41", "178_41", "179_41", "180_41", "181_41", "182_41", "304_41", "306_41", "312_41", "313_41", "314_41", "317_41", "320_41", "436_41", "438_41", "441_41", "472_41", "473_41", "474_41", "475_41", "478_41", "479_41", "480_41", "481_41", "482_41", "484_41", "485_41", "486_41", "487_41", "488_41", "491_41", "493_41", "494_41", "496_41", "497_41", "733_41", "734_41", "119_47", "121_47", '18_41', '19_41', '21_41', '27_41', '28_41', '29_41', '30_41', '34_41', '35_41', '39_41', '137_41', '139_41', '140_41', '141_41', '142_41', '146_41', '148_41', '154_41', '155_41', '156_41', '157_41', '158_41', '159_41', '162_41', '163_41', '164_41', '165_41', '166_41', '167_41', '168_41', '169_41', '170_41', '171_41', '321_41', '323_41', '324_41', '325_41', '326_41', '329_41', '330_41', '332_41', '334_41', '335_41', '340_41', '343_41', '344_41', '345_41', '346_41', '348_41', '422_41', '443_41', '445_41', '448_41', '449_41', '450_41', '451_41', '453_41', '454_41', '455_41', '456_41', '457_41', '459_41', '465_41', '466_41', '468_41', '469_41', '471_41', '611_41', '615_41', '616_41', '619_41', '620_41', '621_41', '622_41', '624_41', '625_41', '626_41', '627_41', '628_41', '629_41', '632_41', '633_41', '635_41', '735_41', '738_41', '739_41', '740_41', '741_41', '742_41', '743_41', '745_41', '746_41', '747_41', '748_41', '751_41', '752_41', '753_41', '755_41', '756_41', '10_47', '40_47', '124_47', '345_29', '453_29', '115_35', '115_41', '333_41', '711_47']
