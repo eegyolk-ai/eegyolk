@@ -1,5 +1,18 @@
-from tensorflow.keras.utils import Sequence
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+Authors: Floris Pauwels <florispauwels@live.nl>
+
+Classes and functions to simplify the training 
+and analysis of deep learning models.
+"""
+
+import mne
+import numpy as np
+import os
 import random
+
+from tensorflow.keras.utils import Sequence
 
 class EpodiumSequence(Sequence):
     """
@@ -43,7 +56,7 @@ class EpodiumSequence(Sequence):
                 print(experiment)
                 
             # Load .fif file
-            path_epochs = os.path.join(epochs_directory, experiment + "_epo.fif")
+            path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")
             epochs = mne.read_epochs(path_epochs, verbose=0)
             print(epochs)
             

@@ -1,4 +1,10 @@
-""" Functions for creating dummy data. """
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+Authors: Floris Pauwels <florispauwels@live.nl>
+
+Functions for creating simulated data.
+"""
 
 import numpy as np
 import random
