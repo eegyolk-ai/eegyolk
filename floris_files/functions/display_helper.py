@@ -1,4 +1,10 @@
-""" Tools to help with displaying information."""
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+Authors: Floris Pauwels <florispauwels@live.nl>
+
+Tools to help with displaying information.
+"""
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -6,11 +12,12 @@ import collections.abc
 import mne
 
 
-def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend = "", show = True, scatter = False):
+def show_plot(x=None, y=None, title="", xlabel="", ylabel="",
+              legend="", show=True, scatter=False):
     """
     Show plot with title and lables.
     """
-    
+
     plt.clf()
     plt.title(title)
     plt.xlabel(xlabel)
@@ -18,19 +25,19 @@ def show_plot(x = None, y = None, title = "", xlabel = "", ylabel = "", legend =
 
     if isinstance(y, collections.abc.Sequence) and legend != "":
         for i in range(len(y)):
-            plt.plot(x, y[i], label = legend[i])
+            plt.plot(x, y[i], label=legend[i])
         plt.legend()
 
     elif scatter:
-        plt.scatter(x,y)
+        plt.scatter(x, y)
     else:
         plt.plot(x, y)
 
     if show:
         plt.show()
-    
 
-def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False):
+
+def plot_raw_fragment(raw, channel_index, duration=1, start=0, average=False):
     """
     Shows a fragment of the raw EEG data from specified raw file
     and channel_index.  `start_time` and `duration` are in seconds.
@@ -52,37 +59,42 @@ def plot_raw_fragment(raw, channel_index, duration = 1, start = 0, average=False
         "Channel voltage (\u03BCV)")
 
 
-def plot_ERP(epochs, condition, event_type, save_path = ""):
+def plot_ERP(epochs, condition, event_type, save_path=""):
     standard = condition + "_S"
     deviant = condition + "_D"
 
-    if(event_type == "standard"):
-        evoked = epochs[standard].average()    
-    elif(event_type == "deviant"):
-        evoked = epochs[deviant].average()    
-    elif(event_type == "MMN"):
-        evoked = mne.combine_evoked([epochs[deviant].average(), epochs[standard].average()], weights = [1, -1])
+    if event_type == "standard":
+        evoked = epochs[standard].average()
+    elif event_type == "deviant":
+        evoked = epochs[deviant].average()
+    elif event_type == "MMN":
+        evoked = mne.combine_evoked([epochs[deviant].average(),
+                                    epochs[standard].average()],
+                                    weights=[1, -1])
 
-    fig = evoked.plot(spatial_colors = True)
+    fig = evoked.plot(spatial_colors=True)
 
     if save_path:
         fig.savefig(save_path)
 
-    
-def plot_array_as_evoked(array, channel_names, montage='standard_1020', frequency=512, baseline_start=-0.2, n_trials=60, ylim=None):
+
+def plot_array_as_evoked(array, channel_names, montage='standard_1020',
+                         frequency=512, baseline_start=-0.2,
+                         n_trials=60, ylim=None):
     """
     Plot an array as an evoked.
-    Information like the sensor montage and the frequency are needed as input.    
+    Information like the sensor montage and the frequency are needed as input.
     """
     info = mne.create_info(channel_names, frequency, ch_types='eeg')
     evoked = mne.EvokedArray(array, info, tmin=baseline_start, nave=n_trials)
     montage = mne.channels.make_standard_montage('standard_1020')
     evoked.info.set_montage(montage, on_missing='ignore')
-    if ylim != None:
-        ylim_temp = dict(eeg=ylim) # e.g. ylim = dict(eeg=[-20, 20]) 
+    # if ylim is not None:
+    #     # e.g. ylim = dict(eeg=[-20, 20])
+    #     ylim_temp = dict(eeg=ylim)
     fig = evoked.plot(spatial_colors=True)
 
-    
+
 color_dictionary = {
     1: "#8b0000",
     2: "#008000",
