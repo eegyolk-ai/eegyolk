@@ -4,6 +4,8 @@ import os
 storage = "/volume-ceph"
 
 # Personal storage
+models = os.path.join("/home", "fpauwels", "eegyolk",
+                      "floris_files", "models", "trained_models")
 personal_storage = os.path.join(storage, "floris_storage")
 ePod_personal = os.path.join(personal_storage, "epod")
 DDP_personal = os.path.join(personal_storage, "ddp")

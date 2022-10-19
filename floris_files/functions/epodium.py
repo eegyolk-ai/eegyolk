@@ -26,17 +26,23 @@ class Epodium:
     # Sample frequency in Hz:
     frequency = 2048
 
-    channel_names = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5', 'T7', 'C3',
+    channels_epod = ['Fp1', 'AF3', 'F7', 'F3', 'FC1', 'FC5', 'T7', 'C3',
                      'CP1', 'CP5', 'P7', 'P3', 'Pz', 'PO3', 'O1', 'Oz',
                      'O2', 'PO4', 'P4', 'P8', 'CP6', 'CP2', 'C4', 'T8',
                      'FC6', 'FC2', 'F4', 'F8', 'AF4', 'Fp2', 'Fz', 'Cz']
+    
+    # 26 channels that are in both ePod and DDP:
+    channels_epod_ddp = ['O2', 'O1', 'P4', 'P8', 'C4', 'T8', 'P7', 'P3',
+                         'C3', 'F4', 'F8', 'T7', 'F3', 'F7', 'PO3', 'PO4',
+                         'CP2', 'CP6', 'CP5', 'CP1', 'FC2', 'FC6', 'FC1',
+                         'FC5', 'AF4', 'AF3']
 
     channels_mastoid = ['EXG1', 'EXG2']
     channels_drop = ['EXG3', 'EXG4', 'EXG5', 'EXG6', 'EXG7', 'EXG8', 'Status']
 
     montage = 'standard_1020'
     mne_montage = mne.channels.make_standard_montage(montage)
-    mne_info = mne.create_info(channel_names, frequency, ch_types='eeg')
+    mne_info = mne.create_info(channels_epod, frequency, ch_types='eeg')
 
     conditions = ['GiepM', "GiepS", "GopM", "GopS"]
     conditions_events = ['GiepM_S', 'GiepM_D', 'GiepS_S', 'GiepS_D',
@@ -138,7 +144,7 @@ class Epodium:
 
     def normalize_age(self, age_days):
         """
-         Normalizes age between -1 and 1.
+        Normalizes age between -1 and 1.
         """
         return (age_days-self.min_age) / (0.5*self.range_age) - 1
 
@@ -173,6 +179,6 @@ class Epodium:
         test = [x + 'a' for x in test_ab] + [x + 'b' for x in test_ab] +\
                [x + 'a' for x in test_a] + [x + 'b' for x in test_b]
 
-        print("The dataset is split up into " + {len(train)} +
-              " train and " + {len(test)} + " test experiments")
+        print(f"The dataset is split up into {len(train)} "
+              f"train and {len(test)} test experiments")
         return train, test
