@@ -17,6 +17,9 @@ from sklearn.model_selection import train_test_split
 
 # This class is useful for passing the dataset object as input to a function.
 class Epodium:
+    
+    def __init__(self):
+        pass
 
     # ########### --- GENERAL DATASET TOOLS --- #################
 
