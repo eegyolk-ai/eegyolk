@@ -17,7 +17,10 @@ from sklearn.model_selection import train_test_split
 
 
 class DDP:
-
+    
+    def __init__(self):
+        pass
+    
     # ########## --- GENERAL DATASET TOOLS --- ############
 
     file_extension = ".cnt"
