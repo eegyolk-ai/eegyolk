@@ -140,9 +140,9 @@ def valid_experiments(dataset, event_directory, min_standards=180,
             valid_experiments.append(experiment)
 
     valid_experiments = sorted(valid_experiments)
-    print("Analyzed: " + {len(paths_events)} + "bad: " +
-          len(paths_events) - len(valid_experiments))
-    print(len(valid_experiments) + "experiments have " +
+    print(f"Analyzed: {len(paths_events)} bad: "
+          f"{len(paths_events) - len(valid_experiments)}")
+    print(f"{len(valid_experiments)} experiments have " 
           "enough epochs for analysis.")
 
     return valid_experiments
