@@ -1,0 +1,7 @@
+{
+    "root": "F:/Stage/ePODIUM/Data/ePodium_projectfolder",
+    "metadata": "F:/Stage/ePODIUM/Data/ePodium_projectfolder/Metadata",
+    "preprocessed": "F:/Stage/ePODIUM/Data/ePodium_projectfolder/epochs_clean",
+    "dataset" : "F:/Stage/ePODIUM/Data/ePodium_projectfolder/Dataset",
+    "events" : "F:/Stage/ePODIUM/Data/ePodium_projectfolder/events"
+}
