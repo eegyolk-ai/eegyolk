@@ -66,7 +66,7 @@ class RawData:
         # options: `int16' and `int32'.  `int32' was chosen by the old
         # code by default, so the new code keeps the same behavior
         # while making it more explicit (and avoiding the warning).
-        'data_format': 'int32',
+        'data_format': 'int16',
         # NOTE: Note that the default is the US format, and all
         # dates are botched because of that.  Also note that
         # "conveniently", the dates are in the worst imaginable
@@ -249,7 +249,7 @@ class SwitchedRawData:
         # options: `int16' and `int32'.  `int16' was chosen by the
         # oldest code by default, so this new code keeps the same behavior
         # while making it more explicit (and avoiding the warning).
-        'data_format': 'int16',
+        'data_format': 'int32'
         # NOTE: Note that the default is the US format, and all
         # dates are botched because of that.  Also note that
         # "conveniently", the dates are in the worst imaginable
