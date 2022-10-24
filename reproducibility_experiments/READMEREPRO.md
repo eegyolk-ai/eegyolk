@@ -42,11 +42,12 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional a
 
 ## Getting started
 
-How to get the notebooks running? Assuming the raw data set and metadata is available.
+How to get the notebooks to reproduce the original work from 2021 running? Assuming the raw data set and metadata is available.
 
 1. Install all Python packages required, using conda and the environment-march-update2.yaml file.
-    run following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate mne-marchez`.
+    run following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate envyolk `.
 2. Update the via the new setup (you will be prompted if you have note)
-3. Use the preprocessing notebook in notebooks/original/remastered.
-4. Run the machine learning training on data created by running notebooks/original/remastered/trational-ml-models.ipynb
+3. Make a choice whether to use all or only clean data- please see `white_list.ipynb` 
+4. Use the preprocessing notebook in this folder named `remastered_preprocessing.ipynb` to create data pre-processed as was intended from the old dataset (the Dutch Dyslexia Program).
+5. Run the machine learning training on data created by running `remastered_trational-ml-models.ipynb` in this folder
 
