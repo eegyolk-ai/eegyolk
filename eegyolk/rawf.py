@@ -259,7 +259,7 @@ class SwitchedRawData:
         # 3-digit year, that Python doesn't support...  The format
         # should really be `dd/mm/yyy', but that is not supported by
         # the MNE library.
-        'date_format':'dd/mm/yy',
+        'date_format': 'dd/mm/yy',
         'verbose': False,
     }
 
