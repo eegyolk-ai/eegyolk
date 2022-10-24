@@ -64,7 +64,12 @@ class Config:
                 "data": "$root/data/",
                 "preprocessed": "$root/preprocessed/",
                 "metadata": "$root/metadata/",
-                "models": "$root/models/"
+                "models": "$root/models/",
+                "root_2022": "/path/to/storage",
+                "data_2022": "$root/2022_data/",
+                "preprocessed_2022": "$root/2022_preprocessed/",
+                "metadata_2022": "$root/2022_metadata/",
+                "models_2022": "$root/models/",
             }}
 
             You can override any individual directory by specifying it
