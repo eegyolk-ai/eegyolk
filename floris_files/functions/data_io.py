@@ -85,3 +85,15 @@ def save_events(events_directory, experiments_raw, experiments_id, freq):
             np.savetxt(path_events, events, fmt='%i')
             print("\n", i + 1, " out of ", len(experiments_raw), " saved.")
         clear_output(wait=True)
+
+def save_experiment_names(experiments_set, path_txt):
+    """
+    This function saves the names of the experiments in experiments_set 
+    in path_txt as a .txt file.   
+    This is used for saving the train, test and validation sets of a model.    
+    """
+    with open(path_txt, 'w') as f:
+        for experiment in experiments_set:
+            f.write(experiment + '\n')
+    return
+    

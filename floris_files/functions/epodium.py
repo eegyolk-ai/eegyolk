@@ -155,11 +155,14 @@ class Epodium:
         return (value+1)*0.5*self.range_age + self.min_age
 
     @staticmethod
-    def split_train_test_datasets(experiment_list, test_size=0.25):
+    def split_dataset(experiment_list, proportion=0.8):
         """
         Each participant that exceeds the minimum epochs is put into
         a test or train set. Both the train and test sets have the same
-        proportion of participants that did either a, b, or both experiments.
+        ratio of participants that did either a, b, or both experiments 
+        to keep the distributions independent.
+        'Proportion' is set between 0 and 1 and represents the 
+        percentage of experiments put into the first return value.
         """
 
         # Split same proportion of participants that did a, b, or both.
@@ -171,17 +174,15 @@ class Epodium:
 
         # Split participants into train and test dataset
         train_ab, test_ab =\
-            train_test_split(experiments_a_and_b, test_size=test_size)
+            train_test_split(experiments_a_and_b, train_size=proportion)
         train_a, test_a =\
-            train_test_split(experiments_a_only, test_size=test_size)
+            train_test_split(experiments_a_only, train_size=proportion)
         train_b, test_b =\
-            train_test_split(experiments_b_only, test_size=test_size)
+            train_test_split(experiments_b_only, train_size=proportion)
 
         train = [x + 'a' for x in train_ab] + [x + 'b' for x in train_ab] +\
                 [x + 'a' for x in train_a] + [x + 'b' for x in train_b]
         test = [x + 'a' for x in test_ab] + [x + 'b' for x in test_ab] +\
                [x + 'a' for x in test_a] + [x + 'b' for x in test_b]
 
-        print(f"The dataset is split up into {len(train)} "
-              f"train and {len(test)} test experiments")
         return train, test

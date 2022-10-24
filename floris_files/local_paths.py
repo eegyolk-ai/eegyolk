@@ -3,12 +3,13 @@ import os
 # STORAGE
 storage = "/volume-ceph"
 
-# Personal storage
+## Personal storage
+# Location for saving trained models:
 models = os.path.join("/home", "fpauwels", "eegyolk",
                       "floris_files", "models", "trained_models")
-personal_storage = os.path.join(storage, "floris_storage")
-ePod_personal = os.path.join(personal_storage, "epod")
-DDP_personal = os.path.join(personal_storage, "ddp")
+# personal_storage = os.path.join(storage, "floris_storage")
+# ePod_personal = os.path.join(personal_storage, "epod")
+# DDP_personal = os.path.join(personal_storage, "ddp")
 
 # ePodium project
 ePod = os.path.join(storage, "ePodium_projectfolder")
