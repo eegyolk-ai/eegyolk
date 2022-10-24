@@ -187,10 +187,12 @@ class DDP:
         return True
 
     @staticmethod
-    def split_train_test_datasets(experiment_list, test_size=0.25):
+    def split_dataset(experiment_list, proportion=0.8):
         """
         The dataset is split, such that no participant has experiments
         that appear in both the train and test-set.
+        'Proportion' is set between 0 and 1 and represents the 
+        percentage of experiments put into the first return value.
         """
         participants = []
         for experiment in experiment_list:
@@ -198,7 +200,7 @@ class DDP:
             if participant not in participants:
                 participants.append(participant)
         participants_train, participants_test =\
-            train_test_split(participants, test_size=test_size)
+            train_test_split(participants, train_size=proportion)
 
         train = []
         test = []
@@ -207,10 +209,7 @@ class DDP:
             if participant in participants_train:
                 train.append(experiment)
             elif participant in participants_test:
-                test.append(experiment)
-
-        print(f"The dataset is split up into {len(train)} train"
-              f" and {len(test)} test experiments")
+                test.append(experiment)                
         return train, test
     
     wrong_channels_experiments = ['103_23', '121_29', '128_11', '604_11', '604_23', '604_29', '608_11', '608_23', '608_29', '610_11', '610_29', '611_23', '611_29', '613_11', '613_23', '617_11', '639_11', '642_11', '702_23', '704_23', '704_29', '707_23', '707_29', '721_23', '721_29', '724_23', '724_29', '727_23', '727_29', '728_29', '731_23', '731_29', '734_23', '7_11', '129_11', '166_23', '2_23', '601_23', '601_29', '601_35', '602_23', '603_29', '605_29', '607_29', '609_11', '609_29', '612_11', '612_23', '614_11', '614_23', '614_29', '615_23', '615_29', '616_11', '616_29', '618_11', '619_23', '620_11', '620_23', '621_11', '621_23', '622_23', '623_23', '624_23', '625_23', '626_11', '627_23', '628_11', '629_11', '632_11', '635_11', '637_11', '641_11', '646_11', '701_29', '701_41', '703_23', '703_29', '705_29', '705_41', '708_23', '708_29', '709_23', '709_29', '710_23', '710_29', '711_23', '712_23', '712_29', '713_29', '714_23', '714_29', '717_23', '717_29', '718_23', '718_29', '719_23', '719_29', '720_29', '722_29', '723_23', '723_29', '725_23', '725_29', '726_29', '729_23', '730_23', '730_29', '733_23']

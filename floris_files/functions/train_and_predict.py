@@ -1,5 +1,8 @@
 from tensorflow.keras.utils import Sequence
 import random
+import os
+import numpy as np
+import mne
 
 class EpodiumSequence(Sequence):
     """
@@ -29,8 +32,6 @@ class EpodiumSequence(Sequence):
         x_batch = []
         y_batch = []
         
-        #print(self.labels)
-
         for i in range(self.n_experiments_batch):
 
             # Set participant
@@ -43,9 +44,10 @@ class EpodiumSequence(Sequence):
                 print(experiment)
                 
             # Load .fif file
-            path_epochs = os.path.join(epochs_directory, experiment + "_epo.fif")
+            if(verbose):
+                print(f"Loading experiment {experiment}")  
+            path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")
             epochs = mne.read_epochs(path_epochs, verbose=0)
-            print(epochs)
             
             # A data instance is created for each condition
             for condition in ['GiepM', "GiepS", "GopM", "GopS"]:
@@ -124,8 +126,6 @@ class DDPSequence(Sequence):
         x_batch = []
         y_batch = []
         
-        #print(self.labels)
-
         for i in range(self.n_experiments_batch):
 
             # Set participant
@@ -138,11 +138,10 @@ class DDPSequence(Sequence):
             experiment_labels = self.labels.loc[(self.labels['participant']==float(participant))
                                                 & (self.labels['age_group']==int(age_group))]
 
-            if(verbose):
-                print(experiment)
-                
             # Load .fif file
-            path_epochs = os.path.join(epochs_directory, experiment + "_epo.fif")
+            if(verbose):
+                print(f"Loading experiment {experiment}")                
+            path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")
             epochs = mne.read_epochs(path_epochs, verbose=0)
             
             # A data instance is created for each condition
@@ -161,10 +160,11 @@ class DDPSequence(Sequence):
                 x_batch.append(evoked_standard_std)
                 y_batch.append(experiment_labels["age_days"].iloc[0])
 
-
         # Shuffle batch
         shuffle_batch = list(zip(x_batch, y_batch))
         random.shuffle(shuffle_batch)
         x_batch, y_batch = zip(*shuffle_batch)
 
         return np.array(x_batch), np.array(y_batch)
+
+
