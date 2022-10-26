@@ -13,7 +13,7 @@ dependencies:
   - ipywidgets=7.7.0
   - mne=1.0.1
   - mne-connectivity=0.3
-  - mayavi=4.7.4
+  - mayavi=4.8.1
   - pip=20.2
   - pyvista=0.35.1
   - scikit-learn=1.1.1
