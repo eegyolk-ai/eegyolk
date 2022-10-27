@@ -13,21 +13,28 @@ import mne
 
 
 def show_plot(x=None, y=None, title="", xlabel="", ylabel="",
-              legend="", show=True, scatter=False):
+              xlim=None, ylim=None, legend="", show=True, scatter=False):
     """
     Show plot with title and lables.
     """
-
+    
+    # Initialise
     plt.clf()
     plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
+    
+    # Add optional axis limits.
+    if(xlim):
+        plt.xlim(xlim[0], xlim[1])
+    if(ylim):
+        plt.ylim(ylim[0], ylim[1])
 
+    # Multiple plot types
     if isinstance(y, collections.abc.Sequence) and legend != "":
         for i in range(len(y)):
             plt.plot(x, y[i], label=legend[i])
-        plt.legend()
-
+        plt.legend()  
     elif scatter:
         plt.scatter(x, y)
     else:
