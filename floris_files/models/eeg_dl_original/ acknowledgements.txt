@@ -1,0 +1,1 @@
+Acknowledgements to the EEG-DL GitHub repository of SuperBruceJia. https://github.com/SuperBruceJia/EEG-DL

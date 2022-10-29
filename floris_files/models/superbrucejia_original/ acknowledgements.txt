@@ -1,1 +1,0 @@
-Acknowledgements to the EEG-DL GitHub repository of SuperBruceJia. The models used in this project are slight modifications of the models found on https://github.com/SuperBruceJia/EEG-DL.

@@ -7,6 +7,9 @@ import tensorflow as tf
 from tensorflow import keras
 from keras import layers
 
+
+
+# TRANSFORMER: (TransformerBlock, TokenAndPositionEmbedding, TransformerModel)
 class TransformerBlock(layers.Layer):
     def __init__(self, embed_dim, num_heads, ff_dim, rate=0.5):
         super(TransformerBlock, self).__init__()
@@ -38,9 +41,8 @@ class TransformerBlock(layers.Layer):
         out = self.layernorm2(out1 + ffn_output)
         return out
 
-
 class TokenAndPositionEmbedding(layers.Layer):
-    def __init__(self, maxlen, embed_dim):
+    def __init__(self, embed_dim, maxlen):
         super(TokenAndPositionEmbedding, self).__init__()
         self.pos_emb = layers.Embedding(input_dim=maxlen, output_dim=embed_dim)
         self.maxlen = maxlen
@@ -62,19 +64,15 @@ class TokenAndPositionEmbedding(layers.Layer):
         out = x + positions
         return out
 
-
-
-def TransformerModel():
-    maxlen = 512     # Consider 16 input time points
-    embed_dim = 32  # Features of each time point
+def transformer_model(input_shape, n_classes):
+    embed_dim = input_shape[0]  # Features of each time point
+    maxlen = input_shape[1]     # Consider 16 input time points
     num_heads = 8   # Number of attention heads
     ff_dim = 64     # Hidden layer size in feed forward network inside transformer
     
-    output_labels = 3
-
     # Input Time-series
     inputs = layers.Input(shape=(embed_dim, maxlen))
-    embedding_layer = TokenAndPositionEmbedding(maxlen, embed_dim)
+    embedding_layer = TokenAndPositionEmbedding(embed_dim, maxlen)
     x = embedding_layer(tf.reshape(inputs, [-1]))
 
     # Encoder Architecture
@@ -88,6 +86,6 @@ def TransformerModel():
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(64, activation="relu")(x)
     x = layers.Dropout(0.5)(x)
-    outputs = layers.Dense(output_labels, activation="sigmoid")(x)
+    outputs = layers.Dense(n_classes, activation="sigmoid")(x)
 
     return keras.Model(inputs=inputs, outputs=outputs)
