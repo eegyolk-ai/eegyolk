@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
@@ -10,6 +12,8 @@ import json
 import logging
 import os
 import textwrap
+
+from json import JSONDecodeError
 
 
 class Config:
@@ -33,28 +37,38 @@ class Config:
         'models_2022': '{}/models',
     }
 
-    required_directories = 'data', 'metadata'
+    required_directories = 'data', 'metadata', 'data_2022', 'metadata_2022'
+
+    roots = {
+        'root': ('data', 'metadata', 'preprocessed', 'models'),
+        'root_2022': (
+            'data_2022',
+            'metadata_2022',
+            'preprocessed_2022',
+            'models_2022',
+        ),
+    }
 
     def __init__(self, location=None):
         self._raw = None
         self._loaded = None
         self.load(location)
-        self.validate()
 
-    def usage(self):
+    def usage(self, message):
         return textwrap.dedent(
             '''
-            Cannot load config.
+            Cannot load config: {}
 
             Please create a file in either one of the locations
             listed below:
             {}
 
             With the contents that specifies at least the root
-            directory as follows:
+            directories as follows:
 
             {{
-                "root": "/path/to/storage"
+                "root": "/path/to/storage",
+                "root_2022": "/path/to/storage"
             }}
 
             The default directory layout is expected to be:
@@ -64,7 +78,12 @@ class Config:
                 "data": "$root/data/",
                 "preprocessed": "$root/preprocessed/",
                 "metadata": "$root/metadata/",
-                "models": "$root/models/"
+                "models": "$root/models/",
+                "root_2022": "/path/to/storage-2022",
+                "data_2022": "$root_2022/data/",
+                "preprocessed_2022": "$root_2022/preprocessed/",
+                "metadata_2022": "$root_2022/metadata/",
+                "models_2022": "$root_2022/models/"
             }}
 
             You can override any individual directory by specifying it
@@ -76,190 +95,62 @@ class Config:
             expected to have "ages" subdirectory with files named
             "ages_11mnths.txt" .. "ages_47mnths.txt".
 
-            The "models" and "preprocessed" directories need not
-            exist.  They will be created if missing.  The "preprocessed"
-            directory will be used to output CSV and h5 files when
-            reading the raw CNT data.  The "models" directory will
-            be used to store regression and neural network models
-            created by training the models on preprocessed data.
-            '''
-        ).format('\n'.join(self.default_locations))
+            The "models" and "preprocessed" directories and their 2022
+            counterparts need not exist.  They will be created if
+            missing.  The "preprocessed" directory will be used to
+            output CSV and h5 files when reading the raw CNT data.
+            The "models" directory will be used to store regression
+            and neural network models created by training the models
+            on preprocessed data.'''
+        ).format(message, '\n'.join(self.default_locations))
 
     def load(self, location):
-        if location is not None:
-            with open(location) as f:
-                self._raw = json.load(f)
-                return
+        locations = [location] if location else self.default_locations
 
-        for p in self.default_locations:
+        for p in locations:
             try:
                 with open(p) as f:
-                    self._raw = json.load(f)
+                    raw = json.load(f)
                     break
+            except JSONDecodeError as e:
+                raise ValueError(
+                    'Found invalid JSON in {}'.format(p)
+                ) from e
             except Exception as e:
                 logging.info('Failed to load %s: %s', p, e)
         else:
-            raise ValueError(self.usage())
+            raise ValueError(self.usage('Cannot find config files'))
 
-        root = self._raw.get('root')
-        self._loaded = dict(self._raw)
-        if root is None:
-            required = dict(self.default_layout)
-            del required['root']
-            for directory in required.keys():
-                if directory not in self._raw:
-                    raise ValueError(self.usage())
-            # User specified all concrete directories.  Nothing for us to
-            # do here.
-        else:
-            missing = set(self.default_layout.keys()) - set(self._raw.keys())
-            # User possibly specified only a subset of directories.  We'll
-            # back-fill all the not-specified directories.
-            for m in missing:
-                self._loaded[m] = self.default_layout[m].format(root)
+        merged = self.merge(raw)
+        self.validate(merged)
+        self._raw = raw
+        self._loaded = merged
 
-    def validate(self):
+    def merge(self, raw):
+        result = {}
+        for root, derived in self.roots.items():
+            root_path = raw.get(root)
+            if root_path is not None:
+                result[root] = root_path
+                for d in derived:
+                    result[d] = self.default_layout[d].format(root_path)
+        result.update(raw)
+        return result
+
+    def validate(self, merged):
+        missing = []
         for d in self.required_directories:
-            if not os.path.isdir(self._loaded[d]):
-                logging.error('Directory %s must exist', self._loaded[d])
-                raise ValueError(self.usage())
+            required = merged[d]
+            if not os.path.isdir(required):
+                logging.error('Directory %s must exist', required)
+                missing.append(required)
+
+        if missing:
+            raise ValueError(
+                self.usage('Missing: {}'.format(', '.join(missing))),
+            )
 
     def get_directory(self, directory, value=None):
         if value is None:
             return self._loaded[directory]
         return value
-# """
-# Copyright 2022 Netherlands eScience Center and Utrecht University.
-# Licensed under the Apache License, version 2.0. See LICENSE for details.
-
-# This file contains one method to let the user configure
-# all paths instead of hard-coding them.
-# """
-
-# import json
-# import logging
-# import os
-# import textwrap
-
-
-# class Config:
-
-#     default_locations = (
-#         './config.json',
-#         os.path.expanduser('~/.eegyolk/config.json'),
-#         '/etc/eegyolk/config.json',
-#     )
-
-#     default_layout = {
-#         'root': '{}',
-#         'data': '{}/data',
-#         'metadata': '{}/metadata',
-#         'preprocessed': '{}/preprocessed',
-#         'models': '{}/models',
-#         'root_2022': '{}',
-#         'data_2022': '{}/data',
-#         'metadata_2022': '{}/metadata',
-#         'preprocessed_2022': '{}/preprocessed',
-#         'models_2022': '{}/models',
-#     }
-
-#     required_directories = 'data', 'metadata'
-
-#     def __init__(self, location=None):
-#         self._raw = None
-#         self._loaded = None
-#         self.load(location)
-#         self.validate()
-
-#     def usage(self):
-#         return textwrap.dedent(
-#             '''
-#             Cannot load config.
-
-#             Please create a file in either one of the locations
-#             listed below:
-#             {}
-
-#             With the contents that specifies at least the root
-#             directory as follows:
-
-#             {{
-#                 "root": "/path/to/storage"
-#             }}
-
-#             The default directory layout is expected to be:
-
-#             {{
-#                 "root": "/path/to/storage",
-#                 "data": "$root/data/",
-#                 "preprocessed": "$root/preprocessed/",
-#                 "metadata": "$root/metadata/",
-#                 "models": "$root/models/",
-#                 "root_2022": "/path/to/storage",
-#                 "data_2022": "$root/2022_data/",
-#                 "preprocessed_2022": "$root/2022_preprocessed/",
-#                 "metadata_2022": "$root/2022_metadata/",
-#                 "models_2022": "$root/models/",
-#             }}
-
-#             You can override any individual directory by specifying it
-#             in config.json.
-
-#             "data" and "metadata" directories are expected to exist.
-#             The "data" directory is expected to have "11mnd mmn" ..
-#             "47mnd mmn" directories.  The "metadata" directory is
-#             expected to have "ages" subdirectory with files named
-#             "ages_11mnths.txt" .. "ages_47mnths.txt".
-
-#             The "models" and "preprocessed" directories need not
-#             exist.  They will be created if missing.  The "preprocessed"
-#             directory will be used to output CSV and h5 files when
-#             reading the raw CNT data.  The "models" directory will
-#             be used to store regression and neural network models
-#             created by training the models on preprocessed data.
-#             '''
-#         ).format('\n'.join(self.default_locations))
-
-#     def load(self, location):
-#         if location is not None:
-#             with open(location) as f:
-#                 self._raw = json.load(f)
-#                 return
-
-#         for p in self.default_locations:
-#             try:
-#                 with open(p) as f:
-#                     self._raw = json.load(f)
-#                     break
-#             except Exception as e:
-#                 logging.info('Failed to load %s: %s', p, e)
-#         else:
-#             raise ValueError(self.usage())
-
-#         root = self._raw.get('root')
-#         self._loaded = dict(self._raw)
-#         if root is None:
-#             required = dict(self.default_layout)
-#             del required['root']
-#             for directory in required.keys():
-#                 if directory not in self._raw:
-#                     raise ValueError(self.usage())
-#             # User specified all concrete directories.  Nothing for us to
-#             # do here.
-#         else:
-#             missing = set(self.default_layout.keys()) - set(self._raw.keys())
-#             # User possibly specified only a subset of directories.  We'll
-#             # back-fill all the not-specified directories.
-#             for m in missing:
-#                 self._loaded[m] = self.default_layout[m].format(root)
-
-#     def validate(self):
-#         for d in self.required_directories:
-#             if not os.path.isdir(self._loaded[d]):
-#                 logging.error('Directory %s must exist', self._loaded[d])
-#                 raise ValueError(self.usage())
-
-#     def get_directory(self, directory, value=None):
-#         if value is None:
-#             return self._loaded[directory]
-#         return value
