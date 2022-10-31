@@ -2,14 +2,12 @@ import os
 
 # STORAGE
 storage = "/volume-ceph"
+user = os.path.expanduser("~")
 
-## Personal storage
 # Location for saving trained models:
-models = os.path.join("/home", "fpauwels", "eegyolk",
-                      "floris_files", "models", "trained_models")
-# personal_storage = os.path.join(storage, "floris_storage")
-# ePod_personal = os.path.join(personal_storage, "epod")
-# DDP_personal = os.path.join(personal_storage, "ddp")
+# Pretrained models are stored in the eegyolk repository
+models = os.path.join(user, "eegyolk", "floris_files", 
+                      "models", "trained_models")
 
 # ePodium project
 ePod = os.path.join(storage, "ePodium_projectfolder")
