@@ -14,28 +14,28 @@ class EpodiumSequence(Sequence):
     self.labels contains:  ['Participant', 'Age_days_a', 'Age_days_b', 'Risk_of_dyslexia']
     """    
 
-    def __init__(self, experiments, target_labels, epochs_directory, n_experiments_batch=8, n_trials_averaged=30, gaussian_noise=0):
+    def __init__(self, experiments, target_labels, epochs_directory, batch_size=8, n_trials_averaged=30, gaussian_noise=0):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
         
-        self.n_experiments_batch = n_experiments_batch
+        self.batch_size = batch_size
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
 
 
     # The number of experiments in the entire dataset.
     def __len__(self):
-        return int(np.ceil(len(self.experiments)/self.n_experiments_batch))
+        return int(np.ceil(len(self.experiments)/self.batch_size))
 
     def __getitem__(self, index, verbose=False):        
         x_batch = []
         y_batch = []
         
-        for i in range(self.n_experiments_batch):
+        for i in range(self.batch_size):
 
             # Set participant
-            experiment_index = (index * self.n_experiments_batch + i) % len(self.experiments)
+            experiment_index = (index * self.batch_size + i) % len(self.experiments)
             experiment = self.experiments[experiment_index]
             participant = experiment[:3]
             participant_labels = self.labels.loc[self.labels['Participant']==float(participant)]
@@ -106,13 +106,13 @@ class DDPSequence(Sequence):
     self.labels contains:  ['filename', 'participant', 'age_group', 'age_days']
     """    
 
-    def __init__(self, experiments, target_labels, epochs_directory, n_experiments_batch=8,
+    def __init__(self, experiments, target_labels, epochs_directory, batch_size=8,
                  n_instances_per_experiment=4, n_trials_averaged=30, gaussian_noise=0):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
         
-        self.n_experiments_batch = n_experiments_batch
+        self.batch_size = batch_size
         self.instances = n_instances_per_experiment
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
@@ -120,16 +120,16 @@ class DDPSequence(Sequence):
 
     # The number of experiments in the entire dataset.
     def __len__(self):
-        return int(np.ceil(len(self.experiments)/self.n_experiments_batch))
+        return int(np.ceil(len(self.experiments)/self.batch_size))
 
     def __getitem__(self, index, verbose=False):        
         x_batch = []
         y_batch = []
         
-        for i in range(self.n_experiments_batch):
+        for i in range(self.batch_size):
 
             # Set participant
-            experiment_index = (index * self.n_experiments_batch + i) % len(self.experiments)
+            experiment_index = (index * self.batch_size + i) % len(self.experiments)
             experiment = self.experiments[experiment_index]
                         
             participant = experiment.split("_")[0]
