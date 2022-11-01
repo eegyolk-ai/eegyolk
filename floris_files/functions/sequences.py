@@ -12,17 +12,24 @@ class EpodiumSequence(Sequence):
     https://www.tensorflow.org/api_docs/python/tf/keras/utils/Sequence
 
     self.labels contains:  ['Participant', 'Age_days_a', 'Age_days_b', 'Risk_of_dyslexia']
+    
+    *sample_rate*: The number of data points in a second of each channel.
+    *n_trials_averaged*: The number of trials averaged to form the ERP.
+    *gaussian_noise*: The standard deviation of the noise added to each datapoint to reduce overfitting.
     """    
 
-    def __init__(self, experiments, target_labels, epochs_directory, batch_size=8, n_trials_averaged=30, gaussian_noise=0):
+    def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
+                 sample_rate=None, batch_size=8, n_trials_averaged=30, gaussian_noise=0,
+                 mismatch_negativity=False):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
-        
+        self.channel_names = channel_names
+
         self.batch_size = batch_size
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
-
+        self.sample_rate = sample_rate
 
     # The number of experiments in the entire dataset.
     def __len__(self):
@@ -33,50 +40,48 @@ class EpodiumSequence(Sequence):
         y_batch = []
         
         for i in range(self.batch_size):
-
             # Set participant
             experiment_index = (index * self.batch_size + i) % len(self.experiments)
             experiment = self.experiments[experiment_index]
             participant = experiment[:3]
             participant_labels = self.labels.loc[self.labels['Participant']==float(participant)]
-
-            if(verbose):
-                print(experiment)
                 
             # Load .fif file
             if(verbose):
                 print(f"Loading experiment {experiment}")  
-            path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")
+            path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")                
             epochs = mne.read_epochs(path_epochs, verbose=0)
+            
+            # Modify epochs
+            if self.channel_names:
+                epochs.pick_channels(self.channel_names)
+            if self.sample_rate:
+                epochs.resample(self.sample_rate)
             
             # A data instance is created for each condition
             for condition in ['GiepM', "GiepS", "GopM", "GopS"]:
-                
-                standard_event = condition + '_S'
-                deviant_event = condition + '_D'
-                standard_data = epochs[standard_event].get_data() # TODO: DDP channels/ePod
-                deviant_data = epochs[deviant_event].get_data()
+                # Data in np.array()
+                standard_data = epochs[condition + '_S'].get_data()
+                deviant_data = epochs[condition + '_D'].get_data()
                                 
                 # Create ERP from averaging 'n_trials_averaged' trials.
                 trial_indexes_S = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
-                evoked_S = np.mean(standard_data[trial_indexes_S,:,:], axis=0)
-                trial_indexes_D = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
-                evoked_D = np.mean(deviant_data[trial_indexes_D,:,:], axis=0)
+                evoked_standard = np.mean(standard_data[trial_indexes_S,:,:], axis=0)
+                # trial_indexes_D = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                # evoked_deviant = np.mean(deviant_data[trial_indexes_D,:,:], axis=0)
                 
-                x_batch.append(evoked_S)
+                # Create noise
+                evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
+                # Divide by standard deviation to make the range of signals more similar:
+                evoked_standard_std = evoked_standard/evoked_standard.std()
+                
+                x_batch.append(evoked_standard)
 
                 ## Merge Standard and Deviant evoked along the channel dimensions.
-                # evoked = np.concatenate((evoked_S, evoked_D))
+                # evoked = np.concatenate((evoked_standard, evoked_deviant))
                 # evoked += np.random.normal(0, self.gaussian_noise, evoked.shape)
                 # x_batch.append(evoked)
-
-                # Binary labels:
-                # y = np.zeros(2)
-                # if participant_labels["Sex"].item() == "M" :
-                #     y[0] = 1
-                # if participant_labels["Group_AccToParents"].item() == "At risk":
-                #     y[1] = 1
-                
+               
                 # Append age to target 'y'
                 if str(experiment[-1]) == "a":
                     y = int(participant_labels[f"Age_days_a"].item())
@@ -106,16 +111,20 @@ class DDPSequence(Sequence):
     self.labels contains:  ['filename', 'participant', 'age_group', 'age_days']
     """    
 
-    def __init__(self, experiments, target_labels, epochs_directory, batch_size=8,
-                 n_instances_per_experiment=4, n_trials_averaged=30, gaussian_noise=0):
+    def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
+                 sample_rate=None, batch_size=8, n_instances_per_experiment=4,
+                 n_trials_averaged=30, gaussian_noise=0, mismatch_negativity=False):
+
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
-        
-        self.batch_size = batch_size
+        self.channel_names = channel_names
+
         self.instances = n_instances_per_experiment
+        self.batch_size = batch_size
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
+        self.sample_rate = sample_rate
 
 
     # The number of experiments in the entire dataset.
@@ -144,15 +153,19 @@ class DDPSequence(Sequence):
             path_epochs = os.path.join(self.epochs_directory, experiment + "_epo.fif")
             epochs = mne.read_epochs(path_epochs, verbose=0)
             
-            # A data instance is created for each condition
-            for j in range(self.instances):
-                
+            # Modify epochs
+            if self.sample_rate:
+                epochs.resample(self.sample_rate)
+            
+            # Multiple instances are loaded from the same experiment for loading efficiency.
+            for j in range(self.instances):                
                 standard_data = epochs["standard"].get_data()
                                 
                 # Create standardised ERP from averaging 'n_trials_averaged' trials.
                 trial_indexes_standards = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
                 evoked_standard = np.mean(standard_data[trial_indexes_standards,:,:], axis=0)
                 
+                # Create noise
                 evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
                 # Divide by standard deviation to make the range of signals more similar:
                 evoked_standard_std = evoked_standard/evoked_standard.std()
