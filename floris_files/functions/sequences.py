@@ -1,3 +1,11 @@
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+Authors: Floris Pauwels <florispauwels@live.nl>
+
+Sequence class for each dataset to iterate over the data for training the deep learning model.
+"""
+
 from tensorflow.keras.utils import Sequence
 import random
 import os

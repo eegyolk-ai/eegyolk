@@ -1,3 +1,11 @@
+"""
+Copyright 2022 Netherlands eScience Center and Utrecht University.
+Licensed under the Apache License, version 2.0. See LICENSE for details.
+Authors: Floris Pauwels <florispauwels@live.nl>
+
+Tools to save and load data to and from storage.
+"""
+
 import mne
 import numpy as np
 import pandas as pd

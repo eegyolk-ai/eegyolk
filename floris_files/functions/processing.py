@@ -3,7 +3,7 @@ Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
 Authors: Floris Pauwels <florispauwels@live.nl>
 
-Tools for (multi)processing raw EEG data and seperating into epochs.
+Tools for (multi)processing raw EEG data and seperating into epochs, with the help of the autoreject library.
 """
 
 import mne

@@ -2,10 +2,10 @@ import os
 
 # STORAGE
 storage = "/volume-ceph"
-user = os.path.expanduser("~")
 
 # Location for saving trained models:
 # Pretrained models are stored in the eegyolk repository
+user = os.path.expanduser("~")
 models = os.path.join(user, "eegyolk", "floris_files", 
                       "models", "trained_models")
 
