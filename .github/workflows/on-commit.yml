@@ -43,6 +43,7 @@ jobs:
       - run: .venv/bin/python setup.py lint
 
 
+  
   Sphinx:
     runs-on: ubuntu-latest
     if: |
@@ -58,12 +59,6 @@ jobs:
         with:
           conda-channels: conda-forge
           python-version: 3.8
-      # - run: >-
-      #     sudo apt-get install -y --no-install-recommends
-      #     texlive-base
-      #     texlive-latex-base
-      #     texlive-latex-extra
-      #     dvisvgm
       - run: python3 -m venv .venv
       - run: .venv/bin/python -m pip install wheel
       - run: .venv/bin/python setup.py install
