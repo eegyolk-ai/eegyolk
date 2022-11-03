@@ -50,7 +50,7 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to discuss additional a
 How to get the notebooks running? Assuming the raw data set and metadata is available.
 
 1. Install all Python packages required, using conda and the environment-march-update2.yaml file.
-    Run the following line on your machine: `conda env create -f current_enviro2.yml` and switch to this environment running command: `conda activate mne-marchez`.
+    Run the following line on your machine: `conda env create -f environment.yml` and switch to this environment running command: `conda activate envyolk`.
 2. Install eegyolk: pip install the eegyolk library in the suggested version in the notebooks 
    (you can also clone the repo and   work locally but this requires a few additional manuevers of code in terms of imports)
 3. Update the configuration by examining config.py and adding a .eegyolk folder on your server as implied (see general readme file for clarification)
