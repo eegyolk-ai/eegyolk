@@ -80,8 +80,6 @@ class EpodiumSequence(Sequence):
                 
                 # Create noise
                 evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
-                # Divide by standard deviation to make the range of signals more similar:
-                evoked_standard_std = evoked_standard/evoked_standard.std()
                 
                 x_batch.append(evoked_standard)
 
@@ -121,7 +119,8 @@ class DDPSequence(Sequence):
 
     def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
                  sample_rate=None, batch_size=8, n_instances_per_experiment=4,
-                 n_trials_averaged=30, gaussian_noise=0, mismatch_negativity=False):
+                 n_trials_averaged=30, gaussian_noise=0, mismatch_negativity=False,
+                 standardise=False):
 
         self.experiments = experiments
         self.labels = target_labels
@@ -133,7 +132,7 @@ class DDPSequence(Sequence):
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
         self.sample_rate = sample_rate
-
+        self.standardise = standardise
 
     # The number of experiments in the entire dataset.
     def __len__(self):
@@ -175,10 +174,12 @@ class DDPSequence(Sequence):
                 
                 # Create noise
                 evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
-                # Divide by standard deviation to make the range of signals more similar:
-                evoked_standard_std = evoked_standard/evoked_standard.std()
                 
-                x_batch.append(evoked_standard_std)
+                # Standardising reduces model accuracy:
+                if self.standardise:
+                    evoked_standard = evoked_standard/evoked_standard.std()
+                
+                x_batch.append(evoked_standard)
                 y_batch.append(experiment_labels["age_days"].iloc[0])
 
         # Shuffle batch

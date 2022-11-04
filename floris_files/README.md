@@ -1,15 +1,11 @@
 # Predicting age and dyslexia with deep learning on ERPs
 
-This codebase is part of the *eegyolk* repository. The notebooks and functions are created for the master thesis ... by Floris Pauwels. The goal of this code is to predict age and dyslexia from EEG and ERP data. 
+The goal of this code is to predict age and dyslexia from EEG data. The datasets that are used, measure EEG data from children with the [auditory oddball experiments](https://en.wikipedia.org/wiki/Oddball_paradigm). The 'Event Related Potential' (ERP) can be obtained from the measurements. These ERPs are used as input to the deep learning model to predict age and dyslexia.
 
 #### ePodium project
 The thesis is part of the project *ePODIUM: early Prediction Of Dyslexia in Infants Using Machine learning*. The project is a collaboration between researchers from Utrecht University, UMC Utrecht, and the eScience Center in Amsterdam. The goal of the ePodium project is to explore if EEG data measured in infancy can predict the occurrence of later literacy difficulties in individual children. 
 
-
-
-#### Previous results
-As a part of this project, the master student B.M.A. Bruns has already been successful at predicting the age of children between 11 and 47 months from EEG signals, by applying deep learning models to the *Dutch Dyslexia Program* (DDP) dataset. The code for this project is available at https://github.com/epodium/EEG_age_prediction.
-
+This codebase is part of the *eegyolk* repository. The notebooks and functions are created for the master thesis {thesis link + title} by Floris Pauwels. 
 
 
 
@@ -19,8 +15,8 @@ As a part of this project, the master student B.M.A. Bruns has already been succ
 
 This codebase contains five notebooks. Some of these notebooks contain widgets to interact with the notebooks and modify the data:
 
-* `epodium.ipynb` uses the ePodium dataset. The data is loaded and the experiment is explained and visualised. The data is processed and sorted into epochs. Finally ERPs are plotted from these epochs.
-* `ddp.ipynb` is similar to the 'ePodium' notebook, but now the *Dutch Dyslexia Project* dataset is used.
+* `epodium.ipynb` uses the ePodium dataset. The data is loaded and the experiment is explained and visualised. The data is processed and sorted into epochs. Finally ERPs are plotted from these epochs. 
+* `ddp.ipynb` is similar to the 'ePodium' notebook, but now the *Dutch Dyslexia Project* dataset is used. The dataset info is put in classes to be able to pass the dataset as an argument to a function.
 
 * `model_training.ipynb` trains deep neural network models to predict age and risk of dyslexia on the datasets. Different models and hyperparameters can be chosen. The trained model with the lowest loss on the validation set is stored for later analysis.
 * `model_analysis.ipynb` analyses the input data and models trained in the 'model_training' notebook. The model accuracies on the test set are calculated and the predictions are plotted against the actual values.
@@ -28,8 +24,8 @@ This codebase contains five notebooks. Some of these notebooks contain widgets t
 * `simulated_data.ipynb` is a demo file to create and visualise simulated EEG data from the signal frequencies.
 
 ### Functions
-* `epodium.py` contains the epodium class for working with the ePodium dataset. The class contains data and methods specific to the dataset.
-* `ddp.py`  contains the ddp class for working with the DDP dataset. Like the epodium class, this class contains data and methods specific to the dataset.
+* `epodium.py` contains the Epodium class for working with the ePodium dataset. The class contains data and methods specific to the dataset.
+* `ddp.py`  contains the DDP class for working with the DDP dataset. Like the epodium class, this class contains data and methods specific to the dataset.
 
 * `processing.py` contains tools for (multi)processing raw EEG data and saves the processed EEG data as epochs.
 * `sequences.py` contains a sequence class for each dataset to iterate over the data for training the deep learning model.
@@ -54,12 +50,15 @@ The model folder also contains the original models from the repositories and a t
 
 In the DDP dataset 300 children were followed from the age of 2 months up to 9 years. The EEG-signals were measured from the children every 6 months between 2 and 47 months. In these experiments the EEG-signals were recorded from the children, where the children listen to the dutch words "bak" and "dak". Nine variation of these sounds were played, each a different combination of the two words. The event-related potentials to each distinct sound event was measured. 
 
+As a part of the ePodium project, the master student B.M.A. Bruns has already been successful at predicting the age of children between 11 and 47 months from EEG signals, by applying deep learning models to the DDP dataset. The code for this project is available at https://github.com/epodium/EEG_age_prediction.
+
 A portion of the dataset is available on the [DANS](https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:112935/) website. NLeSC employees can download the data from [surfdrive](https://surfdrive.surf.nl/files/index.php/s/mkwBAisnYUaPRhy).
 
 ### ePodium dataset
 A dataset is developed by the ePodium project to predict the risk of dyslexia in toddlers. In the experiment EEG-data is collected from 129 toddlers between the age of 16 and 24 months. The children perform two half-hour tests in a 3 month interval in which the EEG-data is recorded. 
 
-The test uses the auditory oddball paradigm. The hypothesis is that children with risk of dyslexia are not as skilled at distinguishing spoken syllables as typical children. If this hypothesis is true, dyslexic children can potentially be diagnosed based on an abnormality in the mismatch responses from standard and deviant syllables. The dataset contains information on the reading skills of the parents and a child is at risk of dyslexia if the parents are dyslexic, since there is a correlation between dyslexia among parents and children. Children at risk of dyslexia are estimated to have a less distinct mismatch response than typical children.
+In each test the child listens to a sequence of sounds. This sequence contains 80%
+standard and 20% deviant syllables to elicit the mismatch response. To measure the EEG data 32 electrode channels are used. The measurement frequency is 2048.0 Hz
 
 Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to ask for access to the data available to NLeSC employees.
 
