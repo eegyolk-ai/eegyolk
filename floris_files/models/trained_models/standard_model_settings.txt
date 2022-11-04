@@ -1,0 +1,19 @@
+Hyperparameters settings:
+    dimensions: (26, 501)
+    learning rate: 1e-3 with factor 0.9 if validation loss doesn't improve.
+    epochs: 50/100
+    batch size: 8
+    
+The folder name contains:
+    1. the dataset on which the model is trained (ddp/epod)
+    2. the model architecture (encoder/resnet) 
+    3. the label on which the model is trained (age/atrisk)
+    3. the index of the model
+    
+The folder name also contains certain variable values if they differ from the standard:
+    1. number of 'channels'. Standard are the '26' channels that are in both the ddp as the epod dataset
+    2. the 'sampling rate' of the data. Standard is the sampling rate '500Hz'. The sampling rate of ddp. The sampling rate of epod is 2048HZ.
+    3. number of 'trials to average' to get the model input: an ERP signal. Standard is set to '30'.
+    4. standardly the data signals are normalised to make signals more similar
+    5. introduced noise to prevent overfitting (standard is 1e-6 V standard-deviation)
+    
