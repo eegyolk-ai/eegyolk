@@ -67,7 +67,7 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to ask for access to th
 
 
 ### Packages
-Below contain the most important python packages needed to run the code. The main eegyolk folder contains an *environment.yml* file that includes packages and package versions. The code is tested and should work in this environment.
+Below contain the most important python packages needed to run the code. The code is tested with the environment *environment.yml* in the main eegyolk folder.
 
 * [MNE](https://mne.tools/) is the go-to package for exploring, visualizing, and analyzing neurophysiological data such as EEGs. 
 * [Tensorflow](https://www.tensorflow.org/) is a deep learning framework for training and inference of deep neural networks. Tensorflow contains the [Keras](https://keras.io/)  library which contains the building blocks of neural networks to make it as easy as possible to create such a network.
@@ -86,13 +86,16 @@ Below contain the most important python packages needed to run the code. The mai
 
 
 ### Install guide
-To use the notebooks, you can download the files in this repository to your system. The code also needs access to a dataset. Finally the required packages need to be installed in Python on your system. This can be done with pip or conda in Windows or sudo in Linux.
+To use the notebooks, download the files from this repository to your system. The code needs access to a dataset to function properly. 
 
 The `local_paths.py` file contains paths to the saved models and the dataset files. Make sure the paths are correctly set in this file.
 
-The notebooks and functions are licensed under the [Apache License](https://en.wikipedia.org/wiki/Apache_License), [Version 2.0 ](https://www.apache.org/licenses/LICENSE-2.0)
+Finally the required packages need to be installed in Python on your system. This can be done with pip or conda in Windows or sudo in Linux.  With pip, install the required packages with the command `pip install -r packages.txt` from the text file in *floris_files/other*.
+
 
 #### Hardware and OS
 
 The models are trained on single A10 in Ubuntu 20.04 with an 11 core CPU, 50 GB RAM, and 2TB storage. The code is tested in Windows and Linux.
 
+
+The notebooks and functions are licensed under the [Apache License](https://en.wikipedia.org/wiki/Apache_License), [Version 2.0 ](https://www.apache.org/licenses/LICENSE-2.0)

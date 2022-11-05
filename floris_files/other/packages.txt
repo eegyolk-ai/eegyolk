@@ -7,3 +7,7 @@ matplotlib
 sklearn
 scipy
 Wave
+h5io
+tensorflow_addons
+ipywidgets
+ipympl
