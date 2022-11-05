@@ -86,6 +86,6 @@ def transformer_model(input_shape, n_classes):
     x = layers.Dropout(0.5)(x)
     x = layers.Dense(64, activation="relu")(x)
     x = layers.Dropout(0.5)(x)
-    outputs = layers.Dense(n_classes, activation="sigmoid")(x)
+    outputs = layers.Dense(n_classes)(x)
 
     return keras.Model(inputs=inputs, outputs=outputs)

@@ -64,63 +64,12 @@ def fully_convolutional_model(input_shape, nb_classes):
 
     gap_layer = keras.layers.GlobalAveragePooling1D()(conv3)
 
-    output_layer = keras.layers.Dense(nb_classes, activation='softmax')(gap_layer)
+    output_layer = keras.layers.Dense(nb_classes)(gap_layer)
 
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
 
     return model
 
-
-
-
-def cnn_model(input_shape, n_classes):
-    padding = 'valid'
-    input_layer = keras.layers.Input(input_shape)
-
-    conv1 = keras.layers.Conv1D(filters=6,kernel_size=7,padding=padding,activation='sigmoid')(input_layer)
-    conv1 = keras.layers.AveragePooling1D(pool_size=3)(conv1)
-
-    conv2 = keras.layers.Conv1D(filters=12,kernel_size=7,padding=padding,activation='sigmoid')(conv1)
-    conv2 = keras.layers.AveragePooling1D(pool_size=3)(conv2)
-
-    flatten_layer = keras.layers.Flatten()(conv2)
-
-    output_layer = keras.layers.Dense(units=n_classes,activation='sigmoid')(flatten_layer)
-
-    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
-    
-    return model
-
-
-
-# From https://github.com/epodium/EEG_age_prediction:
-def fully_connected_model():
-    """ Returns the fully connected model from Ismail Fawaz et al. (2019). """
-    n_timesteps = 512
-    n_features = 32
-    n_outputs = 3
-
-    input_shape = (n_features, n_timesteps)
-
-    input_layer = keras.layers.Input(input_shape)
-
-    input_layer_flattened = keras.layers.Flatten()(input_layer)
-
-    layer_1 = keras.layers.Dropout(0.5)(input_layer_flattened)
-    layer_1 = keras.layers.Dense(100, activation='relu')(layer_1)
-
-    layer_2 = keras.layers.Dropout(0.4)(layer_1)
-    layer_2 = keras.layers.Dense(50, activation='relu')(layer_2)
-
-    layer_3 = keras.layers.Dropout(0.3)(layer_2)
-    layer_3 = keras.layers.Dense(30, activation='relu')(layer_3)
-
-    output_layer = keras.layers.Dropout(0.2)(layer_3)
-    output_layer = keras.layers.Dense(n_outputs, activation='sigmoid')(output_layer)
-
-    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
-
-    return model
 
 def resnet_model(input_shape, n_classes):
     """ Returns the ResNet model from Ismail Fawaz et al. (2019). """
@@ -196,3 +145,57 @@ def resnet_model(input_shape, n_classes):
     model = keras.models.Model(inputs=input_layer, outputs=output_layer)
 
     return model
+
+
+
+
+
+# From https://github.com/epodium/EEG_age_prediction:
+def fully_connected_model():
+    """ Returns the fully connected model from Ismail Fawaz et al. (2019). """
+    n_timesteps = 512
+    n_features = 32
+    n_outputs = 3
+
+    input_shape = (n_features, n_timesteps)
+
+    input_layer = keras.layers.Input(input_shape)
+
+    input_layer_flattened = keras.layers.Flatten()(input_layer)
+
+    layer_1 = keras.layers.Dropout(0.5)(input_layer_flattened)
+    layer_1 = keras.layers.Dense(100, activation='relu')(layer_1)
+
+    layer_2 = keras.layers.Dropout(0.4)(layer_1)
+    layer_2 = keras.layers.Dense(50, activation='relu')(layer_2)
+
+    layer_3 = keras.layers.Dropout(0.3)(layer_2)
+    layer_3 = keras.layers.Dense(30, activation='relu')(layer_3)
+
+    output_layer = keras.layers.Dropout(0.2)(layer_3)
+    output_layer = keras.layers.Dense(n_outputs)(output_layer)
+
+    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
+
+    return model
+
+
+
+def cnn_model(input_shape, n_classes):
+    padding = 'valid'
+    input_layer = keras.layers.Input(input_shape)
+
+    conv1 = keras.layers.Conv1D(filters=6,kernel_size=7,padding=padding,activation='sigmoid')(input_layer)
+    conv1 = keras.layers.AveragePooling1D(pool_size=3)(conv1)
+
+    conv2 = keras.layers.Conv1D(filters=12,kernel_size=7,padding=padding,activation='sigmoid')(conv1)
+    conv2 = keras.layers.AveragePooling1D(pool_size=3)(conv2)
+
+    flatten_layer = keras.layers.Flatten()(conv2)
+
+    output_layer = keras.layers.Dense(units=n_classes)(flatten_layer)
+
+    model = keras.models.Model(inputs=input_layer, outputs=output_layer)
+    
+    return model
+
