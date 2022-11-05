@@ -32,8 +32,7 @@ add line:
 sudo mount -a
 ln -s /volume-ceph
 
-
-
+pip install -r packages.txt
 
 COMMANDS:
 

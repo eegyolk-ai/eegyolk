@@ -1,0 +1,9 @@
+mne
+tensorflow
+autoreject
+numpy
+pandas
+matplotlib
+sklearn
+scipy
+Wave

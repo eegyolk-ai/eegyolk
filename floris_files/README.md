@@ -23,6 +23,9 @@ This codebase contains five notebooks. Some of these notebooks contain widgets t
 
 * `simulated_data.ipynb` is a demo file to create and visualise simulated EEG data from the signal frequencies.
 
+To recreate the results, first run `epodium.ipynb` or `ddp.ipynb` to process either dataset. Train this processed data on a model with `model_training.ipynb` and analyse the results in `model_analysis.ipynb`.
+
+
 ### Functions
 * `epodium.py` contains the Epodium class for working with the ePodium dataset. The class contains data and methods specific to the dataset.
 * `ddp.py`  contains the DDP class for working with the DDP dataset. Like the epodium class, this class contains data and methods specific to the dataset.
@@ -34,7 +37,6 @@ This codebase contains five notebooks. Some of these notebooks contain widgets t
 * `display_helper.py` contains tools to help with displaying information.
 * `simulated_data.py` contains functions for creating simulated data.
 * `data_io.py` contains functions to save and load data to and from storage.
-
 
 
 ### Models
@@ -54,6 +56,7 @@ As a part of the ePodium project, the master student B.M.A. Bruns has already be
 
 A portion of the dataset is available on the [DANS](https://easy.dans.knaw.nl/ui/datasets/id/easy-dataset:112935/) website. NLeSC employees can download the data from [surfdrive](https://surfdrive.surf.nl/files/index.php/s/mkwBAisnYUaPRhy).
 
+
 ### ePodium dataset
 A dataset is developed by the ePodium project to predict the risk of dyslexia in toddlers. In the experiment EEG-data is collected from 129 toddlers between the age of 16 and 24 months. The children perform two half-hour tests in a 3 month interval in which the EEG-data is recorded. 
 
@@ -62,7 +65,10 @@ standard and 20% deviant syllables to elicit the mismatch response. To measure t
 
 Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to ask for access to the data available to NLeSC employees.
 
+
 ### Packages
+Below contain the most important python packages needed to run the code. The main eegyolk folder contains an *environment.yml* file that includes packages and package versions. The code is tested and should work in this environment.
+
 * [MNE](https://mne.tools/) is the go-to package for exploring, visualizing, and analyzing neurophysiological data such as EEGs. 
 * [Tensorflow](https://www.tensorflow.org/) is a deep learning framework for training and inference of deep neural networks. Tensorflow contains the [Keras](https://keras.io/)  library which contains the building blocks of neural networks to make it as easy as possible to create such a network.
 * [Autoreject](https://autoreject.github.io/)  is a library to automatically reject bad trials and repair bad sensors in EEG data. This library is used for processing the data.
@@ -78,7 +84,15 @@ Contact Candace Makeda Moore (c.moore@esciencecenter.nl) to ask for access to th
 
 * [os](https://docs.python.org/3/library/os.html), [glob](https://docs.python.org/3/library/glob.html), [multiprocessing](https://docs.python.org/3/library/multiprocessing.html), and [random](https://docs.python.org/3/library/random.html) are standard packages included in the Python installation. 
 
+
 ### Install guide
 To use the notebooks, you can download the files in this repository to your system. The code also needs access to a dataset. Finally the required packages need to be installed in Python on your system. This can be done with pip or conda in Windows or sudo in Linux.
 
 The `local_paths.py` file contains paths to the saved models and the dataset files. Make sure the paths are correctly set in this file.
+
+The notebooks and functions are licensed under the [Apache License](https://en.wikipedia.org/wiki/Apache_License), [Version 2.0 ](https://www.apache.org/licenses/LICENSE-2.0)
+
+#### Hardware and OS
+
+The models are trained on single A10 in Ubuntu 20.04 with an 11 core CPU, 50 GB RAM, and 2TB storage. The code is tested in Windows and Linux.
+
