@@ -133,6 +133,7 @@ class DDPSequence(Sequence):
         self.gaussian_noise = gaussian_noise
         self.sample_rate = sample_rate
         self.standardise = standardise
+        self.mismatch_negativity = mismatch_negativity
 
     # The number of experiments in the entire dataset.
     def __len__(self):
@@ -165,21 +166,30 @@ class DDPSequence(Sequence):
                 epochs.resample(self.sample_rate)
             
             # Multiple instances are loaded from the same experiment for loading efficiency.
-            for j in range(self.instances):                
-                standard_data = epochs["standard"].get_data()
-                                
-                # Create standardised ERP from averaging 'n_trials_averaged' trials.
+            for j in range(self.instances):      
+                
+                # Create ERP from averaging 'n_trials_averaged' trials.
+                standard_data = epochs["standard"].get_data()                                
                 trial_indexes_standards = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
                 evoked_standard = np.mean(standard_data[trial_indexes_standards,:,:], axis=0)
                 
+                # Set data to mismatch negativity or standard
+                if self.mismatch_negativity:
+                    deviant_data = epochs["deviant"].get_data()                                
+                    trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                    evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
+                    data = evoked_deviant - evoked_standard
+                else:
+                    data = evoked_standard
+                
                 # Create noise
-                evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
+                data += np.random.normal(0, self.gaussian_noise, data.shape)
                 
                 # Standardising reduces model accuracy:
                 if self.standardise:
-                    evoked_standard = evoked_standard/evoked_standard.std()
+                    data = data/data.std()
                 
-                x_batch.append(evoked_standard)
+                x_batch.append(data)
                 y_batch.append(experiment_labels["age_days"].iloc[0])
 
         # Shuffle batch

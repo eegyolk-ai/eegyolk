@@ -27,7 +27,7 @@ sudo mkdir /volume-ceph
 
 sudo nano /etc/fstab
 add line:
-//145.38.186.229/volume-ceph /volume-ceph cifs username=smbuser,password=[PASSWORD],file_mode=0777,dir_mode=0777
+//145.38.186.229/volume-ceph /volume-ceph cifs username=smbuser,password=epodium123,file_mode=0777,dir_mode=0777
 
 sudo mount -a
 ln -s /volume-ceph
