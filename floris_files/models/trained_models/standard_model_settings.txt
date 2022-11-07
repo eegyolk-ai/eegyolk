@@ -16,6 +16,5 @@ The folder name contains certain variable values if they differ from the standar
     1. number of 'channels'. Standard are the '26' channels that are in both the ddp as the epod dataset
     2. the 'sampling rate' of the data. Standard is the sampling rate '500Hz'. The sampling rate of ddp. The sampling rate of epod is 2048HZ.
     3. number of 'trials to average' to get the model input: an ERP signal. Standard is set to '30'.
-    4. standardly the data signals are normalised to make signals more similar
-    5. introduced noise to prevent overfitting (standard is 1e-6 V standard-deviation)
+    4. introduced noise to prevent overfitting (standard is 1e-6 V standard-deviation)
     
