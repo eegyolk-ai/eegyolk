@@ -95,7 +95,8 @@ class Epodium:
                 events_12[i] = np.where(mask, newValue, events_12[i])
         return events_12
 
-    def create_labels(self, metadata_directory, path_save_csv=""):
+    @staticmethod
+    def create_labels(metadata_directory, path_save_csv=""):
         """
         This function creates a .csv file with the labels:
         Participant / Age_days_a / Age_days_b / Risk_of_dyslexia
@@ -111,6 +112,28 @@ class Epodium:
         new_names = {'ParticipantID': 'Participant',
                      'Group_AccToParents': 'Risk_of_dyslexia'}
         merged_df = merged_df.rename(columns=new_names)
+        
+        # Creates dyslexia continuum:
+        parents_dyslexia_tests = ["emt_mother", "klepel_mother", "vc_mother",
+                          "emt_father", "klepel_father", "vc_father"]
+        min_max_dict = {"emt": [50, 116], "klepel": [32, 116], "vc": [10, 26]}
+
+        n_participants = len(dyslexia_score)
+        dyslexia_score = np.zeros(n_participants)
+        for i in range(n_participants):
+            cumulative_score = 0
+            n_scores = 0    
+            for test_parent in parents_dyslexia_tests:
+                test = test_parent.split("_")[0]
+                score_temp = parents_dyslexia_scores[test_parent][i]
+                if score_temp.isdigit():
+                    # Add normalised score:
+                    cumulative_score +=  (int(score_temp) - min_max_dict[test][0]) / \
+                                         (min_max_dict[test][1] - min_max_dict[test][0])
+                    n_scores+=1   
+            dyslexia_score[i] = cumulative_score / n_scores
+
+        merged_df["Dyslexia_score"] = dyslexia_score
 
         if path_save_csv:
             if os.path.exists(path_save_csv):
