@@ -28,16 +28,18 @@ class EpodiumSequence(Sequence):
 
     def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
                  sample_rate=None, batch_size=8, n_trials_averaged=30, gaussian_noise=0,
-                 mismatch_negativity=False):
+                 mismatch_negativity=False, label='age'):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
         self.channel_names = channel_names
-
+        self.label = label
+        
         self.batch_size = batch_size
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
         self.sample_rate = sample_rate
+        self.mismatch_negativity = mismatch_negativity
 
     # The number of experiments in the entire dataset.
     def __len__(self):
@@ -67,35 +69,43 @@ class EpodiumSequence(Sequence):
                 epochs.resample(self.sample_rate)
             
             # A data instance is created for each condition
-            for condition in ['GiepM', "GiepS", "GopM", "GopS"]:
-                # Data in np.array()
-                standard_data = epochs[condition + '_S'].get_data()
-                deviant_data = epochs[condition + '_D'].get_data()
-                                
+            for condition in ['GiepM', "GiepS", "GopM", "GopS"]:              
+                
                 # Create ERP from averaging 'n_trials_averaged' trials.
-                trial_indexes_S = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
-                evoked_standard = np.mean(standard_data[trial_indexes_S,:,:], axis=0)
-                # trial_indexes_D = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
-                # evoked_deviant = np.mean(deviant_data[trial_indexes_D,:,:], axis=0)
+                standard_data = epochs[condition + '_S'].get_data()                                
+                trial_indexes_standards = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
+                evoked_standard = np.mean(standard_data[trial_indexes_standards,:,:], axis=0)
+                
+                # Set data to mismatch negativity or standard
+                if self.mismatch_negativity:
+                    deviant_data = epochs[condition + '_D'].get_data()                                
+                    trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                    evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
+                    data = evoked_deviant - evoked_standard
+                else:
+                    data = evoked_standard
                 
                 # Create noise
-                evoked_standard += np.random.normal(0, self.gaussian_noise, evoked_standard.shape)
+                data += np.random.normal(0, self.gaussian_noise, data.shape)
                 
-                x_batch.append(evoked_standard)
-
-                ## Merge Standard and Deviant evoked along the channel dimensions.
-                # evoked = np.concatenate((evoked_standard, evoked_deviant))
-                # evoked += np.random.normal(0, self.gaussian_noise, evoked.shape)
-                # x_batch.append(evoked)
+                x_batch.append(data)
                
-                # Append age to target 'y'
-                if str(experiment[-1]) == "a":
-                    y = int(participant_labels[f"Age_days_a"].item())
-                elif str(experiment[-1]) == "b":
-                    try: 
-                        y = int(participant_labels[f"Age_days_b"].item())
-                    except: # If age of 'b' experiment not in metadata
-                        y = int(participant_labels[f"Age_days_a"].item()) + 120
+                # Labels
+                if self.label == 'age':
+                    if str(experiment[-1]) == "a":
+                        y = int(participant_labels[f"Age_days_a"].item())
+                    elif str(experiment[-1]) == "b":
+                        try: 
+                            y = int(participant_labels[f"Age_days_b"].item())
+                        except: # If age of 'b' experiment not in metadata
+                            y = int(participant_labels[f"Age_days_a"].item()) + 120
+                elif self.label == 'dyslexia':
+                    y = participant_labels[f"Dyslexia_score"].item()
+                else:
+                    print("Label not found")
+                
+                if(verbose):
+                    print(f"Target y: {y}")  
 
                 y_batch.append(y)
 

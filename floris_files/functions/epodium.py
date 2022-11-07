@@ -114,11 +114,12 @@ class Epodium:
         merged_df = merged_df.rename(columns=new_names)
         
         # Creates dyslexia continuum:
+        parents_dyslexia_scores = pd.read_table(path_parents)
         parents_dyslexia_tests = ["emt_mother", "klepel_mother", "vc_mother",
                           "emt_father", "klepel_father", "vc_father"]
         min_max_dict = {"emt": [50, 116], "klepel": [32, 116], "vc": [10, 26]}
 
-        n_participants = len(dyslexia_score)
+        n_participants = len(epod_children)
         dyslexia_score = np.zeros(n_participants)
         for i in range(n_participants):
             cumulative_score = 0
