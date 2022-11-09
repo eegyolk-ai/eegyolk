@@ -10,14 +10,14 @@ dependencies:
   - h5py=2.10.0
   - ipympl
   - ipython
-  - ipywidgets=7.7.0
+  - ipywidgets=8.0.2
   - mne=1.0.1
   - mne-connectivity=0.3
   - mayavi=4.8.1
   - pip=20.2
   - pyvista=0.35.1
   - scikit-learn=1.1.1
-
+  - pandas=1.4.3
   - seaborn=0.11.1
   - vtk=9.1.0
   - zarr=2.7.0
@@ -26,6 +26,7 @@ dependencies:
     - absl-py==0.11.0
     - astunparse==1.6.3
     - cachetools==4.1.1
+    - eegyolk==0.0.5
     - flatbuffers==1.12
     - gast==0.3.3
     - google-auth==1.23.0
