@@ -1,6 +1,6 @@
 # ePodium: EEGs and dyslexia risk in children 
 
-The code notebooks in this folder accompany original research by Nadine Prins. 
+The code notebooks in this folder accompany original research by Nadine Prins. The goal of the research is to predict dyslexia in infants using the EEG data from the ePod dataset. The model input is based on the mismatch response theory.
 The code relies on the eegyolk library.
 
 
@@ -23,20 +23,22 @@ This library contains functions, scripts and notebooks for machine learning rela
 ## Notebooks
 The notebooks in this folder have a specific order, since the output of one notebook will be used as input for another notebook. 
 
-Data preparation on raw EEGs: 
-- `data_prep_eeg.ipynb`
-- `data_analysis.ipynb`
+1. Data preprocessing raw EEGs: 
+- `data_preprocessing.ipynb`
 Output: `metadata.csv`
 
-Model data preparation: 
-- `Input_mmr_prep.ipynb`
-- `Input_connectivity_prep.ipynb`
-Output: `df_avg_mmr.csv` and `df_connectivity.csv`
+2. Analyzing the data:
+- `data_analysis.ipynb`
+Input: `metadata.csv`
 
-Machine Learning models: 
-- `ML_on_mmr_data.ipynb`
-- `ML_on_connectivity_data.ipynb`
+3. Data preparation for models: 
+- `model_preparation.ipynb`
+Input: `metadata.csv`
+Output: `df_mmr_ch_complete`, `df_mmr_ch_literature`, `df_mmr_ch_ttest` and `df_mmr_ch_connectivity`
 
+4. Machine Learning models: 
+- `model_prediction.ipynb`
+Input: `df_mmr_ch_complete`, `df_mmr_ch_literature`, `df_mmr_ch_ttest` and `df_mmr_ch_connectivity`
 
 ## Data sets
 
@@ -54,8 +56,8 @@ How to get the notebooks running? Assuming the raw data set and metadata is avai
 2. Install eegyolk: pip install the eegyolk library in the suggested version in the notebooks 
    (you can also clone the repo and   work locally but this requires a few additional manuevers of code in terms of imports)
 3. Update the configuration by examining config.py and adding a .eegyolk folder on your server as implied (see general readme file for clarification)
-4. Run the data preperation notebook `data_prep_eeg.ipynb`. Make sure that the folder names are correctly adjusted. 
-5. The `data_prep_eeg.ipynb` notebook gives as output the file `metadata.csv`. This file can be used for the `data_analysis.ipynb` notebook to analyze the data. 
-6. 'metadata.csv` is the input for the `Input_mmr_prep.ipynb` and the 'Input_connectivity_prep.csv'. The notebooks generate the data which will be used as input for the ML models. The first notebook is based on the mismatch response between a standard stimulus and a deviant stimulus. The second notebook calculates the connectivity between sensors. 
-7. The generated files `df_avg_mmr.csv` and `df_connectivity.csv` can be used as input for the Machine Learning notebooks `ML_on_mmr_data.ipynb` and `ML_on_connectivity_data.ipynb` respectively. 
+4. Run the data preperation notebook `data_preprocessing.ipynb`. Make sure that the folder names are correctly adjusted. 
+5. The `data_preprocessing.ipynb` notebook gives as output the file `metadata.csv`. This file can be used for the `data_analysis.ipynb` notebook to analyze the data. 
+6. 'metadata.csv` is the input for `model_preparation.ipynb`. The notebook generates data which will be used as input for the ML models. The notebook is based on the mismatch response between a standard stimulus and a deviant stimulus. 
+7. The generated files `df_mmr_ch_complete`, `df_mmr_ch_literature`, `df_mmr_ch_ttest` and `df_mmr_ch_connectivity` can be used as input for the machine learning notebook `model_prediction.ipynb` to try different models on the mismatch response data to predict dyslexia. 
 
