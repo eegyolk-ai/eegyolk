@@ -16,9 +16,11 @@ This library contains functions, scripts and notebooks for machine learning rela
 
 ### Notebooks
 
-Initial experiments:
-- Ongoing
+There are several groups of notebooks related to this repository. Notebooks related to the thesis of Nadine Prins can be found in the folder dyslexiaprediction_nadine. Notebooks related to the thesis of Floris Pauwels can be found in the foder floris_files. Notebooks related to general reproduction the work of earlier project can be found in reproducibility_experiments.
 
+### Documentation
+
+There have been several versions of eegyolk, and documentation for all of them is available on readthedocs. [To get the latest stable documentation follow this link.](https://eegyolk.readthedocs.io/en/stable/)
 
 ### Configuration file
 

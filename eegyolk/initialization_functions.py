@@ -119,7 +119,6 @@ def save_events(folder_events, eeg_dataset, eeg_filenames):
 def read_filtered_data(metadata, to_array=False, verbose=False):
     epochs = []
     for index, file in metadata.iterrows():
-        #print(f"Checking out file: {file['epoch_file']}")
         path = os.path.join(file['path_epoch'], file['epoch_file'])
         epoch = mne.read_epochs(path, preload=False, verbose=verbose)
         if to_array is True:
