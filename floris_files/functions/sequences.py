@@ -28,7 +28,7 @@ class EpodiumSequence(Sequence):
 
     def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
                  sample_rate=None, batch_size=8, n_trials_averaged=30, gaussian_noise=0,
-                 mismatch_negativity=False, label='age'):
+                 input_type="standard", label='age'):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
@@ -39,7 +39,7 @@ class EpodiumSequence(Sequence):
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
         self.sample_rate = sample_rate
-        self.mismatch_negativity = mismatch_negativity
+        self.input_type = input_type
 
     # The number of experiments in the entire dataset.
     def __len__(self):
@@ -76,14 +76,21 @@ class EpodiumSequence(Sequence):
                 trial_indexes_standards = np.random.choice(standard_data.shape[0], self.n_trials_averaged, replace=False)
                 evoked_standard = np.mean(standard_data[trial_indexes_standards,:,:], axis=0)
                 
-                # Set data to mismatch negativity or standard
-                if self.mismatch_negativity:
+                # Set data to standard, standard + deviant, or mismatch negativity 
+                if self.input_type == "standard":
+                    data = evoked_standard
+                elif self.input_type == "standard_deviant":
+                    deviant_data = epochs[condition + '_D'].get_data()                                
+                    trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                    evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
+                    data = np.concatenate((evoked_standard, evoked_deviant))
+                elif self.input_type == "MMR":
                     deviant_data = epochs[condition + '_D'].get_data()                                
                     trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
                     evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
                     data = evoked_deviant - evoked_standard
                 else:
-                    data = evoked_standard
+                    print(f"Input type: {self.input_type} unknown")
                 
                 # Create noise
                 data += np.random.normal(0, self.gaussian_noise, data.shape)
