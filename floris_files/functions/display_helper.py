@@ -13,7 +13,8 @@ import mne
 
 
 def show_plot(x=None, y=None, title="", xlabel="", ylabel="",
-              xlim=None, ylim=None, legend="", show=True, scatter=False):
+              xlim=None, ylim=None, legend="", show=True, scatter=False,
+              scatter_color=None):
     """
     Show plot with title and lables.
     """
@@ -36,7 +37,9 @@ def show_plot(x=None, y=None, title="", xlabel="", ylabel="",
             plt.plot(x, y[i], label=legend[i])
         plt.legend()  
     elif scatter:
-        plt.scatter(x, y)
+        if scatter_color:
+            scatter_color = plt.cm.seismic(scatter_color)
+        plt.scatter(x, y, c=scatter_color)
     else:
         plt.plot(x, y)
 

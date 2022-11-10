@@ -15,6 +15,7 @@ ePod_dataset = os.path.join(ePod, "dataset")
 ePod_dataset_events = os.path.join(ePod, "events")
 ePod_metadata = os.path.join(ePod, "metadata")
 ePod_epochs = os.path.join(ePod, "epochs_fif")
+ePod_epochs_ddp_dims = os.path.join(ePod, "epochs_fif_500Hz_26ch") 
 ePod_epochs_events = os.path.join(ePod_epochs, "events")
 
 # DDP
