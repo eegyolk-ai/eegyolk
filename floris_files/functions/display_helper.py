@@ -37,7 +37,7 @@ def show_plot(x=None, y=None, title="", xlabel="", ylabel="",
             plt.plot(x, y[i], label=legend[i])
         plt.legend()  
     elif scatter:
-        if scatter_color:
+        if type(scatter_color) != type(None):
             scatter_color = plt.cm.seismic(scatter_color)
         plt.scatter(x, y, c=scatter_color)
     else:
