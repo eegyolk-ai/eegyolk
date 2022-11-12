@@ -6,7 +6,7 @@ storage = "/volume-ceph"
 # Location for saving trained models:
 # Pretrained models are stored in the eegyolk repository
 user = os.path.expanduser("~")
-models = os.path.join(user, "eegyolk", "floris_files", 
+models = os.path.join(user, "eegyolk", "floris_thesis_code", 
                       "models", "trained_models")
 
 # ePodium project

@@ -28,7 +28,7 @@ class EpodiumSequence(Sequence):
 
     def __init__(self, experiments, target_labels, epochs_directory, channel_names=None,
                  sample_rate=None, batch_size=8, n_trials_averaged=30, gaussian_noise=0,
-                 input_type="standard", label='age'):
+                 standardise=False, input_type="standard", label='age'):
         self.experiments = experiments
         self.labels = target_labels
         self.epochs_directory = epochs_directory
@@ -38,6 +38,7 @@ class EpodiumSequence(Sequence):
         self.batch_size = batch_size
         self.n_trials_averaged = n_trials_averaged
         self.gaussian_noise = gaussian_noise
+        self.standardise = standardise
         self.sample_rate = sample_rate
         self.input_type = input_type
 
@@ -94,6 +95,9 @@ class EpodiumSequence(Sequence):
                 
                 # Create noise
                 data += np.random.normal(0, self.gaussian_noise, data.shape)
+                
+                if self.standardise:
+                    data = data/data.std()
                 
                 x_batch.append(data)
                
@@ -202,7 +206,6 @@ class DDPSequence(Sequence):
                 # Create noise
                 data += np.random.normal(0, self.gaussian_noise, data.shape)
                 
-                # Standardising reduces model accuracy:
                 if self.standardise:
                     data = data/data.std()
                 
