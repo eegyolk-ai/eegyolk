@@ -82,19 +82,20 @@ class EpodiumSequence(Sequence):
                     data = evoked_standard
                 elif self.input_type == "standard_deviant":
                     deviant_data = epochs[condition + '_D'].get_data()                                
-                    trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
-                    evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
+                    trial_indexes_deviants = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                    evoked_deviant = np.mean(deviant_data[trial_indexes_deviants,:,:], axis=0)
                     data = np.concatenate((evoked_standard, evoked_deviant))
                 elif self.input_type == "MMR":
                     deviant_data = epochs[condition + '_D'].get_data()                                
-                    trial_indexes_standards = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
-                    evoked_deviant = np.mean(deviant_data[trial_indexes_standards,:,:], axis=0)
+                    trial_indexes_deviants = np.random.choice(deviant_data.shape[0], self.n_trials_averaged, replace=False)
+                    evoked_deviant = np.mean(deviant_data[trial_indexes_deviants,:,:], axis=0)
                     data = evoked_deviant - evoked_standard
                 else:
                     print(f"Input type: {self.input_type} unknown")
                 
                 # Create noise
-                data += np.random.normal(0, self.gaussian_noise, data.shape)
+                if gaussian_noise != 0:
+                    data += np.random.normal(0, self.gaussian_noise, data.shape)
                 
                 if self.standardise:
                     data = data/data.std()
