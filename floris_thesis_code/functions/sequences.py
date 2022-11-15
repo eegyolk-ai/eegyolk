@@ -94,7 +94,7 @@ class EpodiumSequence(Sequence):
                     print(f"Input type: {self.input_type} unknown")
                 
                 # Create noise
-                if gaussian_noise != 0:
+                if self.gaussian_noise != 0:
                     data += np.random.normal(0, self.gaussian_noise, data.shape)
                 
                 if self.standardise:
