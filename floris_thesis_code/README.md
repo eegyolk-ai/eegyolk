@@ -1,11 +1,11 @@
-# Predicting age and dyslexia with deep learning on ERPs
+# Using deep learning to predict children’s age and risk of dyslexia from the event related potential
 
-The goal of this code is to predict age and dyslexia from EEG data. The datasets that are used, measure EEG data from children with the [auditory oddball experiments](https://en.wikipedia.org/wiki/Oddball_paradigm). The 'Event Related Potential' (ERP) can be obtained from the measurements. These ERPs are used as input to the deep learning model to predict age and dyslexia.
+The goal of this code is to predict age and dyslexia from EEG data. The datasets that are used, measure EEG data from children with the [auditory oddball experiments](https://en.wikipedia.org/wiki/Oddball_paradigm). The *Event Related Potential* (ERP) can be obtained from the measurements. These ERPs are used as input to the deep learning model to predict age and dyslexia.
 
 #### ePodium project
 The thesis is part of the project *ePODIUM: early Prediction Of Dyslexia in Infants Using Machine learning*. The project is a collaboration between researchers from Utrecht University, UMC Utrecht, and the eScience Center in Amsterdam. The goal of the ePodium project is to explore if EEG data measured in infancy can predict the occurrence of later literacy difficulties in individual children. 
 
-This codebase is part of the *eegyolk* repository. The notebooks and functions are created for the master thesis {thesis link + title} by Floris Pauwels. 
+This codebase is part of the *eegyolk* repository. The notebooks and functions are created for the master thesis: *Using deep learning to predict children’s age and risk of dyslexia from the event related potential* by Floris Pauwels. 
 
 
 
