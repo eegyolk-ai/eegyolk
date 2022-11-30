@@ -27,7 +27,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten
 from tensorflow.keras.layers import Dense, Reshape
 from tensorflow.keras.layers import Conv1D, BatchNormalization, LeakyReLU
-from tensorflow.keras.layers import GlobalAveragePooling1D, Dense, Dropout
+from tensorflow.keras.layers import GlobalAveragePooling1D, Dropout
 from tensorflow.keras.layers import AveragePooling1D, MaxPool1D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.backend import clear_session
