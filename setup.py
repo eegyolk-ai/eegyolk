@@ -626,7 +626,8 @@ if __name__ == '__main__':
             'scipy',
             'matplotlib',
             'h5py',
-            'sklearn',
+            'scikit-learn',
+            'IPython',
             # They've deleted the wheel once again...
             'mne-features==0.1',
             'numpy',
