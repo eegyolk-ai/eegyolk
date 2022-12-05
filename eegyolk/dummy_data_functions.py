@@ -2,7 +2,7 @@
 Copyright 2022 Netherlands eScience Center and Utrecht University.
 Licensed under the Apache License, version 2.0. See LICENSE for details.
 
-This file contains functions designed to  create dummy data.
+This file contains functions designed to  create simulated "dummy" data.
 """
 
 import numpy as np
@@ -10,6 +10,9 @@ import random
 
 
 def generate_sine_wave(frequency, time_points):
+    """
+    Function to generate a sine wave.
+    """
     return np.sin((2 * np.pi) * (time_points * frequency + random.random()))
 
 
