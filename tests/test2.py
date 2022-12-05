@@ -47,8 +47,8 @@ from eegyolk.initialization_functions import print_event_info
 from eegyolk.initialization_functions import caller_save_events
 from eegyolk.initialization_functions import generator_load_dataset
 
-from eegyolk.dummy_data_functions import generate_frequency_distribution
-from eegyolk.dummy_data_functions import create_labeled_dataset
+from eegyolk.data_functions import generate_frequency_distribution
+from eegyolk.data_functions import create_labeled_dataset
 
 # if(OLD_SYSTEM): ## SET TO TRUE FOR epod_data_not_pushed DATA STRUCTURE!
 #     # sample_eeg_cnt = 'tests/sample/640-464-17m-jc-mmn36.cnt' # one file in the tests folder to have a .cnt fileed for now
