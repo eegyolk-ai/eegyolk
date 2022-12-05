@@ -25,8 +25,8 @@ from eegyolk.initialization_functions import print_event_info
 from eegyolk.initialization_functions import caller_save_events
 from eegyolk.initialization_functions import generator_load_dataset
 
-from eegyolk.dummy_data_functions import generate_frequency_distribution
-from eegyolk.dummy_data_functions import create_labeled_dataset
+from eegyolk.data_functions import generate_frequency_distribution
+from eegyolk.data_functions import create_labeled_dataset
 
 main_path = os.path.dirname(os.getcwd())
     # repo_path = os.path.join(main_path, 'eegyolk')
