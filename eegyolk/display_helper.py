@@ -68,9 +68,9 @@ def show_plot_advanced(
     plt.ylabel(ylabel)
 
     # Add optional axis limits.
-    if(xlim):
+    if xlim:
         plt.xlim(xlim[0], xlim[1])
-    if(ylim):
+    if ylim:
         plt.ylim(ylim[0], ylim[1])
 
     # Multiple plot types
