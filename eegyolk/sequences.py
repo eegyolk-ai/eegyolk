@@ -73,7 +73,7 @@ class EpodiumSequence(Sequence):
             participant_labels = self.labels.loc[
                 self.labels['Participant'] == float(participant)]
             # Load .fif file
-            if(verbose):
+            if (verbose):
                 print(f"Loading experiment {experiment}")
             path_epochs = os.path.join(
                 self.epochs_directory, experiment + "_epo.fif")
@@ -151,7 +151,7 @@ class EpodiumSequence(Sequence):
                 else:
                     print("Label not found")
 
-                if(verbose):
+                if (verbose):
                     print(f"Target y: {y}")
 
                 y_batch.append(y)
@@ -217,7 +217,7 @@ class DDPSequence(Sequence):
                 & (self.labels['age_group'] == int(age_group))]
 
             # Load .fif file
-            if(verbose):
+            if (verbose):
                 print(f"Loading experiment {experiment}")
             path_epochs = os.path.join(
                 self.epochs_directory, experiment + "_epo.fif")
